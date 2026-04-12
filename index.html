@@ -1,0 +1,541 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Khaneil Campbell | Cybersecurity Analyst</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: Arial, Helvetica, sans-serif;
+      background: radial-gradient(circle at top, rgba(59,130,246,0.18), transparent 30%),
+                  radial-gradient(circle at 80% 20%, rgba(16,185,129,0.12), transparent 22%),
+                  linear-gradient(to bottom, #020617, #020617);
+      color: white;
+      line-height: 1.6;
+    }
+
+    a {
+      text-decoration: none;
+      color: inherit;
+    }
+
+    .container {
+      width: 90%;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    header {
+      border-bottom: 1px solid rgba(255,255,255,0.1);
+      background: rgba(2, 6, 23, 0.8);
+      backdrop-filter: blur(10px);
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+    }
+
+    .nav {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 20px 0;
+    }
+
+    .brand small {
+      display: block;
+      color: #67e8f9;
+      text-transform: uppercase;
+      letter-spacing: 0.25em;
+      font-size: 12px;
+    }
+
+    .brand span {
+      color: #cbd5e1;
+      font-size: 14px;
+    }
+
+    nav ul {
+      display: flex;
+      list-style: none;
+      gap: 24px;
+    }
+
+    nav ul li a {
+      color: #cbd5e1;
+      font-size: 14px;
+    }
+
+    nav ul li a:hover {
+      color: white;
+    }
+
+    .btn {
+      display: inline-block;
+      padding: 12px 20px;
+      border-radius: 14px;
+      font-weight: bold;
+      border: none;
+      cursor: pointer;
+      transition: 0.3s ease;
+    }
+
+    .btn-primary {
+      background: #22d3ee;
+      color: #0f172a;
+    }
+
+    .btn-primary:hover {
+      background: #67e8f9;
+    }
+
+    .btn-outline {
+      border: 1px solid rgba(255,255,255,0.2);
+      background: rgba(255,255,255,0.05);
+      color: white;
+    }
+
+    .btn-outline:hover {
+      background: rgba(255,255,255,0.1);
+    }
+
+    .hero {
+      display: grid;
+      grid-template-columns: 1.2fr 1fr;
+      gap: 50px;
+      align-items: center;
+      padding: 90px 0;
+    }
+
+    .hero-badge {
+      display: inline-block;
+      padding: 10px 16px;
+      border-radius: 999px;
+      border: 1px solid rgba(34,211,238,0.2);
+      background: rgba(34,211,238,0.1);
+      color: #bae6fd;
+      text-transform: uppercase;
+      font-size: 12px;
+      letter-spacing: 0.2em;
+      margin-bottom: 24px;
+    }
+
+    .hero h1 {
+      font-size: 64px;
+      line-height: 1;
+      margin-bottom: 24px;
+    }
+
+    .hero h1 span {
+      color: #94a3b8;
+      display: block;
+    }
+
+    .hero p {
+      color: #cbd5e1;
+      font-size: 20px;
+      max-width: 650px;
+      margin-bottom: 28px;
+    }
+
+    .hero-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 14px;
+      margin-bottom: 36px;
+    }
+
+    .stats {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 14px;
+      max-width: 500px;
+    }
+
+    .stat-box,
+    .card,
+    .feature-box,
+    .proof-box,
+    .contact-box {
+      border: 1px solid rgba(255,255,255,0.1);
+      background: rgba(255,255,255,0.05);
+      backdrop-filter: blur(10px);
+      border-radius: 24px;
+    }
+
+    .stat-box {
+      padding: 18px;
+    }
+
+    .stat-box h3 {
+      font-size: 24px;
+    }
+
+    .stat-box p {
+      color: #94a3b8;
+      font-size: 14px;
+      margin-top: 6px;
+    }
+
+    .feature-box {
+      padding: 28px;
+    }
+
+    .feature-box h3 {
+      font-size: 28px;
+      margin-bottom: 14px;
+    }
+
+    .feature-box p,
+    .card p,
+    .proof-box p,
+    .about-text,
+    .pillar p {
+      color: #cbd5e1;
+    }
+
+    .section {
+      padding: 80px 0;
+    }
+
+    .section-label {
+      color: #67e8f9;
+      text-transform: uppercase;
+      letter-spacing: 0.25em;
+      font-size: 12px;
+      margin-bottom: 16px;
+    }
+
+    .section h2 {
+      font-size: 48px;
+      margin-bottom: 16px;
+    }
+
+    .section-subtext {
+      color: #94a3b8;
+      font-size: 18px;
+      max-width: 700px;
+      margin-bottom: 40px;
+    }
+
+    .cards-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 24px;
+    }
+
+    .card {
+      padding: 24px;
+    }
+
+    .card h3 {
+      font-size: 28px;
+      margin: 12px 0;
+    }
+
+    .card .category {
+      color: #94a3b8;
+      text-transform: uppercase;
+      font-size: 12px;
+      letter-spacing: 0.15em;
+    }
+
+    .tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-top: 18px;
+    }
+
+    .tag {
+      padding: 6px 12px;
+      border-radius: 999px;
+      background: rgba(2, 6, 23, 0.9);
+      border: 1px solid rgba(255,255,255,0.1);
+      color: #cbd5e1;
+      font-size: 12px;
+    }
+
+    .about-grid {
+      display: grid;
+      grid-template-columns: 1.2fr 0.8fr;
+      gap: 24px;
+    }
+
+    .about-box,
+    .pillar {
+      border: 1px solid rgba(255,255,255,0.1);
+      background: rgba(255,255,255,0.05);
+      padding: 28px;
+      border-radius: 24px;
+      margin-bottom: 16px;
+    }
+
+    .about-box h2 {
+      margin-top: 10px;
+    }
+
+    .pillar h3 {
+      margin-bottom: 8px;
+      font-size: 22px;
+    }
+
+    .proof-box {
+      padding: 32px;
+    }
+
+    .proof-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px;
+      margin-top: 26px;
+    }
+
+    .proof-item {
+      background: rgba(2, 6, 23, 0.7);
+      border: 1px solid rgba(255,255,255,0.1);
+      border-radius: 18px;
+      padding: 18px;
+      color: #e2e8f0;
+    }
+
+    .contact-box {
+      padding: 32px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 24px;
+      flex-wrap: wrap;
+    }
+
+    .contact-actions {
+      display: flex;
+      gap: 12px;
+      flex-wrap: wrap;
+    }
+
+    @media (max-width: 900px) {
+      .hero,
+      .about-grid,
+      .cards-grid,
+      .proof-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .hero h1,
+      .section h2 {
+        font-size: 42px;
+      }
+
+      nav ul {
+        display: none;
+      }
+
+      .stats {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="container nav">
+      <div class="brand">
+        <small>Khaneil Campbell</small>
+        <span>Cybersecurity Portfolio</span>
+      </div>
+
+      <nav>
+        <ul>
+          <li><a href="#labs">Labs</a></li>
+          <li><a href="#about">About</a></li>
+          <li><a href="#proof">Proof</a></li>
+          <li><a href="#contact">Contact</a></li>
+        </ul>
+      </nav>
+
+      <a href="#" class="btn btn-outline">View Resume</a>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero container">
+      <div>
+        <div class="hero-badge">Cyber Labs • Security Operations • Portfolio</div>
+        <h1>
+          Building a professional brand
+          <span>through cybersecurity labs.</span>
+        </h1>
+        <p>
+          A polished digital home for hands-on security projects, lab writeups,
+          technical growth, and the proof behind the title. Because “trust me bro”
+          is not a cybersecurity framework.
+        </p>
+
+        <div class="hero-actions">
+          <a href="#labs" class="btn btn-primary">Explore Labs</a>
+          <a href="https://github.com/khancam15" class="btn btn-outline">GitHub Profile</a>
+        </div>
+
+        <div class="stats">
+          <div class="stat-box">
+            <h3>03+</h3>
+            <p>Featured Labs</p>
+          </div>
+          <div class="stat-box">
+            <h3><a href="https://drive.google.com/file/d/1JKBGSiV2hoOKUV1m6PuT27LC_akHR5pL/view?usp=sharing" target="_blank" rel="noopener noreferrer">Security+</a></h3>
+            <p>Certified</p>
+          </div>
+          <div class="stat-box">
+            <h3>SOC</h3>
+            <p>Target Path</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="feature-box">
+        <p class="section-label">Featured Project</p>
+        <h3>SOC Automation Lab</h3>
+        <p><strong>Objective:</strong> Detect suspicious authentication activity and turn findings into structured response logic.</p>
+        <br />
+        <p><strong>Stack:</strong> Splunk, Python, Windows Logs</p>
+        <p><strong>Focus:</strong> Detection, Triage, Documentation</p>
+        <br />
+        <p>
+          Recruiters and managers do not just want tools listed. They want evidence
+          that you can think, investigate, and communicate under pressure.
+        </p>
+      </div>
+    </section>
+
+    <section id="labs" class="section container">
+      <p class="section-label">Featured Labs</p>
+      <h2>Portfolio projects that show real security thinking.</h2>
+      <p class="section-subtext">
+        Each lab is positioned like a case study: context, tooling, evidence,
+        lessons learned, and security relevance.
+      </p>
+
+      <div class="cards-grid">
+        <div class="card">
+          <p class="category">Detection Engineering</p>
+          <h3>SOC Automation with Splunk</h3>
+          <a href="https://github.com/khancam15/soc-automation-splunk-bruteforce-lab" target="_blank" rel="noopener noreferrer">View on GitHub</a>
+          <p>
+            Built a brute-force detection workflow with alert logic, event triage,
+            and automation concepts for SOC-style response.
+          </p>
+          <div class="tags">
+            <span class="tag">Splunk</span>
+            <span class="tag">SPL</span>
+            <span class="tag">Windows Logs</span>
+          </div>
+        </div>
+
+        <div class="card">
+          <p class="category">Incident Response</p>
+          <h3>Simulated Phishing & IR Lab</h3>
+          <p>
+            Modeled a phishing-to-malware scenario with host investigation, log review,
+            and response documentation.
+          </p>
+          <div class="tags">
+            <span class="tag">IR</span>
+            <span class="tag">Sysinternals</span>
+            <span class="tag">Windows Event Logs</span>
+          </div>
+        </div>
+
+        <div class="card">
+          <p class="category">Identity Security</p>
+          <h3>IAM & Access Security Notes</h3>
+          <p>
+            Showcases operational knowledge around MFA, access workflows,
+            least privilege, and account recovery controls.
+          </p>
+          <div class="tags">
+            <span class="tag">IAM</span>
+            <span class="tag">MFA</span>
+            <span class="tag">Active Directory</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="about" class="section container">
+      <div class="about-grid">
+        <div class="about-box">
+          <p class="section-label">About the Brand</p>
+
+          <h2>SOC Analyst</h2>
+          <p class="about-text">
+            Khaneil Campbell is a cybersecurity professional with over five years of enterprise-level experience operating within
+            some of New York's most demanding institutional environments,including Columbia University and NYC Health + Hospitals.
+            Grounded in the disciplines of incident detection, identity and access management, and structured triage methodology, he 
+            is actively transitioning into Security Operations Center (SOC) roles where analytical rigor and technical depth define 
+            the standard.
+          </p>
+        </div>
+
+        <div>
+          <div class="pillar">
+            <h3>Security-Focused Storytelling</h3>
+            <p>Turn labs into clean, recruiter-friendly case studies that show what happened, what you analyzed, and why it mattered.</p>
+          </div>
+          <div class="pillar">
+            <h3>Modern Visual Interface</h3>
+            <p>A dark, premium layout with bold sections, subtle gradients, and executive-style presentation for your professional brand.</p>
+          </div>
+          <div class="pillar">
+            <h3>Built for Growth</h3>
+            <p>Designed to scale from a simple portfolio into a personal brand hub with resume, blog, certifications, and project showcases.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="proof" class="section container">
+      <div class="proof-box">
+        <p class="section-label">Proof Layer</p>
+        <h2>Turn your portfolio into career leverage.</h2>
+        <p class="section-subtext">
+          Add GitHub repositories, architecture visuals, screenshots, writeups,
+          skill maps, and outcome-focused summaries.
+        </p>
+
+        <div class="proof-grid">
+          <div class="proof-item">Lab writeups</div>
+          <div class="proof-item">GitHub embeds</div>
+          <div class="proof-item">Resume download</div>
+          <div class="proof-item">Certifications</div>
+          <div class="proof-item">Blog articles</div>
+          <div class="proof-item">Contact CTA</div>
+        </div>
+      </div>
+    </section>
+
+    <section id="contact" class="section container">
+      <div class="contact-box">
+        <div>
+          <p class="section-label">Contact</p>
+          <h2>Ready to connect the dots between support, security, and growth.</h2>
+          <p class="section-subtext">
+            Use this area for recruiter outreach, collaborations, or portfolio inquiries.
+          </p>
+        </div>
+
+        <div class="contact-actions">
+          <a href="https://github.com/khancam15" class="btn btn-primary">GitHub</a>
+          <a href="https://www.linkedin.com/in/khaneil-c-44179a14a/" class="btn btn-outline">LinkedIn</a>
+          <a href="mailto:khaneilcam@gmail.com" class="btn btn-outline">Email</a>
+        </div>
+      </div>
+    </section>
+  </main>
+</body>
+</html>
