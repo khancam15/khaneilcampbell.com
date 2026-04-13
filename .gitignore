@@ -1,5 +1,8 @@
 # macOS
 .DS_Store
+._*
+.AppleDouble
+.LSOverride
 
 # Node / frontend
 node_modules/
@@ -19,15 +22,31 @@ out/
 # Editor directories and files
 .vscode/
 .idea/
+*.sublime-workspace
+*.sublime-settings
 
 # Logs
 logs/
 *.log
 
-# Environment files
+# Environment files & secrets
 .env
 .env.local
 .env.*.local
+.env*
+!.env.example
 
-# Misc
+# Credentials & private keys
+*.pem
+*.key
+*.pfx
+*.p12
+private_key*
+secret_key*
+.ssh/
+
+# OS temp files
 Thumbs.db
+*.swp
+*.swo
+*~
