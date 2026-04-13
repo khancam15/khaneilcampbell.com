@@ -1,0 +1,301 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="SOC Automation with Splunk lab breakdown by Khaneil Campbell." />
+  <meta name="theme-color" content="#020617" />
+  <title>SOC Automation Lab | Khaneil Campbell</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: Arial, Helvetica, sans-serif;
+      background: radial-gradient(circle at top, rgba(59,130,246,0.18), transparent 30%),
+                  radial-gradient(circle at 80% 20%, rgba(16,185,129,0.12), transparent 22%),
+                  linear-gradient(to bottom, #020617, #020617);
+      color: white;
+      line-height: 1.6;
+    }
+
+    a {
+      text-decoration: none;
+      color: inherit;
+    }
+
+    .container {
+      width: 90%;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    header {
+      border-bottom: 1px solid rgba(255,255,255,0.1);
+      background: rgba(2, 6, 23, 0.8);
+      backdrop-filter: blur(10px);
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+    }
+
+    .nav {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 20px 0;
+    }
+
+    .brand small {
+      display: block;
+      color: #67e8f9;
+      text-transform: uppercase;
+      letter-spacing: 0.25em;
+      font-size: 12px;
+    }
+
+    .brand span {
+      color: #cbd5e1;
+      font-size: 14px;
+    }
+
+    nav ul {
+      display: flex;
+      list-style: none;
+      gap: 24px;
+    }
+
+    nav ul li a {
+      color: #cbd5e1;
+      font-size: 14px;
+    }
+
+    nav ul li a:hover {
+      color: white;
+    }
+
+    .btn {
+      display: inline-block;
+      padding: 12px 20px;
+      border-radius: 14px;
+      font-weight: bold;
+      border: none;
+      cursor: pointer;
+      transition: 0.3s ease;
+    }
+
+    .btn-outline {
+      border: 1px solid rgba(255,255,255,0.2);
+      background: rgba(255,255,255,0.05);
+      color: white;
+    }
+
+    .btn-outline:hover {
+      background: rgba(255,255,255,0.1);
+    }
+
+    .section {
+      padding: 72px 0;
+    }
+
+    .section-label {
+      color: #67e8f9;
+      text-transform: uppercase;
+      letter-spacing: 0.25em;
+      font-size: 12px;
+      margin-bottom: 16px;
+    }
+
+    h1 {
+      font-size: 52px;
+      line-height: 1.05;
+      margin-bottom: 14px;
+    }
+
+    h2 {
+      font-size: 32px;
+      margin-bottom: 14px;
+    }
+
+    .subtext {
+      color: #94a3b8;
+      font-size: 18px;
+      max-width: 760px;
+      margin-bottom: 24px;
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: 1.2fr 0.8fr;
+      gap: 24px;
+      margin-top: 28px;
+    }
+
+    .box {
+      border: 1px solid rgba(255,255,255,0.1);
+      background: rgba(255,255,255,0.05);
+      backdrop-filter: blur(10px);
+      border-radius: 24px;
+      padding: 28px;
+      margin-bottom: 16px;
+    }
+
+    .box p {
+      color: #cbd5e1;
+      margin-bottom: 14px;
+    }
+
+    .detail-list {
+      list-style: none;
+      display: grid;
+      gap: 10px;
+    }
+
+    .detail-list li {
+      color: #cbd5e1;
+      border: 1px solid rgba(255,255,255,0.1);
+      background: rgba(2, 6, 23, 0.65);
+      border-radius: 14px;
+      padding: 12px 14px;
+    }
+
+    .steps {
+      display: grid;
+      gap: 12px;
+      margin-top: 8px;
+    }
+
+    .step {
+      border: 1px solid rgba(255,255,255,0.1);
+      background: rgba(2, 6, 23, 0.65);
+      border-radius: 16px;
+      padding: 16px;
+    }
+
+    .step strong {
+      color: #bae6fd;
+      display: block;
+      margin-bottom: 6px;
+    }
+
+    .cta-row {
+      display: flex;
+      gap: 12px;
+      flex-wrap: wrap;
+      margin-top: 20px;
+    }
+
+    @media (max-width: 900px) {
+      h1 {
+        font-size: 38px;
+      }
+
+      .grid {
+        grid-template-columns: 1fr;
+      }
+
+      nav ul {
+        display: none;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="container nav">
+      <div class="brand">
+        <small>Khaneil Campbell</small>
+        <span>Cybersecurity Portfolio</span>
+      </div>
+
+      <nav>
+        <ul>
+          <li><a href="index.html#home">Home</a></li>
+          <li><a href="labs.html">Labs</a></li>
+          <li><a href="index.html#about">About</a></li>
+          <li><a href="index.html#contact">Contact</a></li>
+        </ul>
+      </nav>
+
+      <a href="index.html" class="btn btn-outline">Back to Portfolio</a>
+    </div>
+  </header>
+
+  <main class="section container">
+    <p class="section-label">Detection Engineering Lab</p>
+    <h1>SOC Automation with Splunk</h1>
+    <p class="subtext">
+      End-to-end security lab focused on brute-force detection, triage workflow design,
+      and practical SOC automation patterns.
+    </p>
+
+    <div class="grid">
+      <div>
+        <div class="box">
+          <h2>Objective</h2>
+          <p>
+            Detect suspicious authentication behavior in Windows event logs, reduce analyst
+            noise with targeted searches, and convert findings into repeatable response logic.
+          </p>
+          <h2>Workflow</h2>
+          <div class="steps">
+            <div class="step">
+              <strong>1. Data Ingestion</strong>
+              Collected and normalized Windows authentication events in Splunk.
+            </div>
+            <div class="step">
+              <strong>2. Detection Logic</strong>
+              Built SPL queries to identify repeated failed logins and suspicious source patterns.
+            </div>
+            <div class="step">
+              <strong>3. Triage and Validation</strong>
+              Reviewed correlated events, reduced false positives, and documented decision points.
+            </div>
+            <div class="step">
+              <strong>4. Response Framework</strong>
+              Defined clear analyst actions and reusable response flow for future incidents.
+            </div>
+          </div>
+          <div class="cta-row">
+            <a href="https://github.com/khancam15/soc-automation-splunk-bruteforce-lab" target="_blank" rel="noopener noreferrer" class="btn btn-outline">View GitHub Repo</a>
+            <a href="labs.html" class="btn btn-outline">Back to Labs</a>
+          </div>
+        </div>
+      </div>
+
+      <div>
+        <div class="box">
+          <h2>Stack</h2>
+          <ul class="detail-list">
+            <li>Splunk Enterprise</li>
+            <li>SPL Query Language</li>
+            <li>Windows Security Logs</li>
+            <li>Python (automation support)</li>
+          </ul>
+        </div>
+
+        <div class="box">
+          <h2>Skills Demonstrated</h2>
+          <ul class="detail-list">
+            <li>Detection Engineering</li>
+            <li>Log Analysis and Correlation</li>
+            <li>SOC Triage Methodology</li>
+            <li>Technical Documentation</li>
+          </ul>
+        </div>
+
+        <div class="box">
+          <h2>Outcome</h2>
+          <p>
+            Produced a practical SOC-use-case lab with clear detection rationale,
+            repeatable analyst workflow, and portfolio-ready evidence of security thinking.
+          </p>
+        </div>
+      </div>
+    </div>
+  </main>
+</body>
+</html>

@@ -1,0 +1,267 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Featured cybersecurity labs by Khaneil Campbell." />
+  <meta name="theme-color" content="#020617" />
+  <title>Featured Labs | Khaneil Campbell</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: Arial, Helvetica, sans-serif;
+      background: radial-gradient(circle at top, rgba(59,130,246,0.18), transparent 30%),
+                  radial-gradient(circle at 80% 20%, rgba(16,185,129,0.12), transparent 22%),
+                  linear-gradient(to bottom, #020617, #020617);
+      color: white;
+      line-height: 1.6;
+    }
+
+    a {
+      text-decoration: none;
+      color: inherit;
+    }
+
+    .container {
+      width: 90%;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    header {
+      border-bottom: 1px solid rgba(255,255,255,0.1);
+      background: rgba(2, 6, 23, 0.8);
+      backdrop-filter: blur(10px);
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+    }
+
+    .nav {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 20px 0;
+    }
+
+    .brand small {
+      display: block;
+      color: #67e8f9;
+      text-transform: uppercase;
+      letter-spacing: 0.25em;
+      font-size: 12px;
+    }
+
+    .brand span {
+      color: #cbd5e1;
+      font-size: 14px;
+    }
+
+    nav ul {
+      display: flex;
+      list-style: none;
+      gap: 24px;
+    }
+
+    nav ul li a {
+      color: #cbd5e1;
+      font-size: 14px;
+    }
+
+    nav ul li a:hover {
+      color: white;
+    }
+
+    .btn {
+      display: inline-block;
+      padding: 12px 20px;
+      border-radius: 14px;
+      font-weight: bold;
+      border: none;
+      cursor: pointer;
+      transition: 0.3s ease;
+    }
+
+    .btn-outline {
+      border: 1px solid rgba(255,255,255,0.2);
+      background: rgba(255,255,255,0.05);
+      color: white;
+    }
+
+    .btn-outline:hover {
+      background: rgba(255,255,255,0.1);
+    }
+
+    .section {
+      padding: 80px 0;
+    }
+
+    .section-label {
+      color: #67e8f9;
+      text-transform: uppercase;
+      letter-spacing: 0.25em;
+      font-size: 12px;
+      margin-bottom: 16px;
+    }
+
+    h1 {
+      font-size: 36px;
+      margin-bottom: 16px;
+      white-space: nowrap;
+    }
+
+    .section-subtext {
+      color: #94a3b8;
+      font-size: 16px;
+      max-width: none;
+      margin-bottom: 40px;
+      white-space: nowrap;
+    }
+
+    .cards-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 24px;
+    }
+
+    .card {
+      padding: 24px;
+      border: 1px solid rgba(255,255,255,0.1);
+      background: rgba(255,255,255,0.05);
+      backdrop-filter: blur(10px);
+      border-radius: 24px;
+    }
+
+    .card h3 {
+      font-size: 28px;
+      margin: 12px 0;
+    }
+
+    .card .category {
+      color: #94a3b8;
+      text-transform: uppercase;
+      font-size: 12px;
+      letter-spacing: 0.15em;
+    }
+
+    .card p {
+      color: #cbd5e1;
+    }
+
+    .tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-top: 18px;
+    }
+
+    .tag {
+      padding: 6px 12px;
+      border-radius: 999px;
+      background: rgba(2, 6, 23, 0.9);
+      border: 1px solid rgba(255,255,255,0.1);
+      color: #cbd5e1;
+      font-size: 12px;
+    }
+
+    @media (max-width: 900px) {
+      .cards-grid {
+        grid-template-columns: 1fr;
+      }
+
+      h1 {
+        font-size: 30px;
+        white-space: normal;
+      }
+
+      .section-subtext {
+        white-space: normal;
+      }
+
+      nav ul {
+        display: none;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="container nav">
+      <div class="brand">
+        <small>Khaneil Campbell</small>
+        <span>Cybersecurity Portfolio</span>
+      </div>
+
+      <nav>
+        <ul>
+          <li><a href="index.html#home">Home</a></li>
+          <li><a href="labs.html">Labs</a></li>
+          <li><a href="index.html#about">About</a></li>
+          <li><a href="index.html#contact">Contact</a></li>
+        </ul>
+      </nav>
+
+      <a href="index.html" class="btn btn-outline">Back to Portfolio</a>
+    </div>
+  </header>
+
+  <main class="section container">
+    <p class="section-label">Featured Labs</p>
+    <h1>Hands-on labs built to simulate, detect, and respond to real threats.</h1>
+    <p class="section-subtext">
+      Every lab simulates a threat scenario and walks through the full detection and response lifecycle.
+    </p>
+
+    <div class="cards-grid">
+      <div class="card">
+        <p class="category">Detection Engineering</p>
+        <h3><a href="soc-automation-lab.html">SOC Automation with Splunk</a></h3>
+        <a href="soc-automation-lab.html">View Lab Details</a>
+        <a href="https://github.com/khancam15/soc-automation-splunk-bruteforce-lab" target="_blank" rel="noopener noreferrer">View on GitHub</a>
+        <p>
+          Built a brute-force detection workflow with alert logic, event triage,
+          and automation concepts for SOC-style response.
+        </p>
+        <div class="tags">
+          <span class="tag">Splunk</span>
+          <span class="tag">SPL</span>
+          <span class="tag">Windows Logs</span>
+        </div>
+      </div>
+
+      <div class="card">
+        <p class="category">Incident Response</p>
+        <h3>Simulated Phishing & IR Lab</h3>
+        <p>
+          Modeled a phishing-to-malware scenario with host investigation,
+          log review, and response documentation.
+        </p>
+        <div class="tags">
+          <span class="tag">IR</span>
+          <span class="tag">Sysinternals</span>
+          <span class="tag">Windows Event Logs</span>
+        </div>
+      </div>
+
+      <div class="card">
+        <p class="category">Identity Security</p>
+        <h3>IAM & Access Security Notes</h3>
+        <p>
+          Showcases operational knowledge around MFA, access workflows,
+          least privilege, and account recovery controls.
+        </p>
+        <div class="tags">
+          <span class="tag">IAM</span>
+          <span class="tag">MFA</span>
+          <span class="tag">Active Directory</span>
+        </div>
+      </div>
+    </div>
+  </main>
+</body>
+</html>
