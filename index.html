@@ -3,9 +3,9 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta name="description" content="Khaneil Campbell is a cybersecurity analyst building a professional portfolio for SOC labs, incident response, and IAM security work." />
+  <meta name="description" content="Khaneil Campbell is a cybersecurity practitioner building a professional portfolio for SOC labs, incident response, and IAM security work." />
   <meta name="theme-color" content="#020617" />
-  <title>Khaneil Campbell | Cybersecurity Analyst</title>
+  <title>Khaneil Campbell | Cybersecurity Practitioner</title>
   <style>
     * {
       margin: 0;
@@ -190,6 +190,7 @@
 
     .feature-box {
       padding: 28px;
+      margin-top: 22px;
     }
 
     .feature-box h3 {
@@ -297,8 +298,10 @@
     .about-text {
       margin: 0;
       color: #cbd5e1;
-      line-height: 1.8;
-      max-width: 700px;
+      line-height: 1.9;
+      max-width: 62ch;
+      padding-left: 8px;
+      text-align: left;
     }
 
     .pillar h3 {
@@ -340,6 +343,32 @@
       flex-wrap: wrap;
     }
 
+    .contact-content {
+      max-width: 680px;
+    }
+
+    .contact-box h2 {
+      font-size: 40px;
+      line-height: 1.15;
+      margin-bottom: 14px;
+    }
+
+    .contact-copy {
+      color: #cbd5e1;
+      font-size: 18px;
+      line-height: 1.75;
+      max-width: 62ch;
+      margin: 0;
+    }
+
+    .anchor-offset {
+      display: block;
+      position: relative;
+      top: -86px;
+      visibility: hidden;
+      height: 0;
+    }
+
     @media (max-width: 900px) {
       .hero,
       .about-grid,
@@ -368,10 +397,34 @@
       .stats {
         grid-template-columns: 1fr;
       }
+
+      .contact-box {
+        padding: 26px;
+      }
+
+      .contact-content {
+        max-width: 100%;
+        text-align: center;
+      }
+
+      .contact-box h2 {
+        font-size: 34px;
+        line-height: 1.2;
+      }
+
+      .contact-copy {
+        max-width: 100%;
+        margin: 0 auto;
+      }
+
+      .contact-actions {
+        justify-content: center;
+        width: 100%;
+      }
     }
   </style>
 </head>
-<body>
+<body id="home">
   <header>
     <div class="container nav">
       <div class="brand">
@@ -381,9 +434,9 @@
 
       <nav>
         <ul>
+          <li><a href="#home">Home</a></li>
           <li><a href="#labs">Labs</a></li>
           <li><a href="#about">About</a></li>
-          <li><a href="#proof">Proof</a></li>
           <li><a href="#contact">Contact</a></li>
         </ul>
       </nav>
@@ -395,9 +448,9 @@
   <main>
     <section class="hero container">
       <div>
-        <div class="hero-badge">Cyber Labs • Security Operations • Portfolio</div>
+        <div class="hero-badge">Build • Detect • Respond</div>
         <h1>
-          Security Operations Analyst
+          Cybersecurity Practitioner
           <span>Detection  Investigation  Response</span>
         </h1>
         <p>
@@ -429,7 +482,6 @@
             <p>Target Path</p>
           </div>
         </div>
-        </div>
 
         <div class="feature-box">
           <p class="section-label">Featured Project</p>
@@ -442,7 +494,8 @@
         </div>
     </section>
 
-    <section id="labs" class="section container">
+    <span id="labs" class="anchor-offset"></span>
+    <section class="section container">
       <p class="section-label">Featured Labs</p>
       <h2>Portfolio projects that show real security thinking.</h2>
       <p class="section-subtext">
@@ -503,11 +556,10 @@
 
           <h2>SOC Analyst</h2>
           <p class="about-text">
-            Khaneil Campbell is a cybersecurity professional with over five years of enterprise-level experience operating within
-            some of New York's most demanding institutional environments,including Columbia University and NYC Health + Hospitals.
-            Grounded in the disciplines of incident detection, identity and access management, and structured triage methodology, he 
-            is actively transitioning into Security Operations Center (SOC) roles where analytical rigor and technical depth define 
-            the standard.
+            I am an IT professional with over five years of enterprise-level experience operating within some of New York's 
+            most demanding institutional environments, including Columbia University and NYC Health + Hospitals. Grounded in incident detection, 
+            identity and access management, and structured triage methodology, 
+            I am actively transitioning into Security Operations Center roles where analytical rigor and technical depth define the standard.
           </p>
         </div>
 
@@ -528,33 +580,14 @@
       </div>
     </section>
 
-    <section id="proof" class="section container">
-      <div class="proof-box">
-        <p class="section-label">Proof Layer</p>
-        <h2>Turn your portfolio into career leverage.</h2>
-        <p class="section-subtext">
-          Add GitHub repositories, architecture visuals, screenshots, writeups,
-          skill maps, and outcome-focused summaries.
-        </p>
-
-        <div class="proof-grid">
-          <div class="proof-item">Lab writeups</div>
-          <div class="proof-item">GitHub embeds</div>
-          <div class="proof-item">Resume download</div>
-          <div class="proof-item">Certifications</div>
-          <div class="proof-item">Blog articles</div>
-          <div class="proof-item">Contact CTA</div>
-        </div>
-      </div>
-    </section>
-
     <section id="contact" class="section container">
       <div class="contact-box">
-        <div>
+        <div class="contact-content">
           <p class="section-label">Contact</p>
-          <h2>Ready to connect the dots between support, security, and growth.</h2>
-          <p class="section-subtext">
-            Use this area for recruiter outreach, collaborations, or portfolio inquiries.
+          <h2>Let's Connect</h2>
+          <p class="contact-copy">
+            Open to SOC Analyst roles, security internships, and professional collaborations.
+            Feel free to reach out for networking, questions about the portfolio, or just to connect.
           </p>
         </div>
 
@@ -566,5 +599,12 @@
       </div>
     </section>
   </main>
+  <script>
+    const navEntry = performance.getEntriesByType("navigation")[0];
+    if (navEntry && navEntry.type === "reload") {
+      history.replaceState(null, "", window.location.pathname + window.location.search);
+      window.scrollTo(0, 0);
+    }
+  </script>
 </body>
 </html>
