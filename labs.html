@@ -153,6 +153,17 @@
       color: #cbd5e1;
     }
 
+    .lab-links {
+      display: flex;
+      gap: 18px;
+      margin-bottom: 12px;
+    }
+
+    .lab-links a:first-child {
+      color: #67e8f9;
+      font-weight: 600;
+    }
+
     .tags {
       display: flex;
       flex-wrap: wrap;
@@ -221,8 +232,10 @@
       <div class="card">
         <p class="category">Detection Engineering</p>
         <h3><a href="soc-automation-lab.html">SOC Automation with Splunk</a></h3>
-        <a href="soc-automation-lab.html">View Lab Details</a>
-        <a href="https://github.com/khancam15/soc-automation-splunk-bruteforce-lab" target="_blank" rel="noopener noreferrer">View on GitHub</a>
+        <div class="lab-links">
+          <a href="soc-automation-lab.html">View Details</a>
+          <a href="https://github.com/khancam15/soc-automation-splunk-bruteforce-lab" target="_blank" rel="noopener noreferrer">View on GitHub</a>
+        </div>
         <p>
           Built a brute-force detection workflow with alert logic, event triage,
           and automation concepts for SOC-style response.
@@ -237,6 +250,10 @@
       <div class="card">
         <p class="category">Incident Response</p>
         <h3>Simulated Phishing & IR Lab</h3>
+        <div class="lab-links">
+          <a href="#" data-placeholder="true">View Details</a>
+          <a href="#" data-placeholder="true">View on GitHub</a>
+        </div>
         <p>
           Modeled a phishing-to-malware scenario with host investigation,
           log review, and response documentation.
@@ -251,6 +268,10 @@
       <div class="card">
         <p class="category">Identity Security</p>
         <h3>IAM & Access Security Notes</h3>
+        <div class="lab-links">
+          <a href="#" data-placeholder="true">View Details</a>
+          <a href="#" data-placeholder="true">View on GitHub</a>
+        </div>
         <p>
           Showcases operational knowledge around MFA, access workflows,
           least privilege, and account recovery controls.
@@ -263,5 +284,12 @@
       </div>
     </div>
   </main>
+  <script>
+    document.querySelectorAll('a[data-placeholder="true"]').forEach((link) => {
+      link.addEventListener("click", (event) => {
+        event.preventDefault();
+      });
+    });
+  </script>
 </body>
 </html>

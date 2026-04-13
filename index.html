@@ -27,6 +27,12 @@
       color: inherit;
     }
 
+    a:not(.btn):hover {
+      color: #67e8f9;
+      text-decoration: underline;
+      text-underline-offset: 3px;
+    }
+
     .container {
       width: 90%;
       max-width: 1200px;
@@ -74,7 +80,7 @@
     }
 
     nav ul li a:hover {
-      color: white;
+      color: #67e8f9;
     }
 
     .btn {
@@ -103,7 +109,9 @@
     }
 
     .btn-outline:hover {
-      background: rgba(255,255,255,0.1);
+      background: rgba(34,211,238,0.15);
+      border-color: #67e8f9;
+      color: #67e8f9;
     }
 
     .hero {
@@ -196,6 +204,8 @@
     .feature-box h3 {
       font-size: 28px;
       margin-bottom: 14px;
+      white-space: normal;
+      overflow-wrap: anywhere;
     }
 
     .feature-box p,
@@ -204,6 +214,8 @@
     .about-text,
     .pillar p {
       color: #cbd5e1;
+      white-space: normal;
+      overflow-wrap: anywhere;
     }
 
     .section {
@@ -243,6 +255,8 @@
     .card h3 {
       font-size: 28px;
       margin: 12px 0;
+      white-space: normal;
+      overflow-wrap: anywhere;
     }
 
     .card .category {
@@ -304,7 +318,8 @@
       margin: 0;
       font-size: 32px;
       line-height: 1.05;
-      white-space: nowrap;
+      white-space: normal;
+      overflow-wrap: anywhere;
     }
 
     .about-text {
@@ -365,6 +380,8 @@
       font-size: 40px;
       line-height: 1.15;
       margin-bottom: 14px;
+      white-space: normal;
+      overflow-wrap: anywhere;
     }
 
     .contact-copy {
@@ -478,7 +495,7 @@
         </p>
 
         <div class="hero-actions">
-          <a href="labs.html" class="btn btn-primary">Explore Labs</a>
+          <a href="labs.html" class="btn btn-outline">Explore Labs</a>
           <a href="https://www.linkedin.com/in/khaneil-c-44179a14a/" class="btn btn-outline">LinkedIn</a>
           <a href="https://github.com/khancam15" class="btn btn-outline">GitHub</a>
           <a href="mailto:khaneil@khaneilcampbell.com" class="btn btn-outline">Email</a>
@@ -502,12 +519,16 @@
         <div class="feature-box">
           <p class="section-label">Featured Project</p>
           <h3><a href="soc-automation-lab.html">SOC Automation Lab</a></h3>
-          <p><strong>Objective:</strong> Detect suspicious authentication activity and turn findings into structured response logic.</p>
+          <p>
+            This lab simulates a real-world SMB brute-force attack in a controlled virtual environment,
+            detects it using Splunk, and automates case note generation using the Splunk REST API and Python.
+          </p>
           <br />
-          <p><strong>Stack:</strong> Splunk, Python, Windows Logs</p>
-          <p><strong>Focus:</strong> Detection, Triage, Documentation</p>
+          <p><strong>Environment:</strong> Splunk, Python, Windows Event Logs</p>
+          <p><strong>Threat Focus:</strong> Authentication anomalies and brute-force detection</p>
+          <p><strong>Result:</strong> Detected 80+ failed logon attempts within a defined time window and developed alerting logic to support rapid triage</p>
+          <br />
           <p><a href="soc-automation-lab.html">View full lab breakdown</a></p>
-          <br />
         </div>
     </section>
 
@@ -539,6 +560,10 @@
         <div class="card">
           <p class="category">Incident Response</p>
           <h3>Simulated Phishing & IR Lab</h3>
+          <div class="lab-links">
+            <a href="#" data-placeholder="true">View Details</a>
+            <a href="#" data-placeholder="true">View on GitHub</a>
+          </div>
           <p>
             Modeled a phishing-to-malware scenario with host investigation, log review,
             and response documentation.
@@ -553,6 +578,10 @@
         <div class="card">
           <p class="category">Identity Security</p>
           <h3>IAM & Access Security Notes</h3>
+          <div class="lab-links">
+            <a href="#" data-placeholder="true">View Details</a>
+            <a href="#" data-placeholder="true">View on GitHub</a>
+          </div>
           <p>
             Showcases operational knowledge around MFA, access workflows,
             least privilege, and account recovery controls.
@@ -609,7 +638,7 @@
         </div>
 
         <div class="contact-actions">
-          <a href="https://www.linkedin.com/in/khaneil-c-44179a14a/" class="btn btn-primary">LinkedIn</a>
+          <a href="https://www.linkedin.com/in/khaneil-c-44179a14a/" class="btn btn-outline">LinkedIn</a>
           <a href="https://github.com/khancam15" class="btn btn-outline">GitHub</a>
           <a href="mailto:khaneil@khaneilcampbell.com" class="btn btn-outline">Email</a>
         </div>
@@ -617,6 +646,12 @@
     </section>
   </main>
   <script>
+    document.querySelectorAll('a[data-placeholder="true"]').forEach((link) => {
+      link.addEventListener("click", (event) => {
+        event.preventDefault();
+      });
+    });
+
     const navEntry = performance.getEntriesByType("navigation")[0];
     if (navEntry && navEntry.type === "reload") {
       history.replaceState(null, "", window.location.pathname + window.location.search);
