@@ -108,9 +108,9 @@
 
     .hero {
       display: grid;
-      grid-template-columns: 1.2fr 1fr;
+      grid-template-columns: 1fr;
       gap: 50px;
-      align-items: center;
+      align-items: start;
       padding: 90px 0;
     }
 
@@ -131,6 +131,8 @@
       font-size: 64px;
       line-height: 1;
       margin-bottom: 24px;
+      white-space: nowrap;
+      overflow-wrap: normal;
     }
 
     .hero h1 span {
@@ -143,6 +145,8 @@
       font-size: 20px;
       max-width: 650px;
       margin-bottom: 28px;
+      white-space: nowrap;
+      overflow-wrap: normal;
     }
 
     .hero-actions {
@@ -154,9 +158,9 @@
 
     .stats {
       display: grid;
-      grid-template-columns: repeat(3, 1fr);
+      grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
       gap: 14px;
-      max-width: 500px;
+      max-width: 700px;
     }
 
     .stat-box,
@@ -278,8 +282,23 @@
       margin-bottom: 16px;
     }
 
+    .about-box {
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+    }
+
     .about-box h2 {
-      margin-top: 10px;
+      margin: 0;
+      font-size: 42px;
+      line-height: 1.05;
+    }
+
+    .about-text {
+      margin: 0;
+      color: #cbd5e1;
+      line-height: 1.8;
+      max-width: 700px;
     }
 
     .pillar h3 {
@@ -334,6 +353,14 @@
         font-size: 42px;
       }
 
+      .hero h1 {
+        white-space: normal;
+      }
+
+      .hero p {
+        white-space: normal;
+      }
+
       nav ul {
         display: none;
       }
@@ -370,18 +397,18 @@
       <div>
         <div class="hero-badge">Cyber Labs • Security Operations • Portfolio</div>
         <h1>
-          Building a professional brand
-          <span>through cybersecurity labs.</span>
+          Security Operations Analyst
+          <span>Detection  Investigation  Response</span>
         </h1>
         <p>
-          A polished digital home for hands-on security projects, lab writeups,
-          technical growth, and the proof behind the title. Because “trust me bro”
-          is not a cybersecurity framework.
+          Security labs, detection engineering, and incident response. Documented from concept to execution.
         </p>
 
         <div class="hero-actions">
           <a href="#labs" class="btn btn-primary">Explore Labs</a>
-          <a href="https://github.com/khancam15" class="btn btn-outline">GitHub Profile</a>
+          <a href="https://github.com/khancam15" class="btn btn-outline">GitHub</a>
+          <a href="https://www.linkedin.com/in/khaneil-c-44179a14a/" class="btn btn-outline">LinkedIn</a>
+          <a href="mailto:khaneilcam@gmail.com" class="btn btn-outline">Email</a>
         </div>
 
         <div class="stats">
@@ -390,7 +417,11 @@
             <p>Featured Labs</p>
           </div>
           <div class="stat-box">
-            <h3><a href="https://drive.google.com/file/d/1JKBGSiV2hoOKUV1m6PuT27LC_akHR5pL/view?usp=sharing" target="_blank" rel="noopener noreferrer">Security+</a></h3>
+            <h3><a href="security-plus.html">Security+</a></h3>
+            <p>Certified</p>
+          </div>
+          <div class="stat-box">
+            <h3><a href="itil4.html">ITIL 4</a></h3>
             <p>Certified</p>
           </div>
           <div class="stat-box">
@@ -398,21 +429,17 @@
             <p>Target Path</p>
           </div>
         </div>
-      </div>
+        </div>
 
-      <div class="feature-box">
-        <p class="section-label">Featured Project</p>
-        <h3>SOC Automation Lab</h3>
-        <p><strong>Objective:</strong> Detect suspicious authentication activity and turn findings into structured response logic.</p>
-        <br />
-        <p><strong>Stack:</strong> Splunk, Python, Windows Logs</p>
-        <p><strong>Focus:</strong> Detection, Triage, Documentation</p>
-        <br />
-        <p>
-          Recruiters and managers do not just want tools listed. They want evidence
-          that you can think, investigate, and communicate under pressure.
-        </p>
-      </div>
+        <div class="feature-box">
+          <p class="section-label">Featured Project</p>
+          <h3>SOC Automation Lab</h3>
+          <p><strong>Objective:</strong> Detect suspicious authentication activity and turn findings into structured response logic.</p>
+          <br />
+          <p><strong>Stack:</strong> Splunk, Python, Windows Logs</p>
+          <p><strong>Focus:</strong> Detection, Triage, Documentation</p>
+          <br />
+        </div>
     </section>
 
     <section id="labs" class="section container">
@@ -472,7 +499,7 @@
     <section id="about" class="section container">
       <div class="about-grid">
         <div class="about-box">
-          <p class="section-label">About the Brand</p>
+          <p class="section-label">About Me</p>
 
           <h2>SOC Analyst</h2>
           <p class="about-text">
@@ -486,16 +513,16 @@
 
         <div>
           <div class="pillar">
-            <h3>Security-Focused Storytelling</h3>
-            <p>Turn labs into clean, recruiter-friendly case studies that show what happened, what you analyzed, and why it mattered.</p>
+            <h3>Lab Engineering</h3>
+            <p>Every project is built from scratch, covering attack simulation, detection logic, alerting, and full documentation.</p>
           </div>
           <div class="pillar">
-            <h3>Modern Visual Interface</h3>
-            <p>A dark, premium layout with bold sections, subtle gradients, and executive-style presentation for your professional brand.</p>
+            <h3>Core Competencies</h3>
+            <p>Grounded in SIEM analysis, log triage, and incident response workflows practiced across real lab environments.</p>
           </div>
           <div class="pillar">
-            <h3>Built for Growth</h3>
-            <p>Designed to scale from a simple portfolio into a personal brand hub with resume, blog, certifications, and project showcases.</p>
+            <h3>The Mission</h3>
+            <p>To operate at the intersection of threat detection and emerging technology, building the expertise to secure modern environments against an evolving threat landscape shaped increasingly by artificial intelligence.</p>
           </div>
         </div>
       </div>
