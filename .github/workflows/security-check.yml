@@ -1,0 +1,126 @@
+name: Security Check
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+jobs:
+  security-audit:
+    name: HTML Security Audit
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Check for Content Security Policy meta tags
+        run: |
+          echo "Checking for CSP meta tags..."
+          FAILED=0
+          for file in *.html; do
+            if ! grep -q 'http-equiv="Content-Security-Policy"' "$file"; then
+              echo "FAIL: Missing CSP meta tag in $file"
+              FAILED=1
+            else
+              echo "PASS: CSP meta tag found in $file"
+            fi
+          done
+          exit $FAILED
+
+      - name: Check for referrer-policy meta tags
+        run: |
+          echo "Checking for referrer-policy meta tags..."
+          FAILED=0
+          for file in *.html; do
+            if ! grep -q 'name="referrer"' "$file"; then
+              echo "FAIL: Missing referrer-policy in $file"
+              FAILED=1
+            else
+              echo "PASS: Referrer-policy found in $file"
+            fi
+          done
+          exit $FAILED
+
+      - name: Check for external links missing rel=noopener noreferrer
+        run: |
+          echo "Checking for external links with target=_blank missing rel=noopener noreferrer..."
+          FAILED=0
+          for file in *.html; do
+            # Find lines with target="_blank" that are missing rel="noopener noreferrer"
+            if grep -n 'target="_blank"' "$file" | grep -v 'rel="noopener noreferrer"'; then
+              echo "FAIL: $file has target=_blank links missing rel=noopener noreferrer"
+              FAILED=1
+            else
+              echo "PASS: All target=_blank links in $file have rel=noopener noreferrer"
+            fi
+          done
+          exit $FAILED
+
+      - name: Check for HTTP only resource loads
+        run: |
+          echo "Checking for insecure http:// resource loads..."
+          FAILED=0
+          for file in *.html; do
+            # Exclude mailto: and check for http:// (not https://)
+            if grep -n 'src="http://' "$file" 2>/dev/null; then
+              echo "FAIL: $file loads resources over plain HTTP"
+              FAILED=1
+            fi
+            if grep -n "src='http://" "$file" 2>/dev/null; then
+              echo "FAIL: $file loads resources over plain HTTP"
+              FAILED=1
+            fi
+            if [ $FAILED -eq 0 ]; then
+              echo "PASS: No insecure HTTP resource loads in $file"
+            fi
+          done
+          exit $FAILED
+
+      - name: Check for inline event handlers (potential XSS vector)
+        run: |
+          echo "Checking for inline event handlers..."
+          WARNED=0
+          for file in *.html; do
+            if grep -En ' on[a-z]+="' "$file" | grep -v '<!--'; then
+              echo "WARN: $file has inline event handlers — consider moving to external JS"
+              WARNED=1
+            else
+              echo "PASS: No inline event handlers in $file"
+            fi
+          done
+          # Warn only, do not fail
+          exit 0
+
+      - name: Check _headers file exists
+        run: |
+          echo "Checking for _headers file..."
+          if [ -f "_headers" ]; then
+            echo "PASS: _headers file found"
+          else
+            echo "FAIL: _headers file is missing — HTTP security headers will not be applied on Netlify/Cloudflare Pages"
+            exit 1
+          fi
+
+      - name: Verify security headers in _headers file
+        run: |
+          echo "Verifying required security headers in _headers file..."
+          FAILED=0
+          REQUIRED_HEADERS=(
+            "X-Frame-Options"
+            "X-Content-Type-Options"
+            "Referrer-Policy"
+            "Content-Security-Policy"
+            "Strict-Transport-Security"
+            "Permissions-Policy"
+          )
+          for header in "${REQUIRED_HEADERS[@]}"; do
+            if grep -q "$header" "_headers"; then
+              echo "PASS: $header found in _headers"
+            else
+              echo "FAIL: $header missing from _headers"
+              FAILED=1
+            fi
+          done
+          exit $FAILED
