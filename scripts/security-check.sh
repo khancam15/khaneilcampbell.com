@@ -128,6 +128,47 @@ for file in "${HTML_FILES[@]}"; do
 done
 echo ""
 
+# ── 8. Meta robots tag ───────────────────────────────
+echo "--- [8] Meta robots tag ---"
+for file in "${HTML_FILES[@]}"; do
+  name=$(basename "$file")
+  if grep -q 'name="robots"' "$file"; then
+    pass "$name has meta robots tag"
+  else
+    fail "$name is MISSING meta robots tag"
+  fi
+done
+echo ""
+
+# ── 9. Images missing alt attributes ─────────────────
+echo "--- [9] Images must have alt attributes ---"
+for file in "${HTML_FILES[@]}"; do
+  name=$(basename "$file")
+  ISSUES=$(grep -n '<img' "$file" | grep -v 'alt=' || true)
+  if [ -n "$ISSUES" ]; then
+    fail "$name has <img> tags missing alt attribute:"
+    echo "$ISSUES" | sed 's/^/       /'
+  else
+    pass "$name — all images have alt attributes"
+  fi
+done
+echo ""
+
+# ── 10. Secrets / sensitive data in HTML ─────────────
+echo "--- [10] No secrets or sensitive data in HTML ---"
+SENSITIVE_PATTERN='api.key|api_key|password|passwd|secret|private.key|access.token'
+for file in "${HTML_FILES[@]}"; do
+  name=$(basename "$file")
+  ISSUES=$(grep -in "$SENSITIVE_PATTERN" "$file" || true)
+  if [ -n "$ISSUES" ]; then
+    fail "$name may contain sensitive data:"
+    echo "$ISSUES" | sed 's/^/       /'
+  else
+    pass "$name — no sensitive keywords found"
+  fi
+done
+echo ""
+
 # ── Summary ──────────────────────────────────────────
 echo "================================================="
 echo " Summary"
