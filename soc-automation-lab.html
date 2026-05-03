@@ -3,199 +3,272 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta name="description" content="SOC Automation with Splunk lab breakdown by Khaneil Campbell." />
-  <meta name="theme-color" content="#020617" />
+  <meta name="description" content="SOC Automation with Splunk — detection engineering lab by Khaneil Campbell covering brute-force authentication attack detection, SPL query development, triage methodology, and analyst response workflow." />
+  <meta name="theme-color" content="#07110f" />
   <meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'unsafe-inline'; style-src 'unsafe-inline'; img-src 'self'; font-src 'self'; base-uri 'self'; form-action 'none';" />
   <meta name="referrer" content="strict-origin-when-cross-origin" />
   <meta name="robots" content="index, follow" />
   <title>SOC Automation Lab | Khaneil Campbell</title>
   <style>
+    :root {
+      --bg: #07110f;
+      --panel: rgba(14, 23, 20, 0.82);
+      --line: rgba(202, 238, 222, 0.14);
+      --text: #f4fbf7;
+      --muted: #a9bbb3;
+      --green: #69e6a1;
+      --amber: #facc6b;
+      --ink: #07110f;
+      --shadow: 0 28px 80px rgba(0, 0, 0, 0.42);
+    }
+
     * {
+      box-sizing: border-box;
       margin: 0;
       padding: 0;
-      box-sizing: border-box;
     }
 
     body {
+      min-height: 100vh;
       font-family: Arial, Helvetica, sans-serif;
-      background: radial-gradient(circle at top, rgba(59,130,246,0.18), transparent 30%),
-                  radial-gradient(circle at 80% 20%, rgba(16,185,129,0.12), transparent 22%),
-                  linear-gradient(to bottom, #020617, #020617);
-      color: white;
+      color: var(--text);
       line-height: 1.6;
+      background:
+        linear-gradient(120deg, rgba(105, 230, 161, 0.14), transparent 30%),
+        linear-gradient(240deg, rgba(250, 204, 107, 0.11), transparent 32%),
+        repeating-linear-gradient(90deg, rgba(255, 255, 255, 0.028) 0 1px, transparent 1px 92px),
+        linear-gradient(180deg, #07110f 0%, #0b1512 48%, #07110f 100%);
+    }
+
+    body::before {
+      content: "";
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      background:
+        linear-gradient(rgba(125, 211, 252, 0.045) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(125, 211, 252, 0.035) 1px, transparent 1px);
+      background-size: 44px 44px;
+      mask-image: linear-gradient(to bottom, black, transparent 74%);
     }
 
     a {
-      text-decoration: none;
       color: inherit;
+      text-decoration: none;
+    }
+
+    a:not(.btn):hover {
+      color: var(--green);
+      text-decoration: underline;
+      text-underline-offset: 3px;
     }
 
     .container {
-      width: 90%;
-      max-width: 1200px;
+      width: min(1120px, calc(100% - 40px));
       margin: 0 auto;
     }
 
     header {
-      border-bottom: 1px solid rgba(255,255,255,0.1);
-      background: rgba(2, 6, 23, 0.8);
-      backdrop-filter: blur(10px);
       position: sticky;
       top: 0;
-      z-index: 1000;
+      z-index: 20;
+      border-bottom: 1px solid var(--line);
+      background: rgba(7, 17, 15, 0.82);
+      backdrop-filter: blur(14px);
     }
 
     .nav {
       display: flex;
-      justify-content: space-between;
       align-items: center;
-      padding: 20px 0;
+      justify-content: space-between;
+      gap: 20px;
+      min-height: 78px;
     }
 
-    .brand small {
-      display: block;
-      color: #67e8f9;
-      text-transform: uppercase;
-      letter-spacing: 0.25em;
+    .brand small,
+    .section-label,
+    .kicker {
+      color: var(--green);
       font-size: 12px;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
     }
 
     .brand span {
-      color: #cbd5e1;
+      display: block;
+      color: var(--muted);
       font-size: 14px;
+      margin-top: 2px;
     }
 
     nav ul {
       display: flex;
+      gap: 22px;
       list-style: none;
-      gap: 24px;
     }
 
-    nav ul li a {
-      color: #cbd5e1;
+    nav a {
+      color: #d7e7df;
       font-size: 14px;
     }
 
-    nav ul li a:hover {
-      color: white;
-    }
-
     .btn {
-      display: inline-block;
-      padding: 12px 20px;
-      border-radius: 14px;
-      font-weight: bold;
-      border: none;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 44px;
+      padding: 10px 16px;
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      background: rgba(255, 255, 255, 0.055);
+      color: var(--text);
       cursor: pointer;
-      transition: 0.3s ease;
+      font-size: 14px;
+      font-weight: 700;
+      transition: transform 180ms ease, border-color 180ms ease, background 180ms ease;
     }
 
-    .btn-outline {
-      border: 1px solid rgba(255,255,255,0.2);
-      background: rgba(255,255,255,0.05);
-      color: white;
+    .btn:hover {
+      border-color: rgba(105, 230, 161, 0.62);
+      background: rgba(105, 230, 161, 0.13);
+      transform: translateY(-1px);
     }
 
-    .btn-outline:hover {
-      background: rgba(255,255,255,0.1);
+    .btn-primary {
+      background: var(--green);
+      color: var(--ink);
+      border-color: transparent;
     }
 
     .section {
-      padding: 72px 0;
+      padding: 66px 0;
     }
 
-    .section-label {
-      color: #67e8f9;
-      text-transform: uppercase;
-      letter-spacing: 0.25em;
-      font-size: 12px;
-      margin-bottom: 16px;
+    .case-hero {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) minmax(320px, 0.72fr);
+      gap: 24px;
+      align-items: stretch;
     }
 
     h1 {
-      font-size: 52px;
-      line-height: 1.05;
-      margin-bottom: 14px;
+      max-width: 860px;
+      margin-top: 12px;
+      font-size: clamp(42px, 7vw, 76px);
+      line-height: 0.98;
     }
 
     h2 {
-      font-size: 32px;
-      margin-bottom: 14px;
+      font-size: clamp(26px, 3vw, 36px);
+      line-height: 1.1;
+      margin-bottom: 12px;
     }
 
     .subtext {
-      color: #94a3b8;
-      font-size: 18px;
-      max-width: 760px;
-      margin-bottom: 24px;
+      max-width: 720px;
+      color: #d5e3dc;
+      font-size: 19px;
+      margin-top: 18px;
+    }
+
+    .panel,
+    .metric,
+    .step,
+    .detail-card {
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      background: var(--panel);
+      box-shadow: var(--shadow);
+      backdrop-filter: blur(16px);
+    }
+
+    .panel {
+      padding: 22px;
+    }
+
+    .panel p,
+    .step p,
+    .detail-card p,
+    .detail-list li {
+      color: #c8d8d0;
+    }
+
+    .metrics {
+      display: grid;
+      gap: 12px;
+    }
+
+    .metric {
+      padding: 16px;
+      box-shadow: none;
+    }
+
+    .metric strong {
+      display: block;
+      color: var(--amber);
+      font-family: "SFMono-Regular", Consolas, "Liberation Mono", monospace;
+      font-size: 13px;
+      margin-bottom: 6px;
+      text-transform: uppercase;
     }
 
     .grid {
       display: grid;
-      grid-template-columns: 1.2fr 0.8fr;
-      gap: 24px;
-      margin-top: 28px;
-    }
-
-    .box {
-      border: 1px solid rgba(255,255,255,0.1);
-      background: rgba(255,255,255,0.05);
-      backdrop-filter: blur(10px);
-      border-radius: 24px;
-      padding: 28px;
-      margin-bottom: 16px;
-    }
-
-    .box p {
-      color: #cbd5e1;
-      margin-bottom: 14px;
-    }
-
-    .detail-list {
-      list-style: none;
-      display: grid;
-      gap: 10px;
-    }
-
-    .detail-list li {
-      color: #cbd5e1;
-      border: 1px solid rgba(255,255,255,0.1);
-      background: rgba(2, 6, 23, 0.65);
-      border-radius: 14px;
-      padding: 12px 14px;
+      grid-template-columns: 1.12fr 0.88fr;
+      gap: 18px;
+      margin-top: 24px;
     }
 
     .steps {
       display: grid;
       gap: 12px;
-      margin-top: 8px;
+      margin-top: 14px;
     }
 
     .step {
-      border: 1px solid rgba(255,255,255,0.1);
-      background: rgba(2, 6, 23, 0.65);
-      border-radius: 16px;
       padding: 16px;
+      box-shadow: none;
     }
 
     .step strong {
-      color: #bae6fd;
       display: block;
+      color: var(--green);
       margin-bottom: 6px;
+    }
+
+    .detail-stack {
+      display: grid;
+      gap: 18px;
+    }
+
+    .detail-card {
+      padding: 20px;
+      box-shadow: none;
+    }
+
+    .detail-list {
+      display: grid;
+      gap: 10px;
+      list-style: none;
+      margin-top: 12px;
+    }
+
+    .detail-list li {
+      border: 1px solid rgba(255, 255, 255, 0.09);
+      border-radius: 8px;
+      background: rgba(7, 17, 15, 0.66);
+      padding: 12px 14px;
     }
 
     .cta-row {
       display: flex;
-      gap: 12px;
       flex-wrap: wrap;
+      gap: 10px;
       margin-top: 20px;
     }
 
     @media (max-width: 900px) {
-      h1 {
-        font-size: 38px;
-      }
-
+      .case-hero,
       .grid {
         grid-template-columns: 1fr;
       }
@@ -203,84 +276,319 @@
       nav ul {
         display: none;
       }
+
+      .menu-toggle { display: flex; }
+      .mobile-nav.open { display: block; }
+      .menu-toggle.open .icon-open { display: none; }
+      .menu-toggle.open .icon-close { display: block; }
     }
+
+    @media (max-width: 640px) {
+      .container {
+        width: min(100% - 28px, 1120px);
+      }
+
+      .mobile-nav { top: 70px; }
+
+      .nav .btn {
+        display: none;
+      }
+    }
+
+
+    /* interface-upgrade:start */
+    ::selection {
+      background: rgba(105, 230, 161, 0.28);
+      color: var(--text);
+    }
+
+    :focus-visible {
+      outline: 2px solid var(--green);
+      outline-offset: 4px;
+    }
+
+    .skip-link {
+      position: fixed;
+      left: 16px;
+      top: 16px;
+      z-index: 100;
+      transform: translateY(-140%);
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      background: var(--green);
+      color: var(--ink, #07110f);
+      font-weight: 700;
+      padding: 10px 14px;
+      transition: transform 180ms ease;
+    }
+
+    .skip-link:focus {
+      transform: translateY(0);
+    }
+
+    .signal-bar {
+      position: sticky;
+      top: 78px;
+      z-index: 19;
+      height: 2px;
+      overflow: hidden;
+      background: rgba(202, 238, 222, 0.08);
+    }
+
+    .signal-bar span {
+      display: block;
+      width: 42%;
+      height: 100%;
+      background: linear-gradient(90deg, transparent, var(--green), var(--amber, #facc6b), transparent);
+      animation: signalSweep 5.5s linear infinite;
+    }
+
+    nav a[aria-current="page"] {
+      color: var(--green);
+    }
+
+    nav a[aria-current="page"]::after {
+      content: "";
+      display: block;
+      height: 2px;
+      margin-top: 4px;
+      border-radius: 999px;
+      background: var(--green);
+    }
+
+    .command-panel,
+    .lab-card,
+    .lab-detail-card,
+    .panel,
+    .briefing,
+    .about-panel,
+    .project-card,
+    .detail-card,
+    .credential-card,
+    .contact-box,
+    .cert-image-wrapper {
+      position: relative;
+      isolation: isolate;
+    }
+
+    .command-panel::after,
+    .lab-card::after,
+    .lab-detail-card::after,
+    .panel::after,
+    .briefing::after,
+    .about-panel::after,
+    .project-card::after,
+    .detail-card::after,
+    .credential-card::after,
+    .contact-box::after,
+    .cert-image-wrapper::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      z-index: -1;
+      border-radius: inherit;
+      background: linear-gradient(135deg, rgba(105, 230, 161, 0.08), transparent 42%, rgba(250, 204, 107, 0.06));
+      opacity: 0.72;
+      pointer-events: none;
+    }
+
+    .section {
+      position: relative;
+    }
+
+    .section::before {
+      content: "";
+      display: block;
+      width: min(100%, 1120px);
+      height: 1px;
+      margin: 0 auto 42px;
+      background: linear-gradient(90deg, transparent, rgba(202, 238, 222, 0.18), transparent);
+    }
+
+    .hero + .section::before,
+    main > .section:first-child::before {
+      display: none;
+    }
+
+    @keyframes signalSweep {
+      from {
+        transform: translateX(-110%);
+      }
+
+      to {
+        transform: translateX(260%);
+      }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      *,
+      *::before,
+      *::after {
+        animation-duration: 0.001ms !important;
+        animation-iteration-count: 1 !important;
+        scroll-behavior: auto !important;
+        transition-duration: 0.001ms !important;
+      }
+    }
+
+    @media (max-width: 640px) {
+      .signal-bar {
+        top: 70px;
+      }
+    }
+
+    .menu-toggle {
+      display: none;
+      align-items: center;
+      justify-content: center;
+      width: 44px;
+      height: 44px;
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      background: rgba(255, 255, 255, 0.055);
+      color: var(--text);
+      cursor: pointer;
+      flex-shrink: 0;
+    }
+    .menu-toggle:hover { border-color: rgba(105, 230, 161, 0.62); background: rgba(105, 230, 161, 0.13); }
+    .menu-toggle svg { width: 20px; height: 20px; }
+    .menu-toggle .icon-close { display: none; }
+    .mobile-nav {
+      display: none;
+      position: fixed;
+      top: 78px;
+      left: 0;
+      right: 0;
+      z-index: 18;
+      border-bottom: 1px solid var(--line);
+      background: rgba(7, 17, 15, 0.96);
+      backdrop-filter: blur(18px);
+      padding: 18px 0 22px;
+    }
+    .mobile-nav ul { display: flex; flex-direction: column; list-style: none; gap: 0; }
+    .mobile-nav a { display: block; padding: 13px 20px; color: #d7e7df; font-size: 15px; border-bottom: 1px solid rgba(202, 238, 222, 0.07); }
+    .mobile-nav a:hover, .mobile-nav a[aria-current="page"] { color: var(--green); background: rgba(105, 230, 161, 0.06); }
+    .mobile-nav a[aria-current="page"]::after { display: none; }
+    body.mobile-menu-open { overflow: hidden; }
+    /* interface-upgrade:end */
+
   </style>
 </head>
 <body>
+  <a class="skip-link" href="#main-content">Skip to content</a>
   <header>
     <div class="container nav">
-      <div class="brand">
+      <a class="brand" href="index.html#home" aria-label="Khaneil Campbell portfolio home">
         <small>Khaneil Campbell</small>
-        <span>Cybersecurity Portfolio</span>
-      </div>
+        <span>Security Operations Portfolio</span>
+      </a>
 
-      <nav>
+      <nav aria-label="Primary navigation">
         <ul>
-          <li><a href="index.html#home">Home</a></li>
-          <li><a href="labs.html">Labs</a></li>
+          <li><a href="index.html">Home</a></li>
+          <li><a href="lab-details.html" aria-current="page">Labs</a></li>
+          <li><a href="projects.html">Projects</a></li>
           <li><a href="index.html#about">About</a></li>
           <li><a href="index.html#contact">Contact</a></li>
         </ul>
       </nav>
 
-      <a href="index.html" class="btn btn-outline">Back to Portfolio</a>
+      <a href="lab-details.html" class="btn">All Labs</a>
+      <button class="menu-toggle" aria-label="Open navigation menu" aria-expanded="false" aria-controls="mobile-nav">
+        <svg class="icon-open" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round">
+          <line x1="3" y1="5" x2="17" y2="5"/><line x1="3" y1="10" x2="17" y2="10"/><line x1="3" y1="15" x2="17" y2="15"/>
+        </svg>
+        <svg class="icon-close" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round">
+          <line x1="4" y1="4" x2="16" y2="16"/><line x1="16" y1="4" x2="4" y2="16"/>
+        </svg>
+      </button>
     </div>
   </header>
 
-  <main class="section container">
-    <p class="section-label">Detection Engineering Lab</p>
-    <h1>SOC Automation with Splunk</h1>
-    <p class="subtext">
-      End-to-end security lab focused on brute-force detection, triage workflow design,
-      and practical SOC automation patterns.
-    </p>
+  <nav id="mobile-nav" class="mobile-nav" aria-label="Mobile navigation">
+    <ul>
+      <li><a href="index.html">Home</a></li>
+      <li><a href="lab-details.html">Labs</a></li>
+      <li><a href="projects.html">Projects</a></li>
+      <li><a href="index.html#about">About</a></li>
+      <li><a href="index.html#contact">Contact</a></li>
+    </ul>
+  </nav>
 
-    <div class="grid">
+  <div class="signal-bar" aria-hidden="true"><span></span></div>
+
+  <main id="main-content" class="section container">
+    <section class="case-hero" aria-labelledby="case-title">
       <div>
-        <div class="box">
-          <h2>Objective</h2>
-          <p>
-            Detect suspicious authentication behavior in Windows event logs, reduce analyst
-            noise with targeted searches, and convert findings into repeatable response logic.
-          </p>
-          <h2>Workflow</h2>
-          <div class="steps">
-            <div class="step">
-              <strong>1. Data Ingestion</strong>
-              Collected and normalized Windows authentication events in Splunk.
-            </div>
-            <div class="step">
-              <strong>2. Detection Logic</strong>
-              Built SPL queries to identify repeated failed logins and suspicious source patterns.
-            </div>
-            <div class="step">
-              <strong>3. Triage and Validation</strong>
-              Reviewed correlated events, reduced false positives, and documented decision points.
-            </div>
-            <div class="step">
-              <strong>4. Response Framework</strong>
-              Defined clear analyst actions and reusable response flow for future incidents.
-            </div>
-          </div>
-          <div class="cta-row">
-            <a href="https://github.com/khancam15/soc-automation-splunk-bruteforce-lab" target="_blank" rel="noopener noreferrer" class="btn btn-outline">View GitHub Repo</a>
-            <a href="labs.html" class="btn btn-outline">Back to Labs</a>
-          </div>
+        <p class="section-label">Detection Engineering Case</p>
+        <h1 id="case-title">SOC Automation with Splunk</h1>
+        <p class="subtext">
+          End-to-end detection engineering lab covering brute-force credential attack identification,
+          SPL-based alert logic, structured triage methodology, and repeatable SOC response workflow design.
+        </p>
+        <div class="cta-row">
+          <a href="https://github.com/khancam15/soc-automation-splunk-bruteforce-lab" target="_blank" rel="noopener noreferrer" class="btn btn-primary">View GitHub Repo</a>
+          <a href="lab-details.html#soc" class="btn">Back to Labs</a>
         </div>
       </div>
 
-      <div>
-        <div class="box">
+      <aside class="metrics" aria-label="Lab highlights">
+        <div class="metric">
+          <strong>Threat Focus</strong>
+          Authentication anomalies and brute-force behavior.
+        </div>
+        <div class="metric">
+          <strong>Telemetry</strong>
+          Windows Security Event Logs ingested, normalized, and analyzed in Splunk Enterprise.
+        </div>
+        <div class="metric">
+          <strong>Result</strong>
+          Detected 80+ failed logon attempts within a defined time window.
+        </div>
+      </aside>
+    </section>
+
+    <div class="grid">
+      <section class="panel" aria-labelledby="workflow-title">
+        <p class="kicker">Objective</p>
+        <h2 id="workflow-title">Turn authentication noise into analyst-ready signal.</h2>
+        <p>
+          Identify anomalous authentication patterns, reduce alert fatigue through threshold tuning,
+          and convert raw event data into a structured, repeatable analyst response workflow.
+        </p>
+
+        <div class="steps">
+          <div class="step">
+            <strong>1. Data Ingestion</strong>
+            <p>Ingested and normalized Windows Security Event Logs (Event ID 4625) in Splunk Enterprise for structured analysis.</p>
+          </div>
+          <div class="step">
+            <strong>2. Detection Logic</strong>
+            <p>Developed SPL queries to correlate failed logon volume by source IP, user account, and time window to surface brute-force indicators.</p>
+          </div>
+          <div class="step">
+            <strong>3. Triage and Validation</strong>
+            <p>Reviewed correlated event data, applied threshold tuning to reduce false positive rates, and documented analyst decision points.</p>
+          </div>
+          <div class="step">
+            <strong>4. Response Framework</strong>
+            <p>Defined structured analyst actions, escalation criteria, and reusable case notes for repeatable SOC incident handling.</p>
+          </div>
+        </div>
+      </section>
+
+      <aside class="detail-stack">
+        <div class="detail-card">
           <h2>Stack</h2>
           <ul class="detail-list">
             <li>Splunk Enterprise</li>
             <li>SPL Query Language</li>
             <li>Windows Security Logs</li>
-            <li>Python (automation support)</li>
+            <li>Structured case documentation</li>
           </ul>
         </div>
 
-        <div class="box">
+        <div class="detail-card">
           <h2>Skills Demonstrated</h2>
           <ul class="detail-list">
             <li>Detection Engineering</li>
@@ -290,15 +598,35 @@
           </ul>
         </div>
 
-        <div class="box">
+        <div class="detail-card">
           <h2>Outcome</h2>
           <p>
-            Produced a practical SOC-use-case lab with clear detection rationale,
-            repeatable analyst workflow, and portfolio-ready evidence of security thinking.
+            Delivered a production-quality SOC use-case lab demonstrating credential attack detection,
+            structured triage methodology, and documented analyst workflow applicable to real security operations environments.
           </p>
         </div>
-      </div>
+      </aside>
     </div>
   </main>
+
+  <script>
+    const toggle = document.querySelector('.menu-toggle');
+    const mobileNav = document.getElementById('mobile-nav');
+    function openMenu() {
+      toggle.classList.add('open'); mobileNav.classList.add('open');
+      toggle.setAttribute('aria-expanded', 'true');
+      toggle.setAttribute('aria-label', 'Close navigation menu');
+      document.body.classList.add('mobile-menu-open');
+    }
+    function closeMenu() {
+      toggle.classList.remove('open'); mobileNav.classList.remove('open');
+      toggle.setAttribute('aria-expanded', 'false');
+      toggle.setAttribute('aria-label', 'Open navigation menu');
+      document.body.classList.remove('mobile-menu-open');
+    }
+    toggle.addEventListener('click', () => toggle.classList.contains('open') ? closeMenu() : openMenu());
+    mobileNav.querySelectorAll('a').forEach(link => link.addEventListener('click', closeMenu));
+    document.addEventListener('keydown', e => { if (e.key === 'Escape') closeMenu(); });
+  </script>
 </body>
 </html>

@@ -3,651 +3,1076 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta name="description" content="Khaneil Campbell is a cybersecurity practitioner building a professional portfolio for SOC labs, incident response, and IAM security work." />
-  <meta name="theme-color" content="#020617" />
+  <meta name="description" content="Khaneil Campbell — cybersecurity practitioner with hands-on labs in Splunk detection engineering, Windows event log analysis, incident response, and identity security. Based in New York." />
+  <meta name="theme-color" content="#07110f" />
   <meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'unsafe-inline'; style-src 'unsafe-inline'; img-src 'self'; font-src 'self'; base-uri 'self'; form-action 'none';" />
   <meta name="referrer" content="strict-origin-when-cross-origin" />
   <meta name="robots" content="index, follow" />
-  <title>Khaneil Campbell | Cybersecurity Portfolio</title>
+  <title>Khaneil Campbell | SOC Analyst & Detection Engineer</title>
   <style>
+    :root {
+      --bg: #07110f;
+      --panel: rgba(14, 23, 20, 0.82);
+      --panel-strong: rgba(18, 30, 26, 0.94);
+      --line: rgba(202, 238, 222, 0.14);
+      --text: #f4fbf7;
+      --muted: #a9bbb3;
+      --green: #69e6a1;
+      --cyan: #7dd3fc;
+      --amber: #facc6b;
+      --ink: #07110f;
+      --shadow: 0 28px 80px rgba(0, 0, 0, 0.42);
+    }
+
     * {
+      box-sizing: border-box;
       margin: 0;
       padding: 0;
-      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
     }
 
     body {
+      min-height: 100vh;
       font-family: Arial, Helvetica, sans-serif;
-      background: radial-gradient(circle at top, rgba(59,130,246,0.18), transparent 30%),
-                  radial-gradient(circle at 80% 20%, rgba(16,185,129,0.12), transparent 22%),
-                  linear-gradient(to bottom, #020617, #020617);
-      color: white;
+      color: var(--text);
       line-height: 1.6;
+      background:
+        linear-gradient(120deg, rgba(105, 230, 161, 0.14), transparent 30%),
+        linear-gradient(240deg, rgba(250, 204, 107, 0.11), transparent 32%),
+        repeating-linear-gradient(90deg, rgba(255, 255, 255, 0.028) 0 1px, transparent 1px 92px),
+        linear-gradient(180deg, #07110f 0%, #0b1512 48%, #07110f 100%);
+      overflow-x: hidden;
+    }
+
+    body::before {
+      content: "";
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      background:
+        linear-gradient(rgba(125, 211, 252, 0.045) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(125, 211, 252, 0.035) 1px, transparent 1px);
+      background-size: 44px 44px;
+      mask-image: linear-gradient(to bottom, black, transparent 74%);
     }
 
     a {
-      text-decoration: none;
       color: inherit;
+      text-decoration: none;
     }
 
     a:not(.btn):hover {
-      color: #67e8f9;
+      color: var(--green);
       text-decoration: underline;
       text-underline-offset: 3px;
     }
 
     .container {
-      width: 90%;
-      max-width: 1200px;
+      width: min(1120px, calc(100% - 40px));
       margin: 0 auto;
     }
 
     header {
-      border-bottom: 1px solid rgba(255,255,255,0.1);
-      background: rgba(2, 6, 23, 0.8);
-      backdrop-filter: blur(10px);
       position: sticky;
       top: 0;
-      z-index: 1000;
+      z-index: 20;
+      border-bottom: 1px solid var(--line);
+      background: rgba(7, 17, 15, 0.82);
+      backdrop-filter: blur(14px);
     }
 
     .nav {
       display: flex;
-      justify-content: space-between;
       align-items: center;
-      padding: 20px 0;
+      justify-content: space-between;
+      gap: 20px;
+      min-height: 78px;
     }
 
-    .brand small {
-      display: block;
-      color: #67e8f9;
-      text-transform: uppercase;
-      letter-spacing: 0.25em;
+    .brand small,
+    .eyebrow,
+    .section-label,
+    .card-type,
+    .kicker {
+      color: var(--green);
       font-size: 12px;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
     }
 
     .brand span {
-      color: #cbd5e1;
+      display: block;
+      color: var(--muted);
       font-size: 14px;
+      margin-top: 2px;
     }
 
     nav ul {
       display: flex;
+      gap: 22px;
       list-style: none;
-      gap: 24px;
     }
 
-    nav ul li a {
-      color: #cbd5e1;
+    nav a {
+      color: #d7e7df;
       font-size: 14px;
     }
 
-    nav ul li a:hover {
-      color: #67e8f9;
+    .menu-toggle {
+      display: none;
+      align-items: center;
+      justify-content: center;
+      width: 44px;
+      height: 44px;
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      background: rgba(255, 255, 255, 0.055);
+      color: var(--text);
+      cursor: pointer;
+      flex-shrink: 0;
+    }
+
+    .menu-toggle:hover {
+      border-color: rgba(105, 230, 161, 0.62);
+      background: rgba(105, 230, 161, 0.13);
+    }
+
+    .menu-toggle svg {
+      width: 20px;
+      height: 20px;
+      transition: opacity 120ms ease;
+    }
+
+    .menu-toggle .icon-close {
+      display: none;
+    }
+
+    .mobile-nav {
+      display: none;
+      position: fixed;
+      top: 78px;
+      left: 0;
+      right: 0;
+      z-index: 18;
+      border-bottom: 1px solid var(--line);
+      background: rgba(7, 17, 15, 0.96);
+      backdrop-filter: blur(18px);
+      padding: 18px 0 22px;
+    }
+
+    .mobile-nav ul {
+      display: flex;
+      flex-direction: column;
+      list-style: none;
+      gap: 0;
+    }
+
+    .mobile-nav a {
+      display: block;
+      padding: 13px 20px;
+      color: #d7e7df;
+      font-size: 15px;
+      border-bottom: 1px solid rgba(202, 238, 222, 0.07);
+    }
+
+    .mobile-nav a:hover,
+    .mobile-nav a[aria-current="page"] {
+      color: var(--green);
+      background: rgba(105, 230, 161, 0.06);
+    }
+
+    .mobile-nav a[aria-current="page"]::after {
+      display: none;
+    }
+
+    body.mobile-menu-open {
+      overflow: hidden;
     }
 
     .btn {
-      display: inline-block;
-      padding: 12px 20px;
-      border-radius: 14px;
-      font-weight: bold;
-      border: none;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 44px;
+      padding: 10px 16px;
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      background: rgba(255, 255, 255, 0.055);
+      color: var(--text);
       cursor: pointer;
-      transition: 0.3s ease;
+      font-size: 14px;
+      font-weight: 700;
+      transition: transform 180ms ease, border-color 180ms ease, background 180ms ease;
+    }
+
+    .btn:hover {
+      border-color: rgba(105, 230, 161, 0.62);
+      background: rgba(105, 230, 161, 0.13);
+      transform: translateY(-1px);
     }
 
     .btn-primary {
-      background: #22d3ee;
-      color: #0f172a;
+      background: var(--green);
+      color: var(--ink);
+      border-color: transparent;
     }
 
     .btn-primary:hover {
-      background: #67e8f9;
-    }
-
-    .btn-outline {
-      border: 1px solid rgba(255,255,255,0.2);
-      background: rgba(255,255,255,0.05);
-      color: white;
-    }
-
-    .btn-outline:hover {
-      background: rgba(34,211,238,0.15);
-      border-color: #67e8f9;
-      color: #67e8f9;
+      background: #8df0b8;
+      color: var(--ink);
     }
 
     .hero {
       display: grid;
-      grid-template-columns: 1fr;
-      gap: 50px;
-      align-items: start;
-      padding: 90px 0;
+      grid-template-columns: minmax(0, 1.08fr) minmax(340px, 0.92fr);
+      gap: 34px;
+      align-items: center;
+      min-height: calc(100vh - 78px);
+      padding: 58px 0 44px;
     }
 
-    .hero-badge {
-      display: inline-block;
-      padding: 10px 16px;
-      border-radius: 999px;
-      border: 1px solid rgba(34,211,238,0.2);
-      background: rgba(34,211,238,0.1);
-      color: #bae6fd;
-      text-transform: uppercase;
-      font-size: 12px;
-      letter-spacing: 0.2em;
-      margin-bottom: 24px;
+    h1 {
+      max-width: 850px;
+      margin-top: 14px;
+      font-size: clamp(42px, 8vw, 84px);
+      line-height: 0.95;
     }
 
-    .hero h1 {
-      font-size: 64px;
-      line-height: 1;
-      margin-bottom: 24px;
-      white-space: nowrap;
-      overflow-wrap: normal;
+    .hero-copy p {
+      max-width: 680px;
+      margin-top: 22px;
+      color: #d5e3dc;
+      font-size: clamp(17px, 2.2vw, 21px);
     }
 
-    .hero h1 span {
-      color: #94a3b8;
-      display: block;
-    }
-
-    .hero p {
-      color: #cbd5e1;
-      font-size: 20px;
-      max-width: 650px;
-      margin-bottom: 28px;
-      white-space: nowrap;
-      overflow-wrap: normal;
+    .hero-actions,
+    .lab-actions,
+    .contact-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
     }
 
     .hero-actions {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 14px;
-      margin-bottom: 36px;
+      margin-top: 28px;
     }
 
-    .stats {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
-      gap: 14px;
-      max-width: 700px;
-    }
-
-    .stat-box,
-    .card,
-    .feature-box,
-    .proof-box,
+    .command-panel,
+    .metric,
+    .lab-card,
+    .briefing,
+    .timeline-item,
+    .about-panel,
+    .credential-card,
     .contact-box {
-      border: 1px solid rgba(255,255,255,0.1);
-      background: rgba(255,255,255,0.05);
-      backdrop-filter: blur(10px);
-      border-radius: 24px;
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      background: var(--panel);
+      box-shadow: var(--shadow);
+      backdrop-filter: blur(16px);
     }
 
-    .stat-box {
+    .command-panel {
+      overflow: hidden;
+    }
+
+    .panel-top {
+      display: flex;
+      justify-content: space-between;
+      gap: 14px;
+      padding: 14px 16px;
+      border-bottom: 1px solid var(--line);
+      background: rgba(255, 255, 255, 0.035);
+      color: var(--muted);
+      font-size: 13px;
+    }
+
+    .pulse {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      color: var(--green);
+      font-weight: 700;
+    }
+
+    .pulse::before {
+      content: "";
+      width: 9px;
+      height: 9px;
+      border-radius: 999px;
+      background: var(--green);
+      box-shadow: 0 0 0 8px rgba(105, 230, 161, 0.12);
+    }
+
+    .terminal {
+      display: grid;
+      gap: 12px;
       padding: 18px;
+      font-family: "SFMono-Regular", Consolas, "Liberation Mono", monospace;
+      font-size: 13px;
     }
 
-    .stat-box h3 {
-      font-size: 24px;
+    .terminal-line {
+      display: grid;
+      grid-template-columns: 96px 1fr;
+      gap: 12px;
+      padding: 12px;
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      border-radius: 8px;
+      background: rgba(7, 17, 15, 0.66);
     }
 
-    .stat-box p {
-      color: #94a3b8;
-      font-size: 14px;
-      margin-top: 6px;
+    .terminal-time {
+      color: var(--amber);
     }
 
-    .feature-box {
-      padding: 28px;
-      margin-top: 22px;
+    .terminal-text {
+      color: #d8f8e6;
     }
 
-    .feature-box h3 {
+    .metrics {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 12px;
+      margin-top: 18px;
+    }
+
+    .metric {
+      padding: 16px;
+      background: rgba(18, 30, 26, 0.7);
+      box-shadow: none;
+    }
+
+    .metric strong {
+      display: block;
       font-size: 28px;
-      margin-bottom: 14px;
-      white-space: normal;
-      overflow-wrap: anywhere;
+      line-height: 1;
     }
 
-    .feature-box p,
-    .card p,
-    .proof-box p,
-    .about-text,
-    .pillar p {
-      color: #cbd5e1;
-      white-space: normal;
-      overflow-wrap: anywhere;
+    .metric span {
+      display: block;
+      color: var(--muted);
+      font-size: 13px;
+      margin-top: 8px;
     }
 
     .section {
-      padding: 80px 0;
+      padding: 66px 0;
     }
 
-    .section-label {
-      color: #67e8f9;
-      text-transform: uppercase;
-      letter-spacing: 0.25em;
-      font-size: 12px;
-      margin-bottom: 16px;
+    .section-head {
+      display: flex;
+      align-items: end;
+      justify-content: space-between;
+      gap: 24px;
+      margin-bottom: 24px;
     }
 
-    .section h2 {
-      font-size: 48px;
-      margin-bottom: 16px;
+    h2 {
+      max-width: 760px;
+      margin-top: 8px;
+      font-size: clamp(30px, 4vw, 48px);
+      line-height: 1.05;
     }
 
     .section-subtext {
-      color: #94a3b8;
-      font-size: 18px;
-      max-width: 700px;
-      margin-bottom: 40px;
+      max-width: 650px;
+      color: var(--muted);
+      margin-top: 12px;
     }
 
-    .cards-grid {
+    .lab-grid {
       display: grid;
       grid-template-columns: repeat(3, 1fr);
-      gap: 24px;
-    }
-
-    .card {
-      padding: 24px;
-    }
-
-    .card h3 {
-      font-size: 28px;
-      margin: 12px 0;
-      white-space: normal;
-      overflow-wrap: anywhere;
-    }
-
-    .card .category {
-      color: #94a3b8;
-      text-transform: uppercase;
-      font-size: 12px;
-      letter-spacing: 0.15em;
-    }
-
-    .lab-links {
-      display: flex;
       gap: 18px;
+    }
+
+    .lab-card {
+      display: flex;
+      min-height: 390px;
+      flex-direction: column;
+      padding: 20px;
+      box-shadow: none;
+      transition: transform 180ms ease, border-color 180ms ease, background 180ms ease;
+    }
+
+    .lab-card:hover {
+      transform: translateY(-4px);
+      border-color: rgba(125, 211, 252, 0.42);
+      background: var(--panel-strong);
+    }
+
+    .card-top {
+      display: flex;
+      justify-content: space-between;
+      gap: 14px;
+      align-items: flex-start;
+      margin-bottom: 18px;
+    }
+
+    .status {
+      border: 1px solid rgba(105, 230, 161, 0.34);
+      border-radius: 999px;
+      color: #c6f6d8;
+      padding: 5px 9px;
+      font-size: 12px;
+      white-space: nowrap;
+    }
+
+    .status.planned {
+      border-color: rgba(250, 204, 107, 0.42);
+      color: #ffe6a3;
+    }
+
+    .lab-card h3 {
+      font-size: 25px;
+      line-height: 1.1;
       margin-bottom: 12px;
     }
 
-    .lab-links a:first-child {
-      color: #67e8f9;
-      font-weight: 600;
+    .lab-card p,
+    .about-panel p,
+    .credential-card p,
+    .contact-box p,
+    .briefing p,
+    .timeline-item p {
+      color: #c8d8d0;
+    }
+
+    .lab-actions {
+      margin-top: 18px;
     }
 
     .tags {
       display: flex;
       flex-wrap: wrap;
       gap: 8px;
-      margin-top: 18px;
+      margin-top: auto;
+      padding-top: 20px;
     }
 
     .tag {
-      padding: 6px 12px;
+      border: 1px solid rgba(255, 255, 255, 0.11);
       border-radius: 999px;
-      background: rgba(2, 6, 23, 0.9);
-      border: 1px solid rgba(255,255,255,0.1);
-      color: #cbd5e1;
+      background: rgba(255, 255, 255, 0.045);
+      color: #d7e7df;
       font-size: 12px;
+      padding: 6px 10px;
     }
 
-    .about-grid {
+    .briefing-grid,
+    .about-grid,
+    .credential-grid {
       display: grid;
       grid-template-columns: 1fr 1fr;
-      gap: 24px;
+      gap: 18px;
     }
 
-    .about-box,
-    .pillar {
-      border: 1px solid rgba(255,255,255,0.1);
-      background: rgba(255,255,255,0.05);
-      padding: 28px;
-      border-radius: 24px;
-      margin-bottom: 16px;
+    .briefing,
+    .about-panel,
+    .credential-card,
+    .contact-box {
+      padding: 22px;
+      box-shadow: none;
     }
 
-    .about-box {
-      display: flex;
-      flex-direction: column;
-      gap: 20px;
+    .briefing h3,
+    .about-panel h3,
+    .credential-card h3 {
+      font-size: 24px;
+      margin: 10px 0;
     }
 
-    .about-box h2 {
-      margin: 0;
-      font-size: 32px;
-      line-height: 1.05;
-      white-space: normal;
-      overflow-wrap: anywhere;
-    }
-
-    .about-text {
-      margin: 0;
-      color: #cbd5e1;
-      line-height: 1.9;
-      max-width: 100%;
-      padding-left: 8px;
-      text-align: left;
-    }
-
-    .pillar h3 {
-      margin-bottom: 8px;
-      font-size: 22px;
-    }
-
-    .proof-box {
-      padding: 32px;
-    }
-
-    .proof-grid {
+    .timeline {
       display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 16px;
-      margin-top: 26px;
+      gap: 12px;
     }
 
-    .proof-item {
-      background: rgba(2, 6, 23, 0.7);
-      border: 1px solid rgba(255,255,255,0.1);
-      border-radius: 18px;
-      padding: 18px;
-      color: #e2e8f0;
+    .timeline-item {
+      display: grid;
+      grid-template-columns: 86px 1fr;
+      gap: 14px;
+      padding: 16px;
+      box-shadow: none;
+    }
+
+    .timeline-item strong {
+      color: var(--amber);
+      font-family: "SFMono-Regular", Consolas, "Liberation Mono", monospace;
+      font-size: 13px;
     }
 
     .contact-box {
-      padding: 32px;
       display: flex;
       justify-content: space-between;
       align-items: center;
       gap: 24px;
-      flex-wrap: wrap;
-    }
-
-    .contact-actions {
-      display: flex;
-      gap: 12px;
-      flex-wrap: wrap;
-      flex-shrink: 0;
-    }
-
-    .contact-content {
-      flex: 1;
-      min-width: 0;
+      margin-bottom: 64px;
     }
 
     .contact-box h2 {
-      font-size: 40px;
-      line-height: 1.15;
-      margin-bottom: 14px;
-      white-space: normal;
-      overflow-wrap: anywhere;
+      margin-top: 8px;
     }
 
-    .contact-copy {
-      color: #cbd5e1;
-      font-size: 18px;
-      line-height: 1.75;
-      margin: 0;
+    .placeholder-link {
+      opacity: 0.64;
+      cursor: not-allowed;
     }
 
-    .anchor-offset {
-      display: block;
-      position: relative;
-      top: -86px;
-      visibility: hidden;
-      height: 0;
-    }
-
-    .labs-section h2 {
-      font-size: 36px;
-      white-space: nowrap;
-    }
-
-    .labs-section .section-subtext {
-      font-size: 16px;
-      white-space: nowrap;
-      max-width: none;
-    }
-
-    @media (max-width: 900px) {
+    @media (max-width: 980px) {
       .hero,
+      .briefing-grid,
       .about-grid,
-      .cards-grid,
-      .proof-grid {
+      .credential-grid {
         grid-template-columns: 1fr;
+        min-height: auto;
       }
 
-      .hero h1,
-      .section h2 {
-        font-size: 42px;
-      }
-
-      .labs-section h2 {
-        font-size: 30px;
-        white-space: normal;
-      }
-
-      .labs-section .section-subtext {
-        white-space: normal;
-      }
-
-      .hero h1 {
-        white-space: normal;
-      }
-
-      .hero p {
-        white-space: normal;
+      .lab-grid,
+      .metrics {
+        grid-template-columns: 1fr 1fr;
       }
 
       nav ul {
         display: none;
       }
 
-      .stats {
+      .menu-toggle {
+        display: flex;
+      }
+
+      .mobile-nav.open {
+        display: block;
+      }
+
+      .menu-toggle.open .icon-open {
+        display: none;
+      }
+
+      .menu-toggle.open .icon-close {
+        display: block;
+      }
+    }
+
+    @media (max-width: 640px) {
+      .container {
+        width: min(100% - 28px, 1120px);
+      }
+
+      .nav {
+        min-height: 70px;
+      }
+
+      .nav .btn {
+        display: none;
+      }
+
+      .mobile-nav {
+        top: 70px;
+      }
+
+      .hero {
+        padding-top: 38px;
+      }
+
+      .section-head,
+      .contact-box {
+        align-items: flex-start;
+        flex-direction: column;
+      }
+
+      .lab-grid,
+      .metrics {
         grid-template-columns: 1fr;
       }
 
-      .contact-box {
-        padding: 26px;
-        flex-direction: column;
-        align-items: flex-start;
-      }
-
-      .contact-box h2 {
-        font-size: 34px;
-        line-height: 1.2;
+      .terminal-line,
+      .timeline-item {
+        grid-template-columns: 1fr;
       }
     }
+
+
+    /* interface-upgrade:start */
+    ::selection {
+      background: rgba(105, 230, 161, 0.28);
+      color: var(--text);
+    }
+
+    :focus-visible {
+      outline: 2px solid var(--green);
+      outline-offset: 4px;
+    }
+
+    .skip-link {
+      position: fixed;
+      left: 16px;
+      top: 16px;
+      z-index: 100;
+      transform: translateY(-140%);
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      background: var(--green);
+      color: var(--ink, #07110f);
+      font-weight: 700;
+      padding: 10px 14px;
+      transition: transform 180ms ease;
+    }
+
+    .skip-link:focus {
+      transform: translateY(0);
+    }
+
+    .signal-bar {
+      position: sticky;
+      top: 78px;
+      z-index: 19;
+      height: 2px;
+      overflow: hidden;
+      background: rgba(202, 238, 222, 0.08);
+    }
+
+    .signal-bar span {
+      display: block;
+      width: 42%;
+      height: 100%;
+      background: linear-gradient(90deg, transparent, var(--green), var(--amber, #facc6b), transparent);
+      animation: signalSweep 5.5s linear infinite;
+    }
+
+    nav a[aria-current="page"] {
+      color: var(--green);
+    }
+
+    nav a[aria-current="page"]::after {
+      content: "";
+      display: block;
+      height: 2px;
+      margin-top: 4px;
+      border-radius: 999px;
+      background: var(--green);
+    }
+
+    .command-panel,
+    .lab-card,
+    .lab-detail-card,
+    .panel,
+    .briefing,
+    .about-panel,
+    .project-card,
+    .detail-card,
+    .credential-card,
+    .contact-box,
+    .cert-image-wrapper {
+      position: relative;
+      isolation: isolate;
+    }
+
+    .command-panel::after,
+    .lab-card::after,
+    .lab-detail-card::after,
+    .panel::after,
+    .briefing::after,
+    .about-panel::after,
+    .project-card::after,
+    .detail-card::after,
+    .credential-card::after,
+    .contact-box::after,
+    .cert-image-wrapper::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      z-index: -1;
+      border-radius: inherit;
+      background: linear-gradient(135deg, rgba(105, 230, 161, 0.08), transparent 42%, rgba(250, 204, 107, 0.06));
+      opacity: 0.72;
+      pointer-events: none;
+    }
+
+    .section {
+      position: relative;
+    }
+
+    .section::before {
+      content: "";
+      display: block;
+      width: min(100%, 1120px);
+      height: 1px;
+      margin: 0 auto 42px;
+      background: linear-gradient(90deg, transparent, rgba(202, 238, 222, 0.18), transparent);
+    }
+
+    .hero + .section::before,
+    main > .section:first-child::before {
+      display: none;
+    }
+
+    @keyframes signalSweep {
+      from {
+        transform: translateX(-110%);
+      }
+
+      to {
+        transform: translateX(260%);
+      }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      *,
+      *::before,
+      *::after {
+        animation-duration: 0.001ms !important;
+        animation-iteration-count: 1 !important;
+        scroll-behavior: auto !important;
+        transition-duration: 0.001ms !important;
+      }
+    }
+
+    @media (max-width: 640px) {
+      .signal-bar {
+        top: 70px;
+      }
+    }
+    /* interface-upgrade:end */
+
   </style>
 </head>
 <body id="home">
+  <a class="skip-link" href="#main-content">Skip to content</a>
   <header>
     <div class="container nav">
-      <div class="brand">
+      <a class="brand" href="#home" aria-label="Khaneil Campbell portfolio home">
         <small>Khaneil Campbell</small>
-        <span>Security Operations</span>
-      </div>
+        <span>Security Operations Portfolio</span>
+      </a>
 
-      <nav>
+      <nav aria-label="Primary navigation">
         <ul>
-          <li><a href="#home">Home</a></li>
-          <li><a href="#labs">Labs</a></li>
+          <li><a href="#home" aria-current="page">Home</a></li>
+          <li><a href="lab-details.html">Labs</a></li>
+          <li><a href="projects.html">Projects</a></li>
           <li><a href="#about">About</a></li>
           <li><a href="#contact">Contact</a></li>
         </ul>
       </nav>
 
-      <a href="#contact" class="btn btn-outline">Contact</a>
+      <a href="#contact" class="btn">Contact</a>
+      <button class="menu-toggle" aria-label="Open navigation menu" aria-expanded="false" aria-controls="mobile-nav">
+        <svg class="icon-open" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round">
+          <line x1="3" y1="5" x2="17" y2="5"/><line x1="3" y1="10" x2="17" y2="10"/><line x1="3" y1="15" x2="17" y2="15"/>
+        </svg>
+        <svg class="icon-close" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round">
+          <line x1="4" y1="4" x2="16" y2="16"/><line x1="16" y1="4" x2="4" y2="16"/>
+        </svg>
+      </button>
     </div>
   </header>
 
-  <main>
-    <section class="hero container">
-      <div>
-        <div class="hero-badge">Build • Detect • Respond</div>
-        <h1>
-          Security Operations
-          <span>Detection  Investigation  Response</span>
-        </h1>
+  <nav id="mobile-nav" class="mobile-nav" aria-label="Mobile navigation">
+    <ul>
+      <li><a href="#home">Home</a></li>
+      <li><a href="lab-details.html">Labs</a></li>
+      <li><a href="projects.html">Projects</a></li>
+      <li><a href="#about">About</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+  </nav>
+
+  <div class="signal-bar" aria-hidden="true"><span></span></div>
+
+  <main id="main-content">
+    <section class="hero container" aria-labelledby="page-title">
+      <div class="hero-copy">
+        <p class="eyebrow">Build · Detect · Respond</p>
+        <h1 id="page-title">Security operations. Built on evidence.</h1>
         <p>
-          Security labs, detection engineering, and incident response. Documented from concept to execution.
+          Hands-on security operations work across detection engineering, incident response, and identity security —
+          built with real tooling, documented with analyst rigor, and structured for repeatable outcomes.
         </p>
-
         <div class="hero-actions">
-          <a href="labs.html" class="btn btn-outline">Explore Labs</a>
-          <a href="https://www.linkedin.com/in/khaneil-c-44179a14a/" class="btn btn-outline" target="_blank" rel="noopener noreferrer">LinkedIn</a>
-          <a href="https://github.com/khancam15" class="btn btn-outline" target="_blank" rel="noopener noreferrer">GitHub</a>
-          <a href="mailto:khaneil@khaneilcampbell.com" class="btn btn-outline">Email</a>
+          <a href="lab-details.html" class="btn btn-primary">Explore Labs</a>
+          <a href="soc-automation-lab.html" class="btn">Featured Case</a>
+          <a href="projects.html" class="btn">AI Projects</a>
+          <a href="https://github.com/khancam15" class="btn" target="_blank" rel="noopener noreferrer">GitHub</a>
         </div>
 
-        <div class="stats">
-          <div class="stat-box">
-            <h3><a href="labs.html">03</a></h3>
-            <p><a href="labs.html">Featured Labs</a></p>
+        <div class="metrics" aria-label="Portfolio highlights">
+          <div class="metric">
+            <strong>3</strong>
+            <span>Security lab tracks</span>
           </div>
-          <div class="stat-box">
-            <h3><a href="security-plus.html">Security+</a></h3>
-            <p>Certified</p>
+          <div class="metric">
+            <strong>80+</strong>
+            <span>Failed logons detected</span>
           </div>
-          <div class="stat-box">
-            <h3><a href="itil4.html">ITIL 4</a></h3>
-            <p>Certified</p>
+          <div class="metric">
+            <strong>5+</strong>
+            <span>Years enterprise IT</span>
+          </div>
+          <div class="metric">
+            <strong>2</strong>
+            <span>Professional credentials</span>
           </div>
         </div>
+      </div>
 
-        <div class="feature-box">
-          <p class="section-label">Featured Project</p>
-          <h3><a href="soc-automation-lab.html">SOC Automation Lab</a></h3>
-          <p>
-            This lab simulates a real-world SMB brute-force attack in a controlled virtual environment,
-            detects it using Splunk, and automates case note generation using the Splunk REST API and Python.
-          </p>
-          <br />
-          <p><strong>Environment:</strong> Splunk, Python, Windows Event Logs</p>
-          <p><strong>Threat Focus:</strong> Authentication anomalies and brute-force detection</p>
-          <p><strong>Result:</strong> Detected 80+ failed logon attempts within a defined time window and developed alerting logic to support rapid triage</p>
-          <br />
-          <p><a href="soc-automation-lab.html">View full lab breakdown</a></p>
+      <aside class="command-panel" aria-label="Security operations preview">
+        <div class="panel-top">
+          <span>Security Operations</span>
+          <span class="pulse">Active</span>
         </div>
+        <div class="terminal">
+          <div class="terminal-line">
+            <span class="terminal-time">Signal</span>
+            <span class="terminal-text">Authentication failures correlated by source IP, user account, and time window.</span>
+          </div>
+          <div class="terminal-line">
+            <span class="terminal-time">Triage</span>
+            <span class="terminal-text">Scope defined, false-positive thresholds documented, severity assessed.</span>
+          </div>
+          <div class="terminal-line">
+            <span class="terminal-time">Action</span>
+            <span class="terminal-text">Structured response workflow prepared for analyst handoff and repeatable execution.</span>
+          </div>
+          <div class="terminal-line">
+            <span class="terminal-time">Outcome</span>
+            <span class="terminal-text">SPL detection logic and case notes documented as reusable SOC evidence.</span>
+          </div>
+        </div>
+      </aside>
     </section>
 
-    <span id="labs" class="anchor-offset"></span>
-    <section class="section container labs-section">
-      <p class="section-label">Featured Labs</p>
-      <h2>Hands-on labs built to simulate, detect, and respond to real threats.</h2>
-      <p class="section-subtext">Every lab simulates a threat scenario and walks through the full detection and response lifecycle.</p>
-
-      <div class="cards-grid">
-        <div class="card">
-          <p class="category">Detection Engineering</p>
-          <h3><a href="soc-automation-lab.html">SOC Automation with Splunk</a></h3>
-          <div class="lab-links">
-            <a href="soc-automation-lab.html">View Lab Details</a>
-            <a href="https://github.com/khancam15/soc-automation-splunk-bruteforce-lab" target="_blank" rel="noopener noreferrer">View on GitHub</a>
-          </div>
-          <p>
-            Built a brute-force detection workflow with alert logic, event triage,
-            and automation concepts for SOC-style response.
+    <section id="labs" class="section container" aria-labelledby="labs-title">
+      <div class="section-head">
+        <div>
+          <p class="section-label">Featured Labs</p>
+          <h2 id="labs-title">Threat scenarios. Documented outcomes.</h2>
+          <p class="section-subtext">
+            Each lab is built around an authentic security scenario and documented through detection logic, triage decisions, analyst response steps, and measurable results.
           </p>
+        </div>
+        <div class="hero-actions" style="margin-top: 0;">
+          <a href="labs.html" class="btn">Featured Page</a>
+          <a href="lab-details.html" class="btn">All Labs</a>
+        </div>
+      </div>
+
+      <div class="lab-grid">
+        <article class="lab-card">
+          <div class="card-top">
+            <p class="card-type">Detection Engineering</p>
+            <span class="status">Published</span>
+          </div>
+          <h3><a href="soc-automation-lab.html">SOC Automation with Splunk</a></h3>
+          <p>
+            Brute-force credential attack detection using Windows Security Event Logs, SPL-based alert logic,
+            structured triage decisions, and repeatable analyst response documentation.
+          </p>
+          <div class="lab-actions">
+            <a href="soc-automation-lab.html" class="btn btn-primary">View Case</a>
+            <a href="lab-details.html#soc" class="btn">Details</a>
+            <a href="https://github.com/khancam15/soc-automation-splunk-bruteforce-lab" class="btn" target="_blank" rel="noopener noreferrer">GitHub</a>
+          </div>
           <div class="tags">
             <span class="tag">Splunk</span>
             <span class="tag">SPL</span>
             <span class="tag">Windows Logs</span>
           </div>
-        </div>
+        </article>
 
-        <div class="card">
-          <p class="category">Incident Response</p>
-          <h3>Simulated Phishing & IR Lab</h3>
-          <div class="lab-links">
-            <a href="#" data-placeholder="true">View Details</a>
-            <a href="#" data-placeholder="true">View on GitHub</a>
+        <article class="lab-card">
+          <div class="card-top">
+            <p class="card-type">Incident Response</p>
+            <span class="status planned">Staged</span>
           </div>
+          <h3>Phishing-to-Malware Incident Response Lab</h3>
           <p>
-            Modeled a phishing-to-malware scenario with host investigation, log review,
-            and response documentation.
+            End-to-end phishing intrusion scenario covering initial delivery, host-based indicator analysis,
+            containment decisions, and executive-ready incident documentation.
           </p>
+          <div class="lab-actions">
+            <a href="#" class="btn placeholder-link" data-placeholder="true">Case Pending</a>
+            <a href="lab-details.html#phishing" class="btn">Details</a>
+          </div>
           <div class="tags">
             <span class="tag">IR</span>
             <span class="tag">Sysinternals</span>
-            <span class="tag">Windows Event Logs</span>
+            <span class="tag">Containment</span>
           </div>
-        </div>
+        </article>
 
-        <div class="card">
-          <p class="category">Identity Security</p>
-          <h3>IAM & Access Security Notes</h3>
-          <div class="lab-links">
-            <a href="#" data-placeholder="true">View Details</a>
-            <a href="#" data-placeholder="true">View on GitHub</a>
+        <article class="lab-card">
+          <div class="card-top">
+            <p class="card-type">Identity Security</p>
+            <span class="status planned">Staged</span>
           </div>
+          <h3>Identity &amp; Access Management Security Lab</h3>
           <p>
-            Showcases operational knowledge around MFA, access workflows,
-            least privilege, and account recovery controls.
+            Operational access-control scenarios covering MFA enforcement, least-privilege principles,
+            account lifecycle governance, privileged access management, and recovery workflows.
           </p>
+          <div class="lab-actions">
+            <a href="#" class="btn placeholder-link" data-placeholder="true">Case Pending</a>
+            <a href="lab-details.html#iam" class="btn">Details</a>
+          </div>
           <div class="tags">
             <span class="tag">IAM</span>
             <span class="tag">MFA</span>
             <span class="tag">Active Directory</span>
           </div>
+        </article>
+      </div>
+    </section>
+
+    <section id="projects" class="section container" aria-labelledby="projects-title">
+      <div class="section-head">
+        <div>
+          <p class="section-label">Personal Projects</p>
+          <h2 id="projects-title">Applied AI engineering beyond the security lab.</h2>
+          <p class="section-subtext">
+            Production-level projects demonstrating multi-agent AI orchestration, platform API integration,
+            autonomous workflow design, and operational security practices.
+          </p>
+        </div>
+        <a href="projects.html" class="btn">View Projects</a>
+      </div>
+
+      <article class="lab-card">
+        <div class="card-top">
+          <p class="card-type">AI Automation</p>
+          <span class="status">Published</span>
+        </div>
+        <h3><a href="projects.html">AI Etsy Product Pipeline</a></h3>
+        <p>
+          Autonomous AI commerce pipeline using CrewAI, Anthropic, Canva Connect, Etsy REST workflows,
+          SQLite state tracking, SEO review, daily health reporting, and VPS loop automation.
+        </p>
+        <div class="lab-actions">
+          <a href="projects.html" class="btn btn-primary">View Project</a>
+          <a href="https://github.com/khancam15/ai-etsy-product-pipeline" class="btn" target="_blank" rel="noopener noreferrer">GitHub</a>
+        </div>
+        <div class="tags">
+          <span class="tag">Python</span>
+          <span class="tag">CrewAI</span>
+          <span class="tag">Anthropic API</span>
+          <span class="tag">Canva</span>
+          <span class="tag">Etsy API</span>
+        </div>
+      </article>
+    </section>
+
+    <section class="section container" aria-labelledby="briefing-title">
+      <div class="section-head">
+        <div>
+          <p class="section-label">Operating Method</p>
+          <h2 id="briefing-title">The analyst framework behind every case.</h2>
+        </div>
+      </div>
+
+      <div class="briefing-grid">
+        <div class="briefing">
+          <p class="kicker">Analyst Standard</p>
+          <h3>From signal to response</h3>
+          <p>
+            This portfolio emphasizes the components that define effective security operations work:
+            evidence quality, repeatable decision-making, clear analyst communication, and structured containment methodology.
+          </p>
+        </div>
+
+        <div class="timeline" aria-label="Portfolio workflow">
+          <div class="timeline-item">
+            <strong>Scenario</strong>
+            <p>Model a realistic threat or access-control situation with actionable telemetry.</p>
+          </div>
+          <div class="timeline-item">
+            <strong>Detection</strong>
+            <p>Develop and validate alert logic that isolates meaningful signal from background noise.</p>
+          </div>
+          <div class="timeline-item">
+            <strong>Triage</strong>
+            <p>Translate raw events into documented findings with defined scope, severity, and decision criteria.</p>
+          </div>
+          <div class="timeline-item">
+            <strong>Response</strong>
+            <p>Record analyst actions and outcomes as reusable case documentation for future incidents.</p>
+          </div>
         </div>
       </div>
     </section>
 
-    <span id="about" class="anchor-offset" style="top: -220px;"></span>
-    <section class="section container">
-      <div class="about-grid">
-        <div class="about-box">
-          <p class="section-label">About Me</p>
-
-          <h2>Security Operations Practitioner</h2>
-          <p class="about-text">
-            I am an IT professional with over five years of enterprise experience working in some of New York's most demanding technical environments, including Columbia University and NYC Health & Hospitals.<br /><br />
-            My work focuses on security operations, including detection, identity and access management, and structured investigation methods. Through hands-on lab environments, I build and execute attack simulations, develop detection logic, and document response workflows that reflect real security operations practices.<br /><br />
-            I approach my work with analytical discipline, technical depth, and a strong focus on evidence-based decision making, applying the same standards used in active security environments to continuously improve my capabilities.
+    <section id="about" class="section container" aria-labelledby="about-title">
+      <div class="section-head">
+        <div>
+          <p class="section-label">About</p>
+          <h2 id="about-title">Security operations practitioner.</h2>
+          <p class="section-subtext">
+            Five-plus years of enterprise IT experience in high-demand environments — including Columbia University
+            and NYC Health + Hospitals — supporting mission-critical infrastructure and security operations workflows.
           </p>
         </div>
+      </div>
 
-        <div>
-          <div class="pillar">
-            <h3>Lab Engineering</h3>
-            <p>Every project is built from scratch, covering attack simulation, detection logic, alerting, and full documentation.</p>
-          </div>
-          <div class="pillar">
-            <h3>Core Competencies</h3>
-            <p>Grounded in SIEM analysis, log triage, and incident response workflows practiced across real lab environments.</p>
-          </div>
-          <div class="pillar">
-            <h3>My Mission</h3>
-            <p>To operate at the intersection of threat detection and emerging technology, building the expertise to secure modern environments against an evolving threat landscape shaped increasingly by artificial intelligence.</p>
-          </div>
+      <div class="about-grid">
+        <div class="about-panel">
+          <h3>Technical Focus</h3>
+          <p>
+            Core focus areas include threat detection engineering, security event log analysis,
+            identity and access management (IAM), and structured SOC investigation methodology.
+          </p>
         </div>
+        <div class="about-panel">
+          <h3>Professional Approach</h3>
+          <p>
+            Technical work is executed with analytical rigor, thorough documentation, and evidence-based
+            decision-making aligned with established security operations standards and best practices.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <section id="credentials" class="section container" aria-labelledby="credentials-title">
+      <div class="section-head">
+        <div>
+          <p class="section-label">Credentials</p>
+          <h2 id="credentials-title">Certifications &amp; professional credentials.</h2>
+        </div>
+      </div>
+
+      <div class="credential-grid">
+        <a href="security-plus.html" class="credential-card">
+          <p class="card-type">CompTIA</p>
+          <h3>Security+</h3>
+          <p>Validates knowledge across threat analysis, security architecture, network security, operations, governance, and risk management.</p>
+        </a>
+        <a href="itil4.html" class="credential-card">
+          <p class="card-type">IT Service Management</p>
+          <h3>ITIL 4 Foundation</h3>
+          <p>Demonstrates fluency in IT service management frameworks, service value chains, and continual improvement practices.</p>
+        </a>
       </div>
     </section>
 
     <section id="contact" class="section container">
       <div class="contact-box">
-        <div class="contact-content">
+        <div>
           <p class="section-label">Contact</p>
-          <h2>Let's Connect</h2>
-          <p class="contact-copy">
-            Open to SOC Analyst roles, security internships, and professional collaborations.<br />
-            Feel free to reach out for networking, questions about my portfolio, or just to connect.
+          <h2>Let's connect.</h2>
+          <p>
+            Actively pursuing SOC Analyst roles, detection engineering positions, and security internship opportunities.
           </p>
         </div>
-
         <div class="contact-actions">
-          <a href="https://www.linkedin.com/in/khaneil-c-44179a14a/" class="btn btn-outline" target="_blank" rel="noopener noreferrer">LinkedIn</a>
-          <a href="https://github.com/khancam15" class="btn btn-outline" target="_blank" rel="noopener noreferrer">GitHub</a>
-          <a href="mailto:khaneil@khaneilcampbell.com" class="btn btn-outline">Email</a>
+          <a href="https://www.linkedin.com/in/khaneil-c-44179a14a/" class="btn" target="_blank" rel="noopener noreferrer">LinkedIn</a>
+          <a href="https://github.com/khancam15" class="btn" target="_blank" rel="noopener noreferrer">GitHub</a>
+          <a href="mailto:khaneil@khaneilcampbell.com" class="btn btn-primary">Email</a>
         </div>
       </div>
     </section>
   </main>
+
   <script>
     document.querySelectorAll('a[data-placeholder="true"]').forEach((link) => {
       link.addEventListener("click", (event) => {
@@ -655,11 +1080,59 @@
       });
     });
 
-    const navEntry = performance.getEntriesByType("navigation")[0];
-    if (navEntry && navEntry.type === "reload") {
-      history.replaceState(null, "", window.location.pathname + window.location.search);
-      window.scrollTo(0, 0);
+    // Mobile menu toggle
+    const toggle = document.querySelector('.menu-toggle');
+    const mobileNav = document.getElementById('mobile-nav');
+
+    function openMenu() {
+      toggle.classList.add('open');
+      mobileNav.classList.add('open');
+      toggle.setAttribute('aria-expanded', 'true');
+      toggle.setAttribute('aria-label', 'Close navigation menu');
+      document.body.classList.add('mobile-menu-open');
     }
+
+    function closeMenu() {
+      toggle.classList.remove('open');
+      mobileNav.classList.remove('open');
+      toggle.setAttribute('aria-expanded', 'false');
+      toggle.setAttribute('aria-label', 'Open navigation menu');
+      document.body.classList.remove('mobile-menu-open');
+    }
+
+    toggle.addEventListener('click', () => {
+      toggle.classList.contains('open') ? closeMenu() : openMenu();
+    });
+
+    mobileNav.querySelectorAll('a').forEach((link) => {
+      link.addEventListener('click', closeMenu);
+    });
+
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape') closeMenu();
+    });
+
+    // Scroll-spy — update aria-current on desktop nav as sections enter view
+    const sections = ['home', 'labs', 'projects', 'about', 'credentials', 'contact'];
+    const desktopLinks = document.querySelectorAll('nav:not(#mobile-nav) a[href^="#"]');
+
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if (!entry.isIntersecting) return;
+        const id = entry.target.id;
+        desktopLinks.forEach((link) => {
+          const matches = link.getAttribute('href') === `#${id}`;
+          matches
+            ? link.setAttribute('aria-current', 'page')
+            : link.removeAttribute('aria-current');
+        });
+      });
+    }, { rootMargin: '-30% 0px -60% 0px' });
+
+    sections.forEach((id) => {
+      const el = document.getElementById(id);
+      if (el) observer.observe(el);
+    });
   </script>
 </body>
 </html>

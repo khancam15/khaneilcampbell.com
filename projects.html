@@ -3,12 +3,12 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta name="description" content="Featured cybersecurity labs by Khaneil Campbell — SOC automation with Splunk, phishing-to-malware incident response, and identity and access management security workflows." />
+  <meta name="description" content="AI automation projects by Khaneil Campbell — including a fully autonomous multi-agent commerce pipeline built with CrewAI, Anthropic API, Canva Connect, and Etsy REST API integration." />
   <meta name="theme-color" content="#07110f" />
   <meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'unsafe-inline'; style-src 'unsafe-inline'; img-src 'self'; font-src 'self'; base-uri 'self'; form-action 'none';" />
   <meta name="referrer" content="strict-origin-when-cross-origin" />
   <meta name="robots" content="index, follow" />
-  <title>Cybersecurity Labs | Khaneil Campbell</title>
+  <title>AI Automation Projects | Khaneil Campbell</title>
   <style>
     :root {
       --bg: #07110f;
@@ -17,10 +17,9 @@
       --line: rgba(202, 238, 222, 0.14);
       --text: #f4fbf7;
       --muted: #a9bbb3;
-      --cyan: #7dd3fc;
       --green: #69e6a1;
+      --cyan: #7dd3fc;
       --amber: #facc6b;
-      --red: #fb7185;
       --ink: #07110f;
       --shadow: 0 28px 80px rgba(0, 0, 0, 0.42);
     }
@@ -96,8 +95,8 @@
     .brand small,
     .eyebrow,
     .section-label,
-    .kicker,
-    .card-type {
+    .card-type,
+    .kicker {
       color: var(--green);
       font-size: 12px;
       letter-spacing: 0.22em;
@@ -138,11 +137,9 @@
       transition: transform 180ms ease, border-color 180ms ease, background 180ms ease;
     }
 
-    .btn:hover,
-    .btn.is-active {
+    .btn:hover {
       border-color: rgba(105, 230, 161, 0.62);
       background: rgba(105, 230, 161, 0.13);
-      color: var(--text);
       transform: translateY(-1px);
     }
 
@@ -150,11 +147,6 @@
       background: var(--green);
       color: var(--ink);
       border-color: transparent;
-    }
-
-    .btn-primary:hover {
-      background: #8df0b8;
-      color: var(--ink);
     }
 
     .hero {
@@ -166,51 +158,46 @@
       padding: 58px 0 44px;
     }
 
-    .hero-copy {
-      min-width: 0;
-    }
-
     h1 {
-      max-width: 840px;
+      max-width: 860px;
       margin-top: 14px;
       font-size: clamp(42px, 8vw, 84px);
       line-height: 0.95;
     }
 
-    .hero-copy p {
-      max-width: 680px;
-      margin-top: 22px;
+    h2 {
+      max-width: 760px;
+      margin-top: 8px;
+      font-size: clamp(30px, 4vw, 48px);
+      line-height: 1.05;
+    }
+
+    .hero-copy p,
+    .section-subtext {
+      max-width: 690px;
+      margin-top: 18px;
       color: #d5e3dc;
-      font-size: clamp(17px, 2.2vw, 21px);
+      font-size: clamp(17px, 2.1vw, 20px);
     }
 
     .hero-actions,
-    .filter-row,
-    .lab-actions {
+    .project-actions {
       display: flex;
       flex-wrap: wrap;
       gap: 10px;
-    }
-
-    .hero-actions {
       margin-top: 28px;
     }
 
     .command-panel,
-    .lab-card,
     .metric,
-    .briefing,
+    .project-card,
+    .detail-card,
     .timeline-item {
       border: 1px solid var(--line);
       border-radius: 8px;
       background: var(--panel);
       box-shadow: var(--shadow);
       backdrop-filter: blur(16px);
-    }
-
-    .command-panel {
-      position: relative;
-      overflow: hidden;
     }
 
     .panel-top {
@@ -251,7 +238,7 @@
 
     .terminal-line {
       display: grid;
-      grid-template-columns: 96px 1fr;
+      grid-template-columns: 104px 1fr;
       gap: 12px;
       padding: 12px;
       border: 1px solid rgba(255, 255, 255, 0.08);
@@ -282,7 +269,6 @@
 
     .metric strong {
       display: block;
-      color: var(--text);
       font-size: 28px;
       line-height: 1;
     }
@@ -306,86 +292,37 @@
       margin-bottom: 24px;
     }
 
-    h2 {
-      max-width: 760px;
-      margin-top: 8px;
-      font-size: clamp(30px, 4vw, 48px);
-      line-height: 1.05;
-    }
-
-    .section-subtext {
-      max-width: 640px;
-      color: var(--muted);
-      margin-top: 12px;
-    }
-
-    .lab-grid {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 18px;
-    }
-
-    .lab-card {
-      display: flex;
-      min-height: 430px;
-      flex-direction: column;
-      padding: 20px;
+    .project-card,
+    .detail-card {
+      padding: 22px;
       box-shadow: none;
-      transition: transform 180ms ease, border-color 180ms ease, background 180ms ease;
     }
 
-    .lab-card:hover {
-      transform: translateY(-4px);
-      border-color: rgba(125, 211, 252, 0.42);
-      background: var(--panel-strong);
+    .project-card {
+      display: grid;
+      grid-template-columns: minmax(0, 1.1fr) minmax(300px, 0.9fr);
+      gap: 22px;
+      align-items: start;
     }
 
-    .lab-card.is-hidden {
-      display: none;
-    }
-
-    .card-top {
-      display: flex;
-      justify-content: space-between;
-      gap: 14px;
-      align-items: flex-start;
-      margin-bottom: 18px;
-    }
-
-    .status {
-      border: 1px solid rgba(105, 230, 161, 0.34);
-      border-radius: 999px;
-      color: #c6f6d8;
-      padding: 5px 9px;
-      font-size: 12px;
-      white-space: nowrap;
-    }
-
-    .status.planned {
-      border-color: rgba(250, 204, 107, 0.42);
-      color: #ffe6a3;
-    }
-
-    .lab-card h3 {
-      font-size: 25px;
+    .project-card h3,
+    .detail-card h3 {
+      font-size: 28px;
       line-height: 1.1;
-      margin-bottom: 12px;
+      margin: 10px 0;
     }
 
-    .lab-card p {
+    .project-card p,
+    .detail-card p,
+    .timeline-item p {
       color: #c8d8d0;
-    }
-
-    .lab-actions {
-      margin-top: 18px;
     }
 
     .tags {
       display: flex;
       flex-wrap: wrap;
       gap: 8px;
-      margin-top: auto;
-      padding-top: 20px;
+      margin-top: 20px;
     }
 
     .tag {
@@ -397,25 +334,42 @@
       padding: 6px 10px;
     }
 
-    .briefing-grid {
+    .detail-grid {
       display: grid;
-      grid-template-columns: 0.9fr 1.1fr;
+      grid-template-columns: repeat(3, 1fr);
       gap: 18px;
     }
 
-    .briefing {
-      padding: 22px;
-      box-shadow: none;
+    .tool-matrix {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 12px;
     }
 
-    .briefing h3 {
-      font-size: 24px;
-      margin-bottom: 10px;
+    .tool-group {
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      background: rgba(14, 23, 20, 0.72);
+      padding: 16px;
     }
 
-    .briefing p,
-    .timeline-item p {
-      color: var(--muted);
+    .tool-group h3 {
+      color: var(--green);
+      font-size: 14px;
+      letter-spacing: 0.12em;
+      margin-bottom: 12px;
+      text-transform: uppercase;
+    }
+
+    .tool-group ul {
+      display: grid;
+      gap: 8px;
+      list-style: none;
+    }
+
+    .tool-group li {
+      color: #d7e7df;
+      font-size: 14px;
     }
 
     .timeline {
@@ -425,7 +379,7 @@
 
     .timeline-item {
       display: grid;
-      grid-template-columns: 70px 1fr;
+      grid-template-columns: 112px 1fr;
       gap: 14px;
       padding: 16px;
       box-shadow: none;
@@ -437,40 +391,15 @@
       font-size: 13px;
     }
 
-    .tool-list {
-      display: grid;
-      gap: 10px;
-      margin-top: 16px;
-      list-style: none;
-    }
-
-    .tool-list li {
-      display: flex;
-      justify-content: space-between;
-      gap: 16px;
-      border-bottom: 1px solid rgba(255, 255, 255, 0.08);
-      padding-bottom: 10px;
-      color: #d7e7df;
-    }
-
-    .tool-list span {
-      color: var(--muted);
-      text-align: right;
-    }
-
-    .placeholder-link {
-      opacity: 0.64;
-      cursor: not-allowed;
-    }
-
     @media (max-width: 980px) {
       .hero,
-      .briefing-grid {
+      .project-card {
         grid-template-columns: 1fr;
         min-height: auto;
       }
 
-      .lab-grid,
+      .detail-grid,
+      .tool-matrix,
       .metrics {
         grid-template-columns: 1fr 1fr;
       }
@@ -490,26 +419,14 @@
         width: min(100% - 28px, 1120px);
       }
 
-      .nav {
-        min-height: 70px;
-      }
-
       .mobile-nav { top: 70px; }
 
       .nav .btn {
         display: none;
       }
 
-      .hero {
-        padding-top: 38px;
-      }
-
-      .section-head {
-        align-items: flex-start;
-        flex-direction: column;
-      }
-
-      .lab-grid,
+      .detail-grid,
+      .tool-matrix,
       .metrics {
         grid-template-columns: 1fr;
       }
@@ -712,7 +629,7 @@
         <ul>
           <li><a href="index.html">Home</a></li>
           <li><a href="lab-details.html">Labs</a></li>
-          <li><a href="projects.html">Projects</a></li>
+          <li><a href="projects.html" aria-current="page">Projects</a></li>
           <li><a href="index.html#about">About</a></li>
           <li><a href="index.html#contact">Contact</a></li>
         </ul>
@@ -745,222 +662,323 @@
   <main id="main-content">
     <section class="hero container" aria-labelledby="page-title">
       <div class="hero-copy">
-        <p class="eyebrow">Cyber Range Interface</p>
-        <h1 id="page-title">Labs built like operational evidence.</h1>
+        <p class="eyebrow">Personal Projects</p>
+        <h1 id="page-title">AI systems built beyond the lab.</h1>
         <p>
-          A focused command view of security projects that move from attack simulation to detection logic,
-          triage decisions, response notes, and measurable outcomes.
+          Production-level AI engineering projects demonstrating multi-agent orchestration,
+          resilient platform API integration, autonomous workflow design, and operational security practices.
         </p>
         <div class="hero-actions">
-          <a href="#labs" class="btn btn-primary">Featured Labs</a>
-          <a href="lab-details.html" class="btn">All Labs</a>
-          <a href="soc-automation-lab.html" class="btn">Open Featured Case</a>
+          <a href="#ai-pipeline" class="btn btn-primary">View AI Pipeline</a>
+          <a href="https://github.com/khancam15/ai-etsy-product-pipeline" class="btn" target="_blank" rel="noopener noreferrer">GitHub Repo</a>
         </div>
 
-        <div class="metrics" aria-label="Portfolio lab metrics">
+        <div class="metrics" aria-label="AI project highlights">
           <div class="metric">
-            <strong>03</strong>
-            <span>Featured security labs</span>
+            <strong>7</strong>
+            <span>Pipeline phases</span>
           </div>
           <div class="metric">
-            <strong>80+</strong>
-            <span>Failed logons detected</span>
+            <strong>3</strong>
+            <span>Autonomous loop modes</span>
           </div>
           <div class="metric">
-            <strong>04</strong>
-            <span>Response workflow phases</span>
+            <strong>5</strong>
+            <span>SQLite data tables</span>
           </div>
           <div class="metric">
-            <strong>02</strong>
-            <span>Professional certifications</span>
+            <strong>API</strong>
+            <span>Driven architecture</span>
           </div>
         </div>
       </div>
 
-      <aside class="command-panel" aria-label="Live lab activity preview">
+      <aside class="command-panel" aria-label="AI developer project preview">
         <div class="panel-top">
-          <span>operations-feed.log</span>
-          <span class="pulse">Monitoring</span>
+          <span>AI Product Pipeline</span>
+          <span class="pulse">Built</span>
         </div>
         <div class="terminal">
           <div class="terminal-line">
-            <span class="terminal-time">09:12:04</span>
-            <span class="terminal-text">auth anomaly: repeated failures grouped by source host</span>
+            <span class="terminal-time">Brand</span>
+            <span class="terminal-text">CrewAI agents research, position, and assemble a reusable brand guide.</span>
           </div>
           <div class="terminal-line">
-            <span class="terminal-time">09:15:31</span>
-            <span class="terminal-text">spl query tuned: threshold reduced noise while preserving signal</span>
+            <span class="terminal-time">Generate</span>
+            <span class="terminal-text">AI creates product ideas, titles, tags, descriptions, and template direction.</span>
           </div>
           <div class="terminal-line">
-            <span class="terminal-time">09:22:18</span>
-            <span class="terminal-text">case notes generated: timeline, indicators, response actions</span>
+            <span class="terminal-time">Design</span>
+            <span class="terminal-text">Canva automation creates mockups and buyer-ready digital template files.</span>
           </div>
           <div class="terminal-line">
-            <span class="terminal-time">09:37:55</span>
-            <span class="terminal-text">analyst workflow packaged for repeatable triage</span>
+            <span class="terminal-time">Publish</span>
+            <span class="terminal-text">Etsy REST workflow validates, stages, uploads, tracks, and reviews listings.</span>
           </div>
         </div>
       </aside>
     </section>
 
-    <section id="labs" class="section container" aria-labelledby="labs-title">
+    <section id="ai-pipeline" class="section container" aria-labelledby="pipeline-title">
       <div class="section-head">
         <div>
-          <p class="section-label">Featured Labs</p>
-          <h2 id="labs-title">Investigations with clear threat stories.</h2>
+          <p class="section-label">AI Developer Showcase</p>
+          <h2 id="pipeline-title">AI Etsy Product Pipeline</h2>
           <p class="section-subtext">
-            Filter the lab board by discipline and open the work that has the strongest evidence trail.
+            A fully autonomous e-commerce pipeline that generates brand strategy, produces AI-written product listings,
+            creates Canva design mockups, publishes through the Etsy REST API, audits SEO quality, and delivers daily operational health reports.
           </p>
-        </div>
-        <div class="filter-row" aria-label="Lab filters">
-          <button class="btn is-active" type="button" data-filter="all">All</button>
-          <button class="btn" type="button" data-filter="detection">Detection</button>
-          <button class="btn" type="button" data-filter="response">Response</button>
-          <button class="btn" type="button" data-filter="identity">Identity</button>
         </div>
       </div>
 
-      <div class="lab-grid">
-        <article class="lab-card" data-category="detection">
-          <div class="card-top">
-            <p class="card-type">Detection Engineering</p>
-            <span class="status">Published</span>
-          </div>
-          <h3><a href="soc-automation-lab.html">SOC Automation with Splunk</a></h3>
+      <article class="project-card">
+        <div>
+          <p class="card-type">Autonomous AI System</p>
+          <h3>From idea generation to marketplace publishing.</h3>
           <p>
-            Brute-force detection workflow using Windows authentication events, SPL alert logic,
-            triage decisions, and repeatable analyst response notes.
+            Demonstrates multi-agent AI orchestration, resilient API workflows with exponential backoff,
+            OAuth-based platform integration, validation gates, SQLite state tracking, operational health
+            reporting, and VPS deployment. The system cycles through BUILD, DESIGN, and MAINTAIN execution
+            modes based on publish limits and configured cooldown periods.
           </p>
-          <div class="lab-actions">
-            <a href="soc-automation-lab.html" class="btn btn-primary">View Case</a>
-            <a href="lab-details.html#soc" class="btn">Details</a>
-            <a href="https://github.com/khancam15/soc-automation-splunk-bruteforce-lab" class="btn" target="_blank" rel="noopener noreferrer">GitHub</a>
+          <div class="project-actions">
+            <a href="https://github.com/khancam15/ai-etsy-product-pipeline" class="btn btn-primary" target="_blank" rel="noopener noreferrer">View Repository</a>
+            <a href="index.html#contact" class="btn">Discuss Project</a>
           </div>
           <div class="tags">
-            <span class="tag">Splunk</span>
-            <span class="tag">SPL</span>
-            <span class="tag">Windows Logs</span>
+            <span class="tag">Python</span>
+            <span class="tag">Bash</span>
+            <span class="tag">CrewAI</span>
+            <span class="tag">Anthropic API</span>
+            <span class="tag">Canva Connect</span>
+            <span class="tag">Etsy REST API</span>
+            <span class="tag">Serper API</span>
+            <span class="tag">Gmail SMTP</span>
+            <span class="tag">SQLite</span>
+            <span class="tag">Systemd</span>
+            <span class="tag">Gitleaks</span>
           </div>
-        </article>
+        </div>
 
-        <article class="lab-card" data-category="response">
-          <div class="card-top">
-            <p class="card-type">Incident Response</p>
-            <span class="status planned">Staged</span>
+        <div class="timeline" aria-label="AI Etsy Product Pipeline phases">
+          <div class="timeline-item">
+            <strong>Phase 1</strong>
+            <p>Builds brand strategy, visual identity, and SEO direction through AI-assisted research.</p>
           </div>
-          <h3>Simulated Phishing and IR Lab</h3>
-          <p>
-            Phishing-to-malware scenario with host investigation, process review, log evidence,
-            containment notes, and executive-ready incident documentation.
-          </p>
-          <div class="lab-actions">
-            <a href="#" class="btn placeholder-link" data-placeholder="true">Case Pending</a>
-            <a href="lab-details.html#phishing" class="btn">Details</a>
-            <a href="#" class="btn placeholder-link" data-placeholder="true">Repo Pending</a>
+          <div class="timeline-item">
+            <strong>Phase 2</strong>
+            <p>Generates product ideas and marketplace listing content from the current brand guide.</p>
           </div>
-          <div class="tags">
-            <span class="tag">IR</span>
-            <span class="tag">Sysinternals</span>
-            <span class="tag">Event Logs</span>
-            <span class="tag">Containment</span>
+          <div class="timeline-item">
+            <strong>Phase 3</strong>
+            <p>Creates product mockups and buyer-ready digital templates through Canva automation.</p>
           </div>
-        </article>
+          <div class="timeline-item">
+            <strong>Phase 4-7</strong>
+            <p>Processes assets, validates listings, publishes through Etsy, reviews SEO, and reports status.</p>
+          </div>
+        </div>
+      </article>
+    </section>
 
-        <article class="lab-card" data-category="identity">
-          <div class="card-top">
-            <p class="card-type">Identity Security</p>
-            <span class="status planned">Staged</span>
-          </div>
-          <h3>IAM and Access Security Notes</h3>
-          <p>
-            Operational access-control scenarios covering MFA, least privilege, recovery controls,
-            account lifecycle decisions, and escalation-resistant support workflows.
+    <section class="section container" aria-labelledby="tools-title">
+      <div class="section-head">
+        <div>
+          <p class="section-label">Tools and Languages</p>
+          <h2 id="tools-title">Full technical stack used in the project.</h2>
+          <p class="section-subtext">
+            The pipeline combines AI frameworks, platform APIs, local data storage,
+            image processing, deployment automation, and security checks.
           </p>
-          <div class="lab-actions">
-            <a href="#" class="btn placeholder-link" data-placeholder="true">Case Pending</a>
-            <a href="lab-details.html#iam" class="btn">Details</a>
-            <a href="#" class="btn placeholder-link" data-placeholder="true">Repo Pending</a>
-          </div>
-          <div class="tags">
-            <span class="tag">IAM</span>
-            <span class="tag">MFA</span>
-            <span class="tag">Active Directory</span>
-            <span class="tag">Least Privilege</span>
-          </div>
-        </article>
+        </div>
+      </div>
+
+      <div class="tool-matrix" aria-label="AI Etsy Product Pipeline tools and languages">
+        <div class="tool-group">
+          <h3>Languages</h3>
+          <ul>
+            <li>Python 3.12+</li>
+            <li>Bash shell scripting</li>
+            <li>SQL via SQLite</li>
+            <li>JSON payload design</li>
+            <li>Markdown documentation</li>
+          </ul>
+        </div>
+        <div class="tool-group">
+          <h3>AI and Data</h3>
+          <ul>
+            <li>Anthropic API</li>
+            <li>CrewAI</li>
+            <li>CrewAI Tools</li>
+            <li>Serper API</li>
+            <li>SQLite database</li>
+          </ul>
+        </div>
+        <div class="tool-group">
+          <h3>Platform APIs</h3>
+          <ul>
+            <li>Etsy REST API v3</li>
+            <li>Etsy OAuth2 PKCE</li>
+            <li>Canva Connect REST API</li>
+            <li>Canva OAuth2 PKCE</li>
+            <li>Gmail SMTP digest</li>
+          </ul>
+        </div>
+        <div class="tool-group">
+          <h3>Python Libraries</h3>
+          <ul>
+            <li>requests</li>
+            <li>python-dotenv</li>
+            <li>Pillow</li>
+            <li>Rich</li>
+            <li>sqlite3 standard library</li>
+          </ul>
+        </div>
+        <div class="tool-group">
+          <h3>Automation</h3>
+          <ul>
+            <li>run.sh command router</li>
+            <li>loop.sh autonomous loop</li>
+            <li>BUILD / DESIGN / MAINTAIN modes</li>
+            <li>Preflight credential checks</li>
+            <li>Exponential API retry logic</li>
+          </ul>
+        </div>
+        <div class="tool-group">
+          <h3>Deployment</h3>
+          <ul>
+            <li>Ubuntu VPS</li>
+            <li>systemd service</li>
+            <li>setup_vps.sh bootstrap</li>
+            <li>Runtime logs</li>
+            <li>Daily health dashboard</li>
+          </ul>
+        </div>
+        <div class="tool-group">
+          <h3>Security</h3>
+          <ul>
+            <li>.env credential isolation</li>
+            <li>.env.example template</li>
+            <li>gitleaks pre-commit scan</li>
+            <li>Token refresh workflow</li>
+            <li>Redacted leak scanning</li>
+          </ul>
+        </div>
+        <div class="tool-group">
+          <h3>Commerce Flow</h3>
+          <ul>
+            <li>Listing validation</li>
+            <li>Image resizing</li>
+            <li>File staging and archive</li>
+            <li>SEO tag review</li>
+            <li>Sales transaction sync</li>
+          </ul>
+        </div>
       </div>
     </section>
 
-    <section id="briefing" class="section container" aria-labelledby="briefing-title">
+    <section class="section container" aria-labelledby="security-title">
       <div class="section-head">
         <div>
-          <p class="section-label">Analyst Briefing</p>
-          <h2 id="briefing-title">How each case is evaluated.</h2>
+          <p class="section-label">Security Best Practices</p>
+          <h2 id="security-title">Built with API safety and operational control in mind.</h2>
+          <p class="section-subtext">
+            Because the system touches marketplace publishing, OAuth tokens, email, and AI-generated content,
+            the project uses controls that reduce credential exposure and prevent unsafe automation behavior.
+          </p>
         </div>
       </div>
 
-      <div class="briefing-grid">
-        <div class="briefing">
-          <p class="kicker">Case Standard</p>
-          <h3>From signal to response</h3>
+      <div class="detail-grid">
+        <div class="detail-card">
+          <p class="kicker">Credentials</p>
+          <h3>No committed credentials</h3>
           <p>
-            Each project is framed around a practical security question: what happened, what evidence
-            proves it, how should an analyst respond, and how can the workflow become repeatable?
+            API keys and OAuth tokens stay in `.env`, while `.env.example` documents required variables
+            without exposing real values. Runtime outputs and logs are kept out of version control.
           </p>
-          <ul class="tool-list">
-            <li>Scenario <span>Threat model and assumptions</span></li>
-            <li>Detection <span>Query logic and thresholds</span></li>
-            <li>Triage <span>Evidence and decision points</span></li>
-            <li>Response <span>Actions, notes, and outcome</span></li>
-          </ul>
         </div>
+        <div class="detail-card">
+          <p class="kicker">Scanning</p>
+          <h3>Pre-commit leak detection</h3>
+          <p>
+            The repo uses a gitleaks pre-commit hook with redaction enabled, helping catch accidental
+            credentials before they leave the local development environment.
+          </p>
+        </div>
+        <div class="detail-card">
+          <p class="kicker">OAuth</p>
+          <h3>Token lifecycle handling</h3>
+          <p>
+            Etsy and Canva tokens are acquired through OAuth setup scripts, checked during preflight,
+            and refreshed automatically when expired instead of being hardcoded in source files.
+          </p>
+        </div>
+        <div class="detail-card">
+          <p class="kicker">Validation</p>
+          <h3>Guardrails before publishing</h3>
+          <p>
+            The upload flow validates listing title length, tag count, price range, asset count,
+            and staged file readiness before attempting a live marketplace publish.
+          </p>
+        </div>
+        <div class="detail-card">
+          <p class="kicker">Resilience</p>
+          <h3>Controlled API behavior</h3>
+          <p>
+            API calls use retry handling with backoff for rate limits and server errors,
+            while publish limits and cooldowns prevent burst automation.
+          </p>
+        </div>
+        <div class="detail-card">
+          <p class="kicker">Operations</p>
+          <h3>Auditable runtime state</h3>
+          <p>
+            SQLite tables track queue state, published listings, run logs, SEO reviews, and sales,
+            making failures easier to diagnose and reducing blind automation.
+          </p>
+        </div>
+      </div>
+    </section>
 
-        <div class="timeline" aria-label="SOC investigation timeline">
-          <div class="timeline-item">
-            <strong>Phase 01</strong>
-            <p>Build a controlled scenario with enough realism to produce meaningful telemetry.</p>
-          </div>
-          <div class="timeline-item">
-            <strong>Phase 02</strong>
-            <p>Write detection logic, validate the signal, and document false-positive boundaries.</p>
-          </div>
-          <div class="timeline-item">
-            <strong>Phase 03</strong>
-            <p>Translate raw events into analyst-ready findings with clear severity and scope.</p>
-          </div>
-          <div class="timeline-item">
-            <strong>Phase 04</strong>
-            <p>Package the response workflow so the same pattern can be repeated and improved.</p>
-          </div>
+    <section class="section container" aria-labelledby="skills-title">
+      <div class="section-head">
+        <div>
+          <p class="section-label">Skills Demonstrated</p>
+          <h2 id="skills-title">AI development with production habits.</h2>
+        </div>
+      </div>
+
+      <div class="detail-grid">
+        <div class="detail-card">
+          <p class="kicker">AI Orchestration</p>
+          <h3>Multi-agent workflow design</h3>
+          <p>
+            Uses separate phases for brand research, content generation, product design, publishing,
+            SEO review, and reporting instead of one oversized script.
+          </p>
+        </div>
+        <div class="detail-card">
+          <p class="kicker">Platform Integration</p>
+          <h3>API-first automation</h3>
+          <p>
+            Connects Anthropic, Canva, Etsy, Serper, Gmail SMTP, and local SQLite state into a coordinated
+            workflow with validation before marketplace upload.
+          </p>
+        </div>
+        <div class="detail-card">
+          <p class="kicker">Operations</p>
+          <h3>VPS-ready execution</h3>
+          <p>
+            Includes loop control, preflight checks, retry handling, daily digest reporting,
+            sales sync, and service management for continuous operation.
+          </p>
         </div>
       </div>
     </section>
   </main>
 
   <script>
-    const filterButtons = document.querySelectorAll("[data-filter]");
-    const labCards = document.querySelectorAll("[data-category]");
-
-    filterButtons.forEach((button) => {
-      button.addEventListener("click", () => {
-        const filter = button.dataset.filter;
-
-        filterButtons.forEach((item) => item.classList.remove("is-active"));
-        button.classList.add("is-active");
-
-        labCards.forEach((card) => {
-          const shouldShow = filter === "all" || card.dataset.category === filter;
-          card.classList.toggle("is-hidden", !shouldShow);
-        });
-      });
-    });
-
-    document.querySelectorAll('a[data-placeholder="true"]').forEach((link) => {
-      link.addEventListener("click", (event) => {
-        event.preventDefault();
-      });
-    });
-
     const toggle = document.querySelector('.menu-toggle');
     const mobileNav = document.getElementById('mobile-nav');
     function openMenu() {

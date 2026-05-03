@@ -3,19 +3,22 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta name="description" content="ITIL 4 Foundation certification held by Khaneil Campbell — covering IT service management frameworks, service value chains, continual improvement practices, and ITIL 4 guiding principles." />
+  <meta name="description" content="Page not found for Khaneil Campbell's security operations portfolio." />
   <meta name="theme-color" content="#07110f" />
   <meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'unsafe-inline'; style-src 'unsafe-inline'; img-src 'self'; font-src 'self'; base-uri 'self'; form-action 'none';" />
   <meta name="referrer" content="strict-origin-when-cross-origin" />
-  <meta name="robots" content="index, follow" />
-  <title>ITIL 4 Certification | Khaneil Campbell</title>
+  <meta name="robots" content="noindex, follow" />
+  <title>Page Not Found | Khaneil Campbell</title>
   <style>
     :root {
+      --bg: #07110f;
       --panel: rgba(14, 23, 20, 0.82);
       --line: rgba(202, 238, 222, 0.14);
       --text: #f4fbf7;
       --muted: #a9bbb3;
       --green: #69e6a1;
+      --amber: #facc6b;
+      --ink: #07110f;
       --shadow: 0 28px 80px rgba(0, 0, 0, 0.42);
     }
 
@@ -35,6 +38,7 @@
         linear-gradient(240deg, rgba(250, 204, 107, 0.11), transparent 32%),
         repeating-linear-gradient(90deg, rgba(255, 255, 255, 0.028) 0 1px, transparent 1px 92px),
         linear-gradient(180deg, #07110f 0%, #0b1512 48%, #07110f 100%);
+      overflow-x: hidden;
     }
 
     body::before {
@@ -52,12 +56,6 @@
     a {
       color: inherit;
       text-decoration: none;
-    }
-
-    a:not(.btn):hover {
-      color: var(--green);
-      text-decoration: underline;
-      text-underline-offset: 3px;
     }
 
     .container {
@@ -83,8 +81,7 @@
     }
 
     .brand small,
-    .section-label,
-    .detail-label {
+    .eyebrow {
       color: var(--green);
       font-size: 12px;
       letter-spacing: 0.22em;
@@ -131,87 +128,52 @@
       transform: translateY(-1px);
     }
 
+    .btn-primary {
+      background: var(--green);
+      color: var(--ink);
+      border-color: transparent;
+    }
+
     main {
+      display: grid;
+      place-items: center;
+      min-height: calc(100vh - 80px);
       padding: 66px 0;
     }
 
-    .cert-hero {
-      display: grid;
-      grid-template-columns: minmax(0, 0.75fr) minmax(420px, 1.25fr);
-      gap: 24px;
-      align-items: start;
+    .panel {
+      width: min(760px, 100%);
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      background: var(--panel);
+      box-shadow: var(--shadow);
+      padding: 28px;
+      backdrop-filter: blur(16px);
     }
 
     h1 {
       margin-top: 12px;
-      font-size: clamp(42px, 7vw, 76px);
-      line-height: 0.98;
+      font-size: clamp(42px, 8vw, 76px);
+      line-height: 0.95;
     }
 
-    .cert-copy {
+    p {
       color: #d5e3dc;
       font-size: 18px;
       margin-top: 18px;
     }
 
-    .detail-grid {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 12px;
-      margin-top: 22px;
-    }
-
-    .detail-box,
-    .cert-image-wrapper {
-      border: 1px solid var(--line);
-      border-radius: 8px;
-      background: var(--panel);
-      box-shadow: var(--shadow);
-      backdrop-filter: blur(16px);
-    }
-
-    .detail-box {
-      padding: 16px;
-      box-shadow: none;
-    }
-
-    .detail-value {
-      color: #e8f5ef;
-      font-weight: 700;
-      margin-top: 6px;
-    }
-
-    .cert-image-wrapper {
-      padding: 18px;
-    }
-
-    .cert-image-wrapper img {
-      display: block;
-      width: 100%;
-      height: auto;
-      border-radius: 8px;
-    }
-
-    .cert-actions {
+    .actions {
       display: flex;
       flex-wrap: wrap;
       gap: 10px;
-      margin-top: 24px;
+      margin-top: 26px;
     }
 
     @media (max-width: 900px) {
-      .cert-hero {
-        grid-template-columns: 1fr;
-      }
-
       nav ul {
         display: none;
       }
-
-      .menu-toggle { display: flex; }
-      .mobile-nav.open { display: block; }
-      .menu-toggle.open .icon-open { display: none; }
-      .menu-toggle.open .icon-close { display: block; }
     }
 
     @media (max-width: 640px) {
@@ -219,17 +181,10 @@
         width: min(100% - 28px, 1120px);
       }
 
-      .mobile-nav { top: 70px; }
-
       .nav .btn {
         display: none;
       }
-
-      .detail-grid {
-        grid-template-columns: 1fr;
-      }
     }
-
 
     /* interface-upgrade:start */
     ::selection {
@@ -371,40 +326,6 @@
         top: 70px;
       }
     }
-
-    .menu-toggle {
-      display: none;
-      align-items: center;
-      justify-content: center;
-      width: 44px;
-      height: 44px;
-      border: 1px solid var(--line);
-      border-radius: 8px;
-      background: rgba(255, 255, 255, 0.055);
-      color: var(--text);
-      cursor: pointer;
-      flex-shrink: 0;
-    }
-    .menu-toggle:hover { border-color: rgba(105, 230, 161, 0.62); background: rgba(105, 230, 161, 0.13); }
-    .menu-toggle svg { width: 20px; height: 20px; }
-    .menu-toggle .icon-close { display: none; }
-    .mobile-nav {
-      display: none;
-      position: fixed;
-      top: 78px;
-      left: 0;
-      right: 0;
-      z-index: 18;
-      border-bottom: 1px solid var(--line);
-      background: rgba(7, 17, 15, 0.96);
-      backdrop-filter: blur(18px);
-      padding: 18px 0 22px;
-    }
-    .mobile-nav ul { display: flex; flex-direction: column; list-style: none; gap: 0; }
-    .mobile-nav a { display: block; padding: 13px 20px; color: #d7e7df; font-size: 15px; border-bottom: 1px solid rgba(202, 238, 222, 0.07); }
-    .mobile-nav a:hover, .mobile-nav a[aria-current="page"] { color: var(--green); background: rgba(105, 230, 161, 0.06); }
-    .mobile-nav a[aria-current="page"]::after { display: none; }
-    body.mobile-menu-open { overflow: hidden; }
     /* interface-upgrade:end */
 
   </style>
@@ -420,90 +341,34 @@
 
       <nav aria-label="Primary navigation">
         <ul>
-          <li><a href="index.html">Home</a></li>
+          <li><a href="index.html#home">Home</a></li>
+          <li><a href="labs.html">Featured</a></li>
           <li><a href="lab-details.html">Labs</a></li>
           <li><a href="projects.html">Projects</a></li>
-          <li><a href="index.html#about">About</a></li>
+          <li><a href="index.html#credentials">Credentials</a></li>
           <li><a href="index.html#contact">Contact</a></li>
         </ul>
       </nav>
 
-      <a href="index.html#contact" class="btn">Contact</a>
-      <button class="menu-toggle" aria-label="Open navigation menu" aria-expanded="false" aria-controls="mobile-nav">
-        <svg class="icon-open" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round">
-          <line x1="3" y1="5" x2="17" y2="5"/><line x1="3" y1="10" x2="17" y2="10"/><line x1="3" y1="15" x2="17" y2="15"/>
-        </svg>
-        <svg class="icon-close" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round">
-          <line x1="4" y1="4" x2="16" y2="16"/><line x1="16" y1="4" x2="4" y2="16"/>
-        </svg>
-      </button>
+      <a href="index.html" aria-current="page" class="btn">Portfolio</a>
     </div>
   </header>
-
-  <nav id="mobile-nav" class="mobile-nav" aria-label="Mobile navigation">
-    <ul>
-      <li><a href="index.html">Home</a></li>
-      <li><a href="lab-details.html">Labs</a></li>
-      <li><a href="projects.html">Projects</a></li>
-      <li><a href="index.html#about">About</a></li>
-      <li><a href="index.html#contact">Contact</a></li>
-    </ul>
-  </nav>
 
   <div class="signal-bar" aria-hidden="true"><span></span></div>
 
   <main id="main-content" class="container">
-    <section class="cert-hero" aria-labelledby="cert-title">
-      <div>
-        <p class="section-label">Professional Credential</p>
-        <h1 id="cert-title">ITIL 4 Foundation</h1>
-        <p class="cert-copy">
-          Industry-standard IT service management framework providing foundational knowledge
-          across service value chains, the four dimensions model, continual improvement practices,
-          and ITIL 4 guiding principles applicable to security operations environments.
-        </p>
-
-        <div class="detail-grid">
-          <div class="detail-box">
-            <div class="detail-label">Certification Date</div>
-            <div class="detail-value">May 12, 2025</div>
-          </div>
-          <div class="detail-box">
-            <div class="detail-label">Credential ID</div>
-            <div class="detail-value">ITIL4-2025-0001</div>
-          </div>
-        </div>
-
-        <div class="cert-actions">
-          <a href="index.html#credentials" class="btn">Back to Credentials</a>
-          <a href="lab-details.html" class="btn">View Labs</a>
-        </div>
-      </div>
-
-      <div class="cert-image-wrapper">
-        <img src="images/itil-4.png" alt="ITIL 4 Foundation Certification" />
+    <section class="panel" aria-labelledby="page-title">
+      <p class="eyebrow">404</p>
+      <h1 id="page-title">Page not found.</h1>
+      <p>
+        The page may have moved, or the link may be stale. The portfolio is still online.
+      </p>
+      <div class="actions">
+        <a href="index.html" class="btn btn-primary">Back to Home</a>
+        <a href="lab-details.html" class="btn">View Labs</a>
+        <a href="projects.html" class="btn">View Projects</a>
       </div>
     </section>
   </main>
-
-  <script>
-    const toggle = document.querySelector('.menu-toggle');
-    const mobileNav = document.getElementById('mobile-nav');
-    function openMenu() {
-      toggle.classList.add('open'); mobileNav.classList.add('open');
-      toggle.setAttribute('aria-expanded', 'true');
-      toggle.setAttribute('aria-label', 'Close navigation menu');
-      document.body.classList.add('mobile-menu-open');
-    }
-    function closeMenu() {
-      toggle.classList.remove('open'); mobileNav.classList.remove('open');
-      toggle.setAttribute('aria-expanded', 'false');
-      toggle.setAttribute('aria-label', 'Open navigation menu');
-      document.body.classList.remove('mobile-menu-open');
-    }
-    toggle.addEventListener('click', () => toggle.classList.contains('open') ? closeMenu() : openMenu());
-    mobileNav.querySelectorAll('a').forEach(link => link.addEventListener('click', closeMenu));
-    document.addEventListener('keydown', e => { if (e.key === 'Escape') closeMenu(); });
-  </script>
 </body>
 </html>

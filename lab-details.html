@@ -3,12 +3,12 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta name="description" content="Featured cybersecurity labs by Khaneil Campbell — SOC automation with Splunk, phishing-to-malware incident response, and identity and access management security workflows." />
+  <meta name="description" content="Security lab case files by Khaneil Campbell — detailed breakdowns of SOC automation with Splunk, phishing incident response, and identity and access management security scenarios." />
   <meta name="theme-color" content="#07110f" />
   <meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'unsafe-inline'; style-src 'unsafe-inline'; img-src 'self'; font-src 'self'; base-uri 'self'; form-action 'none';" />
   <meta name="referrer" content="strict-origin-when-cross-origin" />
   <meta name="robots" content="index, follow" />
-  <title>Cybersecurity Labs | Khaneil Campbell</title>
+  <title>Security Lab Case Files | Khaneil Campbell</title>
   <style>
     :root {
       --bg: #07110f;
@@ -17,10 +17,8 @@
       --line: rgba(202, 238, 222, 0.14);
       --text: #f4fbf7;
       --muted: #a9bbb3;
-      --cyan: #7dd3fc;
       --green: #69e6a1;
       --amber: #facc6b;
-      --red: #fb7185;
       --ink: #07110f;
       --shadow: 0 28px 80px rgba(0, 0, 0, 0.42);
     }
@@ -96,8 +94,8 @@
     .brand small,
     .eyebrow,
     .section-label,
-    .kicker,
-    .card-type {
+    .card-type,
+    .kicker {
       color: var(--green);
       font-size: 12px;
       letter-spacing: 0.22em;
@@ -138,11 +136,9 @@
       transition: transform 180ms ease, border-color 180ms ease, background 180ms ease;
     }
 
-    .btn:hover,
-    .btn.is-active {
+    .btn:hover {
       border-color: rgba(105, 230, 161, 0.62);
       background: rgba(105, 230, 161, 0.13);
-      color: var(--text);
       transform: translateY(-1px);
     }
 
@@ -150,11 +146,6 @@
       background: var(--green);
       color: var(--ink);
       border-color: transparent;
-    }
-
-    .btn-primary:hover {
-      background: #8df0b8;
-      color: var(--ink);
     }
 
     .hero {
@@ -166,51 +157,46 @@
       padding: 58px 0 44px;
     }
 
-    .hero-copy {
-      min-width: 0;
-    }
-
     h1 {
-      max-width: 840px;
+      max-width: 860px;
       margin-top: 14px;
       font-size: clamp(42px, 8vw, 84px);
-      line-height: 0.95;
+      line-height: 1;
     }
 
-    .hero-copy p {
-      max-width: 680px;
-      margin-top: 22px;
+    h2 {
+      max-width: 760px;
+      margin-top: 8px;
+      font-size: clamp(30px, 4vw, 48px);
+      line-height: 1.05;
+    }
+
+    .hero-copy p,
+    .section-subtext {
+      max-width: 700px;
+      margin-top: 18px;
       color: #d5e3dc;
-      font-size: clamp(17px, 2.2vw, 21px);
+      font-size: clamp(17px, 2.1vw, 20px);
     }
 
     .hero-actions,
-    .filter-row,
     .lab-actions {
       display: flex;
       flex-wrap: wrap;
       gap: 10px;
-    }
-
-    .hero-actions {
       margin-top: 28px;
     }
 
     .command-panel,
-    .lab-card,
     .metric,
-    .briefing,
+    .lab-detail-card,
+    .detail-card,
     .timeline-item {
       border: 1px solid var(--line);
       border-radius: 8px;
       background: var(--panel);
       box-shadow: var(--shadow);
       backdrop-filter: blur(16px);
-    }
-
-    .command-panel {
-      position: relative;
-      overflow: hidden;
     }
 
     .panel-top {
@@ -251,7 +237,7 @@
 
     .terminal-line {
       display: grid;
-      grid-template-columns: 96px 1fr;
+      grid-template-columns: 110px 1fr;
       gap: 12px;
       padding: 12px;
       border: 1px solid rgba(255, 255, 255, 0.08);
@@ -282,7 +268,6 @@
 
     .metric strong {
       display: block;
-      color: var(--text);
       font-size: 28px;
       line-height: 1;
     }
@@ -306,116 +291,48 @@
       margin-bottom: 24px;
     }
 
-    h2 {
-      max-width: 760px;
-      margin-top: 8px;
-      font-size: clamp(30px, 4vw, 48px);
-      line-height: 1.05;
-    }
-
-    .section-subtext {
-      max-width: 640px;
-      color: var(--muted);
-      margin-top: 12px;
-    }
-
-    .lab-grid {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 18px;
-    }
-
-    .lab-card {
-      display: flex;
-      min-height: 430px;
-      flex-direction: column;
-      padding: 20px;
-      box-shadow: none;
-      transition: transform 180ms ease, border-color 180ms ease, background 180ms ease;
-    }
-
-    .lab-card:hover {
-      transform: translateY(-4px);
-      border-color: rgba(125, 211, 252, 0.42);
-      background: var(--panel-strong);
-    }
-
-    .lab-card.is-hidden {
-      display: none;
-    }
-
-    .card-top {
-      display: flex;
-      justify-content: space-between;
-      gap: 14px;
-      align-items: flex-start;
-      margin-bottom: 18px;
-    }
-
-    .status {
-      border: 1px solid rgba(105, 230, 161, 0.34);
-      border-radius: 999px;
-      color: #c6f6d8;
-      padding: 5px 9px;
-      font-size: 12px;
-      white-space: nowrap;
-    }
-
-    .status.planned {
-      border-color: rgba(250, 204, 107, 0.42);
-      color: #ffe6a3;
-    }
-
-    .lab-card h3 {
-      font-size: 25px;
-      line-height: 1.1;
-      margin-bottom: 12px;
-    }
-
-    .lab-card p {
-      color: #c8d8d0;
-    }
-
-    .lab-actions {
-      margin-top: 18px;
-    }
-
-    .tags {
+    .tabs {
       display: flex;
       flex-wrap: wrap;
-      gap: 8px;
-      margin-top: auto;
-      padding-top: 20px;
+      gap: 10px;
     }
 
-    .tag {
-      border: 1px solid rgba(255, 255, 255, 0.11);
-      border-radius: 999px;
-      background: rgba(255, 255, 255, 0.045);
-      color: #d7e7df;
-      font-size: 12px;
-      padding: 6px 10px;
-    }
-
-    .briefing-grid {
+    .lab-stack {
       display: grid;
-      grid-template-columns: 0.9fr 1.1fr;
-      gap: 18px;
+      gap: 22px;
     }
 
-    .briefing {
+    .lab-detail-card {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) minmax(310px, 0.86fr);
+      gap: 20px;
       padding: 22px;
       box-shadow: none;
     }
 
-    .briefing h3 {
-      font-size: 24px;
-      margin-bottom: 10px;
+    .lab-detail-card h3,
+    .detail-card h3 {
+      font-size: 28px;
+      line-height: 1.1;
+      margin: 10px 0;
     }
 
-    .briefing p,
+    .lab-detail-card p,
+    .detail-card p,
     .timeline-item p {
-      color: var(--muted);
+      color: #c8d8d0;
+    }
+
+    .detail-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 12px;
+      margin-top: 18px;
+    }
+
+    .detail-card {
+      padding: 16px;
+      box-shadow: none;
     }
 
     .timeline {
@@ -425,7 +342,7 @@
 
     .timeline-item {
       display: grid;
-      grid-template-columns: 70px 1fr;
+      grid-template-columns: 102px 1fr;
       gap: 14px;
       padding: 16px;
       box-shadow: none;
@@ -437,40 +354,30 @@
       font-size: 13px;
     }
 
-    .tool-list {
-      display: grid;
-      gap: 10px;
-      margin-top: 16px;
-      list-style: none;
-    }
-
-    .tool-list li {
+    .tags {
       display: flex;
-      justify-content: space-between;
-      gap: 16px;
-      border-bottom: 1px solid rgba(255, 255, 255, 0.08);
-      padding-bottom: 10px;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-top: 20px;
+    }
+
+    .tag {
+      border: 1px solid rgba(255, 255, 255, 0.11);
+      border-radius: 999px;
+      background: rgba(255, 255, 255, 0.045);
       color: #d7e7df;
-    }
-
-    .tool-list span {
-      color: var(--muted);
-      text-align: right;
-    }
-
-    .placeholder-link {
-      opacity: 0.64;
-      cursor: not-allowed;
+      font-size: 12px;
+      padding: 6px 10px;
     }
 
     @media (max-width: 980px) {
       .hero,
-      .briefing-grid {
+      .lab-detail-card {
         grid-template-columns: 1fr;
         min-height: auto;
       }
 
-      .lab-grid,
+      .detail-grid,
       .metrics {
         grid-template-columns: 1fr 1fr;
       }
@@ -478,7 +385,6 @@
       nav ul {
         display: none;
       }
-
       .menu-toggle { display: flex; }
       .mobile-nav.open { display: block; }
       .menu-toggle.open .icon-open { display: none; }
@@ -490,26 +396,11 @@
         width: min(100% - 28px, 1120px);
       }
 
-      .nav {
-        min-height: 70px;
-      }
-
-      .mobile-nav { top: 70px; }
-
       .nav .btn {
         display: none;
       }
 
-      .hero {
-        padding-top: 38px;
-      }
-
-      .section-head {
-        align-items: flex-start;
-        flex-direction: column;
-      }
-
-      .lab-grid,
+      .detail-grid,
       .metrics {
         grid-template-columns: 1fr;
       }
@@ -518,6 +409,7 @@
       .timeline-item {
         grid-template-columns: 1fr;
       }
+      .mobile-nav { top: 70px; }
     }
 
 
@@ -661,6 +553,7 @@
         top: 70px;
       }
     }
+    /* interface-upgrade:end */
 
     .menu-toggle {
       display: none;
@@ -675,7 +568,10 @@
       cursor: pointer;
       flex-shrink: 0;
     }
-    .menu-toggle:hover { border-color: rgba(105, 230, 161, 0.62); background: rgba(105, 230, 161, 0.13); }
+    .menu-toggle:hover {
+      border-color: rgba(105, 230, 161, 0.62);
+      background: rgba(105, 230, 161, 0.13);
+    }
     .menu-toggle svg { width: 20px; height: 20px; }
     .menu-toggle .icon-close { display: none; }
     .mobile-nav {
@@ -691,11 +587,17 @@
       padding: 18px 0 22px;
     }
     .mobile-nav ul { display: flex; flex-direction: column; list-style: none; gap: 0; }
-    .mobile-nav a { display: block; padding: 13px 20px; color: #d7e7df; font-size: 15px; border-bottom: 1px solid rgba(202, 238, 222, 0.07); }
-    .mobile-nav a:hover, .mobile-nav a[aria-current="page"] { color: var(--green); background: rgba(105, 230, 161, 0.06); }
+    .mobile-nav a {
+      display: block;
+      padding: 13px 20px;
+      color: #d7e7df;
+      font-size: 15px;
+      border-bottom: 1px solid rgba(202, 238, 222, 0.07);
+    }
+    .mobile-nav a:hover,
+    .mobile-nav a[aria-current="page"] { color: var(--green); background: rgba(105, 230, 161, 0.06); }
     .mobile-nav a[aria-current="page"]::after { display: none; }
     body.mobile-menu-open { overflow: hidden; }
-    /* interface-upgrade:end */
 
   </style>
 </head>
@@ -711,7 +613,7 @@
       <nav aria-label="Primary navigation">
         <ul>
           <li><a href="index.html">Home</a></li>
-          <li><a href="lab-details.html">Labs</a></li>
+          <li><a href="lab-details.html" aria-current="page">Labs</a></li>
           <li><a href="projects.html">Projects</a></li>
           <li><a href="index.html#about">About</a></li>
           <li><a href="index.html#contact">Contact</a></li>
@@ -745,222 +647,235 @@
   <main id="main-content">
     <section class="hero container" aria-labelledby="page-title">
       <div class="hero-copy">
-        <p class="eyebrow">Cyber Range Interface</p>
-        <h1 id="page-title">Labs built like operational evidence.</h1>
+        <p class="eyebrow">Detailed Lab Views</p>
+        <h1 id="page-title">Every lab, expanded like a case file.</h1>
         <p>
-          A focused command view of security projects that move from attack simulation to detection logic,
-          triage decisions, response notes, and measurable outcomes.
+          Structured case-file views of each security lab — covering the threat scenario, telemetry sources,
+          tool stack, investigation workflow, and evidence outcomes.
         </p>
         <div class="hero-actions">
-          <a href="#labs" class="btn btn-primary">Featured Labs</a>
-          <a href="lab-details.html" class="btn">All Labs</a>
-          <a href="soc-automation-lab.html" class="btn">Open Featured Case</a>
+          <a href="#soc" class="btn btn-primary">SOC Lab</a>
+          <a href="#phishing" class="btn">Phishing IR</a>
+          <a href="#iam" class="btn">IAM Notes</a>
         </div>
 
-        <div class="metrics" aria-label="Portfolio lab metrics">
+        <div class="metrics" aria-label="Detailed lab metrics">
           <div class="metric">
-            <strong>03</strong>
-            <span>Featured security labs</span>
+            <strong>3</strong>
+            <span>Lab case views</span>
+          </div>
+          <div class="metric">
+            <strong>4</strong>
+            <span>Workflow phases</span>
           </div>
           <div class="metric">
             <strong>80+</strong>
-            <span>Failed logons detected</span>
+            <span>Logons detected</span>
           </div>
           <div class="metric">
-            <strong>04</strong>
-            <span>Response workflow phases</span>
-          </div>
-          <div class="metric">
-            <strong>02</strong>
-            <span>Professional certifications</span>
+            <strong>1</strong>
+            <span>Published deep dive</span>
           </div>
         </div>
       </div>
 
-      <aside class="command-panel" aria-label="Live lab activity preview">
+      <aside class="command-panel" aria-label="Detailed lab preview">
         <div class="panel-top">
-          <span>operations-feed.log</span>
-          <span class="pulse">Monitoring</span>
+          <span>Lab Detail Index</span>
+          <span class="pulse">Expanded</span>
         </div>
         <div class="terminal">
           <div class="terminal-line">
-            <span class="terminal-time">09:12:04</span>
-            <span class="terminal-text">auth anomaly: repeated failures grouped by source host</span>
+            <span class="terminal-time">SOC</span>
+            <span class="terminal-text">Published case for brute-force detection, SPL logic, and analyst workflow.</span>
           </div>
           <div class="terminal-line">
-            <span class="terminal-time">09:15:31</span>
-            <span class="terminal-text">spl query tuned: threshold reduced noise while preserving signal</span>
+            <span class="terminal-time">IR</span>
+            <span class="terminal-text">Staged phishing response workflow with host evidence and containment notes.</span>
           </div>
           <div class="terminal-line">
-            <span class="terminal-time">09:22:18</span>
-            <span class="terminal-text">case notes generated: timeline, indicators, response actions</span>
-          </div>
-          <div class="terminal-line">
-            <span class="terminal-time">09:37:55</span>
-            <span class="terminal-text">analyst workflow packaged for repeatable triage</span>
+            <span class="terminal-time">IAM</span>
+            <span class="terminal-text">Staged identity security notes for MFA, lifecycle, and recovery workflows.</span>
           </div>
         </div>
       </aside>
     </section>
 
-    <section id="labs" class="section container" aria-labelledby="labs-title">
+    <section class="section container" aria-labelledby="all-labs-title">
       <div class="section-head">
         <div>
-          <p class="section-label">Featured Labs</p>
-          <h2 id="labs-title">Investigations with clear threat stories.</h2>
+          <p class="section-label">All Labs</p>
+          <h2 id="all-labs-title">Lab cases organized by security discipline.</h2>
           <p class="section-subtext">
-            Filter the lab board by discipline and open the work that has the strongest evidence trail.
+            Each case file documents the threat model, data sources, detection methodology,
+            and analyst workflow behind the lab — mapped to core security operations competencies.
           </p>
         </div>
-        <div class="filter-row" aria-label="Lab filters">
-          <button class="btn is-active" type="button" data-filter="all">All</button>
-          <button class="btn" type="button" data-filter="detection">Detection</button>
-          <button class="btn" type="button" data-filter="response">Response</button>
-          <button class="btn" type="button" data-filter="identity">Identity</button>
-        </div>
-      </div>
-
-      <div class="lab-grid">
-        <article class="lab-card" data-category="detection">
-          <div class="card-top">
-            <p class="card-type">Detection Engineering</p>
-            <span class="status">Published</span>
-          </div>
-          <h3><a href="soc-automation-lab.html">SOC Automation with Splunk</a></h3>
-          <p>
-            Brute-force detection workflow using Windows authentication events, SPL alert logic,
-            triage decisions, and repeatable analyst response notes.
-          </p>
-          <div class="lab-actions">
-            <a href="soc-automation-lab.html" class="btn btn-primary">View Case</a>
-            <a href="lab-details.html#soc" class="btn">Details</a>
-            <a href="https://github.com/khancam15/soc-automation-splunk-bruteforce-lab" class="btn" target="_blank" rel="noopener noreferrer">GitHub</a>
-          </div>
-          <div class="tags">
-            <span class="tag">Splunk</span>
-            <span class="tag">SPL</span>
-            <span class="tag">Windows Logs</span>
-          </div>
-        </article>
-
-        <article class="lab-card" data-category="response">
-          <div class="card-top">
-            <p class="card-type">Incident Response</p>
-            <span class="status planned">Staged</span>
-          </div>
-          <h3>Simulated Phishing and IR Lab</h3>
-          <p>
-            Phishing-to-malware scenario with host investigation, process review, log evidence,
-            containment notes, and executive-ready incident documentation.
-          </p>
-          <div class="lab-actions">
-            <a href="#" class="btn placeholder-link" data-placeholder="true">Case Pending</a>
-            <a href="lab-details.html#phishing" class="btn">Details</a>
-            <a href="#" class="btn placeholder-link" data-placeholder="true">Repo Pending</a>
-          </div>
-          <div class="tags">
-            <span class="tag">IR</span>
-            <span class="tag">Sysinternals</span>
-            <span class="tag">Event Logs</span>
-            <span class="tag">Containment</span>
-          </div>
-        </article>
-
-        <article class="lab-card" data-category="identity">
-          <div class="card-top">
-            <p class="card-type">Identity Security</p>
-            <span class="status planned">Staged</span>
-          </div>
-          <h3>IAM and Access Security Notes</h3>
-          <p>
-            Operational access-control scenarios covering MFA, least privilege, recovery controls,
-            account lifecycle decisions, and escalation-resistant support workflows.
-          </p>
-          <div class="lab-actions">
-            <a href="#" class="btn placeholder-link" data-placeholder="true">Case Pending</a>
-            <a href="lab-details.html#iam" class="btn">Details</a>
-            <a href="#" class="btn placeholder-link" data-placeholder="true">Repo Pending</a>
-          </div>
-          <div class="tags">
-            <span class="tag">IAM</span>
-            <span class="tag">MFA</span>
-            <span class="tag">Active Directory</span>
-            <span class="tag">Least Privilege</span>
-          </div>
-        </article>
-      </div>
-    </section>
-
-    <section id="briefing" class="section container" aria-labelledby="briefing-title">
-      <div class="section-head">
-        <div>
-          <p class="section-label">Analyst Briefing</p>
-          <h2 id="briefing-title">How each case is evaluated.</h2>
+        <div class="tabs" aria-label="Lab detail tabs">
+          <a href="#soc" class="btn btn-primary">SOC Automation</a>
+          <a href="#phishing" class="btn">Phishing IR</a>
+          <a href="#iam" class="btn">IAM Security</a>
         </div>
       </div>
 
-      <div class="briefing-grid">
-        <div class="briefing">
-          <p class="kicker">Case Standard</p>
-          <h3>From signal to response</h3>
-          <p>
-            Each project is framed around a practical security question: what happened, what evidence
-            proves it, how should an analyst respond, and how can the workflow become repeatable?
-          </p>
-          <ul class="tool-list">
-            <li>Scenario <span>Threat model and assumptions</span></li>
-            <li>Detection <span>Query logic and thresholds</span></li>
-            <li>Triage <span>Evidence and decision points</span></li>
-            <li>Response <span>Actions, notes, and outcome</span></li>
-          </ul>
-        </div>
+      <div class="lab-stack">
+        <article id="soc" class="lab-detail-card">
+          <div>
+            <p class="card-type">Published Detection Engineering Lab</p>
+            <h3>SOC Automation with Splunk</h3>
+            <p>
+              Simulates a credential-based brute-force attack by ingesting Windows Security Event Logs into
+              Splunk, building SPL detection queries, and producing a structured analyst response workflow
+              with documented triage decisions and measurable detection outcomes.
+            </p>
+            <div class="detail-grid">
+              <div class="detail-card">
+                <p class="kicker">Scenario</p>
+                <p>Repeated failed logons indicate possible credential attack behavior.</p>
+              </div>
+              <div class="detail-card">
+                <p class="kicker">Telemetry</p>
+                <p>Windows Security Logs reviewed and normalized inside Splunk.</p>
+              </div>
+              <div class="detail-card">
+                <p class="kicker">Evidence</p>
+                <p>80+ failed logon attempts identified inside a defined time window.</p>
+              </div>
+            </div>
+            <div class="lab-actions">
+              <a href="soc-automation-lab.html" class="btn btn-primary">Open Full Case</a>
+              <a href="https://github.com/khancam15/soc-automation-splunk-bruteforce-lab" class="btn" target="_blank" rel="noopener noreferrer">GitHub</a>
+            </div>
+            <div class="tags">
+              <span class="tag">Splunk</span>
+              <span class="tag">SPL</span>
+              <span class="tag">Windows Logs</span>
+              <span class="tag">Detection Engineering</span>
+            </div>
+          </div>
+          <div class="timeline" aria-label="SOC Automation workflow">
+            <div class="timeline-item">
+              <strong>Ingest</strong>
+              <p>Collect and normalize Windows authentication events for investigation.</p>
+            </div>
+            <div class="timeline-item">
+              <strong>Detect</strong>
+              <p>Build SPL queries to group failed logon volume by source, user, and time.</p>
+            </div>
+            <div class="timeline-item">
+              <strong>Triage</strong>
+              <p>Review correlated events, tune thresholds, and separate noise from signal.</p>
+            </div>
+            <div class="timeline-item">
+              <strong>Respond</strong>
+              <p>Document analyst actions, escalation logic, and reusable case notes.</p>
+            </div>
+          </div>
+        </article>
 
-        <div class="timeline" aria-label="SOC investigation timeline">
-          <div class="timeline-item">
-            <strong>Phase 01</strong>
-            <p>Build a controlled scenario with enough realism to produce meaningful telemetry.</p>
+        <article id="phishing" class="lab-detail-card">
+          <div>
+            <p class="card-type">Staged Incident Response Lab</p>
+            <h3>Simulated Phishing and IR Lab</h3>
+            <p>
+              Models a phishing-to-malware intrusion chain — from initial user report through host-based
+              indicator analysis, containment decisions, and structured incident documentation aligned
+              with incident response best practices.
+            </p>
+            <div class="detail-grid">
+              <div class="detail-card">
+                <p class="kicker">Scenario</p>
+                <p>User reports suspicious email followed by unusual host behavior.</p>
+              </div>
+              <div class="detail-card">
+                <p class="kicker">Telemetry</p>
+                <p>Host process review, Windows Event Logs, and endpoint investigation notes.</p>
+              </div>
+              <div class="detail-card">
+                <p class="kicker">Evidence Goal</p>
+                <p>Construct an attack timeline linking initial delivery, code execution, persistence mechanisms, and containment actions.</p>
+              </div>
+            </div>
+            <div class="tags">
+              <span class="tag">Incident Response</span>
+              <span class="tag">Sysinternals</span>
+              <span class="tag">Event Logs</span>
+              <span class="tag">Containment</span>
+            </div>
           </div>
-          <div class="timeline-item">
-            <strong>Phase 02</strong>
-            <p>Write detection logic, validate the signal, and document false-positive boundaries.</p>
+          <div class="timeline" aria-label="Phishing IR workflow">
+            <div class="timeline-item">
+              <strong>Report</strong>
+              <p>Capture user report, suspected sender, attachment or link, and affected endpoint.</p>
+            </div>
+            <div class="timeline-item">
+              <strong>Analyze</strong>
+              <p>Review process activity, log entries, indicators, and suspicious file behavior.</p>
+            </div>
+            <div class="timeline-item">
+              <strong>Contain</strong>
+              <p>Define isolation, account protection, blocking, and cleanup actions.</p>
+            </div>
+            <div class="timeline-item">
+              <strong>Report</strong>
+              <p>Write an incident summary with impact, evidence, decisions, and next steps.</p>
+            </div>
           </div>
-          <div class="timeline-item">
-            <strong>Phase 03</strong>
-            <p>Translate raw events into analyst-ready findings with clear severity and scope.</p>
+        </article>
+
+        <article id="iam" class="lab-detail-card">
+          <div>
+            <p class="card-type">Staged Identity Security Lab</p>
+            <h3>IAM and Access Security Notes</h3>
+            <p>
+              Documents operational identity security scenarios covering role-based access control (RBAC) review,
+              MFA enforcement, account lifecycle governance, privileged access management,
+              and least-privilege enforcement workflows.
+            </p>
+            <div class="detail-grid">
+              <div class="detail-card">
+                <p class="kicker">Scenario</p>
+                <p>Access request or recovery workflow needs validation before approval.</p>
+              </div>
+              <div class="detail-card">
+                <p class="kicker">Telemetry</p>
+                <p>Directory attributes, access groups, MFA state, and support request context.</p>
+              </div>
+              <div class="detail-card">
+                <p class="kicker">Evidence Goal</p>
+                <p>Demonstrate least-privilege enforcement and escalation-resistant access control decision workflows.</p>
+              </div>
+            </div>
+            <div class="tags">
+              <span class="tag">IAM</span>
+              <span class="tag">MFA</span>
+              <span class="tag">Active Directory</span>
+              <span class="tag">Least Privilege</span>
+            </div>
           </div>
-          <div class="timeline-item">
-            <strong>Phase 04</strong>
-            <p>Package the response workflow so the same pattern can be repeated and improved.</p>
+          <div class="timeline" aria-label="IAM workflow">
+            <div class="timeline-item">
+              <strong>Request</strong>
+              <p>Define the access, account, recovery, or MFA support need.</p>
+            </div>
+            <div class="timeline-item">
+              <strong>Verify</strong>
+              <p>Validate identity, ownership, approval path, and business justification.</p>
+            </div>
+            <div class="timeline-item">
+              <strong>Control</strong>
+              <p>Apply least-privilege, recovery, MFA, and group-membership safeguards.</p>
+            </div>
+            <div class="timeline-item">
+              <strong>Record</strong>
+              <p>Document decision rationale, access changes, and follow-up review points.</p>
+            </div>
           </div>
-        </div>
+        </article>
       </div>
     </section>
   </main>
-
   <script>
-    const filterButtons = document.querySelectorAll("[data-filter]");
-    const labCards = document.querySelectorAll("[data-category]");
-
-    filterButtons.forEach((button) => {
-      button.addEventListener("click", () => {
-        const filter = button.dataset.filter;
-
-        filterButtons.forEach((item) => item.classList.remove("is-active"));
-        button.classList.add("is-active");
-
-        labCards.forEach((card) => {
-          const shouldShow = filter === "all" || card.dataset.category === filter;
-          card.classList.toggle("is-hidden", !shouldShow);
-        });
-      });
-    });
-
-    document.querySelectorAll('a[data-placeholder="true"]').forEach((link) => {
-      link.addEventListener("click", (event) => {
-        event.preventDefault();
-      });
-    });
-
     const toggle = document.querySelector('.menu-toggle');
     const mobileNav = document.getElementById('mobile-nav');
     function openMenu() {
