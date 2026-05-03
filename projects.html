@@ -1,0 +1,1001 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="AI automation projects by Khaneil Campbell — including a fully autonomous multi-agent commerce pipeline built with CrewAI, Anthropic API, Canva Connect, and Etsy REST API integration." />
+  <meta name="theme-color" content="#07110f" />
+  <meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'unsafe-inline'; style-src 'unsafe-inline'; img-src 'self'; font-src 'self'; base-uri 'self'; form-action 'none';" />
+  <meta name="referrer" content="strict-origin-when-cross-origin" />
+  <meta name="robots" content="index, follow" />
+  <title>AI Automation Projects | Khaneil Campbell</title>
+  <style>
+    :root {
+      --bg: #07110f;
+      --panel: rgba(14, 23, 20, 0.82);
+      --panel-strong: rgba(18, 30, 26, 0.94);
+      --line: rgba(202, 238, 222, 0.14);
+      --text: #f4fbf7;
+      --muted: #a9bbb3;
+      --green: #69e6a1;
+      --cyan: #7dd3fc;
+      --amber: #facc6b;
+      --ink: #07110f;
+      --shadow: 0 28px 80px rgba(0, 0, 0, 0.42);
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      min-height: 100vh;
+      font-family: Arial, Helvetica, sans-serif;
+      color: var(--text);
+      line-height: 1.6;
+      background:
+        linear-gradient(120deg, rgba(105, 230, 161, 0.14), transparent 30%),
+        linear-gradient(240deg, rgba(250, 204, 107, 0.11), transparent 32%),
+        repeating-linear-gradient(90deg, rgba(255, 255, 255, 0.028) 0 1px, transparent 1px 92px),
+        linear-gradient(180deg, #07110f 0%, #0b1512 48%, #07110f 100%);
+      overflow-x: hidden;
+    }
+
+    body::before {
+      content: "";
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      background:
+        linear-gradient(rgba(125, 211, 252, 0.045) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(125, 211, 252, 0.035) 1px, transparent 1px);
+      background-size: 44px 44px;
+      mask-image: linear-gradient(to bottom, black, transparent 74%);
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    a:not(.btn):hover {
+      color: var(--green);
+      text-decoration: underline;
+      text-underline-offset: 3px;
+    }
+
+    .container {
+      width: min(1120px, calc(100% - 40px));
+      margin: 0 auto;
+    }
+
+    header {
+      position: sticky;
+      top: 0;
+      z-index: 20;
+      border-bottom: 1px solid var(--line);
+      background: rgba(7, 17, 15, 0.82);
+      backdrop-filter: blur(14px);
+    }
+
+    .nav {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 20px;
+      min-height: 78px;
+    }
+
+    .brand small,
+    .eyebrow,
+    .section-label,
+    .card-type,
+    .kicker {
+      color: var(--green);
+      font-size: 12px;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+    }
+
+    .brand span {
+      display: block;
+      color: var(--muted);
+      font-size: 14px;
+      margin-top: 2px;
+    }
+
+    nav ul {
+      display: flex;
+      gap: 22px;
+      list-style: none;
+    }
+
+    nav a {
+      color: #d7e7df;
+      font-size: 14px;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 44px;
+      padding: 10px 16px;
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      background: rgba(255, 255, 255, 0.055);
+      color: var(--text);
+      cursor: pointer;
+      font-size: 14px;
+      font-weight: 700;
+      transition: transform 180ms ease, border-color 180ms ease, background 180ms ease;
+    }
+
+    .btn:hover {
+      border-color: rgba(105, 230, 161, 0.62);
+      background: rgba(105, 230, 161, 0.13);
+      transform: translateY(-1px);
+    }
+
+    .btn-primary {
+      background: var(--green);
+      color: var(--ink);
+      border-color: transparent;
+    }
+
+    .hero {
+      display: grid;
+      grid-template-columns: minmax(0, 1.05fr) minmax(340px, 0.95fr);
+      gap: 34px;
+      align-items: center;
+      min-height: calc(100vh - 78px);
+      padding: 58px 0 44px;
+    }
+
+    h1 {
+      max-width: 860px;
+      margin-top: 14px;
+      font-size: clamp(42px, 8vw, 84px);
+      line-height: 0.95;
+    }
+
+    h2 {
+      max-width: 760px;
+      margin-top: 8px;
+      font-size: clamp(30px, 4vw, 48px);
+      line-height: 1.05;
+    }
+
+    .hero-copy p,
+    .section-subtext {
+      max-width: 690px;
+      margin-top: 18px;
+      color: #d5e3dc;
+      font-size: clamp(17px, 2.1vw, 20px);
+    }
+
+    .hero-actions,
+    .project-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-top: 28px;
+    }
+
+    .command-panel,
+    .metric,
+    .project-card,
+    .detail-card,
+    .timeline-item {
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      background: var(--panel);
+      box-shadow: var(--shadow);
+      backdrop-filter: blur(16px);
+    }
+
+    .panel-top {
+      display: flex;
+      justify-content: space-between;
+      gap: 14px;
+      padding: 14px 16px;
+      border-bottom: 1px solid var(--line);
+      background: rgba(255, 255, 255, 0.035);
+      color: var(--muted);
+      font-size: 13px;
+    }
+
+    .pulse {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      color: var(--green);
+      font-weight: 700;
+    }
+
+    .pulse::before {
+      content: "";
+      width: 9px;
+      height: 9px;
+      border-radius: 999px;
+      background: var(--green);
+      box-shadow: 0 0 0 8px rgba(105, 230, 161, 0.12);
+    }
+
+    .terminal {
+      display: grid;
+      gap: 12px;
+      padding: 18px;
+      font-family: "SFMono-Regular", Consolas, "Liberation Mono", monospace;
+      font-size: 13px;
+    }
+
+    .terminal-line {
+      display: grid;
+      grid-template-columns: 104px 1fr;
+      gap: 12px;
+      padding: 12px;
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      border-radius: 8px;
+      background: rgba(7, 17, 15, 0.66);
+    }
+
+    .terminal-time {
+      color: var(--amber);
+    }
+
+    .terminal-text {
+      color: #d8f8e6;
+    }
+
+    .metrics {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 12px;
+      margin-top: 18px;
+    }
+
+    .metric {
+      padding: 16px;
+      background: rgba(18, 30, 26, 0.7);
+      box-shadow: none;
+    }
+
+    .metric strong {
+      display: block;
+      font-size: 28px;
+      line-height: 1;
+    }
+
+    .metric span {
+      display: block;
+      color: var(--muted);
+      font-size: 13px;
+      margin-top: 8px;
+    }
+
+    .section {
+      padding: 66px 0;
+    }
+
+    .section-head {
+      display: flex;
+      align-items: end;
+      justify-content: space-between;
+      gap: 24px;
+      margin-bottom: 24px;
+    }
+
+    .project-card,
+    .detail-card {
+      padding: 22px;
+      box-shadow: none;
+    }
+
+    .project-card {
+      display: grid;
+      grid-template-columns: minmax(0, 1.1fr) minmax(300px, 0.9fr);
+      gap: 22px;
+      align-items: start;
+    }
+
+    .project-card h3,
+    .detail-card h3 {
+      font-size: 28px;
+      line-height: 1.1;
+      margin: 10px 0;
+    }
+
+    .project-card p,
+    .detail-card p,
+    .timeline-item p {
+      color: #c8d8d0;
+    }
+
+    .tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-top: 20px;
+    }
+
+    .tag {
+      border: 1px solid rgba(255, 255, 255, 0.11);
+      border-radius: 999px;
+      background: rgba(255, 255, 255, 0.045);
+      color: #d7e7df;
+      font-size: 12px;
+      padding: 6px 10px;
+    }
+
+    .detail-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 18px;
+    }
+
+    .tool-matrix {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 12px;
+    }
+
+    .tool-group {
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      background: rgba(14, 23, 20, 0.72);
+      padding: 16px;
+    }
+
+    .tool-group h3 {
+      color: var(--green);
+      font-size: 14px;
+      letter-spacing: 0.12em;
+      margin-bottom: 12px;
+      text-transform: uppercase;
+    }
+
+    .tool-group ul {
+      display: grid;
+      gap: 8px;
+      list-style: none;
+    }
+
+    .tool-group li {
+      color: #d7e7df;
+      font-size: 14px;
+    }
+
+    .timeline {
+      display: grid;
+      gap: 12px;
+    }
+
+    .timeline-item {
+      display: grid;
+      grid-template-columns: 112px 1fr;
+      gap: 14px;
+      padding: 16px;
+      box-shadow: none;
+    }
+
+    .timeline-item strong {
+      color: var(--amber);
+      font-family: "SFMono-Regular", Consolas, "Liberation Mono", monospace;
+      font-size: 13px;
+    }
+
+    @media (max-width: 980px) {
+      .hero,
+      .project-card {
+        grid-template-columns: 1fr;
+        min-height: auto;
+      }
+
+      .detail-grid,
+      .tool-matrix,
+      .metrics {
+        grid-template-columns: 1fr 1fr;
+      }
+
+      nav ul {
+        display: none;
+      }
+
+      .menu-toggle { display: flex; }
+      .mobile-nav.open { display: block; }
+      .menu-toggle.open .icon-open { display: none; }
+      .menu-toggle.open .icon-close { display: block; }
+    }
+
+    @media (max-width: 640px) {
+      .container {
+        width: min(100% - 28px, 1120px);
+      }
+
+      .mobile-nav { top: 70px; }
+
+      .nav .btn {
+        display: none;
+      }
+
+      .detail-grid,
+      .tool-matrix,
+      .metrics {
+        grid-template-columns: 1fr;
+      }
+
+      .terminal-line,
+      .timeline-item {
+        grid-template-columns: 1fr;
+      }
+    }
+
+
+    /* interface-upgrade:start */
+    ::selection {
+      background: rgba(105, 230, 161, 0.28);
+      color: var(--text);
+    }
+
+    :focus-visible {
+      outline: 2px solid var(--green);
+      outline-offset: 4px;
+    }
+
+    .skip-link {
+      position: fixed;
+      left: 16px;
+      top: 16px;
+      z-index: 100;
+      transform: translateY(-140%);
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      background: var(--green);
+      color: var(--ink, #07110f);
+      font-weight: 700;
+      padding: 10px 14px;
+      transition: transform 180ms ease;
+    }
+
+    .skip-link:focus {
+      transform: translateY(0);
+    }
+
+    .signal-bar {
+      position: sticky;
+      top: 78px;
+      z-index: 19;
+      height: 2px;
+      overflow: hidden;
+      background: rgba(202, 238, 222, 0.08);
+    }
+
+    .signal-bar span {
+      display: block;
+      width: 42%;
+      height: 100%;
+      background: linear-gradient(90deg, transparent, var(--green), var(--amber, #facc6b), transparent);
+      animation: signalSweep 5.5s linear infinite;
+    }
+
+    nav a[aria-current="page"] {
+      color: var(--green);
+    }
+
+    nav a[aria-current="page"]::after {
+      content: "";
+      display: block;
+      height: 2px;
+      margin-top: 4px;
+      border-radius: 999px;
+      background: var(--green);
+    }
+
+    .command-panel,
+    .lab-card,
+    .lab-detail-card,
+    .panel,
+    .briefing,
+    .about-panel,
+    .project-card,
+    .detail-card,
+    .credential-card,
+    .contact-box,
+    .cert-image-wrapper {
+      position: relative;
+      isolation: isolate;
+    }
+
+    .command-panel::after,
+    .lab-card::after,
+    .lab-detail-card::after,
+    .panel::after,
+    .briefing::after,
+    .about-panel::after,
+    .project-card::after,
+    .detail-card::after,
+    .credential-card::after,
+    .contact-box::after,
+    .cert-image-wrapper::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      z-index: -1;
+      border-radius: inherit;
+      background: linear-gradient(135deg, rgba(105, 230, 161, 0.08), transparent 42%, rgba(250, 204, 107, 0.06));
+      opacity: 0.72;
+      pointer-events: none;
+    }
+
+    .section {
+      position: relative;
+    }
+
+    .section::before {
+      content: "";
+      display: block;
+      width: min(100%, 1120px);
+      height: 1px;
+      margin: 0 auto 42px;
+      background: linear-gradient(90deg, transparent, rgba(202, 238, 222, 0.18), transparent);
+    }
+
+    .hero + .section::before,
+    main > .section:first-child::before {
+      display: none;
+    }
+
+    @keyframes signalSweep {
+      from {
+        transform: translateX(-110%);
+      }
+
+      to {
+        transform: translateX(260%);
+      }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      *,
+      *::before,
+      *::after {
+        animation-duration: 0.001ms !important;
+        animation-iteration-count: 1 !important;
+        scroll-behavior: auto !important;
+        transition-duration: 0.001ms !important;
+      }
+    }
+
+    @media (max-width: 640px) {
+      .signal-bar {
+        top: 70px;
+      }
+    }
+
+    .menu-toggle {
+      display: none;
+      align-items: center;
+      justify-content: center;
+      width: 44px;
+      height: 44px;
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      background: rgba(255, 255, 255, 0.055);
+      color: var(--text);
+      cursor: pointer;
+      flex-shrink: 0;
+    }
+    .menu-toggle:hover { border-color: rgba(105, 230, 161, 0.62); background: rgba(105, 230, 161, 0.13); }
+    .menu-toggle svg { width: 20px; height: 20px; }
+    .menu-toggle .icon-close { display: none; }
+    .mobile-nav {
+      display: none;
+      position: fixed;
+      top: 78px;
+      left: 0;
+      right: 0;
+      z-index: 18;
+      border-bottom: 1px solid var(--line);
+      background: rgba(7, 17, 15, 0.96);
+      backdrop-filter: blur(18px);
+      padding: 18px 0 22px;
+    }
+    .mobile-nav ul { display: flex; flex-direction: column; list-style: none; gap: 0; }
+    .mobile-nav a { display: block; padding: 13px 20px; color: #d7e7df; font-size: 15px; border-bottom: 1px solid rgba(202, 238, 222, 0.07); }
+    .mobile-nav a:hover, .mobile-nav a[aria-current="page"] { color: var(--green); background: rgba(105, 230, 161, 0.06); }
+    .mobile-nav a[aria-current="page"]::after { display: none; }
+    body.mobile-menu-open { overflow: hidden; }
+    /* interface-upgrade:end */
+
+  </style>
+</head>
+<body>
+  <a class="skip-link" href="#main-content">Skip to content</a>
+  <header>
+    <div class="container nav">
+      <a class="brand" href="index.html#home" aria-label="Khaneil Campbell portfolio home">
+        <small>Khaneil Campbell</small>
+        <span>Security Operations Portfolio</span>
+      </a>
+
+      <nav aria-label="Primary navigation">
+        <ul>
+          <li><a href="index.html">Home</a></li>
+          <li><a href="lab-details.html">Labs</a></li>
+          <li><a href="projects.html" aria-current="page">Projects</a></li>
+          <li><a href="index.html#about">About</a></li>
+          <li><a href="index.html#contact">Contact</a></li>
+        </ul>
+      </nav>
+
+      <a href="index.html#contact" class="btn">Contact</a>
+      <button class="menu-toggle" aria-label="Open navigation menu" aria-expanded="false" aria-controls="mobile-nav">
+        <svg class="icon-open" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round">
+          <line x1="3" y1="5" x2="17" y2="5"/><line x1="3" y1="10" x2="17" y2="10"/><line x1="3" y1="15" x2="17" y2="15"/>
+        </svg>
+        <svg class="icon-close" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round">
+          <line x1="4" y1="4" x2="16" y2="16"/><line x1="16" y1="4" x2="4" y2="16"/>
+        </svg>
+      </button>
+    </div>
+  </header>
+
+  <nav id="mobile-nav" class="mobile-nav" aria-label="Mobile navigation">
+    <ul>
+      <li><a href="index.html">Home</a></li>
+      <li><a href="lab-details.html">Labs</a></li>
+      <li><a href="projects.html">Projects</a></li>
+      <li><a href="index.html#about">About</a></li>
+      <li><a href="index.html#contact">Contact</a></li>
+    </ul>
+  </nav>
+
+  <div class="signal-bar" aria-hidden="true"><span></span></div>
+
+  <main id="main-content">
+    <section class="hero container" aria-labelledby="page-title">
+      <div class="hero-copy">
+        <p class="eyebrow">Personal Projects</p>
+        <h1 id="page-title">AI systems built beyond the lab.</h1>
+        <p>
+          Production-level AI engineering projects demonstrating multi-agent orchestration,
+          resilient platform API integration, autonomous workflow design, and operational security practices.
+        </p>
+        <div class="hero-actions">
+          <a href="#ai-pipeline" class="btn btn-primary">View AI Pipeline</a>
+          <a href="https://github.com/khancam15/ai-etsy-product-pipeline" class="btn" target="_blank" rel="noopener noreferrer">GitHub Repo</a>
+        </div>
+
+        <div class="metrics" aria-label="AI project highlights">
+          <div class="metric">
+            <strong>7</strong>
+            <span>Pipeline phases</span>
+          </div>
+          <div class="metric">
+            <strong>3</strong>
+            <span>Autonomous loop modes</span>
+          </div>
+          <div class="metric">
+            <strong>5</strong>
+            <span>SQLite data tables</span>
+          </div>
+          <div class="metric">
+            <strong>API</strong>
+            <span>Driven architecture</span>
+          </div>
+        </div>
+      </div>
+
+      <aside class="command-panel" aria-label="AI developer project preview">
+        <div class="panel-top">
+          <span>AI Product Pipeline</span>
+          <span class="pulse">Built</span>
+        </div>
+        <div class="terminal">
+          <div class="terminal-line">
+            <span class="terminal-time">Brand</span>
+            <span class="terminal-text">CrewAI agents research, position, and assemble a reusable brand guide.</span>
+          </div>
+          <div class="terminal-line">
+            <span class="terminal-time">Generate</span>
+            <span class="terminal-text">AI creates product ideas, titles, tags, descriptions, and template direction.</span>
+          </div>
+          <div class="terminal-line">
+            <span class="terminal-time">Design</span>
+            <span class="terminal-text">Canva automation creates mockups and buyer-ready digital template files.</span>
+          </div>
+          <div class="terminal-line">
+            <span class="terminal-time">Publish</span>
+            <span class="terminal-text">Etsy REST workflow validates, stages, uploads, tracks, and reviews listings.</span>
+          </div>
+        </div>
+      </aside>
+    </section>
+
+    <section id="ai-pipeline" class="section container" aria-labelledby="pipeline-title">
+      <div class="section-head">
+        <div>
+          <p class="section-label">AI Developer Showcase</p>
+          <h2 id="pipeline-title">AI Etsy Product Pipeline</h2>
+          <p class="section-subtext">
+            A fully autonomous e-commerce pipeline that generates brand strategy, produces AI-written product listings,
+            creates Canva design mockups, publishes through the Etsy REST API, audits SEO quality, and delivers daily operational health reports.
+          </p>
+        </div>
+      </div>
+
+      <article class="project-card">
+        <div>
+          <p class="card-type">Autonomous AI System</p>
+          <h3>From idea generation to marketplace publishing.</h3>
+          <p>
+            Demonstrates multi-agent AI orchestration, resilient API workflows with exponential backoff,
+            OAuth-based platform integration, validation gates, SQLite state tracking, operational health
+            reporting, and VPS deployment. The system cycles through BUILD, DESIGN, and MAINTAIN execution
+            modes based on publish limits and configured cooldown periods.
+          </p>
+          <div class="project-actions">
+            <a href="https://github.com/khancam15/ai-etsy-product-pipeline" class="btn btn-primary" target="_blank" rel="noopener noreferrer">View Repository</a>
+            <a href="index.html#contact" class="btn">Discuss Project</a>
+          </div>
+          <div class="tags">
+            <span class="tag">Python</span>
+            <span class="tag">Bash</span>
+            <span class="tag">CrewAI</span>
+            <span class="tag">Anthropic API</span>
+            <span class="tag">Canva Connect</span>
+            <span class="tag">Etsy REST API</span>
+            <span class="tag">Serper API</span>
+            <span class="tag">Gmail SMTP</span>
+            <span class="tag">SQLite</span>
+            <span class="tag">Systemd</span>
+            <span class="tag">Gitleaks</span>
+          </div>
+        </div>
+
+        <div class="timeline" aria-label="AI Etsy Product Pipeline phases">
+          <div class="timeline-item">
+            <strong>Phase 1</strong>
+            <p>Builds brand strategy, visual identity, and SEO direction through AI-assisted research.</p>
+          </div>
+          <div class="timeline-item">
+            <strong>Phase 2</strong>
+            <p>Generates product ideas and marketplace listing content from the current brand guide.</p>
+          </div>
+          <div class="timeline-item">
+            <strong>Phase 3</strong>
+            <p>Creates product mockups and buyer-ready digital templates through Canva automation.</p>
+          </div>
+          <div class="timeline-item">
+            <strong>Phase 4-7</strong>
+            <p>Processes assets, validates listings, publishes through Etsy, reviews SEO, and reports status.</p>
+          </div>
+        </div>
+      </article>
+    </section>
+
+    <section class="section container" aria-labelledby="tools-title">
+      <div class="section-head">
+        <div>
+          <p class="section-label">Tools and Languages</p>
+          <h2 id="tools-title">Full technical stack used in the project.</h2>
+          <p class="section-subtext">
+            The pipeline combines AI frameworks, platform APIs, local data storage,
+            image processing, deployment automation, and security checks.
+          </p>
+        </div>
+      </div>
+
+      <div class="tool-matrix" aria-label="AI Etsy Product Pipeline tools and languages">
+        <div class="tool-group">
+          <h3>Languages</h3>
+          <ul>
+            <li>Python 3.12+</li>
+            <li>Bash shell scripting</li>
+            <li>SQL via SQLite</li>
+            <li>JSON payload design</li>
+            <li>Markdown documentation</li>
+          </ul>
+        </div>
+        <div class="tool-group">
+          <h3>AI and Data</h3>
+          <ul>
+            <li>Anthropic API</li>
+            <li>CrewAI</li>
+            <li>CrewAI Tools</li>
+            <li>Serper API</li>
+            <li>SQLite database</li>
+          </ul>
+        </div>
+        <div class="tool-group">
+          <h3>Platform APIs</h3>
+          <ul>
+            <li>Etsy REST API v3</li>
+            <li>Etsy OAuth2 PKCE</li>
+            <li>Canva Connect REST API</li>
+            <li>Canva OAuth2 PKCE</li>
+            <li>Gmail SMTP digest</li>
+          </ul>
+        </div>
+        <div class="tool-group">
+          <h3>Python Libraries</h3>
+          <ul>
+            <li>requests</li>
+            <li>python-dotenv</li>
+            <li>Pillow</li>
+            <li>Rich</li>
+            <li>sqlite3 standard library</li>
+          </ul>
+        </div>
+        <div class="tool-group">
+          <h3>Automation</h3>
+          <ul>
+            <li>run.sh command router</li>
+            <li>loop.sh autonomous loop</li>
+            <li>BUILD / DESIGN / MAINTAIN modes</li>
+            <li>Preflight credential checks</li>
+            <li>Exponential API retry logic</li>
+          </ul>
+        </div>
+        <div class="tool-group">
+          <h3>Deployment</h3>
+          <ul>
+            <li>Ubuntu VPS</li>
+            <li>systemd service</li>
+            <li>setup_vps.sh bootstrap</li>
+            <li>Runtime logs</li>
+            <li>Daily health dashboard</li>
+          </ul>
+        </div>
+        <div class="tool-group">
+          <h3>Security</h3>
+          <ul>
+            <li>.env credential isolation</li>
+            <li>.env.example template</li>
+            <li>gitleaks pre-commit scan</li>
+            <li>Token refresh workflow</li>
+            <li>Redacted leak scanning</li>
+          </ul>
+        </div>
+        <div class="tool-group">
+          <h3>Commerce Flow</h3>
+          <ul>
+            <li>Listing validation</li>
+            <li>Image resizing</li>
+            <li>File staging and archive</li>
+            <li>SEO tag review</li>
+            <li>Sales transaction sync</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <section class="section container" aria-labelledby="security-title">
+      <div class="section-head">
+        <div>
+          <p class="section-label">Security Best Practices</p>
+          <h2 id="security-title">Built with API safety and operational control in mind.</h2>
+          <p class="section-subtext">
+            Because the system touches marketplace publishing, OAuth tokens, email, and AI-generated content,
+            the project uses controls that reduce credential exposure and prevent unsafe automation behavior.
+          </p>
+        </div>
+      </div>
+
+      <div class="detail-grid">
+        <div class="detail-card">
+          <p class="kicker">Credentials</p>
+          <h3>No committed credentials</h3>
+          <p>
+            API keys and OAuth tokens stay in `.env`, while `.env.example` documents required variables
+            without exposing real values. Runtime outputs and logs are kept out of version control.
+          </p>
+        </div>
+        <div class="detail-card">
+          <p class="kicker">Scanning</p>
+          <h3>Pre-commit leak detection</h3>
+          <p>
+            The repo uses a gitleaks pre-commit hook with redaction enabled, helping catch accidental
+            credentials before they leave the local development environment.
+          </p>
+        </div>
+        <div class="detail-card">
+          <p class="kicker">OAuth</p>
+          <h3>Token lifecycle handling</h3>
+          <p>
+            Etsy and Canva tokens are acquired through OAuth setup scripts, checked during preflight,
+            and refreshed automatically when expired instead of being hardcoded in source files.
+          </p>
+        </div>
+        <div class="detail-card">
+          <p class="kicker">Validation</p>
+          <h3>Guardrails before publishing</h3>
+          <p>
+            The upload flow validates listing title length, tag count, price range, asset count,
+            and staged file readiness before attempting a live marketplace publish.
+          </p>
+        </div>
+        <div class="detail-card">
+          <p class="kicker">Resilience</p>
+          <h3>Controlled API behavior</h3>
+          <p>
+            API calls use retry handling with backoff for rate limits and server errors,
+            while publish limits and cooldowns prevent burst automation.
+          </p>
+        </div>
+        <div class="detail-card">
+          <p class="kicker">Operations</p>
+          <h3>Auditable runtime state</h3>
+          <p>
+            SQLite tables track queue state, published listings, run logs, SEO reviews, and sales,
+            making failures easier to diagnose and reducing blind automation.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <section class="section container" aria-labelledby="skills-title">
+      <div class="section-head">
+        <div>
+          <p class="section-label">Skills Demonstrated</p>
+          <h2 id="skills-title">AI development with production habits.</h2>
+        </div>
+      </div>
+
+      <div class="detail-grid">
+        <div class="detail-card">
+          <p class="kicker">AI Orchestration</p>
+          <h3>Multi-agent workflow design</h3>
+          <p>
+            Uses separate phases for brand research, content generation, product design, publishing,
+            SEO review, and reporting instead of one oversized script.
+          </p>
+        </div>
+        <div class="detail-card">
+          <p class="kicker">Platform Integration</p>
+          <h3>API-first automation</h3>
+          <p>
+            Connects Anthropic, Canva, Etsy, Serper, Gmail SMTP, and local SQLite state into a coordinated
+            workflow with validation before marketplace upload.
+          </p>
+        </div>
+        <div class="detail-card">
+          <p class="kicker">Operations</p>
+          <h3>VPS-ready execution</h3>
+          <p>
+            Includes loop control, preflight checks, retry handling, daily digest reporting,
+            sales sync, and service management for continuous operation.
+          </p>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <script>
+    const toggle = document.querySelector('.menu-toggle');
+    const mobileNav = document.getElementById('mobile-nav');
+    function openMenu() {
+      toggle.classList.add('open'); mobileNav.classList.add('open');
+      toggle.setAttribute('aria-expanded', 'true');
+      toggle.setAttribute('aria-label', 'Close navigation menu');
+      document.body.classList.add('mobile-menu-open');
+    }
+    function closeMenu() {
+      toggle.classList.remove('open'); mobileNav.classList.remove('open');
+      toggle.setAttribute('aria-expanded', 'false');
+      toggle.setAttribute('aria-label', 'Open navigation menu');
+      document.body.classList.remove('mobile-menu-open');
+    }
+    toggle.addEventListener('click', () => toggle.classList.contains('open') ? closeMenu() : openMenu());
+    mobileNav.querySelectorAll('a').forEach(link => link.addEventListener('click', closeMenu));
+    document.addEventListener('keydown', e => { if (e.key === 'Escape') closeMenu(); });
+  </script>
+</body>
+</html>

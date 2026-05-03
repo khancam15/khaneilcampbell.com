@@ -19,9 +19,14 @@ dist/
 build/
 out/
 
+# Python
+__pycache__/
+*.py[cod]
+
 # Editor directories and files
 .vscode/
 .idea/
+.claude/
 *.sublime-workspace
 *.sublime-settings
 

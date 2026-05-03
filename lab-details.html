@@ -1,0 +1,898 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Security lab case files by Khaneil Campbell — detailed breakdowns of SOC automation with Splunk, phishing incident response, and identity and access management security scenarios." />
+  <meta name="theme-color" content="#07110f" />
+  <meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'unsafe-inline'; style-src 'unsafe-inline'; img-src 'self'; font-src 'self'; base-uri 'self'; form-action 'none';" />
+  <meta name="referrer" content="strict-origin-when-cross-origin" />
+  <meta name="robots" content="index, follow" />
+  <title>Security Lab Case Files | Khaneil Campbell</title>
+  <style>
+    :root {
+      --bg: #07110f;
+      --panel: rgba(14, 23, 20, 0.82);
+      --panel-strong: rgba(18, 30, 26, 0.94);
+      --line: rgba(202, 238, 222, 0.14);
+      --text: #f4fbf7;
+      --muted: #a9bbb3;
+      --green: #69e6a1;
+      --amber: #facc6b;
+      --ink: #07110f;
+      --shadow: 0 28px 80px rgba(0, 0, 0, 0.42);
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      min-height: 100vh;
+      font-family: Arial, Helvetica, sans-serif;
+      color: var(--text);
+      line-height: 1.6;
+      background:
+        linear-gradient(120deg, rgba(105, 230, 161, 0.14), transparent 30%),
+        linear-gradient(240deg, rgba(250, 204, 107, 0.11), transparent 32%),
+        repeating-linear-gradient(90deg, rgba(255, 255, 255, 0.028) 0 1px, transparent 1px 92px),
+        linear-gradient(180deg, #07110f 0%, #0b1512 48%, #07110f 100%);
+      overflow-x: hidden;
+    }
+
+    body::before {
+      content: "";
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      background:
+        linear-gradient(rgba(125, 211, 252, 0.045) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(125, 211, 252, 0.035) 1px, transparent 1px);
+      background-size: 44px 44px;
+      mask-image: linear-gradient(to bottom, black, transparent 74%);
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    a:not(.btn):hover {
+      color: var(--green);
+      text-decoration: underline;
+      text-underline-offset: 3px;
+    }
+
+    .container {
+      width: min(1120px, calc(100% - 40px));
+      margin: 0 auto;
+    }
+
+    header {
+      position: sticky;
+      top: 0;
+      z-index: 20;
+      border-bottom: 1px solid var(--line);
+      background: rgba(7, 17, 15, 0.82);
+      backdrop-filter: blur(14px);
+    }
+
+    .nav {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 20px;
+      min-height: 78px;
+    }
+
+    .brand small,
+    .eyebrow,
+    .section-label,
+    .card-type,
+    .kicker {
+      color: var(--green);
+      font-size: 12px;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+    }
+
+    .brand span {
+      display: block;
+      color: var(--muted);
+      font-size: 14px;
+      margin-top: 2px;
+    }
+
+    nav ul {
+      display: flex;
+      gap: 22px;
+      list-style: none;
+    }
+
+    nav a {
+      color: #d7e7df;
+      font-size: 14px;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 44px;
+      padding: 10px 16px;
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      background: rgba(255, 255, 255, 0.055);
+      color: var(--text);
+      cursor: pointer;
+      font-size: 14px;
+      font-weight: 700;
+      transition: transform 180ms ease, border-color 180ms ease, background 180ms ease;
+    }
+
+    .btn:hover {
+      border-color: rgba(105, 230, 161, 0.62);
+      background: rgba(105, 230, 161, 0.13);
+      transform: translateY(-1px);
+    }
+
+    .btn-primary {
+      background: var(--green);
+      color: var(--ink);
+      border-color: transparent;
+    }
+
+    .hero {
+      display: grid;
+      grid-template-columns: minmax(0, 1.05fr) minmax(340px, 0.95fr);
+      gap: 34px;
+      align-items: center;
+      min-height: calc(100vh - 78px);
+      padding: 58px 0 44px;
+    }
+
+    h1 {
+      max-width: 860px;
+      margin-top: 14px;
+      font-size: clamp(42px, 8vw, 84px);
+      line-height: 1;
+    }
+
+    h2 {
+      max-width: 760px;
+      margin-top: 8px;
+      font-size: clamp(30px, 4vw, 48px);
+      line-height: 1.05;
+    }
+
+    .hero-copy p,
+    .section-subtext {
+      max-width: 700px;
+      margin-top: 18px;
+      color: #d5e3dc;
+      font-size: clamp(17px, 2.1vw, 20px);
+    }
+
+    .hero-actions,
+    .lab-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-top: 28px;
+    }
+
+    .command-panel,
+    .metric,
+    .lab-detail-card,
+    .detail-card,
+    .timeline-item {
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      background: var(--panel);
+      box-shadow: var(--shadow);
+      backdrop-filter: blur(16px);
+    }
+
+    .panel-top {
+      display: flex;
+      justify-content: space-between;
+      gap: 14px;
+      padding: 14px 16px;
+      border-bottom: 1px solid var(--line);
+      background: rgba(255, 255, 255, 0.035);
+      color: var(--muted);
+      font-size: 13px;
+    }
+
+    .pulse {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      color: var(--green);
+      font-weight: 700;
+    }
+
+    .pulse::before {
+      content: "";
+      width: 9px;
+      height: 9px;
+      border-radius: 999px;
+      background: var(--green);
+      box-shadow: 0 0 0 8px rgba(105, 230, 161, 0.12);
+    }
+
+    .terminal {
+      display: grid;
+      gap: 12px;
+      padding: 18px;
+      font-family: "SFMono-Regular", Consolas, "Liberation Mono", monospace;
+      font-size: 13px;
+    }
+
+    .terminal-line {
+      display: grid;
+      grid-template-columns: 110px 1fr;
+      gap: 12px;
+      padding: 12px;
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      border-radius: 8px;
+      background: rgba(7, 17, 15, 0.66);
+    }
+
+    .terminal-time {
+      color: var(--amber);
+    }
+
+    .terminal-text {
+      color: #d8f8e6;
+    }
+
+    .metrics {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 12px;
+      margin-top: 18px;
+    }
+
+    .metric {
+      padding: 16px;
+      background: rgba(18, 30, 26, 0.7);
+      box-shadow: none;
+    }
+
+    .metric strong {
+      display: block;
+      font-size: 28px;
+      line-height: 1;
+    }
+
+    .metric span {
+      display: block;
+      color: var(--muted);
+      font-size: 13px;
+      margin-top: 8px;
+    }
+
+    .section {
+      padding: 66px 0;
+    }
+
+    .section-head {
+      display: flex;
+      align-items: end;
+      justify-content: space-between;
+      gap: 24px;
+      margin-bottom: 24px;
+    }
+
+    .tabs {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+
+    .lab-stack {
+      display: grid;
+      gap: 22px;
+    }
+
+    .lab-detail-card {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) minmax(310px, 0.86fr);
+      gap: 20px;
+      padding: 22px;
+      box-shadow: none;
+    }
+
+    .lab-detail-card h3,
+    .detail-card h3 {
+      font-size: 28px;
+      line-height: 1.1;
+      margin: 10px 0;
+    }
+
+    .lab-detail-card p,
+    .detail-card p,
+    .timeline-item p {
+      color: #c8d8d0;
+    }
+
+    .detail-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 12px;
+      margin-top: 18px;
+    }
+
+    .detail-card {
+      padding: 16px;
+      box-shadow: none;
+    }
+
+    .timeline {
+      display: grid;
+      gap: 12px;
+    }
+
+    .timeline-item {
+      display: grid;
+      grid-template-columns: 102px 1fr;
+      gap: 14px;
+      padding: 16px;
+      box-shadow: none;
+    }
+
+    .timeline-item strong {
+      color: var(--amber);
+      font-family: "SFMono-Regular", Consolas, "Liberation Mono", monospace;
+      font-size: 13px;
+    }
+
+    .tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-top: 20px;
+    }
+
+    .tag {
+      border: 1px solid rgba(255, 255, 255, 0.11);
+      border-radius: 999px;
+      background: rgba(255, 255, 255, 0.045);
+      color: #d7e7df;
+      font-size: 12px;
+      padding: 6px 10px;
+    }
+
+    @media (max-width: 980px) {
+      .hero,
+      .lab-detail-card {
+        grid-template-columns: 1fr;
+        min-height: auto;
+      }
+
+      .detail-grid,
+      .metrics {
+        grid-template-columns: 1fr 1fr;
+      }
+
+      nav ul {
+        display: none;
+      }
+      .menu-toggle { display: flex; }
+      .mobile-nav.open { display: block; }
+      .menu-toggle.open .icon-open { display: none; }
+      .menu-toggle.open .icon-close { display: block; }
+    }
+
+    @media (max-width: 640px) {
+      .container {
+        width: min(100% - 28px, 1120px);
+      }
+
+      .nav .btn {
+        display: none;
+      }
+
+      .detail-grid,
+      .metrics {
+        grid-template-columns: 1fr;
+      }
+
+      .terminal-line,
+      .timeline-item {
+        grid-template-columns: 1fr;
+      }
+      .mobile-nav { top: 70px; }
+    }
+
+
+    /* interface-upgrade:start */
+    ::selection {
+      background: rgba(105, 230, 161, 0.28);
+      color: var(--text);
+    }
+
+    :focus-visible {
+      outline: 2px solid var(--green);
+      outline-offset: 4px;
+    }
+
+    .skip-link {
+      position: fixed;
+      left: 16px;
+      top: 16px;
+      z-index: 100;
+      transform: translateY(-140%);
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      background: var(--green);
+      color: var(--ink, #07110f);
+      font-weight: 700;
+      padding: 10px 14px;
+      transition: transform 180ms ease;
+    }
+
+    .skip-link:focus {
+      transform: translateY(0);
+    }
+
+    .signal-bar {
+      position: sticky;
+      top: 78px;
+      z-index: 19;
+      height: 2px;
+      overflow: hidden;
+      background: rgba(202, 238, 222, 0.08);
+    }
+
+    .signal-bar span {
+      display: block;
+      width: 42%;
+      height: 100%;
+      background: linear-gradient(90deg, transparent, var(--green), var(--amber, #facc6b), transparent);
+      animation: signalSweep 5.5s linear infinite;
+    }
+
+    nav a[aria-current="page"] {
+      color: var(--green);
+    }
+
+    nav a[aria-current="page"]::after {
+      content: "";
+      display: block;
+      height: 2px;
+      margin-top: 4px;
+      border-radius: 999px;
+      background: var(--green);
+    }
+
+    .command-panel,
+    .lab-card,
+    .lab-detail-card,
+    .panel,
+    .briefing,
+    .about-panel,
+    .project-card,
+    .detail-card,
+    .credential-card,
+    .contact-box,
+    .cert-image-wrapper {
+      position: relative;
+      isolation: isolate;
+    }
+
+    .command-panel::after,
+    .lab-card::after,
+    .lab-detail-card::after,
+    .panel::after,
+    .briefing::after,
+    .about-panel::after,
+    .project-card::after,
+    .detail-card::after,
+    .credential-card::after,
+    .contact-box::after,
+    .cert-image-wrapper::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      z-index: -1;
+      border-radius: inherit;
+      background: linear-gradient(135deg, rgba(105, 230, 161, 0.08), transparent 42%, rgba(250, 204, 107, 0.06));
+      opacity: 0.72;
+      pointer-events: none;
+    }
+
+    .section {
+      position: relative;
+    }
+
+    .section::before {
+      content: "";
+      display: block;
+      width: min(100%, 1120px);
+      height: 1px;
+      margin: 0 auto 42px;
+      background: linear-gradient(90deg, transparent, rgba(202, 238, 222, 0.18), transparent);
+    }
+
+    .hero + .section::before,
+    main > .section:first-child::before {
+      display: none;
+    }
+
+    @keyframes signalSweep {
+      from {
+        transform: translateX(-110%);
+      }
+
+      to {
+        transform: translateX(260%);
+      }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      *,
+      *::before,
+      *::after {
+        animation-duration: 0.001ms !important;
+        animation-iteration-count: 1 !important;
+        scroll-behavior: auto !important;
+        transition-duration: 0.001ms !important;
+      }
+    }
+
+    @media (max-width: 640px) {
+      .signal-bar {
+        top: 70px;
+      }
+    }
+    /* interface-upgrade:end */
+
+    .menu-toggle {
+      display: none;
+      align-items: center;
+      justify-content: center;
+      width: 44px;
+      height: 44px;
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      background: rgba(255, 255, 255, 0.055);
+      color: var(--text);
+      cursor: pointer;
+      flex-shrink: 0;
+    }
+    .menu-toggle:hover {
+      border-color: rgba(105, 230, 161, 0.62);
+      background: rgba(105, 230, 161, 0.13);
+    }
+    .menu-toggle svg { width: 20px; height: 20px; }
+    .menu-toggle .icon-close { display: none; }
+    .mobile-nav {
+      display: none;
+      position: fixed;
+      top: 78px;
+      left: 0;
+      right: 0;
+      z-index: 18;
+      border-bottom: 1px solid var(--line);
+      background: rgba(7, 17, 15, 0.96);
+      backdrop-filter: blur(18px);
+      padding: 18px 0 22px;
+    }
+    .mobile-nav ul { display: flex; flex-direction: column; list-style: none; gap: 0; }
+    .mobile-nav a {
+      display: block;
+      padding: 13px 20px;
+      color: #d7e7df;
+      font-size: 15px;
+      border-bottom: 1px solid rgba(202, 238, 222, 0.07);
+    }
+    .mobile-nav a:hover,
+    .mobile-nav a[aria-current="page"] { color: var(--green); background: rgba(105, 230, 161, 0.06); }
+    .mobile-nav a[aria-current="page"]::after { display: none; }
+    body.mobile-menu-open { overflow: hidden; }
+
+  </style>
+</head>
+<body>
+  <a class="skip-link" href="#main-content">Skip to content</a>
+  <header>
+    <div class="container nav">
+      <a class="brand" href="index.html#home" aria-label="Khaneil Campbell portfolio home">
+        <small>Khaneil Campbell</small>
+        <span>Security Operations Portfolio</span>
+      </a>
+
+      <nav aria-label="Primary navigation">
+        <ul>
+          <li><a href="index.html">Home</a></li>
+          <li><a href="lab-details.html" aria-current="page">Labs</a></li>
+          <li><a href="projects.html">Projects</a></li>
+          <li><a href="index.html#about">About</a></li>
+          <li><a href="index.html#contact">Contact</a></li>
+        </ul>
+      </nav>
+
+      <a href="index.html#contact" class="btn">Contact</a>
+      <button class="menu-toggle" aria-label="Open navigation menu" aria-expanded="false" aria-controls="mobile-nav">
+        <svg class="icon-open" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round">
+          <line x1="3" y1="5" x2="17" y2="5"/><line x1="3" y1="10" x2="17" y2="10"/><line x1="3" y1="15" x2="17" y2="15"/>
+        </svg>
+        <svg class="icon-close" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round">
+          <line x1="4" y1="4" x2="16" y2="16"/><line x1="16" y1="4" x2="4" y2="16"/>
+        </svg>
+      </button>
+    </div>
+  </header>
+
+  <nav id="mobile-nav" class="mobile-nav" aria-label="Mobile navigation">
+    <ul>
+      <li><a href="index.html">Home</a></li>
+      <li><a href="lab-details.html">Labs</a></li>
+      <li><a href="projects.html">Projects</a></li>
+      <li><a href="index.html#about">About</a></li>
+      <li><a href="index.html#contact">Contact</a></li>
+    </ul>
+  </nav>
+
+  <div class="signal-bar" aria-hidden="true"><span></span></div>
+
+  <main id="main-content">
+    <section class="hero container" aria-labelledby="page-title">
+      <div class="hero-copy">
+        <p class="eyebrow">Detailed Lab Views</p>
+        <h1 id="page-title">Every lab, expanded like a case file.</h1>
+        <p>
+          Structured case-file views of each security lab — covering the threat scenario, telemetry sources,
+          tool stack, investigation workflow, and evidence outcomes.
+        </p>
+        <div class="hero-actions">
+          <a href="#soc" class="btn btn-primary">SOC Lab</a>
+          <a href="#phishing" class="btn">Phishing IR</a>
+          <a href="#iam" class="btn">IAM Notes</a>
+        </div>
+
+        <div class="metrics" aria-label="Detailed lab metrics">
+          <div class="metric">
+            <strong>3</strong>
+            <span>Lab case views</span>
+          </div>
+          <div class="metric">
+            <strong>4</strong>
+            <span>Workflow phases</span>
+          </div>
+          <div class="metric">
+            <strong>80+</strong>
+            <span>Logons detected</span>
+          </div>
+          <div class="metric">
+            <strong>1</strong>
+            <span>Published deep dive</span>
+          </div>
+        </div>
+      </div>
+
+      <aside class="command-panel" aria-label="Detailed lab preview">
+        <div class="panel-top">
+          <span>Lab Detail Index</span>
+          <span class="pulse">Expanded</span>
+        </div>
+        <div class="terminal">
+          <div class="terminal-line">
+            <span class="terminal-time">SOC</span>
+            <span class="terminal-text">Published case for brute-force detection, SPL logic, and analyst workflow.</span>
+          </div>
+          <div class="terminal-line">
+            <span class="terminal-time">IR</span>
+            <span class="terminal-text">Staged phishing response workflow with host evidence and containment notes.</span>
+          </div>
+          <div class="terminal-line">
+            <span class="terminal-time">IAM</span>
+            <span class="terminal-text">Staged identity security notes for MFA, lifecycle, and recovery workflows.</span>
+          </div>
+        </div>
+      </aside>
+    </section>
+
+    <section class="section container" aria-labelledby="all-labs-title">
+      <div class="section-head">
+        <div>
+          <p class="section-label">All Labs</p>
+          <h2 id="all-labs-title">Lab cases organized by security discipline.</h2>
+          <p class="section-subtext">
+            Each case file documents the threat model, data sources, detection methodology,
+            and analyst workflow behind the lab — mapped to core security operations competencies.
+          </p>
+        </div>
+        <div class="tabs" aria-label="Lab detail tabs">
+          <a href="#soc" class="btn btn-primary">SOC Automation</a>
+          <a href="#phishing" class="btn">Phishing IR</a>
+          <a href="#iam" class="btn">IAM Security</a>
+        </div>
+      </div>
+
+      <div class="lab-stack">
+        <article id="soc" class="lab-detail-card">
+          <div>
+            <p class="card-type">Published Detection Engineering Lab</p>
+            <h3>SOC Automation with Splunk</h3>
+            <p>
+              Simulates a credential-based brute-force attack by ingesting Windows Security Event Logs into
+              Splunk, building SPL detection queries, and producing a structured analyst response workflow
+              with documented triage decisions and measurable detection outcomes.
+            </p>
+            <div class="detail-grid">
+              <div class="detail-card">
+                <p class="kicker">Scenario</p>
+                <p>Repeated failed logons indicate possible credential attack behavior.</p>
+              </div>
+              <div class="detail-card">
+                <p class="kicker">Telemetry</p>
+                <p>Windows Security Logs reviewed and normalized inside Splunk.</p>
+              </div>
+              <div class="detail-card">
+                <p class="kicker">Evidence</p>
+                <p>80+ failed logon attempts identified inside a defined time window.</p>
+              </div>
+            </div>
+            <div class="lab-actions">
+              <a href="soc-automation-lab.html" class="btn btn-primary">Open Full Case</a>
+              <a href="https://github.com/khancam15/soc-automation-splunk-bruteforce-lab" class="btn" target="_blank" rel="noopener noreferrer">GitHub</a>
+            </div>
+            <div class="tags">
+              <span class="tag">Splunk</span>
+              <span class="tag">SPL</span>
+              <span class="tag">Windows Logs</span>
+              <span class="tag">Detection Engineering</span>
+            </div>
+          </div>
+          <div class="timeline" aria-label="SOC Automation workflow">
+            <div class="timeline-item">
+              <strong>Ingest</strong>
+              <p>Collect and normalize Windows authentication events for investigation.</p>
+            </div>
+            <div class="timeline-item">
+              <strong>Detect</strong>
+              <p>Build SPL queries to group failed logon volume by source, user, and time.</p>
+            </div>
+            <div class="timeline-item">
+              <strong>Triage</strong>
+              <p>Review correlated events, tune thresholds, and separate noise from signal.</p>
+            </div>
+            <div class="timeline-item">
+              <strong>Respond</strong>
+              <p>Document analyst actions, escalation logic, and reusable case notes.</p>
+            </div>
+          </div>
+        </article>
+
+        <article id="phishing" class="lab-detail-card">
+          <div>
+            <p class="card-type">Staged Incident Response Lab</p>
+            <h3>Simulated Phishing and IR Lab</h3>
+            <p>
+              Models a phishing-to-malware intrusion chain — from initial user report through host-based
+              indicator analysis, containment decisions, and structured incident documentation aligned
+              with incident response best practices.
+            </p>
+            <div class="detail-grid">
+              <div class="detail-card">
+                <p class="kicker">Scenario</p>
+                <p>User reports suspicious email followed by unusual host behavior.</p>
+              </div>
+              <div class="detail-card">
+                <p class="kicker">Telemetry</p>
+                <p>Host process review, Windows Event Logs, and endpoint investigation notes.</p>
+              </div>
+              <div class="detail-card">
+                <p class="kicker">Evidence Goal</p>
+                <p>Construct an attack timeline linking initial delivery, code execution, persistence mechanisms, and containment actions.</p>
+              </div>
+            </div>
+            <div class="tags">
+              <span class="tag">Incident Response</span>
+              <span class="tag">Sysinternals</span>
+              <span class="tag">Event Logs</span>
+              <span class="tag">Containment</span>
+            </div>
+          </div>
+          <div class="timeline" aria-label="Phishing IR workflow">
+            <div class="timeline-item">
+              <strong>Report</strong>
+              <p>Capture user report, suspected sender, attachment or link, and affected endpoint.</p>
+            </div>
+            <div class="timeline-item">
+              <strong>Analyze</strong>
+              <p>Review process activity, log entries, indicators, and suspicious file behavior.</p>
+            </div>
+            <div class="timeline-item">
+              <strong>Contain</strong>
+              <p>Define isolation, account protection, blocking, and cleanup actions.</p>
+            </div>
+            <div class="timeline-item">
+              <strong>Report</strong>
+              <p>Write an incident summary with impact, evidence, decisions, and next steps.</p>
+            </div>
+          </div>
+        </article>
+
+        <article id="iam" class="lab-detail-card">
+          <div>
+            <p class="card-type">Staged Identity Security Lab</p>
+            <h3>IAM and Access Security Notes</h3>
+            <p>
+              Documents operational identity security scenarios covering role-based access control (RBAC) review,
+              MFA enforcement, account lifecycle governance, privileged access management,
+              and least-privilege enforcement workflows.
+            </p>
+            <div class="detail-grid">
+              <div class="detail-card">
+                <p class="kicker">Scenario</p>
+                <p>Access request or recovery workflow needs validation before approval.</p>
+              </div>
+              <div class="detail-card">
+                <p class="kicker">Telemetry</p>
+                <p>Directory attributes, access groups, MFA state, and support request context.</p>
+              </div>
+              <div class="detail-card">
+                <p class="kicker">Evidence Goal</p>
+                <p>Demonstrate least-privilege enforcement and escalation-resistant access control decision workflows.</p>
+              </div>
+            </div>
+            <div class="tags">
+              <span class="tag">IAM</span>
+              <span class="tag">MFA</span>
+              <span class="tag">Active Directory</span>
+              <span class="tag">Least Privilege</span>
+            </div>
+          </div>
+          <div class="timeline" aria-label="IAM workflow">
+            <div class="timeline-item">
+              <strong>Request</strong>
+              <p>Define the access, account, recovery, or MFA support need.</p>
+            </div>
+            <div class="timeline-item">
+              <strong>Verify</strong>
+              <p>Validate identity, ownership, approval path, and business justification.</p>
+            </div>
+            <div class="timeline-item">
+              <strong>Control</strong>
+              <p>Apply least-privilege, recovery, MFA, and group-membership safeguards.</p>
+            </div>
+            <div class="timeline-item">
+              <strong>Record</strong>
+              <p>Document decision rationale, access changes, and follow-up review points.</p>
+            </div>
+          </div>
+        </article>
+      </div>
+    </section>
+  </main>
+  <script>
+    const toggle = document.querySelector('.menu-toggle');
+    const mobileNav = document.getElementById('mobile-nav');
+    function openMenu() {
+      toggle.classList.add('open'); mobileNav.classList.add('open');
+      toggle.setAttribute('aria-expanded', 'true');
+      toggle.setAttribute('aria-label', 'Close navigation menu');
+      document.body.classList.add('mobile-menu-open');
+    }
+    function closeMenu() {
+      toggle.classList.remove('open'); mobileNav.classList.remove('open');
+      toggle.setAttribute('aria-expanded', 'false');
+      toggle.setAttribute('aria-label', 'Open navigation menu');
+      document.body.classList.remove('mobile-menu-open');
+    }
+    toggle.addEventListener('click', () => toggle.classList.contains('open') ? closeMenu() : openMenu());
+    mobileNav.querySelectorAll('a').forEach(link => link.addEventListener('click', closeMenu));
+    document.addEventListener('keydown', e => { if (e.key === 'Escape') closeMenu(); });
+  </script>
+</body>
+</html>

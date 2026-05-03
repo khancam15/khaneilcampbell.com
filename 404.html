@@ -1,0 +1,374 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Page not found for Khaneil Campbell's security operations portfolio." />
+  <meta name="theme-color" content="#07110f" />
+  <meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'unsafe-inline'; style-src 'unsafe-inline'; img-src 'self'; font-src 'self'; base-uri 'self'; form-action 'none';" />
+  <meta name="referrer" content="strict-origin-when-cross-origin" />
+  <meta name="robots" content="noindex, follow" />
+  <title>Page Not Found | Khaneil Campbell</title>
+  <style>
+    :root {
+      --bg: #07110f;
+      --panel: rgba(14, 23, 20, 0.82);
+      --line: rgba(202, 238, 222, 0.14);
+      --text: #f4fbf7;
+      --muted: #a9bbb3;
+      --green: #69e6a1;
+      --amber: #facc6b;
+      --ink: #07110f;
+      --shadow: 0 28px 80px rgba(0, 0, 0, 0.42);
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      min-height: 100vh;
+      font-family: Arial, Helvetica, sans-serif;
+      color: var(--text);
+      line-height: 1.6;
+      background:
+        linear-gradient(120deg, rgba(105, 230, 161, 0.14), transparent 30%),
+        linear-gradient(240deg, rgba(250, 204, 107, 0.11), transparent 32%),
+        repeating-linear-gradient(90deg, rgba(255, 255, 255, 0.028) 0 1px, transparent 1px 92px),
+        linear-gradient(180deg, #07110f 0%, #0b1512 48%, #07110f 100%);
+      overflow-x: hidden;
+    }
+
+    body::before {
+      content: "";
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      background:
+        linear-gradient(rgba(125, 211, 252, 0.045) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(125, 211, 252, 0.035) 1px, transparent 1px);
+      background-size: 44px 44px;
+      mask-image: linear-gradient(to bottom, black, transparent 74%);
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    .container {
+      width: min(1120px, calc(100% - 40px));
+      margin: 0 auto;
+    }
+
+    header {
+      position: sticky;
+      top: 0;
+      z-index: 20;
+      border-bottom: 1px solid var(--line);
+      background: rgba(7, 17, 15, 0.82);
+      backdrop-filter: blur(14px);
+    }
+
+    .nav {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 20px;
+      min-height: 78px;
+    }
+
+    .brand small,
+    .eyebrow {
+      color: var(--green);
+      font-size: 12px;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+    }
+
+    .brand span {
+      display: block;
+      color: var(--muted);
+      font-size: 14px;
+      margin-top: 2px;
+    }
+
+    nav ul {
+      display: flex;
+      gap: 22px;
+      list-style: none;
+    }
+
+    nav a {
+      color: #d7e7df;
+      font-size: 14px;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 44px;
+      padding: 10px 16px;
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      background: rgba(255, 255, 255, 0.055);
+      color: var(--text);
+      cursor: pointer;
+      font-size: 14px;
+      font-weight: 700;
+      transition: transform 180ms ease, border-color 180ms ease, background 180ms ease;
+    }
+
+    .btn:hover {
+      border-color: rgba(105, 230, 161, 0.62);
+      background: rgba(105, 230, 161, 0.13);
+      transform: translateY(-1px);
+    }
+
+    .btn-primary {
+      background: var(--green);
+      color: var(--ink);
+      border-color: transparent;
+    }
+
+    main {
+      display: grid;
+      place-items: center;
+      min-height: calc(100vh - 80px);
+      padding: 66px 0;
+    }
+
+    .panel {
+      width: min(760px, 100%);
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      background: var(--panel);
+      box-shadow: var(--shadow);
+      padding: 28px;
+      backdrop-filter: blur(16px);
+    }
+
+    h1 {
+      margin-top: 12px;
+      font-size: clamp(42px, 8vw, 76px);
+      line-height: 0.95;
+    }
+
+    p {
+      color: #d5e3dc;
+      font-size: 18px;
+      margin-top: 18px;
+    }
+
+    .actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-top: 26px;
+    }
+
+    @media (max-width: 900px) {
+      nav ul {
+        display: none;
+      }
+    }
+
+    @media (max-width: 640px) {
+      .container {
+        width: min(100% - 28px, 1120px);
+      }
+
+      .nav .btn {
+        display: none;
+      }
+    }
+
+    /* interface-upgrade:start */
+    ::selection {
+      background: rgba(105, 230, 161, 0.28);
+      color: var(--text);
+    }
+
+    :focus-visible {
+      outline: 2px solid var(--green);
+      outline-offset: 4px;
+    }
+
+    .skip-link {
+      position: fixed;
+      left: 16px;
+      top: 16px;
+      z-index: 100;
+      transform: translateY(-140%);
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      background: var(--green);
+      color: var(--ink, #07110f);
+      font-weight: 700;
+      padding: 10px 14px;
+      transition: transform 180ms ease;
+    }
+
+    .skip-link:focus {
+      transform: translateY(0);
+    }
+
+    .signal-bar {
+      position: sticky;
+      top: 78px;
+      z-index: 19;
+      height: 2px;
+      overflow: hidden;
+      background: rgba(202, 238, 222, 0.08);
+    }
+
+    .signal-bar span {
+      display: block;
+      width: 42%;
+      height: 100%;
+      background: linear-gradient(90deg, transparent, var(--green), var(--amber, #facc6b), transparent);
+      animation: signalSweep 5.5s linear infinite;
+    }
+
+    nav a[aria-current="page"] {
+      color: var(--green);
+    }
+
+    nav a[aria-current="page"]::after {
+      content: "";
+      display: block;
+      height: 2px;
+      margin-top: 4px;
+      border-radius: 999px;
+      background: var(--green);
+    }
+
+    .command-panel,
+    .lab-card,
+    .lab-detail-card,
+    .panel,
+    .briefing,
+    .about-panel,
+    .project-card,
+    .detail-card,
+    .credential-card,
+    .contact-box,
+    .cert-image-wrapper {
+      position: relative;
+      isolation: isolate;
+    }
+
+    .command-panel::after,
+    .lab-card::after,
+    .lab-detail-card::after,
+    .panel::after,
+    .briefing::after,
+    .about-panel::after,
+    .project-card::after,
+    .detail-card::after,
+    .credential-card::after,
+    .contact-box::after,
+    .cert-image-wrapper::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      z-index: -1;
+      border-radius: inherit;
+      background: linear-gradient(135deg, rgba(105, 230, 161, 0.08), transparent 42%, rgba(250, 204, 107, 0.06));
+      opacity: 0.72;
+      pointer-events: none;
+    }
+
+    .section {
+      position: relative;
+    }
+
+    .section::before {
+      content: "";
+      display: block;
+      width: min(100%, 1120px);
+      height: 1px;
+      margin: 0 auto 42px;
+      background: linear-gradient(90deg, transparent, rgba(202, 238, 222, 0.18), transparent);
+    }
+
+    .hero + .section::before,
+    main > .section:first-child::before {
+      display: none;
+    }
+
+    @keyframes signalSweep {
+      from {
+        transform: translateX(-110%);
+      }
+
+      to {
+        transform: translateX(260%);
+      }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      *,
+      *::before,
+      *::after {
+        animation-duration: 0.001ms !important;
+        animation-iteration-count: 1 !important;
+        scroll-behavior: auto !important;
+        transition-duration: 0.001ms !important;
+      }
+    }
+
+    @media (max-width: 640px) {
+      .signal-bar {
+        top: 70px;
+      }
+    }
+    /* interface-upgrade:end */
+
+  </style>
+</head>
+<body>
+  <a class="skip-link" href="#main-content">Skip to content</a>
+  <header>
+    <div class="container nav">
+      <a class="brand" href="index.html#home" aria-label="Khaneil Campbell portfolio home">
+        <small>Khaneil Campbell</small>
+        <span>Security Operations Portfolio</span>
+      </a>
+
+      <nav aria-label="Primary navigation">
+        <ul>
+          <li><a href="index.html#home">Home</a></li>
+          <li><a href="labs.html">Featured</a></li>
+          <li><a href="lab-details.html">Labs</a></li>
+          <li><a href="projects.html">Projects</a></li>
+          <li><a href="index.html#credentials">Credentials</a></li>
+          <li><a href="index.html#contact">Contact</a></li>
+        </ul>
+      </nav>
+
+      <a href="index.html" aria-current="page" class="btn">Portfolio</a>
+    </div>
+  </header>
+
+  <div class="signal-bar" aria-hidden="true"><span></span></div>
+
+  <main id="main-content" class="container">
+    <section class="panel" aria-labelledby="page-title">
+      <p class="eyebrow">404</p>
+      <h1 id="page-title">Page not found.</h1>
+      <p>
+        The page may have moved, or the link may be stale. The portfolio is still online.
+      </p>
+      <div class="actions">
+        <a href="index.html" class="btn btn-primary">Back to Home</a>
+        <a href="lab-details.html" class="btn">View Labs</a>
+        <a href="projects.html" class="btn">View Projects</a>
+      </div>
+    </section>
+  </main>
+</body>
+</html>
