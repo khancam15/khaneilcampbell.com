@@ -3,12 +3,19 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta name="description" content="Featured cybersecurity labs by Khaneil Campbell — SOC automation with Splunk, phishing-to-malware incident response, and identity and access management security workflows." />
+  <meta name="description" content="Cybersecurity labs by Khaneil Campbell — SOC automation with Splunk, phishing incident response, and IAM security. Outcome-based documentation with detection logic, triage decisions, and analyst workflows." />
   <meta name="theme-color" content="#07110f" />
   <meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'unsafe-inline'; style-src 'unsafe-inline'; img-src 'self'; font-src 'self'; base-uri 'self'; form-action 'none';" />
   <meta name="referrer" content="strict-origin-when-cross-origin" />
   <meta name="robots" content="index, follow" />
-  <title>Cybersecurity Labs | Khaneil Campbell</title>
+
+  <!-- Open Graph -->
+  <meta property="og:type" content="website" />
+  <meta property="og:title" content="Cybersecurity Labs | Khaneil Campbell — SOC & Detection Engineering" />
+  <meta property="og:description" content="Outcome-based security labs featuring Splunk detection engineering, incident response, and IAM workflows." />
+  <meta property="og:url" content="https://khaneilcampbell.com/labs.html" />
+
+  <title>Cybersecurity Labs | Khaneil Campbell — SOC & Detection Engineering Portfolio</title>
   <style>
     :root {
       --bg: #07110f;
@@ -463,6 +470,34 @@
       cursor: not-allowed;
     }
 
+    .lab-meta {
+      display: grid;
+      gap: 6px;
+      margin-top: 14px;
+      padding: 14px;
+      border: 1px solid rgba(202, 238, 222, 0.1);
+      border-radius: 6px;
+      background: rgba(7, 17, 15, 0.5);
+      font-size: 13px;
+    }
+
+    .lab-meta-row {
+      display: grid;
+      grid-template-columns: 76px 1fr;
+      gap: 8px;
+    }
+
+    .lab-meta-row span:first-child {
+      color: var(--amber);
+      font-family: "SFMono-Regular", Consolas, monospace;
+    }
+
+    .lab-meta-row span:last-child { color: #d8f0e6; }
+
+    @media (max-width: 640px) {
+      .lab-meta-row { grid-template-columns: 1fr; gap: 2px; }
+    }
+
     @media (max-width: 980px) {
       .hero,
       .briefing-grid {
@@ -711,14 +746,16 @@
       <nav aria-label="Primary navigation">
         <ul>
           <li><a href="index.html">Home</a></li>
-          <li><a href="lab-details.html">Labs</a></li>
+          <li><a href="lab-details.html" aria-current="page">Labs</a></li>
           <li><a href="projects.html">Projects</a></li>
           <li><a href="index.html#about">About</a></li>
+          <li><a href="index.html#resume">Resume</a></li>
           <li><a href="index.html#contact">Contact</a></li>
         </ul>
       </nav>
 
-      <a href="index.html#contact" class="btn">Contact</a>
+      <!-- TODO: replace href with actual resume PDF path once file is added -->
+      <a href="resume.pdf" class="btn" target="_blank" rel="noopener noreferrer">Download Resume</a>
       <button class="menu-toggle" aria-label="Open navigation menu" aria-expanded="false" aria-controls="mobile-nav">
         <svg class="icon-open" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round">
           <line x1="3" y1="5" x2="17" y2="5"/><line x1="3" y1="10" x2="17" y2="10"/><line x1="3" y1="15" x2="17" y2="15"/>
@@ -736,6 +773,7 @@
       <li><a href="lab-details.html">Labs</a></li>
       <li><a href="projects.html">Projects</a></li>
       <li><a href="index.html#about">About</a></li>
+      <li><a href="index.html#resume">Resume</a></li>
       <li><a href="index.html#contact">Contact</a></li>
     </ul>
   </nav>
@@ -831,8 +869,13 @@
             Brute-force detection workflow using Windows authentication events, SPL alert logic,
             triage decisions, and repeatable analyst response notes.
           </p>
+          <div class="lab-meta" aria-label="Lab details">
+            <div class="lab-meta-row"><span>Scenario</span><span>Simulated brute-force attack targeting Windows accounts</span></div>
+            <div class="lab-meta-row"><span>Tools</span><span>Splunk, Windows Security Logs (Event ID 4625), SPL</span></div>
+            <div class="lab-meta-row"><span>Outcome</span><span>80+ failed logons detected; triage workflow documented for reuse</span></div>
+          </div>
           <div class="lab-actions">
-            <a href="soc-automation-lab.html" class="btn btn-primary">View Case</a>
+            <a href="soc-automation-lab.html" class="btn btn-primary">View Case Study</a>
             <a href="lab-details.html#soc" class="btn">Details</a>
             <a href="https://github.com/khancam15/soc-automation-splunk-bruteforce-lab" class="btn" target="_blank" rel="noopener noreferrer">GitHub</a>
           </div>
@@ -840,6 +883,7 @@
             <span class="tag">Splunk</span>
             <span class="tag">SPL</span>
             <span class="tag">Windows Logs</span>
+            <span class="tag">Detection</span>
           </div>
         </article>
 
@@ -848,11 +892,16 @@
             <p class="card-type">Incident Response</p>
             <span class="status planned">Staged</span>
           </div>
-          <h3>Simulated Phishing and IR Lab</h3>
+          <h3>Phishing-to-Malware Incident Response Lab</h3>
           <p>
             Phishing-to-malware scenario with host investigation, process review, log evidence,
             containment notes, and executive-ready incident documentation.
           </p>
+          <div class="lab-meta" aria-label="Lab details">
+            <div class="lab-meta-row"><span>Scenario</span><span>Phishing email delivers malware; analyst investigates host indicators</span></div>
+            <div class="lab-meta-row"><span>Tools</span><span>Sysinternals, Windows Event Logs, containment playbook</span></div>
+            <div class="lab-meta-row"><span>Outcome</span><span>Structured IR documentation and containment decision record</span></div>
+          </div>
           <div class="lab-actions">
             <a href="#" class="btn placeholder-link" data-placeholder="true">Case Pending</a>
             <a href="lab-details.html#phishing" class="btn">Details</a>
@@ -871,11 +920,16 @@
             <p class="card-type">Identity Security</p>
             <span class="status planned">Staged</span>
           </div>
-          <h3>IAM and Access Security Notes</h3>
+          <h3>Identity &amp; Access Management Security Lab</h3>
           <p>
             Operational access-control scenarios covering MFA, least privilege, recovery controls,
             account lifecycle decisions, and escalation-resistant support workflows.
           </p>
+          <div class="lab-meta" aria-label="Lab details">
+            <div class="lab-meta-row"><span>Scenario</span><span>Account lifecycle, MFA enforcement, and least-privilege policy review</span></div>
+            <div class="lab-meta-row"><span>Tools</span><span>Active Directory, MFA policies, PAM workflows</span></div>
+            <div class="lab-meta-row"><span>Outcome</span><span>Access governance documentation and escalation-resistant support flows</span></div>
+          </div>
           <div class="lab-actions">
             <a href="#" class="btn placeholder-link" data-placeholder="true">Case Pending</a>
             <a href="lab-details.html#iam" class="btn">Details</a>
