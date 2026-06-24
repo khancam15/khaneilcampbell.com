@@ -3,1268 +3,1434 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta name="description" content="Cybersecurity portfolio of Khaneil Campbell featuring SOC labs, Splunk detection engineering, incident response workflows, IAM security, and AI automation projects." />
-  <meta name="theme-color" content="#07110f" />
-  <meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'unsafe-inline'; style-src 'unsafe-inline'; img-src 'self'; font-src 'self'; base-uri 'self'; form-action 'none';" />
+  <meta name="description" content="Cybersecurity portfolio of Khaneil Campbell — SOC Analyst and Detection Engineer with hands-on labs in Splunk, incident response, IAM, and AI automation." />
+  <meta name="theme-color" content="#080d14" />
+  <meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'unsafe-inline'; style-src 'unsafe-inline'; img-src 'self' data:; font-src 'self'; base-uri 'self'; form-action 'none';" />
   <meta name="referrer" content="strict-origin-when-cross-origin" />
   <meta name="robots" content="index, follow" />
 
   <!-- Open Graph -->
   <meta property="og:type" content="website" />
   <meta property="og:title" content="Khaneil Campbell | SOC Analyst & Detection Engineering Portfolio" />
-  <meta property="og:description" content="Cybersecurity portfolio featuring SOC labs, Splunk detection engineering, incident response workflows, IAM security, and AI automation projects." />
+  <meta property="og:description" content="Cybersecurity portfolio featuring SOC labs, Splunk detection engineering, incident response, IAM, and AI automation." />
   <meta property="og:url" content="https://khaneilcampbell.com/" />
-
-  <!-- Twitter / LinkedIn card -->
-  <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="Khaneil Campbell | SOC Analyst & Detection Engineering Portfolio" />
-  <meta name="twitter:description" content="Cybersecurity portfolio featuring SOC labs, Splunk detection engineering, incident response, IAM security, and AI automation." />
 
   <title>Khaneil Campbell | SOC Analyst & Detection Engineering Portfolio</title>
 
   <style>
+    /* ── Reset & tokens ── */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; font-size: 16px; }
+
     :root {
-      --bg: #07110f;
-      --panel: rgba(14, 23, 20, 0.82);
-      --panel-strong: rgba(18, 30, 26, 0.94);
-      --line: rgba(202, 238, 222, 0.14);
-      --text: #f4fbf7;
-      --muted: #a9bbb3;
-      --green: #69e6a1;
-      --cyan: #7dd3fc;
-      --amber: #facc6b;
-      --ink: #07110f;
-      --shadow: 0 28px 80px rgba(0, 0, 0, 0.42);
+      --bg:        #080d14;
+      --bg2:       #0c1424;
+      --bg3:       #111c30;
+      --line:      rgba(255,255,255,0.09);
+      --text:      #f0f6ff;
+      --muted:     #8aa0be;
+      --green:     #38bdf8;
+      --green2:    #0ea5e9;
+      --amber:     #f9c847;
+      --cyan:      #818cf8;
+      --ink:       #04080f;
+      --radius:    10px;
+      --nav-h:     72px;
     }
 
-    * { box-sizing: border-box; margin: 0; padding: 0; }
-
-    html { scroll-behavior: smooth; }
-
     body {
-      min-height: 100vh;
-      font-family: Arial, Helvetica, sans-serif;
+      background: var(--bg);
       color: var(--text);
+      font-family: "Helvetica Neue", Arial, Helvetica, sans-serif;
       line-height: 1.6;
-      background:
-        linear-gradient(120deg, rgba(105, 230, 161, 0.14), transparent 30%),
-        linear-gradient(240deg, rgba(250, 204, 107, 0.11), transparent 32%),
-        repeating-linear-gradient(90deg, rgba(255, 255, 255, 0.028) 0 1px, transparent 1px 92px),
-        linear-gradient(180deg, #07110f 0%, #0b1512 48%, #07110f 100%);
       overflow-x: hidden;
     }
 
-    body::before {
-      content: "";
-      position: fixed;
-      inset: 0;
-      pointer-events: none;
-      background:
-        linear-gradient(rgba(125, 211, 252, 0.045) 1px, transparent 1px),
-        linear-gradient(90deg, rgba(125, 211, 252, 0.035) 1px, transparent 1px);
-      background-size: 44px 44px;
-      mask-image: linear-gradient(to bottom, black, transparent 74%);
-    }
+    ::selection { background: rgba(56,189,248,0.25); }
+    :focus-visible { outline: 2px solid var(--green); outline-offset: 3px; }
 
     a { color: inherit; text-decoration: none; }
-    a:not(.btn):hover { color: var(--green); text-decoration: underline; text-underline-offset: 3px; }
 
-    .container { width: min(1120px, calc(100% - 40px)); margin: 0 auto; }
+    .container { width: min(1100px, calc(100% - 48px)); margin: 0 auto; }
 
-    /* ── Header & Nav ── */
-    header {
-      position: sticky;
-      top: 0;
-      z-index: 20;
-      border-bottom: 1px solid var(--line);
-      background: rgba(7, 17, 15, 0.82);
-      backdrop-filter: blur(14px);
-    }
-
-    .nav {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 20px;
-      min-height: 78px;
-    }
-
-    .brand small,
-    .eyebrow,
-    .section-label,
-    .card-type,
-    .kicker {
-      color: var(--green);
-      font-size: 12px;
-      letter-spacing: 0.22em;
-      text-transform: uppercase;
-    }
-
-    .brand span { display: block; color: var(--muted); font-size: 14px; margin-top: 2px; }
-
-    nav ul { display: flex; gap: 22px; list-style: none; }
-    nav a { color: #d7e7df; font-size: 14px; }
-
-    nav a[aria-current="page"] { color: var(--green); }
-    nav a[aria-current="page"]::after {
-      content: "";
-      display: block;
-      height: 2px;
-      margin-top: 4px;
-      border-radius: 999px;
-      background: var(--green);
-    }
-
-    .menu-toggle {
-      display: none;
-      align-items: center;
-      justify-content: center;
-      width: 44px;
-      height: 44px;
-      border: 1px solid var(--line);
-      border-radius: 8px;
-      background: rgba(255, 255, 255, 0.055);
-      color: var(--text);
-      cursor: pointer;
-      flex-shrink: 0;
-    }
-    .menu-toggle:hover { border-color: rgba(105, 230, 161, 0.62); background: rgba(105, 230, 161, 0.13); }
-    .menu-toggle svg { width: 20px; height: 20px; }
-    .menu-toggle .icon-close { display: none; }
-
-    .mobile-nav {
-      display: none;
-      position: fixed;
-      top: 78px;
-      left: 0;
-      right: 0;
-      z-index: 18;
-      border-bottom: 1px solid var(--line);
-      background: rgba(7, 17, 15, 0.96);
-      backdrop-filter: blur(18px);
-      padding: 18px 0 22px;
-    }
-    .mobile-nav ul { display: flex; flex-direction: column; list-style: none; gap: 0; }
-    .mobile-nav a { display: block; padding: 13px 20px; color: #d7e7df; font-size: 15px; border-bottom: 1px solid rgba(202, 238, 222, 0.07); }
-    .mobile-nav a:hover, .mobile-nav a[aria-current="page"] { color: var(--green); background: rgba(105, 230, 161, 0.06); }
-    .mobile-nav a[aria-current="page"]::after { display: none; }
-    body.mobile-menu-open { overflow: hidden; }
-
-    /* ── Buttons ── */
-    .btn {
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      min-height: 44px;
-      padding: 10px 18px;
-      border: 1px solid var(--line);
-      border-radius: 8px;
-      background: rgba(255, 255, 255, 0.055);
-      color: var(--text);
-      cursor: pointer;
-      font-size: 14px;
-      font-weight: 700;
-      transition: transform 180ms ease, border-color 180ms ease, background 180ms ease;
-      text-decoration: none;
-    }
-    .btn:hover { border-color: rgba(105, 230, 161, 0.62); background: rgba(105, 230, 161, 0.13); transform: translateY(-1px); color: var(--text); }
-
-    .btn-primary { background: var(--green); color: var(--ink); border-color: transparent; }
-    .btn-primary:hover { background: #8df0b8; color: var(--ink); }
-
-    .placeholder-link { opacity: 0.64; cursor: not-allowed; }
-
-    /* ── Accessibility ── */
-    ::selection { background: rgba(105, 230, 161, 0.28); color: var(--text); }
-    :focus-visible { outline: 2px solid var(--green); outline-offset: 4px; }
-
+    /* ── Skip link ── */
     .skip-link {
-      position: fixed;
-      left: 16px;
-      top: 16px;
-      z-index: 100;
-      transform: translateY(-140%);
-      border: 1px solid var(--line);
-      border-radius: 8px;
-      background: var(--green);
-      color: var(--ink);
-      font-weight: 700;
-      padding: 10px 14px;
-      transition: transform 180ms ease;
+      position: fixed; left: 16px; top: 16px; z-index: 200;
+      transform: translateY(-200%);
+      background: var(--green); color: var(--ink);
+      font-weight: 700; padding: 10px 14px; border-radius: 6px;
+      transition: transform 160ms;
     }
     .skip-link:focus { transform: translateY(0); }
 
-    /* ── Signal bar ── */
-    .signal-bar {
-      position: sticky;
-      top: 78px;
-      z-index: 19;
-      height: 2px;
+    /* ── NAV ── */
+    nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+      height: var(--nav-h);
+      display: flex; align-items: center;
+      padding: 0 40px;
+      background: rgba(8,13,20,0.88);
+      backdrop-filter: blur(18px);
+      border-bottom: 1px solid var(--line);
+      transition: background 300ms;
+    }
+
+    .nav-inner {
+      display: flex; align-items: center;
+      justify-content: space-between;
+      width: 100%;
+      gap: 24px;
+    }
+
+    .nav-brand {
+      display: flex; flex-direction: column;
+      gap: 1px;
+    }
+    .nav-brand strong {
+      font-size: 15px; font-weight: 800;
+      letter-spacing: 0.08em; text-transform: uppercase;
+      color: var(--text);
+    }
+    .nav-brand small {
+      font-size: 11px; letter-spacing: 0.18em;
+      text-transform: uppercase; color: var(--green);
+    }
+
+    .nav-links {
+      display: flex; gap: 32px; list-style: none;
+    }
+    .nav-links a {
+      font-size: 13px; font-weight: 600;
+      letter-spacing: 0.1em; text-transform: uppercase;
+      color: var(--muted);
+      transition: color 180ms;
+    }
+    .nav-links a:hover, .nav-links a.active { color: var(--text); }
+    .nav-links a.active {
+      position: relative;
+    }
+    .nav-links a.active::after {
+      content: "";
+      position: absolute; bottom: -4px; left: 0; right: 0;
+      height: 2px; border-radius: 2px;
+      background: var(--green);
+    }
+
+    .nav-social {
+      display: flex; gap: 14px; align-items: center;
+    }
+    .nav-social a {
+      font-size: 12px; font-weight: 700;
+      letter-spacing: 0.08em; text-transform: uppercase;
+      color: var(--muted);
+      transition: color 180ms;
+    }
+    .nav-social a:hover { color: var(--green); }
+
+    /* hamburger */
+    .nav-toggle {
+      display: none;
+      flex-direction: column; gap: 5px;
+      background: none; border: none;
+      cursor: pointer; padding: 4px;
+    }
+    .nav-toggle span {
+      display: block; width: 22px; height: 2px;
+      background: var(--text); border-radius: 2px;
+      transition: transform 200ms, opacity 200ms;
+    }
+    .nav-toggle.open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+    .nav-toggle.open span:nth-child(2) { opacity: 0; }
+    .nav-toggle.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+
+    .mobile-menu {
+      display: none;
+      position: fixed; inset: 0; top: var(--nav-h); z-index: 90;
+      background: rgba(8,13,20,0.97);
+      backdrop-filter: blur(20px);
+      flex-direction: column;
+      padding: 40px 32px;
+      gap: 8px;
+    }
+    .mobile-menu.open { display: flex; }
+    .mobile-menu a {
+      font-size: 28px; font-weight: 800;
+      letter-spacing: 0.06em; text-transform: uppercase;
+      color: var(--muted);
+      padding: 10px 0;
+      border-bottom: 1px solid var(--line);
+      transition: color 180ms;
+    }
+    .mobile-menu a:hover { color: var(--green); }
+
+    /* ── HERO ── */
+    #hero {
+      min-height: 100vh;
+      display: flex; flex-direction: column;
+      align-items: center; justify-content: center;
+      text-align: center;
+      padding: calc(var(--nav-h) + 60px) 24px 80px;
+      position: relative;
       overflow: hidden;
-      background: rgba(202, 238, 222, 0.08);
     }
-    .signal-bar span {
+
+    /* large bg number like the reference athlete site */
+    #hero::before {
+      content: "SOC";
+      position: absolute;
+      top: 50%; left: 50%;
+      transform: translate(-50%, -52%);
+      font-size: clamp(180px, 32vw, 420px);
+      font-weight: 900;
+      letter-spacing: -0.06em;
+      color: rgba(56,189,248,0.04);
+      pointer-events: none;
+      user-select: none;
+      white-space: nowrap;
+      line-height: 1;
+    }
+
+    /* fine grid overlay */
+    #hero::after {
+      content: "";
+      position: absolute; inset: 0;
+      background:
+        linear-gradient(rgba(56,189,248,0.025) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(56,189,248,0.02) 1px, transparent 1px);
+      background-size: 52px 52px;
+      mask-image: radial-gradient(ellipse 80% 60% at 50% 50%, black, transparent);
+      pointer-events: none;
+    }
+
+    .hero-eyebrow {
+      font-size: 12px; font-weight: 700;
+      letter-spacing: 0.3em; text-transform: uppercase;
+      color: var(--green);
+      margin-bottom: 20px;
+      position: relative;
+      display: flex; align-items: center; gap: 12px;
+      justify-content: center;
+    }
+    .hero-eyebrow::before, .hero-eyebrow::after {
+      content: "";
+      width: 40px; height: 1px;
+      background: var(--green); opacity: 0.5;
+    }
+
+    .hero-name {
+      font-size: clamp(48px, 10vw, 128px);
+      font-weight: 900;
+      letter-spacing: -0.03em;
+      line-height: 0.92;
+      text-transform: uppercase;
+      position: relative;
+    }
+
+    .hero-name .first { display: block; color: var(--text); }
+    .hero-name .last  { display: block; color: var(--green); }
+
+    .hero-role {
+      margin-top: 24px;
+      font-size: clamp(13px, 1.8vw, 16px);
+      font-weight: 600;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: var(--muted);
+      position: relative;
+    }
+
+    .hero-divider {
+      display: inline-block;
+      margin: 0 12px;
+      color: var(--green);
+      opacity: 0.6;
+    }
+
+    .hero-stats {
+      display: flex; gap: 0;
+      margin-top: 52px;
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      overflow: hidden;
+      position: relative;
+    }
+
+    .hero-stat {
+      flex: 1;
+      padding: 18px 24px;
+      text-align: center;
+      border-right: 1px solid var(--line);
+      background: rgba(14,23,18,0.6);
+      backdrop-filter: blur(10px);
+    }
+    .hero-stat:last-child { border-right: none; }
+
+    .hero-stat strong {
       display: block;
-      width: 42%;
-      height: 100%;
-      background: linear-gradient(90deg, transparent, var(--green), var(--amber), transparent);
-      animation: signalSweep 5.5s linear infinite;
+      font-size: clamp(26px,4vw,38px);
+      font-weight: 900;
+      color: var(--green);
+      line-height: 1;
+    }
+    .hero-stat span {
+      display: block;
+      font-size: 11px; font-weight: 600;
+      letter-spacing: 0.14em; text-transform: uppercase;
+      color: var(--muted);
+      margin-top: 6px;
     }
 
-    @keyframes signalSweep {
-      from { transform: translateX(-110%); }
-      to   { transform: translateX(260%); }
+    .hero-cta {
+      display: flex; flex-wrap: wrap;
+      gap: 12px; justify-content: center;
+      margin-top: 36px;
+      position: relative;
     }
 
-    /* ── Hero ── */
-    .hero {
-      display: grid;
-      grid-template-columns: minmax(0, 1.08fr) minmax(340px, 0.92fr);
-      gap: 34px;
-      align-items: center;
-      min-height: calc(100vh - 78px);
-      padding: 58px 0 44px;
+    .btn {
+      display: inline-flex; align-items: center; gap: 8px;
+      min-height: 46px; padding: 11px 24px;
+      border-radius: 6px;
+      font-size: 13px; font-weight: 700;
+      letter-spacing: 0.08em; text-transform: uppercase;
+      transition: transform 160ms, background 160ms, border-color 160ms;
+      cursor: pointer; border: none;
+    }
+    .btn:hover { transform: translateY(-2px); }
+    .btn-green  { background: var(--green); color: var(--ink); }
+    .btn-green:hover { background: #7dd3fa; }
+    .btn-outline {
+      background: transparent;
+      border: 1.5px solid rgba(255,255,255,0.18);
+      color: var(--text);
+    }
+    .btn-outline:hover { border-color: var(--green); color: var(--green); }
+
+    .scroll-hint {
+      position: absolute; bottom: 32px; left: 50%;
+      transform: translateX(-50%);
+      display: flex; flex-direction: column;
+      align-items: center; gap: 8px;
+      color: var(--muted);
+      font-size: 11px; letter-spacing: 0.18em; text-transform: uppercase;
+    }
+    .scroll-arrow {
+      width: 20px; height: 20px;
+      border-right: 1.5px solid var(--muted);
+      border-bottom: 1.5px solid var(--muted);
+      transform: rotate(45deg);
+      animation: bounceDown 1.8s ease-in-out infinite;
+    }
+    @keyframes bounceDown {
+      0%,100% { transform: rotate(45deg) translateY(0); }
+      50%      { transform: rotate(45deg) translateY(5px); }
     }
 
-    h1 {
-      max-width: 850px;
+    /* ── Section shared ── */
+    section { padding: 100px 0; }
+
+    .sec-label {
+      font-size: 11px; font-weight: 700;
+      letter-spacing: 0.28em; text-transform: uppercase;
+      color: var(--green);
+      margin-bottom: 14px;
+    }
+
+    .sec-title {
+      font-size: clamp(32px,5vw,60px);
+      font-weight: 900;
+      letter-spacing: -0.02em;
+      line-height: 1;
+      text-transform: uppercase;
+    }
+
+    .sec-sub {
       margin-top: 14px;
-      font-size: clamp(40px, 7.5vw, 78px);
-      line-height: 0.97;
-    }
-
-    .hero-copy .positioning {
-      max-width: 680px;
-      margin-top: 20px;
-      color: #d5e3dc;
-      font-size: clamp(16px, 2vw, 19px);
-      line-height: 1.65;
-    }
-
-    .hero-copy .intro-para {
-      max-width: 680px;
-      margin-top: 14px;
+      max-width: 560px;
       color: var(--muted);
       font-size: 15px;
       line-height: 1.7;
     }
 
-    .hero-actions, .lab-actions, .contact-actions, .action-group {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 10px;
+    .divider {
+      width: 100%; height: 1px;
+      background: linear-gradient(90deg, transparent, var(--line), transparent);
     }
-    .hero-actions { margin-top: 28px; }
 
-    /* ── Metrics ── */
-    .metrics {
+    /* ── ABOUT ── */
+    #about .about-grid {
       display: grid;
-      grid-template-columns: repeat(4, 1fr);
-      gap: 12px;
-      margin-top: 22px;
+      grid-template-columns: 380px 1fr;
+      gap: 48px;
+      align-items: start;
+      margin-top: 52px;
     }
 
-    .metric {
+    /* profile card */
+    .profile-card {
       border: 1px solid var(--line);
-      border-radius: 8px;
-      background: rgba(18, 30, 26, 0.7);
-      padding: 16px;
-      backdrop-filter: blur(16px);
+      border-radius: 16px;
+      background: var(--bg2);
+      overflow: hidden;
+      position: sticky;
+      top: calc(var(--nav-h) + 24px);
     }
-    .metric strong { display: block; color: var(--green); font-size: 28px; line-height: 1; }
-    .metric span { display: block; color: var(--muted); font-size: 13px; margin-top: 8px; }
 
-    /* ── Command panel ── */
-    .command-panel {
-      border: 1px solid var(--line);
-      border-radius: 8px;
-      background: var(--panel);
-      box-shadow: var(--shadow);
-      backdrop-filter: blur(16px);
+    .profile-photo {
+      width: 100%;
+      aspect-ratio: 4/5;
+      background: var(--bg3);
+      display: flex; align-items: center; justify-content: center;
       overflow: hidden;
       position: relative;
-      isolation: isolate;
-    }
-    .command-panel::after {
-      content: "";
-      position: absolute;
-      inset: 0;
-      z-index: -1;
-      border-radius: inherit;
-      background: linear-gradient(135deg, rgba(105, 230, 161, 0.08), transparent 42%, rgba(250, 204, 107, 0.06));
-      pointer-events: none;
     }
 
-    .panel-top {
-      display: flex;
-      justify-content: space-between;
-      gap: 14px;
-      padding: 14px 16px;
-      border-bottom: 1px solid var(--line);
-      background: rgba(255, 255, 255, 0.035);
-      color: var(--muted);
-      font-size: 13px;
+    /* placeholder shown when no image */
+    .profile-photo-placeholder {
+      display: flex; flex-direction: column;
+      align-items: center; justify-content: center;
+      gap: 12px;
+      width: 100%; height: 100%;
+      background: linear-gradient(160deg, var(--bg3), var(--bg2));
     }
-
-    .pulse {
-      display: inline-flex;
-      align-items: center;
-      gap: 8px;
+    .profile-initials {
+      width: 100px; height: 100px;
+      border-radius: 50%;
+      border: 2px solid var(--green);
+      display: flex; align-items: center; justify-content: center;
+      font-size: 36px; font-weight: 900;
       color: var(--green);
-      font-weight: 700;
+      letter-spacing: 0.04em;
     }
-    .pulse::before {
-      content: "";
-      width: 9px;
-      height: 9px;
-      border-radius: 999px;
-      background: var(--green);
-      box-shadow: 0 0 0 8px rgba(105, 230, 161, 0.12);
+    .profile-photo-placeholder p {
+      font-size: 12px; color: var(--muted);
+      letter-spacing: 0.12em; text-transform: uppercase;
     }
 
-    .terminal {
-      display: grid;
-      gap: 12px;
-      padding: 18px;
-      font-family: "SFMono-Regular", Consolas, "Liberation Mono", monospace;
-      font-size: 13px;
-    }
-    .terminal-line {
-      display: grid;
-      grid-template-columns: 96px 1fr;
-      gap: 12px;
-      padding: 12px;
-      border: 1px solid rgba(255, 255, 255, 0.08);
-      border-radius: 8px;
-      background: rgba(7, 17, 15, 0.66);
-    }
-    .terminal-time { color: var(--amber); }
-    .terminal-text { color: #d8f8e6; }
-
-    /* ── Sections ── */
-    .section {
-      padding: 72px 0;
-      position: relative;
-    }
-    .section::before {
-      content: "";
+    /* actual image when added */
+    .profile-photo img {
+      width: 100%; height: 100%;
+      object-fit: cover; object-position: center top;
       display: block;
-      width: min(100%, 1120px);
-      height: 1px;
-      margin: 0 auto 52px;
-      background: linear-gradient(90deg, transparent, rgba(202, 238, 222, 0.18), transparent);
-    }
-    .hero + .section::before,
-    main > .section:first-child::before { display: none; }
-
-    .section-head {
-      display: flex;
-      align-items: end;
-      justify-content: space-between;
-      gap: 24px;
-      margin-bottom: 28px;
     }
 
-    h2 {
-      max-width: 760px;
-      margin-top: 8px;
-      font-size: clamp(28px, 4vw, 46px);
-      line-height: 1.05;
+    .profile-facts {
+      padding: 24px;
+      display: grid; gap: 12px;
     }
-
-    .section-subtext {
-      max-width: 660px;
+    .fact-row {
+      display: flex; justify-content: space-between;
+      align-items: baseline; gap: 12px;
+      padding-bottom: 12px;
+      border-bottom: 1px solid var(--line);
+      font-size: 14px;
+    }
+    .fact-row:last-child { border-bottom: none; padding-bottom: 0; }
+    .fact-label {
       color: var(--muted);
-      margin-top: 12px;
-      line-height: 1.65;
+      font-size: 11px; font-weight: 700;
+      letter-spacing: 0.14em; text-transform: uppercase;
+    }
+    .fact-value {
+      color: var(--text);
+      font-weight: 600;
+      text-align: right;
+    }
+    .fact-value.green { color: var(--green); }
+
+    /* about right column */
+    .about-content {}
+    .about-content h2 { margin-bottom: 20px; }
+
+    .about-body {
+      color: var(--muted);
+      font-size: 16px; line-height: 1.8;
+    }
+    .about-body p + p { margin-top: 14px; }
+
+    .motto {
+      margin-top: 28px;
+      padding: 20px 24px;
+      border-left: 3px solid var(--green);
+      background: var(--bg2);
+      border-radius: 0 var(--radius) var(--radius) 0;
+      font-size: 17px; font-style: italic;
+      color: var(--text);
+      line-height: 1.5;
     }
 
-    /* ── Shared card base ── */
-    .lab-card,
-    .briefing,
-    .about-panel,
-    .credential-card,
-    .contact-box,
-    .skill-card,
-    .role-tag-box,
-    .case-study-card,
-    .timeline-item {
-      border: 1px solid var(--line);
-      border-radius: 8px;
-      background: var(--panel);
-      backdrop-filter: blur(16px);
-      position: relative;
-      isolation: isolate;
+    .about-targets {
+      margin-top: 32px;
     }
-
-    .lab-card::after,
-    .briefing::after,
-    .about-panel::after,
-    .credential-card::after,
-    .contact-box::after,
-    .skill-card::after,
-    .case-study-card::after {
-      content: "";
-      position: absolute;
-      inset: 0;
-      z-index: -1;
-      border-radius: inherit;
-      background: linear-gradient(135deg, rgba(105, 230, 161, 0.07), transparent 42%, rgba(250, 204, 107, 0.05));
-      pointer-events: none;
+    .about-targets h3 {
+      font-size: 13px; font-weight: 700;
+      letter-spacing: 0.16em; text-transform: uppercase;
+      color: var(--green); margin-bottom: 14px;
     }
-
-    /* ── Lab Cards ── */
-    .lab-grid {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 18px;
-    }
-
-    .lab-card {
-      display: flex;
-      min-height: 420px;
-      flex-direction: column;
-      padding: 22px;
-      box-shadow: none;
-      transition: transform 180ms ease, border-color 180ms ease, background 180ms ease;
-    }
-    .lab-card:hover {
-      transform: translateY(-4px);
-      border-color: rgba(125, 211, 252, 0.42);
-      background: var(--panel-strong);
-    }
-
-    .card-top {
-      display: flex;
-      justify-content: space-between;
-      gap: 14px;
-      align-items: flex-start;
-      margin-bottom: 14px;
-    }
-
-    .status {
-      border: 1px solid rgba(105, 230, 161, 0.34);
-      border-radius: 999px;
-      color: #c6f6d8;
-      padding: 4px 10px;
-      font-size: 11px;
-      letter-spacing: 0.05em;
-      font-weight: 700;
-      white-space: nowrap;
-      text-transform: uppercase;
-    }
-    .status.staged { border-color: rgba(250, 204, 107, 0.42); color: #ffe6a3; }
-    .status.in-progress { border-color: rgba(125, 211, 252, 0.42); color: #bae6fd; }
-
-    .lab-card h3 { font-size: 22px; line-height: 1.15; margin-bottom: 10px; }
-    .lab-card p { color: #c8d8d0; font-size: 14px; line-height: 1.6; }
-
-    .lab-meta {
-      display: grid;
-      gap: 6px;
-      margin-top: 14px;
-      padding: 14px;
-      border: 1px solid rgba(202, 238, 222, 0.1);
-      border-radius: 6px;
-      background: rgba(7, 17, 15, 0.5);
-      font-size: 13px;
-    }
-    .lab-meta-row {
-      display: grid;
-      grid-template-columns: 76px 1fr;
-      gap: 8px;
-    }
-    .lab-meta-row span:first-child { color: var(--amber); font-family: "SFMono-Regular", Consolas, monospace; }
-    .lab-meta-row span:last-child { color: #d8f0e6; }
-
-    .lab-actions { margin-top: 16px; }
-
-    .tags {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 7px;
-      margin-top: auto;
-      padding-top: 18px;
-    }
-    .tag {
-      border: 1px solid rgba(255, 255, 255, 0.11);
-      border-radius: 999px;
-      background: rgba(255, 255, 255, 0.045);
-      color: #d7e7df;
-      font-size: 12px;
-      padding: 5px 10px;
-    }
-
-    /* ── Featured Case Study ── */
-    .case-study-card {
-      padding: 32px;
-      box-shadow: none;
-    }
-
-    .case-study-inner {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 32px;
-      align-items: start;
-    }
-
-    .case-study-card h3 { font-size: 30px; line-height: 1.1; margin: 10px 0 14px; }
-    .case-study-card p { color: #c8d8d0; line-height: 1.65; }
-
-    .case-result {
-      display: flex;
-      align-items: baseline;
-      gap: 10px;
-      margin-top: 20px;
-      padding: 14px 18px;
-      border: 1px solid rgba(105, 230, 161, 0.3);
-      border-radius: 8px;
-      background: rgba(105, 230, 161, 0.07);
-    }
-    .case-result strong { color: var(--green); font-size: 32px; line-height: 1; }
-    .case-result span { color: #c8d8d0; font-size: 14px; }
-
-    .case-steps { display: grid; gap: 12px; }
-    .case-step {
-      display: grid;
-      grid-template-columns: 82px 1fr;
-      gap: 12px;
-      padding: 14px;
-      border: 1px solid rgba(255, 255, 255, 0.08);
-      border-radius: 8px;
-      background: rgba(7, 17, 15, 0.5);
-      font-size: 14px;
-    }
-    .case-step strong { color: var(--amber); font-family: "SFMono-Regular", Consolas, monospace; font-size: 13px; }
-    .case-step span { color: #d8f0e6; }
-
-    /* ── Skills grid ── */
-    .skill-grid {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 18px;
-    }
-
-    .skill-card {
-      padding: 22px;
-      box-shadow: none;
-    }
-    .skill-card h3 { font-size: 17px; margin: 8px 0 14px; }
-    .skill-card ul { list-style: none; display: grid; gap: 8px; }
-    .skill-card li {
-      color: #c8d8d0;
-      font-size: 14px;
-      padding-left: 14px;
-      position: relative;
-    }
-    .skill-card li::before {
-      content: "›";
-      position: absolute;
-      left: 0;
-      color: var(--green);
-      font-weight: 700;
-    }
-
-    /* ── Roles section ── */
-    .roles-grid {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 12px;
+    .role-chips {
+      display: flex; flex-wrap: wrap; gap: 10px;
     }
     .role-chip {
-      border: 1px solid rgba(125, 211, 252, 0.3);
-      border-radius: 8px;
-      background: rgba(125, 211, 252, 0.07);
+      padding: 8px 16px;
+      border: 1.5px solid rgba(56,189,248,0.3);
+      border-radius: 999px;
+      font-size: 13px; font-weight: 600;
       color: var(--cyan);
-      font-size: 14px;
-      font-weight: 700;
-      padding: 10px 18px;
+      background: rgba(56,189,248,0.05);
       letter-spacing: 0.02em;
     }
 
-    /* ── Briefing / method ── */
-    .briefing-grid, .about-grid, .credential-grid {
+    /* ── SKILLS ── */
+    #skills { background: var(--bg2); }
+
+    .skills-grid {
       display: grid;
       grid-template-columns: 1fr 1fr;
-      gap: 18px;
+      gap: 48px;
+      margin-top: 52px;
+      align-items: start;
     }
 
-    .briefing, .about-panel, .credential-card { padding: 24px; box-shadow: none; }
-    .briefing h3, .about-panel h3, .credential-card h3 { font-size: 22px; margin: 10px 0 10px; }
-    .briefing p, .about-panel p, .credential-card p { color: #c8d8d0; font-size: 14px; line-height: 1.7; }
+    .skills-intro {
+      color: var(--muted); font-size: 15px; line-height: 1.8;
+      margin-top: 10px;
+    }
 
-    .timeline { display: grid; gap: 12px; }
-    .timeline-item {
+    .skill-bars { display: grid; gap: 22px; }
+
+    .skill-item {}
+    .skill-header {
+      display: flex; justify-content: space-between;
+      align-items: baseline; margin-bottom: 8px;
+    }
+    .skill-name {
+      font-size: 13px; font-weight: 700;
+      letter-spacing: 0.08em; text-transform: uppercase;
+    }
+    .skill-pct {
+      font-size: 13px; font-weight: 700;
+      color: var(--green);
+    }
+    .skill-track {
+      height: 4px; background: rgba(255,255,255,0.08);
+      border-radius: 4px; overflow: hidden;
+    }
+    .skill-fill {
+      height: 100%;
+      background: linear-gradient(90deg, var(--green2), var(--green));
+      border-radius: 4px;
+      transition: width 1.2s cubic-bezier(.22,1,.36,1);
+      width: 0; /* animated in via JS */
+    }
+
+    /* ── LABS / GALLERY ── */
+    #labs .labs-head {
+      display: flex; justify-content: space-between;
+      align-items: flex-end; gap: 24px;
+      margin-bottom: 40px;
+    }
+
+    .filter-row {
+      display: flex; gap: 8px; flex-wrap: wrap;
+    }
+    .filter-btn {
+      padding: 8px 16px;
+      border: 1.5px solid var(--line);
+      border-radius: 999px;
+      background: transparent;
+      color: var(--muted);
+      font-size: 12px; font-weight: 700;
+      letter-spacing: 0.08em; text-transform: uppercase;
+      cursor: pointer;
+      transition: border-color 160ms, color 160ms, background 160ms;
+    }
+    .filter-btn:hover, .filter-btn.active {
+      border-color: var(--green);
+      color: var(--green);
+      background: rgba(56,189,248,0.07);
+    }
+
+    .labs-grid {
       display: grid;
-      grid-template-columns: 86px 1fr;
-      gap: 14px;
-      padding: 16px;
-      box-shadow: none;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 20px;
     }
-    .timeline-item strong { color: var(--amber); font-family: "SFMono-Regular", Consolas, monospace; font-size: 13px; }
-    .timeline-item p { color: #c8d8d0; font-size: 14px; }
 
-    /* ── About ── */
-    .about-panel ul { list-style: none; display: grid; gap: 8px; margin-top: 12px; }
-    .about-panel li { color: #c8d8d0; font-size: 14px; padding-left: 14px; position: relative; }
-    .about-panel li::before { content: "›"; position: absolute; left: 0; color: var(--green); font-weight: 700; }
-
-    /* ── Resume section ── */
-    .resume-box {
+    .lab-card {
       border: 1px solid var(--line);
-      border-radius: 8px;
-      background: var(--panel);
-      backdrop-filter: blur(16px);
-      padding: 32px;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      gap: 24px;
+      border-radius: var(--radius);
+      background: var(--bg2);
+      overflow: hidden;
+      display: flex; flex-direction: column;
+      transition: transform 200ms, border-color 200ms;
       position: relative;
-      isolation: isolate;
     }
-    .resume-box::after {
+    .lab-card:hover {
+      transform: translateY(-5px);
+      border-color: rgba(56,189,248,0.35);
+    }
+    .lab-card.hidden { display: none; }
+
+    /* colored top accent bar by category */
+    .lab-card::before {
       content: "";
-      position: absolute;
-      inset: 0;
-      z-index: -1;
-      border-radius: inherit;
-      background: linear-gradient(135deg, rgba(105, 230, 161, 0.07), transparent 42%, rgba(250, 204, 107, 0.05));
+      display: block;
+      height: 3px;
+      background: var(--card-accent, var(--green));
+    }
+    .lab-card[data-cat="detection"]  { --card-accent: var(--green); }
+    .lab-card[data-cat="response"]   { --card-accent: var(--amber); }
+    .lab-card[data-cat="identity"]   { --card-accent: var(--cyan); }
+    .lab-card[data-cat="ai"]         { --card-accent: #c084fc; }
+
+    .lab-img {
+      aspect-ratio: 16/9;
+      background: var(--bg3);
+      display: flex; align-items: center; justify-content: center;
+      font-size: 48px;
+      letter-spacing: 0;
+      border-bottom: 1px solid var(--line);
+    }
+
+    .lab-body { padding: 20px; flex: 1; display: flex; flex-direction: column; gap: 10px; }
+
+    .lab-cat {
+      font-size: 11px; font-weight: 700;
+      letter-spacing: 0.18em; text-transform: uppercase;
+      color: var(--card-accent, var(--green));
+    }
+
+    .lab-status {
+      display: inline-block;
+      float: right;
+      font-size: 10px; font-weight: 700;
+      letter-spacing: 0.1em; text-transform: uppercase;
+      padding: 3px 9px;
+      border-radius: 999px;
+      border: 1px solid currentColor;
+    }
+    .lab-status.published { color: var(--green); }
+    .lab-status.staged    { color: var(--amber); }
+
+    .lab-title {
+      font-size: 17px; font-weight: 800;
+      line-height: 1.2;
+    }
+    .lab-title a { transition: color 160ms; }
+    .lab-title a:hover { color: var(--green); }
+
+    .lab-desc {
+      font-size: 13px; color: var(--muted);
+      line-height: 1.6; flex: 1;
+    }
+
+    .lab-meta-grid {
+      display: grid; gap: 5px;
+      padding: 12px;
+      background: rgba(8,13,20,0.6);
+      border-radius: 6px;
+      font-size: 12px;
+    }
+    .lm-row {
+      display: grid;
+      grid-template-columns: 68px 1fr;
+      gap: 6px;
+    }
+    .lm-key { color: var(--amber); font-family: monospace; }
+    .lm-val { color: #cce8f8; }
+
+    .lab-links {
+      display: flex; gap: 8px; flex-wrap: wrap;
+      padding-top: 4px;
+    }
+    .lab-link {
+      font-size: 12px; font-weight: 700;
+      letter-spacing: 0.06em; text-transform: uppercase;
+      padding: 7px 13px;
+      border: 1.5px solid var(--line);
+      border-radius: 6px;
+      color: var(--text);
+      transition: border-color 160ms, color 160ms;
+    }
+    .lab-link:hover { border-color: var(--green); color: var(--green); }
+    .lab-link.primary {
+      background: var(--green); color: var(--ink);
+      border-color: transparent;
+    }
+    .lab-link.primary:hover { background: #7dd3fa; }
+    .lab-link.disabled { opacity: 0.45; pointer-events: none; }
+
+    /* ── CREDENTIALS ── */
+    #creds { background: var(--bg2); }
+
+    .creds-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 20px;
+      margin-top: 52px;
+    }
+
+    .cred-card {
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      background: var(--bg);
+      padding: 28px;
+      display: flex; gap: 20px; align-items: flex-start;
+      transition: border-color 200ms;
+    }
+    .cred-card:hover { border-color: rgba(56,189,248,0.35); }
+
+    .cred-icon {
+      width: 52px; height: 52px;
+      border-radius: 10px;
+      background: rgba(56,189,248,0.1);
+      border: 1px solid rgba(56,189,248,0.2);
+      display: flex; align-items: center; justify-content: center;
+      font-size: 22px;
+      flex-shrink: 0;
+    }
+
+    .cred-body h3 {
+      font-size: 18px; font-weight: 800;
+      letter-spacing: -0.01em;
+    }
+    .cred-body small {
+      display: block;
+      font-size: 11px; font-weight: 700;
+      letter-spacing: 0.16em; text-transform: uppercase;
+      color: var(--green);
+      margin-bottom: 8px;
+    }
+    .cred-body p { font-size: 13px; color: var(--muted); line-height: 1.6; }
+    .cred-body a {
+      display: inline-block;
+      margin-top: 10px;
+      font-size: 12px; font-weight: 700;
+      letter-spacing: 0.08em; text-transform: uppercase;
+      color: var(--green);
+    }
+    .cred-body a:hover { text-decoration: underline; }
+
+    /* ── CONTACT ── */
+    #contact {
+      position: relative;
+      overflow: hidden;
+    }
+
+    #contact::before {
+      content: "";
+      position: absolute; inset: 0;
+      background:
+        linear-gradient(rgba(56,189,248,0.02) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(56,189,248,0.015) 1px, transparent 1px);
+      background-size: 52px 52px;
       pointer-events: none;
     }
-    .resume-box h3 { font-size: 24px; margin: 6px 0 8px; }
-    .resume-box p { color: #c8d8d0; font-size: 14px; max-width: 520px; }
 
-    /* ── Contact ── */
-    .contact-box {
-      padding: 32px;
-      box-shadow: none;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      gap: 24px;
-      margin-bottom: 64px;
+    .contact-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 64px;
+      align-items: start;
+      position: relative;
     }
-    .contact-box h2 { margin-top: 8px; }
-    .contact-box p { color: #c8d8d0; margin-top: 10px; font-size: 15px; max-width: 540px; }
+
+    .contact-left .sec-title { font-size: clamp(36px, 6vw, 72px); }
+    .contact-motto {
+      margin-top: 20px;
+      font-size: 15px;
+      color: var(--muted);
+      line-height: 1.7;
+      max-width: 400px;
+    }
+
+    .contact-links {
+      margin-top: 40px;
+      display: grid; gap: 24px;
+    }
+    .contact-group h4 {
+      font-size: 11px; font-weight: 700;
+      letter-spacing: 0.2em; text-transform: uppercase;
+      color: var(--muted);
+      margin-bottom: 8px;
+      padding-bottom: 8px;
+      border-bottom: 1px solid var(--line);
+    }
+    .contact-group a {
+      display: flex; align-items: center; gap: 10px;
+      font-size: 15px; font-weight: 600;
+      color: var(--text);
+      padding: 4px 0;
+      transition: color 160ms;
+    }
+    .contact-group a:hover { color: var(--green); }
+    .contact-group a .cg-label {
+      font-size: 11px; color: var(--muted);
+      letter-spacing: 0.1em; text-transform: uppercase;
+      font-weight: 600;
+      width: 56px; flex-shrink: 0;
+    }
+
+    .contact-right {}
+    .contact-social-title {
+      font-size: 13px; font-weight: 700;
+      letter-spacing: 0.16em; text-transform: uppercase;
+      color: var(--muted);
+      margin-bottom: 20px;
+    }
+    .social-list {
+      display: grid; gap: 10px;
+    }
+    .social-btn {
+      display: flex; align-items: center;
+      justify-content: space-between;
+      padding: 14px 18px;
+      border: 1.5px solid var(--line);
+      border-radius: var(--radius);
+      background: var(--bg2);
+      font-size: 14px; font-weight: 700;
+      color: var(--text);
+      transition: border-color 160ms, background 160ms, transform 160ms;
+      gap: 12px;
+    }
+    .social-btn:hover {
+      border-color: var(--green);
+      background: rgba(56,189,248,0.06);
+      transform: translateX(4px);
+    }
+    .social-btn .sb-name { flex: 1; }
+    .social-btn .sb-handle { font-size: 12px; color: var(--muted); }
+    .sb-arrow { color: var(--green); font-size: 18px; }
+
+    .resume-cta {
+      margin-top: 32px;
+      padding: 22px 24px;
+      border: 1.5px solid rgba(56,189,248,0.3);
+      border-radius: var(--radius);
+      background: rgba(56,189,248,0.05);
+      display: flex; align-items: center;
+      justify-content: space-between; gap: 16px;
+    }
+    .resume-cta p {
+      font-size: 14px; font-weight: 600;
+      color: var(--text);
+    }
+    .resume-cta small {
+      display: block;
+      font-size: 12px; color: var(--muted);
+      margin-top: 2px; font-weight: 400;
+    }
+
+    /* ── Footer ── */
+    footer {
+      padding: 28px 40px;
+      border-top: 1px solid var(--line);
+      display: flex; align-items: center;
+      justify-content: space-between; gap: 16px;
+      flex-wrap: wrap;
+    }
+    footer p { font-size: 12px; color: var(--muted); letter-spacing: 0.06em; }
+    .footer-links { display: flex; gap: 20px; }
+    .footer-links a { font-size: 12px; color: var(--muted); font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; }
+    .footer-links a:hover { color: var(--green); }
 
     /* ── Responsive ── */
-    @media (max-width: 980px) {
-      .hero,
-      .case-study-inner,
-      .briefing-grid,
-      .about-grid,
-      .credential-grid { grid-template-columns: 1fr; min-height: auto; }
+    @media (max-width: 900px) {
+      nav { padding: 0 24px; }
+      .nav-links, .nav-social { display: none; }
+      .nav-toggle { display: flex; }
 
-      .lab-grid,
-      .skill-grid,
-      .metrics { grid-template-columns: 1fr 1fr; }
+      #about .about-grid { grid-template-columns: 1fr; }
+      .profile-card { position: static; }
 
-      nav ul { display: none; }
-      .menu-toggle { display: flex; }
-      .mobile-nav.open { display: block; }
-      .menu-toggle.open .icon-open { display: none; }
-      .menu-toggle.open .icon-close { display: block; }
+      .skills-grid { grid-template-columns: 1fr; }
 
-      .resume-box { flex-direction: column; align-items: flex-start; }
+      .labs-grid { grid-template-columns: 1fr 1fr; }
+
+      .creds-grid { grid-template-columns: 1fr; }
+
+      .contact-grid { grid-template-columns: 1fr; gap: 40px; }
     }
 
-    @media (max-width: 640px) {
-      .container { width: min(100% - 28px, 1120px); }
-      .nav { min-height: 70px; }
-      .nav .btn { display: none; }
-      .mobile-nav { top: 70px; }
-      .signal-bar { top: 70px; }
-      .hero { padding-top: 38px; }
-
-      .section-head, .contact-box { align-items: flex-start; flex-direction: column; }
-
-      .lab-grid,
-      .skill-grid,
-      .metrics { grid-template-columns: 1fr; }
-
-      .terminal-line, .timeline-item, .case-step { grid-template-columns: 1fr; }
-      .lab-meta-row { grid-template-columns: 1fr; gap: 2px; }
-
-      .case-result strong { font-size: 26px; }
+    @media (max-width: 600px) {
+      section { padding: 72px 0; }
+      .hero-stats { flex-direction: column; }
+      .hero-stat { border-right: none; border-bottom: 1px solid var(--line); }
+      .hero-stat:last-child { border-bottom: none; }
+      .labs-grid { grid-template-columns: 1fr; }
+      #labs .labs-head { flex-direction: column; align-items: flex-start; }
+      footer { flex-direction: column; align-items: flex-start; }
     }
 
     @media (prefers-reduced-motion: reduce) {
       *, *::before, *::after {
         animation-duration: 0.001ms !important;
-        animation-iteration-count: 1 !important;
-        scroll-behavior: auto !important;
         transition-duration: 0.001ms !important;
       }
     }
   </style>
 </head>
-<body id="home">
-  <a class="skip-link" href="#main-content">Skip to content</a>
+<body>
+  <a class="skip-link" href="#main">Skip to content</a>
 
-  <!-- ── Header ── -->
-  <header>
-    <div class="container nav">
-      <a class="brand" href="#home" aria-label="Khaneil Campbell portfolio home">
-        <small>Khaneil Campbell</small>
-        <span>Security Operations Portfolio</span>
+  <!-- ── NAV ── -->
+  <nav aria-label="Primary navigation">
+    <div class="nav-inner">
+      <a class="nav-brand" href="#hero" aria-label="Khaneil Campbell home">
+        <strong>Khaneil Campbell</strong>
+        <small>SOC Analyst · Detection Engineer</small>
       </a>
 
-      <nav aria-label="Primary navigation">
-        <ul>
-          <li><a href="#home" aria-current="page">Home</a></li>
-          <li><a href="lab-details.html">Labs</a></li>
-          <li><a href="projects.html">Projects</a></li>
-          <li><a href="#about">About</a></li>
-          <li><a href="#resume">Resume</a></li>
-          <li><a href="#contact">Contact</a></li>
-        </ul>
-      </nav>
+      <ul class="nav-links" role="list">
+        <li><a href="#hero"   class="active">Home</a></li>
+        <li><a href="#about">About</a></li>
+        <li><a href="#skills">Skills</a></li>
+        <li><a href="#labs">Labs</a></li>
+        <li><a href="#contact">Contact</a></li>
+      </ul>
 
-      <!-- TODO: replace href with actual resume PDF path once file is added -->
-      <a href="resume.pdf" class="btn" target="_blank" rel="noopener noreferrer">Download Resume</a>
+      <div class="nav-social" aria-label="External profiles">
+        <a href="https://www.linkedin.com/in/khaneil-c-44179a14a/" target="_blank" rel="noopener noreferrer">LinkedIn</a>
+        <a href="https://github.com/khancam15" target="_blank" rel="noopener noreferrer">GitHub</a>
+        <!-- TODO: replace with actual resume PDF once added -->
+        <a href="resume.pdf" target="_blank" rel="noopener noreferrer">Resume</a>
+      </div>
 
-      <button class="menu-toggle" aria-label="Open navigation menu" aria-expanded="false" aria-controls="mobile-nav">
-        <svg class="icon-open" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round">
-          <line x1="3" y1="5" x2="17" y2="5"/><line x1="3" y1="10" x2="17" y2="10"/><line x1="3" y1="15" x2="17" y2="15"/>
-        </svg>
-        <svg class="icon-close" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round">
-          <line x1="4" y1="4" x2="16" y2="16"/><line x1="16" y1="4" x2="4" y2="16"/>
-        </svg>
+      <button class="nav-toggle" aria-label="Open menu" aria-expanded="false" aria-controls="mobile-menu">
+        <span></span><span></span><span></span>
       </button>
     </div>
-  </header>
-
-  <!-- ── Mobile nav ── -->
-  <nav id="mobile-nav" class="mobile-nav" aria-label="Mobile navigation">
-    <ul>
-      <li><a href="#home">Home</a></li>
-      <li><a href="lab-details.html">Labs</a></li>
-      <li><a href="projects.html">Projects</a></li>
-      <li><a href="#about">About</a></li>
-      <li><a href="#resume">Resume</a></li>
-      <li><a href="#contact">Contact</a></li>
-    </ul>
   </nav>
 
-  <div class="signal-bar" aria-hidden="true"><span></span></div>
+  <!-- ── MOBILE MENU ── -->
+  <div id="mobile-menu" class="mobile-menu" aria-label="Mobile navigation">
+    <a href="#hero">Home</a>
+    <a href="#about">About</a>
+    <a href="#skills">Skills</a>
+    <a href="#labs">Labs</a>
+    <a href="#contact">Contact</a>
+    <a href="resume.pdf" target="_blank" rel="noopener noreferrer">Resume ↗</a>
+  </div>
 
-  <main id="main-content">
+  <main id="main">
 
-    <!-- ── Hero ── -->
-    <section class="hero container" aria-labelledby="page-title">
-      <div class="hero-copy">
-        <p class="eyebrow">Build · Detect · Respond</p>
-        <h1 id="page-title">Security Operations Portfolio</h1>
-        <p class="positioning">
-          Building practical detection, response, and automation workflows across Splunk, identity security, and AI systems.
-        </p>
-        <p class="intro-para">
-          I'm Khaneil Campbell, an enterprise IT professional transitioning deeper into cybersecurity, with hands-on labs in detection engineering, incident response, IAM, Splunk, and AI automation. 5+ years supporting mission-critical infrastructure at Columbia University and NYC Health + Hospitals.
-        </p>
+    <!-- ── HERO ── -->
+    <section id="hero" aria-labelledby="hero-name">
+      <p class="hero-eyebrow">Build · Detect · Respond</p>
 
-        <div class="hero-actions">
-          <a href="lab-details.html" class="btn btn-primary">View Labs</a>
-          <a href="https://github.com/khancam15" class="btn" target="_blank" rel="noopener noreferrer">GitHub</a>
-          <!-- TODO: replace href with actual resume PDF path once file is added -->
-          <a href="resume.pdf" class="btn" target="_blank" rel="noopener noreferrer">Download Resume</a>
-          <a href="#contact" class="btn">Contact Me</a>
+      <h1 class="hero-name" id="hero-name">
+        <span class="first">Khaneil</span>
+        <span class="last">Campbell</span>
+      </h1>
+
+      <p class="hero-role">
+        SOC Analyst
+        <span class="hero-divider">·</span>
+        Detection Engineer
+        <span class="hero-divider">·</span>
+        New York
+      </p>
+
+      <div class="hero-stats" aria-label="Portfolio highlights">
+        <div class="hero-stat">
+          <strong>5+</strong>
+          <span>Years Enterprise IT</span>
         </div>
-
-        <div class="metrics" aria-label="Portfolio highlights">
-          <div class="metric">
-            <strong>5+</strong>
-            <span>Years enterprise IT</span>
-          </div>
-          <div class="metric">
-            <strong>80+</strong>
-            <span>Failed logons detected</span>
-          </div>
-          <div class="metric">
-            <strong>3</strong>
-            <span>Security lab tracks</span>
-          </div>
-          <div class="metric">
-            <strong>2</strong>
-            <span>Professional credentials</span>
-          </div>
+        <div class="hero-stat">
+          <strong>80+</strong>
+          <span>Failed Logons Detected</span>
         </div>
-      </div>
-
-      <aside class="command-panel" aria-label="Security operations preview">
-        <div class="panel-top">
-          <span>Security Operations</span>
-          <span class="pulse">Active</span>
+        <div class="hero-stat">
+          <strong>3</strong>
+          <span>Lab Tracks</span>
         </div>
-        <div class="terminal">
-          <div class="terminal-line">
-            <span class="terminal-time">Signal</span>
-            <span class="terminal-text">Authentication failures correlated by source IP, user account, and time window.</span>
-          </div>
-          <div class="terminal-line">
-            <span class="terminal-time">Triage</span>
-            <span class="terminal-text">Scope defined, false-positive thresholds documented, severity assessed.</span>
-          </div>
-          <div class="terminal-line">
-            <span class="terminal-time">Action</span>
-            <span class="terminal-text">Structured response workflow prepared for analyst handoff and repeatable execution.</span>
-          </div>
-          <div class="terminal-line">
-            <span class="terminal-time">Outcome</span>
-            <span class="terminal-text">SPL detection logic and case notes documented as reusable SOC evidence.</span>
-          </div>
-        </div>
-      </aside>
-    </section>
-
-    <!-- ── Roles I'm Targeting ── -->
-    <section id="roles" class="section container" aria-labelledby="roles-title">
-      <div class="section-head">
-        <div>
-          <p class="section-label">Open to Opportunities</p>
-          <h2 id="roles-title">Roles I'm Targeting</h2>
-          <p class="section-subtext">
-            Actively pursuing security operations and engineering roles where detection, investigation, and automation drive measurable outcomes.
-          </p>
+        <div class="hero-stat">
+          <strong>2</strong>
+          <span>Credentials</span>
         </div>
       </div>
-      <div class="roles-grid" aria-label="Target job roles">
-        <span class="role-chip">SOC Analyst</span>
-        <span class="role-chip">Cybersecurity Analyst</span>
-        <span class="role-chip">Detection Engineer</span>
-        <span class="role-chip">Security Operations Analyst</span>
-        <span class="role-chip">Incident Response Analyst</span>
-        <span class="role-chip">IAM Security Analyst</span>
-        <span class="role-chip">AI Security / Automation Analyst</span>
+
+      <div class="hero-cta">
+        <a href="#labs" class="btn btn-green">View Labs</a>
+        <a href="#about" class="btn btn-outline">About Me</a>
+        <a href="https://github.com/khancam15" class="btn btn-outline" target="_blank" rel="noopener noreferrer">GitHub ↗</a>
+      </div>
+
+      <div class="scroll-hint" aria-hidden="true">
+        <span>Scroll</span>
+        <div class="scroll-arrow"></div>
       </div>
     </section>
 
-    <!-- ── Featured Labs ── -->
-    <section id="labs" class="section container" aria-labelledby="labs-title">
-      <div class="section-head">
-        <div>
-          <p class="section-label">Featured Labs</p>
-          <h2 id="labs-title">Threat scenarios. Documented outcomes.</h2>
-          <p class="section-subtext">
-            Each lab is built around an authentic security scenario and documented through detection logic, triage decisions, analyst response steps, and measurable results.
-          </p>
+    <!-- ── ABOUT ── -->
+    <section id="about" aria-labelledby="about-title">
+      <div class="container">
+        <p class="sec-label">About</p>
+        <div class="about-grid">
+
+          <!-- left: profile card -->
+          <div class="profile-card" aria-label="Profile card">
+            <div class="profile-photo">
+              <!-- Profile image: add your photo as images/profile.jpg to display here -->
+              <img
+                src="images/profile.jpg"
+                alt="Khaneil Campbell"
+                onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';"
+              />
+              <div class="profile-photo-placeholder" style="display:none;">
+                <div class="profile-initials" aria-hidden="true">KC</div>
+                <p>Add images/profile.jpg</p>
+              </div>
+            </div>
+
+            <div class="profile-facts">
+              <div class="fact-row">
+                <span class="fact-label">Role</span>
+                <span class="fact-value green">SOC Analyst</span>
+              </div>
+              <div class="fact-row">
+                <span class="fact-label">Experience</span>
+                <span class="fact-value">5+ Years</span>
+              </div>
+              <div class="fact-row">
+                <span class="fact-label">Location</span>
+                <span class="fact-value">New York, NY</span>
+              </div>
+              <div class="fact-row">
+                <span class="fact-label">Certs</span>
+                <span class="fact-value">Security+ · ITIL 4</span>
+              </div>
+              <div class="fact-row">
+                <span class="fact-label">Focus</span>
+                <span class="fact-value">Detection · IR · IAM</span>
+              </div>
+              <div class="fact-row">
+                <span class="fact-label">Status</span>
+                <span class="fact-value green">Open to Work</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- right: content -->
+          <div class="about-content">
+            <h2 class="sec-title" id="about-title">
+              Enterprise IT.<br/>Security Operations.
+            </h2>
+
+            <div class="about-body">
+              <p>
+                Five-plus years of enterprise IT experience in high-demand institutional environments — including Columbia University and NYC Health + Hospitals — supporting mission-critical infrastructure and user-facing security workflows at scale.
+              </p>
+              <p>
+                Certified in CompTIA Security+ and ITIL 4 Foundation. Building hands-on depth in SOC operations, Splunk detection engineering, identity and access management, and AI-driven automation workflows through structured lab work and production-level projects.
+              </p>
+              <p>
+                I bring analyst discipline: structured triage, thorough documentation, evidence-based decisions, and a focus on repeatable, scalable security outcomes.
+              </p>
+            </div>
+
+            <blockquote class="motto">
+              "Build practical detection, response, and automation workflows — document the evidence, repeat the outcome."
+            </blockquote>
+
+            <div class="about-targets">
+              <h3>Roles I'm Targeting</h3>
+              <div class="role-chips">
+                <span class="role-chip">SOC Analyst</span>
+                <span class="role-chip">Cybersecurity Analyst</span>
+                <span class="role-chip">Detection Engineer</span>
+                <span class="role-chip">Security Operations Analyst</span>
+                <span class="role-chip">Incident Response Analyst</span>
+                <span class="role-chip">IAM Security Analyst</span>
+                <span class="role-chip">AI Security / Automation</span>
+              </div>
+            </div>
+          </div>
+
         </div>
-        <div class="action-group" style="margin-top: 0; flex-shrink: 0;">
-          <a href="labs.html" class="btn">Featured Page</a>
-          <a href="lab-details.html" class="btn">All Labs</a>
-        </div>
-      </div>
-
-      <div class="lab-grid">
-
-        <!-- Lab 1: Splunk SOC -->
-        <article class="lab-card">
-          <div class="card-top">
-            <p class="card-type">Detection Engineering</p>
-            <span class="status">Published</span>
-          </div>
-          <h3><a href="soc-automation-lab.html">SOC Automation with Splunk</a></h3>
-          <p>Brute-force credential attack detection using Windows Security Event Logs, SPL-based alert logic, structured triage decisions, and repeatable analyst response documentation.</p>
-          <div class="lab-meta" aria-label="Lab details">
-            <div class="lab-meta-row"><span>Scenario</span><span>Simulated brute-force authentication attack targeting Windows accounts</span></div>
-            <div class="lab-meta-row"><span>Tools</span><span>Splunk, Windows Security Logs, SPL</span></div>
-            <div class="lab-meta-row"><span>Outcome</span><span>80+ failed logons detected; triage workflow documented for reuse</span></div>
-          </div>
-          <div class="lab-actions">
-            <a href="soc-automation-lab.html" class="btn btn-primary">View Case Study</a>
-            <a href="lab-details.html#soc" class="btn">Details</a>
-            <a href="https://github.com/khancam15/soc-automation-splunk-bruteforce-lab" class="btn" target="_blank" rel="noopener noreferrer">GitHub</a>
-          </div>
-          <div class="tags">
-            <span class="tag">Splunk</span>
-            <span class="tag">SPL</span>
-            <span class="tag">Windows Logs</span>
-            <span class="tag">Detection</span>
-          </div>
-        </article>
-
-        <!-- Lab 2: Phishing IR -->
-        <article class="lab-card">
-          <div class="card-top">
-            <p class="card-type">Incident Response</p>
-            <span class="status staged">Staged</span>
-          </div>
-          <h3>Phishing-to-Malware Incident Response Lab</h3>
-          <p>End-to-end phishing intrusion scenario covering initial delivery, host-based indicator analysis, containment decisions, and executive-ready incident documentation.</p>
-          <div class="lab-meta" aria-label="Lab details">
-            <div class="lab-meta-row"><span>Scenario</span><span>Phishing email delivers malware; analyst investigates host indicators</span></div>
-            <div class="lab-meta-row"><span>Tools</span><span>Sysinternals, Windows Event Logs, Containment playbook</span></div>
-            <div class="lab-meta-row"><span>Outcome</span><span>Structured IR documentation and containment decision record</span></div>
-          </div>
-          <div class="lab-actions">
-            <a href="#" class="btn placeholder-link" data-placeholder="true">Case Pending</a>
-            <a href="lab-details.html#phishing" class="btn">Details</a>
-          </div>
-          <div class="tags">
-            <span class="tag">IR</span>
-            <span class="tag">Sysinternals</span>
-            <span class="tag">Event Logs</span>
-            <span class="tag">Containment</span>
-          </div>
-        </article>
-
-        <!-- Lab 3: IAM -->
-        <article class="lab-card">
-          <div class="card-top">
-            <p class="card-type">Identity Security</p>
-            <span class="status staged">Staged</span>
-          </div>
-          <h3>Identity &amp; Access Management Security Lab</h3>
-          <p>Operational access-control scenarios covering MFA enforcement, least-privilege principles, account lifecycle governance, privileged access management, and recovery workflows.</p>
-          <div class="lab-meta" aria-label="Lab details">
-            <div class="lab-meta-row"><span>Scenario</span><span>Account lifecycle, MFA enforcement, and least-privilege policy review</span></div>
-            <div class="lab-meta-row"><span>Tools</span><span>Active Directory, MFA policies, PAM workflows</span></div>
-            <div class="lab-meta-row"><span>Outcome</span><span>Access governance documentation and escalation-resistant support flows</span></div>
-          </div>
-          <div class="lab-actions">
-            <a href="#" class="btn placeholder-link" data-placeholder="true">Case Pending</a>
-            <a href="lab-details.html#iam" class="btn">Details</a>
-          </div>
-          <div class="tags">
-            <span class="tag">IAM</span>
-            <span class="tag">MFA</span>
-            <span class="tag">Active Directory</span>
-            <span class="tag">Least Privilege</span>
-          </div>
-        </article>
-
       </div>
     </section>
 
-    <!-- ── Featured Case Study ── -->
-    <section id="case-study" class="section container" aria-labelledby="case-title">
-      <div class="section-head">
-        <div>
-          <p class="section-label">Featured Case Study</p>
-          <h2 id="case-title">SOC Automation with Splunk</h2>
-        </div>
-        <a href="soc-automation-lab.html" class="btn btn-primary" style="flex-shrink: 0;">View Full Case Study</a>
-      </div>
+    <div class="divider"></div>
 
-      <div class="case-study-card">
-        <div class="case-study-inner">
+    <!-- ── SKILLS ── -->
+    <section id="skills" aria-labelledby="skills-title">
+      <div class="container">
+        <p class="sec-label">Capabilities</p>
+        <div class="skills-grid">
+
           <div>
-            <p class="card-type">Detection Engineering · Brute-Force Authentication</p>
-            <h3>From raw Windows logs to a documented triage workflow.</h3>
-            <p>
-              A simulated brute-force attack targeting Windows accounts was ingested into Splunk, then analyzed using SPL to identify credential-stuffing patterns across failed logon events.
+            <h2 class="sec-title" id="skills-title">
+              Skills &<br/>Disciplines
+            </h2>
+            <p class="skills-intro">
+              Built through 5+ years of enterprise IT, hands-on security labs, and production AI automation projects. Each metric reflects demonstrated ability across detection, response, identity, and automation workflows.
             </p>
 
-            <div class="case-result">
-              <strong>80+</strong>
-              <span>Failed logons identified, analyzed, and documented with triage workflow</span>
+            <div style="margin-top: 32px; display: grid; grid-template-columns: 1fr 1fr; gap: 14px;">
+              <div style="padding: 16px; border: 1px solid var(--line); border-radius: 8px; background: var(--bg);">
+                <div style="font-size: 11px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--muted); margin-bottom: 6px;">Tools</div>
+                <div style="font-size: 14px; font-weight: 600; color: var(--text); line-height: 1.7;">Splunk · SPL · Windows Logs · Active Directory · Microsoft 365 · ServiceNow</div>
+              </div>
+              <div style="padding: 16px; border: 1px solid var(--line); border-radius: 8px; background: var(--bg);">
+                <div style="font-size: 11px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--muted); margin-bottom: 6px;">Methods</div>
+                <div style="font-size: 14px; font-weight: 600; color: var(--text); line-height: 1.7;">Triage · Log Analysis · Alert Tuning · Least Privilege · PAM · OAuth2</div>
+              </div>
             </div>
+          </div>
 
-            <div class="lab-actions" style="margin-top: 20px;">
-              <a href="soc-automation-lab.html" class="btn btn-primary">View Full Case Study</a>
-              <a href="https://github.com/khancam15/soc-automation-splunk-bruteforce-lab" class="btn" target="_blank" rel="noopener noreferrer">GitHub Repo</a>
+          <div class="skill-bars" aria-label="Skill levels">
+            <div class="skill-item">
+              <div class="skill-header">
+                <span class="skill-name">Splunk / SIEM</span>
+                <span class="skill-pct">88</span>
+              </div>
+              <div class="skill-track"><div class="skill-fill" data-pct="88"></div></div>
+            </div>
+            <div class="skill-item">
+              <div class="skill-header">
+                <span class="skill-name">Detection Engineering</span>
+                <span class="skill-pct">83</span>
+              </div>
+              <div class="skill-track"><div class="skill-fill" data-pct="83"></div></div>
+            </div>
+            <div class="skill-item">
+              <div class="skill-header">
+                <span class="skill-name">Incident Response</span>
+                <span class="skill-pct">80</span>
+              </div>
+              <div class="skill-track"><div class="skill-fill" data-pct="80"></div></div>
+            </div>
+            <div class="skill-item">
+              <div class="skill-header">
+                <span class="skill-name">Identity & Access Management</span>
+                <span class="skill-pct">79</span>
+              </div>
+              <div class="skill-track"><div class="skill-fill" data-pct="79"></div></div>
+            </div>
+            <div class="skill-item">
+              <div class="skill-header">
+                <span class="skill-name">AI Automation</span>
+                <span class="skill-pct">85</span>
+              </div>
+              <div class="skill-track"><div class="skill-fill" data-pct="85"></div></div>
+            </div>
+            <div class="skill-item">
+              <div class="skill-header">
+                <span class="skill-name">Documentation & Triage</span>
+                <span class="skill-pct">92</span>
+              </div>
+              <div class="skill-track"><div class="skill-fill" data-pct="92"></div></div>
             </div>
           </div>
 
-          <div class="case-steps" aria-label="Case study method">
-            <div class="case-step">
-              <strong>Problem</strong>
-              <span>Brute-force authentication activity targeting Windows accounts with no existing detection rule</span>
-            </div>
-            <div class="case-step">
-              <strong>Tools</strong>
-              <span>Splunk, Windows Security Event Logs (Event ID 4625), SPL query language</span>
-            </div>
-            <div class="case-step">
-              <strong>Method</strong>
-              <span>Ingest logs → build SPL detection query → analyze failed logon patterns → document triage workflow</span>
-            </div>
-            <div class="case-step">
-              <strong>Result</strong>
-              <span>Alert rule documented with thresholds, false-positive guidance, and repeatable analyst response steps</span>
-            </div>
+        </div>
+      </div>
+    </section>
+
+    <div class="divider"></div>
+
+    <!-- ── LABS ── -->
+    <section id="labs" aria-labelledby="labs-title">
+      <div class="container">
+        <div class="labs-head">
+          <div>
+            <p class="sec-label">Lab Work</p>
+            <h2 class="sec-title" id="labs-title">Threat Scenarios.<br/>Documented Outcomes.</h2>
+          </div>
+          <div class="filter-row" aria-label="Filter labs">
+            <button class="filter-btn active" data-filter="all">All</button>
+            <button class="filter-btn" data-filter="detection">Detection</button>
+            <button class="filter-btn" data-filter="response">Response</button>
+            <button class="filter-btn" data-filter="identity">Identity</button>
+            <button class="filter-btn" data-filter="ai">AI</button>
           </div>
         </div>
-      </div>
-    </section>
 
-    <!-- ── Skills by Category ── -->
-    <section id="skills" class="section container" aria-labelledby="skills-title">
-      <div class="section-head">
-        <div>
-          <p class="section-label">Technical Skills</p>
-          <h2 id="skills-title">Career-focused capabilities.</h2>
-          <p class="section-subtext">
-            Organized by security discipline — tools, methods, and outcomes built through enterprise IT, hands-on labs, and production-level AI automation projects.
-          </p>
-        </div>
-      </div>
+        <div class="labs-grid">
 
-      <div class="skill-grid">
+          <!-- Lab 1 -->
+          <article class="lab-card" data-cat="detection" aria-label="SOC Automation with Splunk lab">
+            <div class="lab-img" aria-hidden="true">🔍</div>
+            <div class="lab-body">
+              <div>
+                <span class="lab-cat">Detection Engineering</span>
+                <span class="lab-status published">Published</span>
+              </div>
+              <h3 class="lab-title"><a href="soc-automation-lab.html">SOC Automation with Splunk</a></h3>
+              <p class="lab-desc">Brute-force credential attack detection using Windows Security Event Logs, SPL alert logic, and repeatable analyst response documentation.</p>
+              <div class="lab-meta-grid">
+                <div class="lm-row"><span class="lm-key">Scenario</span><span class="lm-val">Simulated brute-force on Windows accounts</span></div>
+                <div class="lm-row"><span class="lm-key">Tools</span><span class="lm-val">Splunk, Event ID 4625, SPL</span></div>
+                <div class="lm-row"><span class="lm-key">Outcome</span><span class="lm-val">80+ logons detected, triage documented</span></div>
+              </div>
+              <div class="lab-links">
+                <a href="soc-automation-lab.html" class="lab-link primary">View Case</a>
+                <a href="https://github.com/khancam15/soc-automation-splunk-bruteforce-lab" class="lab-link" target="_blank" rel="noopener noreferrer">GitHub</a>
+              </div>
+            </div>
+          </article>
 
-        <div class="skill-card">
-          <p class="kicker">01</p>
-          <h3>Security Operations</h3>
-          <ul>
-            <li>Splunk SIEM — log ingestion, dashboards, alerting</li>
-            <li>Windows Security Event log analysis</li>
-            <li>Alert tuning and false-positive reduction</li>
-            <li>SOC triage methodology and case documentation</li>
-            <li>Microsoft 365 security monitoring</li>
-          </ul>
-        </div>
+          <!-- Lab 2 -->
+          <article class="lab-card" data-cat="response" aria-label="Phishing Incident Response lab">
+            <div class="lab-img" aria-hidden="true">🛡️</div>
+            <div class="lab-body">
+              <div>
+                <span class="lab-cat">Incident Response</span>
+                <span class="lab-status staged">Staged</span>
+              </div>
+              <h3 class="lab-title">Phishing-to-Malware IR Lab</h3>
+              <p class="lab-desc">End-to-end phishing intrusion covering initial delivery, host indicator analysis, containment, and executive-ready incident documentation.</p>
+              <div class="lab-meta-grid">
+                <div class="lm-row"><span class="lm-key">Scenario</span><span class="lm-val">Phishing email delivers malware to host</span></div>
+                <div class="lm-row"><span class="lm-key">Tools</span><span class="lm-val">Sysinternals, Event Logs, Containment</span></div>
+                <div class="lm-row"><span class="lm-key">Outcome</span><span class="lm-val">Structured IR docs and decision record</span></div>
+              </div>
+              <div class="lab-links">
+                <a href="lab-details.html#phishing" class="lab-link">Details</a>
+                <a class="lab-link disabled" aria-disabled="true">Pending</a>
+              </div>
+            </div>
+          </article>
 
-        <div class="skill-card">
-          <p class="kicker">02</p>
-          <h3>Detection Engineering</h3>
-          <ul>
-            <li>SPL detection query development</li>
-            <li>Brute-force and credential attack detection</li>
-            <li>Event ID correlation (4625, 4624, 4648)</li>
-            <li>Detection documentation and rule lifecycle</li>
-            <li>Signal vs. noise threshold design</li>
-          </ul>
-        </div>
+          <!-- Lab 3 -->
+          <article class="lab-card" data-cat="identity" aria-label="IAM Security lab">
+            <div class="lab-img" aria-hidden="true">🔐</div>
+            <div class="lab-body">
+              <div>
+                <span class="lab-cat">Identity Security</span>
+                <span class="lab-status staged">Staged</span>
+              </div>
+              <h3 class="lab-title">IAM &amp; Access Security Lab</h3>
+              <p class="lab-desc">Access-control scenarios covering MFA enforcement, least-privilege principles, account lifecycle governance, and recovery workflows.</p>
+              <div class="lab-meta-grid">
+                <div class="lm-row"><span class="lm-key">Scenario</span><span class="lm-val">MFA enforcement and account lifecycle</span></div>
+                <div class="lm-row"><span class="lm-key">Tools</span><span class="lm-val">Active Directory, MFA policies, PAM</span></div>
+                <div class="lm-row"><span class="lm-key">Outcome</span><span class="lm-val">Access governance and escalation flows</span></div>
+              </div>
+              <div class="lab-links">
+                <a href="lab-details.html#iam" class="lab-link">Details</a>
+                <a class="lab-link disabled" aria-disabled="true">Pending</a>
+              </div>
+            </div>
+          </article>
 
-        <div class="skill-card">
-          <p class="kicker">03</p>
-          <h3>Incident Response</h3>
-          <ul>
-            <li>Phishing and malware investigation workflows</li>
-            <li>Host-based indicator analysis</li>
-            <li>Containment decision documentation</li>
-            <li>Structured case notes and executive reporting</li>
-            <li>Repeatable response playbook design</li>
-          </ul>
-        </div>
+          <!-- Lab 4: AI Project -->
+          <article class="lab-card" data-cat="ai" aria-label="AI Etsy Product Pipeline project">
+            <div class="lab-img" aria-hidden="true">🤖</div>
+            <div class="lab-body">
+              <div>
+                <span class="lab-cat">AI Automation</span>
+                <span class="lab-status published">Published</span>
+              </div>
+              <h3 class="lab-title"><a href="projects.html">AI Etsy Product Pipeline</a></h3>
+              <p class="lab-desc">Autonomous multi-agent AI pipeline with secure OAuth workflows, SQLite state tracking, VPS deployment, and pre-commit credential scanning.</p>
+              <div class="lab-meta-grid">
+                <div class="lm-row"><span class="lm-key">Stack</span><span class="lm-val">Python, CrewAI, Anthropic API, SQLite</span></div>
+                <div class="lm-row"><span class="lm-key">Security</span><span class="lm-val">gitleaks, .env isolation, OAuth2 PKCE</span></div>
+                <div class="lm-row"><span class="lm-key">Outcome</span><span class="lm-val">VPS-deployed autonomous pipeline with ops reporting</span></div>
+              </div>
+              <div class="lab-links">
+                <a href="projects.html" class="lab-link primary">View Project</a>
+                <a href="https://github.com/khancam15/ai-etsy-product-pipeline" class="lab-link" target="_blank" rel="noopener noreferrer">GitHub</a>
+              </div>
+            </div>
+          </article>
 
-        <div class="skill-card">
-          <p class="kicker">04</p>
-          <h3>Identity &amp; Access Management</h3>
-          <ul>
-            <li>Active Directory account lifecycle</li>
-            <li>MFA enforcement and policy review</li>
-            <li>Least-privilege access design</li>
-            <li>Privileged access management (PAM)</li>
-            <li>ServiceNow IAM request workflows</li>
-          </ul>
-        </div>
-
-        <div class="skill-card">
-          <p class="kicker">05</p>
-          <h3>AI Automation</h3>
-          <ul>
-            <li>Multi-agent AI orchestration (CrewAI)</li>
-            <li>Secure API workflow design</li>
-            <li>OAuth2 / PKCE integration (Etsy, Canva)</li>
-            <li>SQLite state tracking and audit trails</li>
-            <li>VPS deployment and systemd service management</li>
-          </ul>
-        </div>
-
-        <div class="skill-card">
-          <p class="kicker">06</p>
-          <h3>Enterprise IT Support</h3>
-          <ul>
-            <li>5+ years Columbia University &amp; NYC H+H</li>
-            <li>Microsoft 365, Azure AD, ServiceNow</li>
-            <li>Mission-critical infrastructure support</li>
-            <li>ITIL 4 service management framework</li>
-            <li>Analyst documentation and triage discipline</li>
-          </ul>
-        </div>
-
-      </div>
-    </section>
-
-    <!-- ── AI Projects ── -->
-    <section id="projects" class="section container" aria-labelledby="projects-title">
-      <div class="section-head">
-        <div>
-          <p class="section-label">AI Engineering Projects</p>
-          <h2 id="projects-title">AI automation that demonstrates engineering discipline.</h2>
-          <p class="section-subtext">
-            AI automation projects demonstrating secure API workflows, orchestration, operational monitoring, and production-style engineering habits — transferable directly to AI Security and Automation Analyst roles.
-          </p>
-        </div>
-        <a href="projects.html" class="btn" style="flex-shrink: 0;">View Projects</a>
-      </div>
-
-      <article class="lab-card" style="min-height: auto;">
-        <div class="card-top">
-          <p class="card-type">AI Automation · Production Pipeline</p>
-          <span class="status">Published</span>
-        </div>
-        <h3><a href="projects.html">AI Etsy Product Pipeline</a></h3>
-        <p>
-          Autonomous AI commerce pipeline demonstrating multi-agent orchestration, secure OAuth API workflows, SQLite state tracking, VPS deployment, pre-commit credential scanning, and daily operational reporting.
-        </p>
-        <div class="lab-meta" aria-label="Project details">
-          <div class="lab-meta-row"><span>Stack</span><span>Python, CrewAI, Anthropic API, Canva Connect, Etsy REST API, SQLite, systemd</span></div>
-          <div class="lab-meta-row"><span>Security</span><span>gitleaks pre-commit scanning, .env credential isolation, OAuth2 PKCE, token refresh</span></div>
-          <div class="lab-meta-row"><span>Ops</span><span>VPS loop automation, preflight checks, retry logic, daily health digest</span></div>
-        </div>
-        <div class="lab-actions">
-          <a href="projects.html" class="btn btn-primary">View Project</a>
-          <a href="https://github.com/khancam15/ai-etsy-product-pipeline" class="btn" target="_blank" rel="noopener noreferrer">GitHub</a>
-        </div>
-        <div class="tags">
-          <span class="tag">Python</span>
-          <span class="tag">CrewAI</span>
-          <span class="tag">Anthropic API</span>
-          <span class="tag">OAuth2</span>
-          <span class="tag">SQLite</span>
-          <span class="tag">VPS</span>
-        </div>
-      </article>
-    </section>
-
-    <!-- ── About ── -->
-    <section id="about" class="section container" aria-labelledby="about-title">
-      <div class="section-head">
-        <div>
-          <p class="section-label">About</p>
-          <h2 id="about-title">Enterprise IT background. Security operations focus.</h2>
-        </div>
-      </div>
-
-      <div class="about-grid">
-        <div class="about-panel">
-          <h3>Background</h3>
-          <p>
-            Five-plus years of enterprise IT experience in high-demand institutional environments, including Columbia University and NYC Health + Hospitals, supporting mission-critical infrastructure and user-facing security workflows at scale.
-          </p>
-          <p style="margin-top: 12px;">
-            Certified in CompTIA Security+ and ITIL 4 Foundation. Currently building hands-on depth in SOC operations, Splunk detection engineering, identity security, and AI-driven automation workflows.
-          </p>
-        </div>
-
-        <div class="about-panel">
-          <h3>Technical Focus</h3>
-          <ul>
-            <li>SOC analysis — triage, investigation, and case documentation</li>
-            <li>Detection engineering — SPL queries, alert logic, log analysis</li>
-            <li>Incident response — containment, evidence, and reporting</li>
-            <li>Identity and access management — AD, MFA, PAM, least privilege</li>
-            <li>AI automation — multi-agent orchestration, secure API integration</li>
-            <li>Microsoft 365 and Azure AD administration</li>
-            <li>ServiceNow — ITSM workflows and request management</li>
-          </ul>
         </div>
       </div>
     </section>
 
-    <!-- ── Credentials ── -->
-    <section id="credentials" class="section container" aria-labelledby="credentials-title">
-      <div class="section-head">
-        <div>
-          <p class="section-label">Credentials</p>
-          <h2 id="credentials-title">Certifications &amp; professional credentials.</h2>
-        </div>
-      </div>
+    <div class="divider"></div>
 
-      <div class="credential-grid">
-        <a href="security-plus.html" class="credential-card">
-          <p class="card-type">CompTIA</p>
-          <h3>Security+</h3>
-          <p>Validates knowledge across threat analysis, security architecture, network security, operations, governance, and risk management.</p>
-        </a>
-        <a href="itil4.html" class="credential-card">
-          <p class="card-type">IT Service Management</p>
-          <h3>ITIL 4 Foundation</h3>
-          <p>Demonstrates fluency in IT service management frameworks, service value chains, and continual improvement practices.</p>
-        </a>
-      </div>
-    </section>
+    <!-- ── CREDENTIALS ── -->
+    <section id="creds" aria-labelledby="creds-title">
+      <div class="container">
+        <p class="sec-label">Credentials</p>
+        <h2 class="sec-title" id="creds-title">Certifications</h2>
+        <div class="creds-grid" style="margin-top: 40px;">
 
-    <!-- ── Resume ── -->
-    <section id="resume" class="section container" aria-labelledby="resume-title">
-      <div class="resume-box">
-        <div>
-          <p class="section-label">Resume</p>
-          <h3 id="resume-title">Khaneil Campbell — Security Operations</h3>
-          <p>
-            SOC Analyst and Detection Engineering candidate with 5+ years enterprise IT experience. CompTIA Security+, ITIL 4 Foundation. Hands-on labs in Splunk, incident response, IAM, and AI automation.
-          </p>
-        </div>
-        <div class="action-group">
-          <!-- TODO: replace href with actual resume PDF path once file is added -->
-          <a href="resume.pdf" class="btn btn-primary" target="_blank" rel="noopener noreferrer">Download Resume (PDF)</a>
-          <a href="#contact" class="btn">Contact Me</a>
+          <a href="security-plus.html" class="cred-card" aria-label="CompTIA Security+ certification details">
+            <div class="cred-icon" aria-hidden="true">🛡</div>
+            <div class="cred-body">
+              <small>CompTIA</small>
+              <h3>Security+</h3>
+              <p>Threat analysis, security architecture, network security, operations, governance, and risk management.</p>
+              <span>View credential →</span>
+            </div>
+          </a>
+
+          <a href="itil4.html" class="cred-card" aria-label="ITIL 4 Foundation certification details">
+            <div class="cred-icon" aria-hidden="true">📋</div>
+            <div class="cred-body">
+              <small>IT Service Management</small>
+              <h3>ITIL 4 Foundation</h3>
+              <p>IT service management frameworks, service value chains, continual improvement practices.</p>
+              <span>View credential →</span>
+            </div>
+          </a>
+
         </div>
       </div>
     </section>
 
-    <!-- ── Contact ── -->
-    <section id="contact" class="section container">
-      <div class="contact-box">
-        <div>
-          <p class="section-label">Contact</p>
-          <h2>Let's connect.</h2>
-          <p>
-            Open to SOC Analyst, Cybersecurity Analyst, Detection Engineering, and AI Automation opportunities. Based in New York. Available for in-person, hybrid, and remote roles.
-          </p>
-        </div>
-        <div class="contact-actions">
-          <a href="https://www.linkedin.com/in/khaneil-c-44179a14a/" class="btn" target="_blank" rel="noopener noreferrer">LinkedIn</a>
-          <a href="https://github.com/khancam15" class="btn" target="_blank" rel="noopener noreferrer">GitHub</a>
-          <a href="mailto:khaneil@khaneilcampbell.com" class="btn btn-primary">Email</a>
-          <!-- TODO: replace href with actual resume PDF path once file is added -->
-          <a href="resume.pdf" class="btn" target="_blank" rel="noopener noreferrer">Resume</a>
+    <div class="divider"></div>
+
+    <!-- ── CONTACT ── -->
+    <section id="contact" aria-labelledby="contact-title">
+      <div class="container">
+        <div class="contact-grid">
+
+          <div class="contact-left">
+            <p class="sec-label">Contact</p>
+            <h2 class="sec-title" id="contact-title">
+              Let's<br/>Connect.
+            </h2>
+            <p class="contact-motto">
+              Open to SOC Analyst, Cybersecurity Analyst, Detection Engineering, and AI Automation opportunities. Based in New York — available for in-person, hybrid, and remote roles.
+            </p>
+
+            <div class="contact-links">
+              <div class="contact-group">
+                <h4>Email</h4>
+                <a href="mailto:khaneil@khaneilcampbell.com">
+                  <span class="cg-label">Work</span>
+                  khaneil@khaneilcampbell.com
+                </a>
+              </div>
+              <div class="contact-group">
+                <h4>Profiles</h4>
+                <a href="https://www.linkedin.com/in/khaneil-c-44179a14a/" target="_blank" rel="noopener noreferrer">
+                  <span class="cg-label">LinkedIn</span>
+                  Khaneil Campbell
+                </a>
+                <a href="https://github.com/khancam15" target="_blank" rel="noopener noreferrer">
+                  <span class="cg-label">GitHub</span>
+                  @khancam15
+                </a>
+              </div>
+            </div>
+          </div>
+
+          <div class="contact-right">
+            <p class="contact-social-title">Follow & Connect</p>
+            <div class="social-list">
+              <a href="https://www.linkedin.com/in/khaneil-c-44179a14a/" class="social-btn" target="_blank" rel="noopener noreferrer">
+                <span class="sb-name">LinkedIn</span>
+                <span class="sb-handle">Security Operations Portfolio</span>
+                <span class="sb-arrow">→</span>
+              </a>
+              <a href="https://github.com/khancam15" class="social-btn" target="_blank" rel="noopener noreferrer">
+                <span class="sb-name">GitHub</span>
+                <span class="sb-handle">@khancam15</span>
+                <span class="sb-arrow">→</span>
+              </a>
+              <a href="soc-automation-lab.html" class="social-btn">
+                <span class="sb-name">Featured Lab</span>
+                <span class="sb-handle">SOC Automation with Splunk</span>
+                <span class="sb-arrow">→</span>
+              </a>
+              <a href="projects.html" class="social-btn">
+                <span class="sb-name">AI Projects</span>
+                <span class="sb-handle">AI Etsy Product Pipeline</span>
+                <span class="sb-arrow">→</span>
+              </a>
+            </div>
+
+            <!-- TODO: replace href with actual resume PDF once added -->
+            <div class="resume-cta">
+              <div>
+                <p>Download Resume</p>
+                <small>SOC Analyst · Detection Engineer · New York</small>
+              </div>
+              <a href="resume.pdf" class="btn btn-green" target="_blank" rel="noopener noreferrer">PDF ↗</a>
+            </div>
+          </div>
+
         </div>
       </div>
     </section>
 
   </main>
 
+  <!-- ── FOOTER ── -->
+  <footer>
+    <p>© 2025 Khaneil Campbell. All rights reserved.</p>
+    <div class="footer-links">
+      <a href="security-plus.html">Security+</a>
+      <a href="itil4.html">ITIL 4</a>
+      <a href="lab-details.html">Labs</a>
+      <a href="projects.html">Projects</a>
+      <a href="mailto:khaneil@khaneilcampbell.com">Email</a>
+    </div>
+  </footer>
+
   <script>
-    // Prevent clicks on placeholder links
-    document.querySelectorAll('a[data-placeholder="true"]').forEach((link) => {
-      link.addEventListener("click", (e) => e.preventDefault());
+    // ── Mobile menu ──
+    const toggle = document.querySelector('.nav-toggle');
+    const menu   = document.getElementById('mobile-menu');
+
+    toggle.addEventListener('click', () => {
+      const open = toggle.classList.toggle('open');
+      menu.classList.toggle('open', open);
+      toggle.setAttribute('aria-expanded', open);
+      toggle.setAttribute('aria-label', open ? 'Close menu' : 'Open menu');
+      document.body.style.overflow = open ? 'hidden' : '';
     });
 
-    // Mobile menu
-    const toggle = document.querySelector('.menu-toggle');
-    const mobileNav = document.getElementById('mobile-nav');
-
-    function openMenu() {
-      toggle.classList.add('open');
-      mobileNav.classList.add('open');
-      toggle.setAttribute('aria-expanded', 'true');
-      toggle.setAttribute('aria-label', 'Close navigation menu');
-      document.body.classList.add('mobile-menu-open');
-    }
-
-    function closeMenu() {
+    menu.querySelectorAll('a').forEach(a => a.addEventListener('click', () => {
       toggle.classList.remove('open');
-      mobileNav.classList.remove('open');
+      menu.classList.remove('open');
       toggle.setAttribute('aria-expanded', 'false');
-      toggle.setAttribute('aria-label', 'Open navigation menu');
-      document.body.classList.remove('mobile-menu-open');
-    }
+      toggle.setAttribute('aria-label', 'Open menu');
+      document.body.style.overflow = '';
+    }));
 
-    toggle.addEventListener('click', () => toggle.classList.contains('open') ? closeMenu() : openMenu());
-    mobileNav.querySelectorAll('a').forEach((link) => link.addEventListener('click', closeMenu));
-    document.addEventListener('keydown', (e) => { if (e.key === 'Escape') closeMenu(); });
+    document.addEventListener('keydown', e => {
+      if (e.key === 'Escape' && menu.classList.contains('open')) toggle.click();
+    });
 
-    // Scroll-spy — update aria-current on desktop nav
-    const sections = ['home', 'roles', 'labs', 'case-study', 'skills', 'projects', 'about', 'credentials', 'resume', 'contact'];
-    const desktopLinks = document.querySelectorAll('nav:not(#mobile-nav) a[href^="#"]');
+    // ── Scroll spy ──
+    const sections = document.querySelectorAll('section[id]');
+    const navLinks = document.querySelectorAll('.nav-links a');
 
-    const observer = new IntersectionObserver((entries) => {
-      entries.forEach((entry) => {
+    const spy = new IntersectionObserver(entries => {
+      entries.forEach(entry => {
         if (!entry.isIntersecting) return;
-        const id = entry.target.id;
-        desktopLinks.forEach((link) => {
-          const matches = link.getAttribute('href') === `#${id}`;
-          matches ? link.setAttribute('aria-current', 'page') : link.removeAttribute('aria-current');
+        navLinks.forEach(a => {
+          a.classList.toggle('active', a.getAttribute('href') === `#${entry.target.id}`);
         });
       });
-    }, { rootMargin: '-30% 0px -60% 0px' });
+    }, { rootMargin: '-40% 0px -55% 0px' });
 
-    sections.forEach((id) => {
-      const el = document.getElementById(id);
-      if (el) observer.observe(el);
+    sections.forEach(s => spy.observe(s));
+
+    // ── Skill bars animate on scroll ──
+    const fills = document.querySelectorAll('.skill-fill');
+    const skillObs = new IntersectionObserver(entries => {
+      entries.forEach(entry => {
+        if (!entry.isIntersecting) return;
+        const pct = entry.target.dataset.pct;
+        entry.target.style.width = pct + '%';
+        skillObs.unobserve(entry.target);
+      });
+    }, { threshold: 0.2 });
+
+    fills.forEach(f => skillObs.observe(f));
+
+    // ── Lab filter ──
+    const filterBtns = document.querySelectorAll('.filter-btn');
+    const labCards   = document.querySelectorAll('.lab-card');
+
+    filterBtns.forEach(btn => {
+      btn.addEventListener('click', () => {
+        filterBtns.forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+        const filter = btn.dataset.filter;
+        labCards.forEach(card => {
+          card.classList.toggle('hidden', filter !== 'all' && card.dataset.cat !== filter);
+        });
+      });
     });
   </script>
 </body>
