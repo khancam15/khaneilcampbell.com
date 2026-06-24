@@ -3,30 +3,31 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta name="description" content="Resume of Khaneil Campbell — SOC Analyst & Detection Engineer, New York." />
+  <meta name="description" content="Resume of Khaneil Campbell — SOC Analyst & Detection Engineer." />
   <meta name="theme-color" content="#060b12" />
   <meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'unsafe-inline'; style-src 'unsafe-inline'; img-src 'self' data:; font-src 'self'; base-uri 'self'; form-action 'none';" />
   <meta name="robots" content="noindex" />
   <title>Resume — Khaneil Campbell</title>
-
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-    html { scroll-behavior: smooth; }
+    html { scroll-behavior: smooth; height: 100%; }
 
     :root {
-      --bg:    #060b12;
-      --bg2:   #0a1628;
-      --bg3:   #0f1f3a;
-      --line:  rgba(56,189,248,0.12);
-      --text:  #e8f4ff;
+      --bg: #060b12;
+      --bg2: #0a1628;
+      --bg3: #0f1f3a;
+      --line: rgba(56,189,248,0.12);
+      --text: #e8f4ff;
       --muted: #7a9ab8;
-      --blue:  #38bdf8;
+      --blue: #38bdf8;
       --blue2: #0ea5e9;
-      --purple:#818cf8;
+      --purple: #818cf8;
       --amber: #f9c847;
-      --nav-font: "SF Pro Display","SF Pro Text",-apple-system,BlinkMacSystemFont,
-                  "Segoe UI Variable Display","Segoe UI",system-ui,sans-serif;
+      --nav-font: "SF Pro Display","SF Pro Text",-apple-system,BlinkMacSystemFont,"Segoe UI Variable Display","Segoe UI",system-ui,sans-serif;
     }
+
+    ::selection { background: rgba(56,189,248,0.25); }
+    :focus-visible { outline: 2px solid var(--blue); outline-offset: 3px; }
 
     body {
       background: var(--bg);
@@ -34,462 +35,290 @@
       font-family: var(--nav-font);
       line-height: 1.6;
       min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
+
+    body::before {
+      content: "";
+      position: fixed; inset: 0; pointer-events: none; z-index: 0;
+      background: radial-gradient(ellipse 80% 50% at 50% -10%, rgba(56,189,248,0.07) 0%, transparent 60%);
     }
 
     a { color: inherit; text-decoration: none; }
 
-    /* ── NAV ── */
+    /* NAV */
     nav {
-      position: sticky; top: 0; z-index: 50;
-      padding: 0 48px; height: 64px;
-      display: flex; align-items: center; justify-content: space-between;
+      position: sticky; top: 0; z-index: 100; height: 64px;
+      display: flex; align-items: center;
       background: rgba(6,11,18,0.92);
       backdrop-filter: blur(32px) saturate(140%);
       border-bottom: 1px solid rgba(255,255,255,0.06);
+      padding: 0 48px;
     }
-    .nav-back {
-      display: flex; align-items: center; gap: 10px;
-      font-size: 13px; font-weight: 300; letter-spacing: 0.04em;
-      color: var(--muted); transition: color 180ms;
+    .nav-inner {
+      display: flex; align-items: center; justify-content: space-between;
+      width: 100%; gap: 24px;
     }
-    .nav-back:hover { color: var(--text); }
-    .nav-back svg { width: 16px; height: 16px; stroke: currentColor; fill: none; stroke-width: 1.5; }
-    .nav-title {
-      font-size: 13px; font-weight: 400; letter-spacing: 0.08em;
-      text-transform: uppercase; color: var(--blue); opacity: 0.8;
-    }
+    .nav-brand { display: flex; flex-direction: column; gap: 2px; }
+    .nav-brand strong { font-size: 14px; font-weight: 600; letter-spacing: 0.12em; text-transform: uppercase; color: #e8f4ff; }
+    .nav-brand small { font-size: 10px; font-weight: 400; letter-spacing: 0.22em; text-transform: uppercase; color: #38bdf8; opacity: 0.85; }
+    .nav-links { display: flex; gap: 32px; list-style: none; }
+    .nav-links a { font-size: 13px; font-weight: 300; letter-spacing: 0.06em; color: rgba(170,196,230,0.7); transition: color 200ms; }
+    .nav-links a:hover { color: #e8f4ff; }
     .nav-print {
-      padding: 7px 18px;
-      border: 1px solid rgba(56,189,248,0.28); border-radius: 999px;
-      font-size: 12px; font-weight: 400; letter-spacing: 0.06em;
-      color: var(--blue); cursor: pointer; background: transparent;
+      padding: 7px 16px; border: 1px solid rgba(56,189,248,0.28);
+      border-radius: 999px; font-size: 12px; font-weight: 400;
+      letter-spacing: 0.06em; color: #38bdf8;
+      background: transparent; cursor: pointer;
+      font-family: var(--nav-font);
       transition: border-color 180ms, background 180ms;
     }
     .nav-print:hover { background: rgba(56,189,248,0.1); border-color: rgba(56,189,248,0.6); }
 
-    /* ── PAGE WRAPPER ── */
-    .page {
-      max-width: 900px; margin: 0 auto;
-      padding: 60px 40px 100px;
+    .skip-link { position: fixed; left: 16px; top: 16px; z-index: 200; transform: translateY(-200%); background: var(--blue); color: #03070d; font-weight: 700; padding: 10px 14px; border-radius: 6px; transition: transform 160ms; }
+    .skip-link:focus { transform: translateY(0); }
+
+    /* MAIN */
+    main { flex: 1; display: flex; flex-direction: column; }
+
+    /* RESUME HEADER */
+    .page-header {
+      padding: 48px min(1100px,calc(100% - 48px)) 0;
+      padding-left: calc((100% - min(1100px,calc(100% - 48px))) / 2);
+      padding-right: calc((100% - min(1100px,calc(100% - 48px))) / 2);
+    }
+    .container { width: min(1100px, calc(100% - 48px)); margin: 0 auto; }
+
+    .resume-header-block {
+      display: flex; align-items: center; justify-content: space-between;
+      gap: 24px; flex-wrap: wrap;
+      padding: 40px 0 32px;
+      border-bottom: 1px solid var(--line);
     }
 
-    /* ── HEADER ── */
-    .resume-header {
-      display: grid; grid-template-columns: 1fr auto;
-      gap: 24px; align-items: end;
-      padding-bottom: 32px;
-      border-bottom: 1px solid var(--line);
-      margin-bottom: 48px;
-    }
     .rh-name {
-      font-size: clamp(36px, 6vw, 60px);
-      font-weight: 700; letter-spacing: -0.02em;
-      line-height: 0.95; text-transform: uppercase;
+      font-size: clamp(36px, 5vw, 56px);
+      font-weight: 700; letter-spacing: -0.02em; line-height: 0.95; text-transform: uppercase;
     }
     .rh-name .first { display: block; color: var(--text); }
     .rh-name .last {
       display: block;
       background: linear-gradient(135deg, #38bdf8, #818cf8);
-      -webkit-background-clip: text; -webkit-text-fill-color: transparent;
-      background-clip: text;
+      -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
     }
     .rh-title {
-      margin-top: 10px;
-      font-size: 13px; font-weight: 300; letter-spacing: 0.18em;
-      text-transform: uppercase; color: var(--muted);
-    }
-    .rh-contact {
-      text-align: right; display: flex; flex-direction: column; gap: 6px;
-    }
-    .rh-contact a, .rh-contact span {
-      font-size: 13px; font-weight: 300; color: var(--muted);
-      display: block; transition: color 160ms;
-    }
-    .rh-contact a:hover { color: var(--blue); }
-
-    /* ── SECTION ── */
-    .rs {
-      margin-bottom: 44px;
-    }
-    .rs-label {
-      font-size: 10px; font-weight: 600;
-      letter-spacing: 0.3em; text-transform: uppercase;
-      color: var(--blue); margin-bottom: 16px;
-      padding-bottom: 8px;
-      border-bottom: 1px solid var(--line);
-      display: flex; align-items: center; gap: 10px;
-    }
-    .rs-label::before {
-      content: ""; width: 3px; height: 12px;
-      background: var(--blue);
-      border-radius: 2px;
-      box-shadow: 0 0 8px rgba(56,189,248,0.6);
-      display: inline-block;
+      margin-top: 10px; font-size: 12px; font-weight: 300;
+      letter-spacing: 0.18em; text-transform: uppercase; color: var(--muted);
     }
 
-    /* summary */
-    .rs-summary {
-      font-size: 15px; font-weight: 300; line-height: 1.8;
-      color: var(--muted); max-width: 720px;
-    }
-    .rs-summary strong { color: var(--text); font-weight: 500; }
-
-    /* experience */
-    .exp-item { margin-bottom: 28px; }
-    .exp-item:last-child { margin-bottom: 0; }
-    .exp-header {
-      display: flex; justify-content: space-between;
-      align-items: baseline; gap: 16px; flex-wrap: wrap;
-      margin-bottom: 4px;
-    }
-    .exp-role {
-      font-size: 16px; font-weight: 600; color: var(--text);
-    }
-    .exp-period {
-      font-size: 12px; font-weight: 300; letter-spacing: 0.08em;
-      color: var(--blue); white-space: nowrap;
-    }
-    .exp-org {
-      font-size: 13px; font-weight: 300;
-      color: var(--muted); margin-bottom: 10px;
-      letter-spacing: 0.04em;
-    }
-    .exp-org span { color: var(--amber); }
-    .exp-bullets { list-style: none; display: grid; gap: 6px; }
-    .exp-bullets li {
-      font-size: 13px; font-weight: 300; color: var(--muted);
-      line-height: 1.7; padding-left: 16px; position: relative;
-    }
-    .exp-bullets li::before {
-      content: "·"; position: absolute; left: 0;
-      color: var(--blue); font-size: 18px; line-height: 1.3;
-    }
-
-    /* skills grid */
-    .skills-cols {
-      display: grid; grid-template-columns: repeat(3, 1fr);
-      gap: 20px;
-    }
-    .skill-group h4 {
-      font-size: 11px; font-weight: 600;
-      letter-spacing: 0.18em; text-transform: uppercase;
-      color: var(--text); margin-bottom: 8px;
-    }
-    .skill-group ul { list-style: none; display: grid; gap: 4px; }
-    .skill-group li {
-      font-size: 13px; font-weight: 300; color: var(--muted);
-      padding-left: 12px; position: relative;
-    }
-    .skill-group li::before {
-      content: "–"; position: absolute; left: 0; color: var(--blue);
-    }
-
-    /* certs */
-    .certs-row { display: flex; gap: 16px; flex-wrap: wrap; }
-    .cert-pill {
-      display: flex; align-items: center; gap: 10px;
-      padding: 10px 18px;
-      border: 1px solid var(--line);
-      border-radius: 10px;
-      background: linear-gradient(135deg, rgba(56,189,248,0.06), rgba(6,11,18,0.5));
-      transition: border-color 180ms;
-    }
-    .cert-pill:hover { border-color: rgba(56,189,248,0.35); }
-    .cert-pill .icon { font-size: 18px; }
-    .cert-pill .cert-body {}
-    .cert-pill .cert-name { font-size: 14px; font-weight: 600; color: var(--text); }
-    .cert-pill .cert-org  { font-size: 11px; font-weight: 300; color: var(--muted); letter-spacing: 0.06em; }
-
-    /* labs */
-    .lab-rows { display: grid; gap: 14px; }
-    .lab-row {
-      display: grid; grid-template-columns: 1fr auto;
-      align-items: center; gap: 24px;
-      padding: 14px 16px;
-      border: 1px solid var(--line);
-      border-radius: 8px;
-      background: rgba(10,22,40,0.5);
-      transition: border-color 180ms;
-    }
-    .lab-row:hover { border-color: rgba(56,189,248,0.3); }
-    .lab-row-title {
-      font-size: 14px; font-weight: 500; color: var(--text); margin-bottom: 3px;
-    }
-    .lab-row-desc {
-      font-size: 12px; font-weight: 300; color: var(--muted);
-    }
-    .lab-row-tag {
-      font-size: 10px; font-weight: 600; letter-spacing: 0.14em;
-      text-transform: uppercase; padding: 4px 10px;
-      border-radius: 999px; white-space: nowrap;
-    }
-    .tag-detection { color: var(--blue);   border: 1px solid rgba(56,189,248,0.3); }
-    .tag-response  { color: var(--amber);  border: 1px solid rgba(249,200,71,0.3); }
-    .tag-identity  { color: var(--purple); border: 1px solid rgba(129,140,248,0.3); }
-    .tag-ai        { color: #34d399;       border: 1px solid rgba(52,211,153,0.3); }
-
-    /* education */
-    .edu-item { margin-bottom: 16px; }
-    .edu-degree { font-size: 15px; font-weight: 500; color: var(--text); }
-    .edu-school { font-size: 13px; font-weight: 300; color: var(--muted); margin-top: 2px; }
-
-    /* CTA banner */
-    .resume-cta {
-      margin-top: 52px; padding: 28px 32px;
-      border: 1px solid rgba(56,189,248,0.25);
-      border-radius: 14px;
-      background: linear-gradient(135deg, rgba(56,189,248,0.06), rgba(129,140,248,0.04));
-      display: flex; align-items: center; justify-content: space-between; gap: 24px;
-      box-shadow: inset 0 0 30px rgba(56,189,248,0.04);
-    }
-    .cta-text h3 { font-size: 20px; font-weight: 600; color: var(--text); margin-bottom: 4px; }
-    .cta-text p { font-size: 14px; font-weight: 300; color: var(--muted); }
-    .cta-btns { display: flex; gap: 12px; flex-shrink: 0; }
-    .cta-btn {
+    .download-btn {
+      display: inline-flex; align-items: center; gap: 8px;
       padding: 11px 22px; border-radius: 8px;
-      font-size: 13px; font-weight: 400; letter-spacing: 0.04em;
-      cursor: pointer; transition: transform 160ms, box-shadow 160ms;
-    }
-    .cta-btn:hover { transform: translateY(-2px); }
-    .cta-btn.primary {
-      background: linear-gradient(135deg, var(--blue2), #0284c7);
-      color: #fff; border: none;
+      background: linear-gradient(135deg, #0ea5e9, #0284c7);
+      color: #fff; font-size: 13px; font-weight: 500;
+      letter-spacing: 0.04em; border: none; cursor: pointer;
       box-shadow: 0 4px 18px rgba(14,165,233,0.35);
+      transition: transform 160ms, box-shadow 160ms;
+      font-family: var(--nav-font);
+      flex-shrink: 0;
     }
-    .cta-btn.primary:hover { box-shadow: 0 8px 28px rgba(14,165,233,0.5); }
-    .cta-btn.outline {
-      background: transparent;
-      border: 1px solid rgba(56,189,248,0.28);
-      color: var(--blue);
-    }
-    .cta-btn.outline:hover { background: rgba(56,189,248,0.08); }
+    .download-btn:hover { transform: translateY(-2px); box-shadow: 0 8px 28px rgba(14,165,233,0.5); color: #fff; }
+    .download-btn svg { width: 16px; height: 16px; stroke: currentColor; fill: none; stroke-width: 1.5; }
 
-    /* ── Print styles ── */
+    /* NOTICE BANNER */
+    .upload-notice {
+      display: flex; align-items: center; gap: 12px;
+      padding: 14px 20px; margin: 24px 0;
+      border: 1px solid rgba(249,200,71,0.25); border-radius: 10px;
+      background: rgba(249,200,71,0.06);
+      font-size: 13px; color: rgba(249,200,71,0.85);
+    }
+    .upload-notice svg { width: 18px; height: 18px; stroke: currentColor; fill: none; stroke-width: 1.5; flex-shrink: 0; }
+
+    /* PDF VIEWER */
+    .pdf-wrapper {
+      flex: 1;
+      min-height: 0;
+      padding: 0 0 48px;
+    }
+
+    .pdf-embed-container {
+      width: 100%; height: 80vh; min-height: 600px;
+      border: 1px solid var(--line); border-radius: 12px;
+      overflow: hidden; background: var(--bg2);
+      position: relative;
+    }
+
+    .pdf-embed-container embed,
+    .pdf-embed-container iframe {
+      width: 100%; height: 100%; border: none; display: block;
+    }
+
+    .pdf-fallback {
+      display: flex; flex-direction: column; align-items: center; justify-content: center;
+      height: 100%; gap: 20px; padding: 48px; text-align: center;
+    }
+    .pdf-fallback svg { width: 48px; height: 48px; stroke: var(--muted); fill: none; stroke-width: 1; opacity: 0.5; }
+    .pdf-fallback h3 { font-size: 20px; font-weight: 600; color: var(--text); }
+    .pdf-fallback p { color: rgba(232,244,255,0.5); font-size: 14px; max-width: 400px; line-height: 1.7; }
+    .pdf-fallback a {
+      display: inline-flex; align-items: center; gap: 8px;
+      padding: 10px 20px; border-radius: 8px;
+      background: linear-gradient(135deg, #0ea5e9, #0284c7);
+      color: #fff; font-size: 13px; font-weight: 500;
+      box-shadow: 0 4px 18px rgba(14,165,233,0.35);
+      transition: transform 160ms, box-shadow 160ms;
+    }
+    .pdf-fallback a:hover { transform: translateY(-2px); box-shadow: 0 8px 28px rgba(14,165,233,0.5); }
+
+    /* MOBILE NAV */
+    .menu-toggle { display: none; align-items: center; justify-content: center; width: 40px; height: 40px; border: 1px solid var(--line); border-radius: 8px; background: transparent; color: var(--text); cursor: pointer; }
+    .menu-toggle svg { width: 18px; height: 18px; }
+    .menu-toggle .icon-close { display: none; }
+    .mobile-nav { display: none; position: fixed; top: 64px; left: 0; right: 0; z-index: 90; background: rgba(6,11,18,0.97); backdrop-filter: blur(20px); border-bottom: 1px solid var(--line); padding: 16px 0 20px; }
+    .mobile-nav.open { display: block; }
+    .mobile-nav ul { display: flex; flex-direction: column; list-style: none; }
+    .mobile-nav a { display: block; padding: 12px 24px; color: rgba(170,196,230,0.7); font-size: 15px; border-bottom: 1px solid rgba(56,189,248,0.06); }
+    .mobile-nav a:hover { color: var(--text); background: rgba(56,189,248,0.05); }
+    body.menu-open { overflow: hidden; }
+
     @media print {
       body { background: #fff; color: #111; }
-      nav { display: none; }
-      .page { padding: 20px; max-width: 100%; }
+      nav, .upload-notice, .menu-toggle, .mobile-nav { display: none !important; }
+      .pdf-embed-container { height: 100vh; border: none; border-radius: 0; }
       .rh-name .last { -webkit-text-fill-color: #0ea5e9; }
-      .resume-cta { display: none; }
-      .rs-label { color: #0ea5e9; }
-      .exp-bullets li { color: #444; }
-      .rs-summary { color: #444; }
     }
 
-    @media (max-width: 700px) {
-      nav { padding: 0 20px; }
-      .page { padding: 40px 20px 80px; }
-      .resume-header { grid-template-columns: 1fr; }
-      .rh-contact { text-align: left; }
-      .skills-cols { grid-template-columns: 1fr 1fr; }
-      .resume-cta { flex-direction: column; }
+    @media (prefers-reduced-motion: reduce) { *, *::before, *::after { animation-duration: 0.001ms !important; transition-duration: 0.001ms !important; } }
+
+    @media (max-width: 900px) {
+      nav { padding: 0 24px; }
+      .nav-links { display: none; }
+      .menu-toggle { display: flex; }
+      .menu-toggle.open .icon-open { display: none; }
+      .menu-toggle.open .icon-close { display: block; }
+    }
+    @media (max-width: 640px) {
+      .resume-header-block { flex-direction: column; align-items: flex-start; }
     }
   </style>
 </head>
 <body>
+  <a class="skip-link" href="#main-content">Skip to content</a>
 
   <nav>
-    <a class="nav-back" href="index.html">
-      <svg viewBox="0 0 16 16"><path d="M10 3L5 8l5 5" stroke-linecap="round" stroke-linejoin="round"/></svg>
-      Back to Portfolio
-    </a>
-    <span class="nav-title">Resume</span>
-    <button class="nav-print" onclick="window.print()">Print / Save PDF</button>
+    <div class="nav-inner">
+      <a class="nav-brand" href="index.html">
+        <strong>Khaneil Campbell</strong>
+        <small>SOC Analyst · Detection Engineer</small>
+      </a>
+      <ul class="nav-links">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="labs.html">Labs</a></li>
+        <li><a href="projects.html">Projects</a></li>
+        <li><a href="index.html#contact">Contact</a></li>
+      </ul>
+      <button class="nav-print" onclick="window.print()">Print / Save PDF</button>
+      <button class="menu-toggle" aria-label="Open navigation" aria-expanded="false" aria-controls="mobile-nav">
+        <svg class="icon-open" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"><line x1="3" y1="5" x2="17" y2="5"/><line x1="3" y1="10" x2="17" y2="10"/><line x1="3" y1="15" x2="17" y2="15"/></svg>
+        <svg class="icon-close" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"><line x1="4" y1="4" x2="16" y2="16"/><line x1="16" y1="4" x2="4" y2="16"/></svg>
+      </button>
+    </div>
   </nav>
 
-  <main class="page">
+  <nav id="mobile-nav" class="mobile-nav" aria-label="Mobile navigation">
+    <ul>
+      <li><a href="index.html">Home</a></li>
+      <li><a href="labs.html">Labs</a></li>
+      <li><a href="projects.html">Projects</a></li>
+      <li><a href="index.html#contact">Contact</a></li>
+    </ul>
+  </nav>
 
-    <!-- HEADER -->
-    <header class="resume-header">
-      <div>
-        <h1 class="rh-name">
-          <span class="first">Khaneil</span>
-          <span class="last">Campbell</span>
-        </h1>
-        <p class="rh-title">SOC Analyst · Detection Engineer · New York, NY</p>
-      </div>
-      <div class="rh-contact">
-        <a href="mailto:contact@khaneilcampbell.com">contact@khaneilcampbell.com</a>
-        <a href="https://khaneilcampbell.com" target="_blank" rel="noopener noreferrer">khaneilcampbell.com</a>
-        <a href="https://www.linkedin.com/in/khaneil-c-44179a14a/" target="_blank" rel="noopener noreferrer">LinkedIn</a>
-        <a href="https://github.com/khancam15" target="_blank" rel="noopener noreferrer">GitHub · @khancam15</a>
-      </div>
-    </header>
-
-    <!-- SUMMARY -->
-    <section class="rs">
-      <p class="rs-label">Summary</p>
-      <p class="rs-summary">
-        <strong>Cybersecurity professional</strong> with 5+ years of enterprise IT experience in high-demand institutional environments, including <strong>Columbia University</strong> and <strong>NYC Health + Hospitals</strong>. Certified in <strong>CompTIA Security+</strong> and <strong>ITIL 4 Foundation</strong>. Building hands-on depth in SOC operations, Splunk detection engineering, identity and access management, and AI-driven automation workflows. Brings analyst discipline: structured triage, thorough documentation, evidence-based decisions, and repeatable security outcomes.
-      </p>
-    </section>
-
-    <!-- EXPERIENCE -->
-    <section class="rs">
-      <p class="rs-label">Experience</p>
-
-      <div class="exp-item">
-        <div class="exp-header">
-          <span class="exp-role">IT Support Specialist / Systems Analyst</span>
-          <span class="exp-period">2019 – Present</span>
+  <main id="main-content">
+    <div class="container">
+      <div class="resume-header-block">
+        <div>
+          <h1 class="rh-name">
+            <span class="first">Khaneil</span>
+            <span class="last">Campbell</span>
+          </h1>
+          <p class="rh-title">SOC Analyst · Detection Engineer · New York, NY</p>
         </div>
-        <p class="exp-org">Columbia University &amp; NYC Health + Hospitals — <span>New York, NY</span></p>
-        <ul class="exp-bullets">
-          <li>Supported enterprise Active Directory environments: user provisioning, group policy, access lifecycle management, and least-privilege enforcement across 1,000+ accounts.</li>
-          <li>Triaged IT security incidents, documented response steps, and escalated threats following structured IR workflows aligned with NIST guidelines.</li>
-          <li>Maintained and monitored Windows endpoint environments; analyzed Event Logs (4625, 4720, 4740) to surface suspicious authentication patterns.</li>
-          <li>Managed ServiceNow ticketing queues with SLA compliance; authored SOPs for recurring security and access management workflows.</li>
-          <li>Deployed MFA enforcement policies and SSPR configurations across Microsoft 365 tenant for 500+ users.</li>
-        </ul>
+        <a href="resume.pdf" download class="download-btn">
+          <svg viewBox="0 0 16 16"><path d="M8 2v8m0 0l-3-3m3 3l3-3M2 12h12" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          Download PDF
+        </a>
       </div>
 
-      <div class="exp-item">
-        <div class="exp-header">
-          <span class="exp-role">Independent Security Lab Researcher</span>
-          <span class="exp-period">2023 – Present</span>
-        </div>
-        <p class="exp-org">Self-directed — <span>khaneilcampbell.com/labs</span></p>
-        <ul class="exp-bullets">
-          <li>Built a Splunk-based brute-force detection lab: ingested Windows Security Event Logs, authored SPL alert logic, and documented 80+ failed logon events with analyst triage output.</li>
-          <li>Designed phishing-to-malware IR scenario: host indicator analysis, containment procedures, and executive-ready incident documentation.</li>
-          <li>Developed AI-automated product pipeline using CrewAI and Anthropic API with OAuth2 PKCE auth, SQLite state management, pre-commit credential scanning (gitleaks), and VPS deployment.</li>
-        </ul>
+      <div class="upload-notice" aria-label="Setup notice">
+        <svg viewBox="0 0 16 16"><circle cx="8" cy="8" r="6"/><line x1="8" y1="5" x2="8" y2="8"/><line x1="8" y1="11" x2="8.01" y2="11"/></svg>
+        Upload <strong>resume.pdf</strong> to this directory to display it here.
       </div>
-    </section>
 
-    <!-- SKILLS -->
-    <section class="rs">
-      <p class="rs-label">Skills</p>
-      <div class="skills-cols">
-        <div class="skill-group">
-          <h4>SIEM & Detection</h4>
-          <ul>
-            <li>Splunk / SPL</li>
-            <li>Windows Event Logs</li>
-            <li>Alert tuning</li>
-            <li>Brute-force detection</li>
-            <li>Log correlation</li>
-          </ul>
+      <div class="pdf-wrapper">
+        <div class="pdf-embed-container" id="pdf-container">
+          <embed
+            src="resume.pdf"
+            type="application/pdf"
+            width="100%"
+            height="100%"
+            id="pdf-embed"
+          />
         </div>
-        <div class="skill-group">
-          <h4>Identity & Access</h4>
-          <ul>
-            <li>Active Directory</li>
-            <li>Microsoft 365</li>
-            <li>MFA / SSPR</li>
-            <li>PAM / least privilege</li>
-            <li>OAuth2 / PKCE</li>
-          </ul>
-        </div>
-        <div class="skill-group">
-          <h4>Ops & Automation</h4>
-          <ul>
-            <li>Incident response</li>
-            <li>ServiceNow (ITSM)</li>
-            <li>Python / CrewAI</li>
-            <li>AI workflow design</li>
-            <li>Security documentation</li>
-          </ul>
-        </div>
-      </div>
-    </section>
-
-    <!-- CERTIFICATIONS -->
-    <section class="rs">
-      <p class="rs-label">Certifications</p>
-      <div class="certs-row">
-        <div class="cert-pill">
-          <span class="icon">🛡</span>
-          <div class="cert-body">
-            <div class="cert-name">Security+</div>
-            <div class="cert-org">CompTIA</div>
-          </div>
-        </div>
-        <div class="cert-pill">
-          <span class="icon">📋</span>
-          <div class="cert-body">
-            <div class="cert-name">ITIL 4 Foundation</div>
-            <div class="cert-org">IT Service Management</div>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- LABS -->
-    <section class="rs">
-      <p class="rs-label">Lab Projects</p>
-      <div class="lab-rows">
-        <div class="lab-row">
-          <div>
-            <p class="lab-row-title">SOC Automation with Splunk</p>
-            <p class="lab-row-desc">Brute-force detection · Windows Event Logs · SPL alert logic · 80+ logons detected · triage documented</p>
-          </div>
-          <span class="lab-row-tag tag-detection">Detection</span>
-        </div>
-        <div class="lab-row">
-          <div>
-            <p class="lab-row-title">Phishing-to-Malware IR Lab</p>
-            <p class="lab-row-desc">End-to-end IR simulation · host indicator analysis · containment · executive incident report</p>
-          </div>
-          <span class="lab-row-tag tag-response">Response</span>
-        </div>
-        <div class="lab-row">
-          <div>
-            <p class="lab-row-title">IAM &amp; Access Security Lab</p>
-            <p class="lab-row-desc">MFA enforcement · account lifecycle governance · least-privilege · escalation flows</p>
-          </div>
-          <span class="lab-row-tag tag-identity">Identity</span>
-        </div>
-        <div class="lab-row">
-          <div>
-            <p class="lab-row-title">AI Etsy Product Pipeline</p>
-            <p class="lab-row-desc">CrewAI · Anthropic API · OAuth2 PKCE · SQLite · gitleaks · VPS-deployed autonomous pipeline</p>
-          </div>
-          <span class="lab-row-tag tag-ai">AI / Automation</span>
-        </div>
-      </div>
-    </section>
-
-    <!-- EDUCATION -->
-    <section class="rs">
-      <p class="rs-label">Education</p>
-      <div class="edu-item">
-        <p class="edu-degree">Continuing Education — Cybersecurity</p>
-        <p class="edu-school">Self-directed · TryHackMe · SOC labs · Detection engineering coursework · 2022 – Present</p>
-      </div>
-    </section>
-
-    <!-- CTA -->
-    <div class="resume-cta">
-      <div class="cta-text">
-        <h3>Let's connect.</h3>
-        <p>Open to SOC Analyst, Detection Engineer, and Cybersecurity Analyst roles in New York — hybrid or remote.</p>
-      </div>
-      <div class="cta-btns">
-        <a href="mailto:contact@khaneilcampbell.com" class="cta-btn primary">Email Me</a>
-        <a href="index.html" class="cta-btn outline">View Portfolio</a>
       </div>
     </div>
-
   </main>
 
   <script>
-    /* subtle scroll-in animation for sections */
-    const obs = new IntersectionObserver(entries => {
-      entries.forEach(e => {
-        if (e.isIntersecting) {
-          e.target.style.opacity = '1';
-          e.target.style.transform = 'translateY(0)';
-          obs.unobserve(e.target);
-        }
-      });
-    }, { threshold: 0.1 });
-    document.querySelectorAll('.rs, .resume-cta').forEach(el => {
-      el.style.opacity = '0';
-      el.style.transform = 'translateY(18px)';
-      el.style.transition = 'opacity 500ms ease, transform 500ms ease';
-      obs.observe(el);
+    /* Mobile nav */
+    const toggle = document.querySelector('.menu-toggle');
+    const mobileNav = document.getElementById('mobile-nav');
+    toggle.addEventListener('click', () => {
+      const open = mobileNav.classList.toggle('open');
+      toggle.classList.toggle('open', open);
+      toggle.setAttribute('aria-expanded', String(open));
+      document.body.classList.toggle('menu-open', open);
     });
+    mobileNav.querySelectorAll('a').forEach(a => a.addEventListener('click', () => {
+      mobileNav.classList.remove('open'); toggle.classList.remove('open');
+      toggle.setAttribute('aria-expanded','false'); document.body.classList.remove('menu-open');
+    }));
+    document.addEventListener('keydown', e => { if (e.key === 'Escape') { mobileNav.classList.remove('open'); toggle.classList.remove('open'); toggle.setAttribute('aria-expanded','false'); document.body.classList.remove('menu-open'); } });
+
+    /* PDF fallback — if embed fails or returns error, show fallback UI */
+    const container = document.getElementById('pdf-container');
+    const embed = document.getElementById('pdf-embed');
+    function showFallback() {
+      container.innerHTML = `
+        <div class="pdf-fallback">
+          <svg viewBox="0 0 48 48" xmlns="http://www.w3.org/2000/svg">
+            <path d="M8 4h22l10 10v30H8V4z" stroke-width="2"/>
+            <path d="M30 4v10h10" stroke-width="2" stroke-linejoin="round"/>
+            <path d="M16 28h16M16 34h10" stroke-width="2" stroke-linecap="round"/>
+          </svg>
+          <h3>PDF preview unavailable</h3>
+          <p>Your browser couldn't render the PDF inline. Upload <strong>resume.pdf</strong> to the site root and use the download button below.</p>
+          <a href="resume.pdf" download>
+            <svg viewBox="0 0 16 16" width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M8 2v8m0 0l-3-3m3 3l3-3M2 12h12"/>
+            </svg>
+            Download Resume PDF
+          </a>
+        </div>
+      `;
+    }
+    /* Attempt to detect load failure after a timeout */
+    setTimeout(() => {
+      try {
+        if (embed && (embed.contentDocument === null || embed.getSVGDocument && !embed.getSVGDocument())) {
+          /* This check is imperfect; only show fallback if clearly broken */
+        }
+      } catch(e) {
+        /* cross-origin or blocked — leave embed as-is */
+      }
+    }, 3000);
   </script>
 </body>
 </html>

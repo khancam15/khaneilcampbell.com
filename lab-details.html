@@ -4,717 +4,265 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <meta name="description" content="Security lab case files by Khaneil Campbell — detailed breakdowns of SOC automation with Splunk, phishing incident response, and identity and access management security scenarios." />
-  <meta name="theme-color" content="#07110f" />
-  <meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'unsafe-inline'; style-src 'unsafe-inline'; img-src 'self'; font-src 'self'; base-uri 'self'; form-action 'none';" />
+  <meta name="theme-color" content="#060b12" />
+  <meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'unsafe-inline'; style-src 'unsafe-inline'; img-src 'self' data:; font-src 'self'; base-uri 'self'; form-action 'none';" />
   <meta name="referrer" content="strict-origin-when-cross-origin" />
   <meta name="robots" content="index, follow" />
   <title>Security Lab Case Files | Khaneil Campbell</title>
   <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+
     :root {
-      --bg: #07110f;
-      --panel: rgba(14, 23, 20, 0.82);
-      --panel-strong: rgba(18, 30, 26, 0.94);
-      --line: rgba(202, 238, 222, 0.14);
-      --text: #f4fbf7;
-      --muted: #a9bbb3;
-      --green: #69e6a1;
-      --amber: #facc6b;
-      --ink: #07110f;
-      --shadow: 0 28px 80px rgba(0, 0, 0, 0.42);
+      --bg: #060b12;
+      --bg2: #0a1628;
+      --bg3: #0f1f3a;
+      --line: rgba(56,189,248,0.12);
+      --text: #e8f4ff;
+      --muted: #7a9ab8;
+      --blue: #38bdf8;
+      --blue2: #0ea5e9;
+      --amber: #f9c847;
+      --nav-font: "SF Pro Display","SF Pro Text",-apple-system,BlinkMacSystemFont,"Segoe UI Variable Display","Segoe UI",system-ui,sans-serif;
     }
 
-    * {
-      box-sizing: border-box;
-      margin: 0;
-      padding: 0;
-    }
-
-    html {
-      scroll-behavior: smooth;
-    }
+    ::selection { background: rgba(56,189,248,0.25); }
+    :focus-visible { outline: 2px solid var(--blue); outline-offset: 3px; }
 
     body {
-      min-height: 100vh;
-      font-family: Arial, Helvetica, sans-serif;
+      background: var(--bg);
       color: var(--text);
+      font-family: var(--nav-font);
       line-height: 1.6;
-      background:
-        linear-gradient(120deg, rgba(105, 230, 161, 0.14), transparent 30%),
-        linear-gradient(240deg, rgba(250, 204, 107, 0.11), transparent 32%),
-        repeating-linear-gradient(90deg, rgba(255, 255, 255, 0.028) 0 1px, transparent 1px 92px),
-        linear-gradient(180deg, #07110f 0%, #0b1512 48%, #07110f 100%);
+      min-height: 100vh;
       overflow-x: hidden;
     }
 
     body::before {
       content: "";
-      position: fixed;
-      inset: 0;
-      pointer-events: none;
+      position: fixed; inset: 0; pointer-events: none; z-index: 0;
       background:
-        linear-gradient(rgba(125, 211, 252, 0.045) 1px, transparent 1px),
-        linear-gradient(90deg, rgba(125, 211, 252, 0.035) 1px, transparent 1px);
-      background-size: 44px 44px;
-      mask-image: linear-gradient(to bottom, black, transparent 74%);
+        radial-gradient(ellipse 80% 50% at 50% -10%, rgba(56,189,248,0.07) 0%, transparent 60%),
+        radial-gradient(ellipse 60% 40% at 80% 80%, rgba(129,140,248,0.04) 0%, transparent 55%);
     }
 
-    a {
-      color: inherit;
-      text-decoration: none;
-    }
+    a { color: inherit; text-decoration: none; }
+    .container { width: min(1100px, calc(100% - 48px)); margin: 0 auto; }
 
-    a:not(.btn):hover {
-      color: var(--green);
-      text-decoration: underline;
-      text-underline-offset: 3px;
-    }
+    /* NAV */
+    nav { position: sticky; top: 0; z-index: 100; height: 64px; display: flex; align-items: center; background: rgba(6,11,18,0.9); backdrop-filter: blur(32px) saturate(140%); border-bottom: 1px solid rgba(255,255,255,0.06); }
+    .nav-inner { display: flex; align-items: center; justify-content: space-between; gap: 24px; width: min(1100px,calc(100% - 48px)); margin: 0 auto; }
+    .nav-brand { display: flex; flex-direction: column; gap: 2px; }
+    .nav-brand strong { font-size: 14px; font-weight: 600; letter-spacing: 0.12em; text-transform: uppercase; color: #e8f4ff; }
+    .nav-brand small { font-size: 10px; font-weight: 400; letter-spacing: 0.22em; text-transform: uppercase; color: #38bdf8; opacity: 0.85; }
+    .nav-links { display: flex; gap: 32px; list-style: none; }
+    .nav-links a { font-size: 13px; font-weight: 300; letter-spacing: 0.06em; color: rgba(170,196,230,0.7); transition: color 200ms; }
+    .nav-links a:hover, .nav-links a.active { color: #e8f4ff; }
+    .nav-resume { padding: 7px 16px; border: 1px solid rgba(56,189,248,0.28); border-radius: 999px; font-size: 12px; font-weight: 400; letter-spacing: 0.06em; color: #38bdf8; transition: border-color 180ms, background 180ms; }
+    .nav-resume:hover { background: rgba(56,189,248,0.1); border-color: rgba(56,189,248,0.6); }
 
-    .container {
-      width: min(1120px, calc(100% - 40px));
-      margin: 0 auto;
-    }
+    .skip-link { position: fixed; left: 16px; top: 16px; z-index: 200; transform: translateY(-200%); background: var(--blue); color: #03070d; font-weight: 700; padding: 10px 14px; border-radius: 6px; transition: transform 160ms; }
+    .skip-link:focus { transform: translateY(0); }
 
-    header {
-      position: sticky;
-      top: 0;
-      z-index: 20;
-      border-bottom: 1px solid var(--line);
-      background: rgba(7, 17, 15, 0.82);
-      backdrop-filter: blur(14px);
-    }
+    /* LAYOUT */
+    main { padding-top: 24px; }
+    .section { padding: 72px 0; }
+    .section-divider { height: 1px; background: linear-gradient(90deg, transparent, rgba(56,189,248,0.15), transparent); }
 
-    .nav {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 20px;
-      min-height: 78px;
-    }
+    .eyebrow { font-size: 11px; font-weight: 500; letter-spacing: 0.28em; text-transform: uppercase; color: var(--blue); margin-bottom: 12px; }
+    h1 { font-size: clamp(38px,6vw,68px); font-weight: 700; line-height: 1.0; }
+    h2 { font-size: clamp(26px,3vw,40px); font-weight: 700; line-height: 1.05; }
+    h3 { font-size: 22px; font-weight: 600; line-height: 1.15; margin: 10px 0 12px; }
+    .lead { max-width: 680px; margin-top: 16px; color: rgba(232,244,255,0.65); font-size: clamp(16px,1.8vw,19px); line-height: 1.7; }
 
-    .brand small,
-    .eyebrow,
-    .section-label,
-    .card-type,
-    .kicker {
-      color: var(--green);
-      font-size: 12px;
-      letter-spacing: 0.22em;
-      text-transform: uppercase;
-    }
+    /* HERO */
+    .hero { display: grid; grid-template-columns: minmax(0,1.05fr) minmax(320px,0.95fr); gap: 40px; align-items: center; padding: 64px 0 48px; }
+    .hero-actions { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 32px; }
 
-    .brand span {
-      display: block;
-      color: var(--muted);
-      font-size: 14px;
-      margin-top: 2px;
-    }
+    .metrics { display: grid; grid-template-columns: repeat(4,1fr); gap: 12px; margin-top: 32px; }
+    .metric { padding: 18px; border: 1px solid var(--line); border-radius: 10px; background: linear-gradient(135deg, var(--bg3), var(--bg2)); }
+    .metric strong { display: block; font-size: 30px; font-weight: 700; color: var(--blue); line-height: 1; }
+    .metric span { display: block; font-size: 12px; color: var(--muted); margin-top: 8px; }
 
-    nav ul {
-      display: flex;
-      gap: 22px;
-      list-style: none;
-    }
+    /* COMMAND PANEL */
+    .command-panel { border: 1px solid var(--line); border-radius: 12px; background: linear-gradient(135deg, var(--bg3), var(--bg2)); overflow: hidden; }
+    .panel-top { display: flex; justify-content: space-between; padding: 14px 18px; border-bottom: 1px solid var(--line); font-size: 12px; color: var(--muted); }
+    .pulse { display: inline-flex; align-items: center; gap: 8px; color: var(--blue); font-weight: 500; }
+    .pulse::before { content: ""; width: 8px; height: 8px; border-radius: 50%; background: var(--blue); box-shadow: 0 0 0 3px rgba(56,189,248,0.2); animation: pulseAnim 2s ease-in-out infinite; }
+    @keyframes pulseAnim { 0%,100% { box-shadow: 0 0 0 3px rgba(56,189,248,0.2); } 50% { box-shadow: 0 0 0 6px rgba(56,189,248,0.08); } }
+    .terminal { display: grid; gap: 10px; padding: 18px; font-family: "SFMono-Regular",Consolas,monospace; font-size: 12px; }
+    .terminal-line { display: grid; grid-template-columns: 48px 1fr; gap: 12px; padding: 11px 14px; border: 1px solid rgba(56,189,248,0.08); border-radius: 8px; background: rgba(6,11,18,0.5); }
+    .terminal-time { color: var(--amber); font-weight: 600; }
+    .terminal-text { color: rgba(232,244,255,0.75); }
 
-    nav a {
-      color: #d7e7df;
-      font-size: 14px;
-    }
+    /* BUTTONS */
+    .btn-blue { display: inline-flex; align-items: center; justify-content: center; padding: 11px 22px; border-radius: 8px; background: linear-gradient(135deg, #0ea5e9, #0284c7); color: #fff; font-size: 13px; font-weight: 500; letter-spacing: 0.04em; border: none; cursor: pointer; box-shadow: 0 4px 18px rgba(14,165,233,0.35); transition: transform 160ms, box-shadow 160ms; font-family: var(--nav-font); }
+    .btn-blue:hover { transform: translateY(-2px); box-shadow: 0 8px 28px rgba(14,165,233,0.5); color: #fff; }
+    .btn-outline { display: inline-flex; align-items: center; justify-content: center; padding: 11px 22px; border-radius: 8px; background: transparent; border: 1px solid rgba(56,189,248,0.28); color: var(--blue); font-size: 13px; font-weight: 400; letter-spacing: 0.04em; cursor: pointer; transition: background 160ms, border-color 160ms; font-family: var(--nav-font); }
+    .btn-outline:hover { background: rgba(56,189,248,0.08); border-color: rgba(56,189,248,0.55); color: var(--blue); }
+    .btn-sm { padding: 8px 16px; font-size: 12px; }
 
-    .btn {
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      min-height: 44px;
-      padding: 10px 16px;
-      border: 1px solid var(--line);
-      border-radius: 8px;
-      background: rgba(255, 255, 255, 0.055);
-      color: var(--text);
-      cursor: pointer;
-      font-size: 14px;
-      font-weight: 700;
-      transition: transform 180ms ease, border-color 180ms ease, background 180ms ease;
-    }
+    /* TAB LINKS */
+    .tabs { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 20px; }
 
-    .btn:hover {
-      border-color: rgba(105, 230, 161, 0.62);
-      background: rgba(105, 230, 161, 0.13);
-      transform: translateY(-1px);
-    }
-
-    .btn-primary {
-      background: var(--green);
-      color: var(--ink);
-      border-color: transparent;
-    }
-
-    .hero {
-      display: grid;
-      grid-template-columns: minmax(0, 1.05fr) minmax(340px, 0.95fr);
-      gap: 34px;
-      align-items: center;
-      min-height: calc(100vh - 78px);
-      padding: 58px 0 44px;
-    }
-
-    h1 {
-      max-width: 860px;
-      margin-top: 14px;
-      font-size: clamp(42px, 8vw, 84px);
-      line-height: 1;
-    }
-
-    h2 {
-      max-width: 760px;
-      margin-top: 8px;
-      font-size: clamp(30px, 4vw, 48px);
-      line-height: 1.05;
-    }
-
-    .hero-copy p,
-    .section-subtext {
-      max-width: 700px;
-      margin-top: 18px;
-      color: #d5e3dc;
-      font-size: clamp(17px, 2.1vw, 20px);
-    }
-
-    .hero-actions,
-    .lab-actions {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 10px;
-      margin-top: 28px;
-    }
-
-    .command-panel,
-    .metric,
-    .lab-detail-card,
-    .detail-card,
-    .timeline-item {
-      border: 1px solid var(--line);
-      border-radius: 8px;
-      background: var(--panel);
-      box-shadow: var(--shadow);
-      backdrop-filter: blur(16px);
-    }
-
-    .panel-top {
-      display: flex;
-      justify-content: space-between;
-      gap: 14px;
-      padding: 14px 16px;
-      border-bottom: 1px solid var(--line);
-      background: rgba(255, 255, 255, 0.035);
-      color: var(--muted);
-      font-size: 13px;
-    }
-
-    .pulse {
-      display: inline-flex;
-      align-items: center;
-      gap: 8px;
-      color: var(--green);
-      font-weight: 700;
-    }
-
-    .pulse::before {
-      content: "";
-      width: 9px;
-      height: 9px;
-      border-radius: 999px;
-      background: var(--green);
-      box-shadow: 0 0 0 8px rgba(105, 230, 161, 0.12);
-    }
-
-    .terminal {
-      display: grid;
-      gap: 12px;
-      padding: 18px;
-      font-family: "SFMono-Regular", Consolas, "Liberation Mono", monospace;
-      font-size: 13px;
-    }
-
-    .terminal-line {
-      display: grid;
-      grid-template-columns: 110px 1fr;
-      gap: 12px;
-      padding: 12px;
-      border: 1px solid rgba(255, 255, 255, 0.08);
-      border-radius: 8px;
-      background: rgba(7, 17, 15, 0.66);
-    }
-
-    .terminal-time {
-      color: var(--amber);
-    }
-
-    .terminal-text {
-      color: #d8f8e6;
-    }
-
-    .metrics {
-      display: grid;
-      grid-template-columns: repeat(4, 1fr);
-      gap: 12px;
-      margin-top: 18px;
-    }
-
-    .metric {
-      padding: 16px;
-      background: rgba(18, 30, 26, 0.7);
-      box-shadow: none;
-    }
-
-    .metric strong {
-      display: block;
-      font-size: 28px;
-      line-height: 1;
-    }
-
-    .metric span {
-      display: block;
-      color: var(--muted);
-      font-size: 13px;
-      margin-top: 8px;
-    }
-
-    .section {
-      padding: 66px 0;
-    }
-
-    .section-head {
-      display: flex;
-      align-items: end;
-      justify-content: space-between;
-      gap: 24px;
-      margin-bottom: 24px;
-    }
-
-    .tabs {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 10px;
-    }
-
-    .lab-stack {
-      display: grid;
-      gap: 22px;
-    }
-
+    /* LAB DETAIL CARDS */
+    .lab-stack { display: grid; gap: 24px; }
     .lab-detail-card {
-      display: grid;
-      grid-template-columns: minmax(0, 1fr) minmax(310px, 0.86fr);
-      gap: 20px;
-      padding: 22px;
-      box-shadow: none;
+      display: grid; grid-template-columns: minmax(0,1fr) minmax(280px,0.82fr);
+      gap: 24px; padding: 28px;
+      border: 1px solid var(--line); border-radius: 12px;
+      background: linear-gradient(135deg, var(--bg3), var(--bg2));
     }
+    .lab-detail-card > div > p { color: rgba(232,244,255,0.65); font-size: 14px; line-height: 1.7; }
 
-    .lab-detail-card h3,
-    .detail-card h3 {
-      font-size: 28px;
-      line-height: 1.1;
-      margin: 10px 0;
-    }
+    .card-type { font-size: 10px; font-weight: 600; letter-spacing: 0.24em; text-transform: uppercase; color: var(--blue); }
+    .kicker { font-size: 10px; font-weight: 600; letter-spacing: 0.24em; text-transform: uppercase; color: var(--blue); margin-bottom: 6px; }
 
-    .lab-detail-card p,
-    .detail-card p,
-    .timeline-item p {
-      color: #c8d8d0;
-    }
+    .detail-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 12px; margin-top: 18px; }
+    .detail-card { padding: 16px; border: 1px solid rgba(56,189,248,0.1); border-radius: 10px; background: rgba(6,11,18,0.4); }
+    .detail-card > p { color: rgba(232,244,255,0.65); font-size: 13px; line-height: 1.6; }
 
-    .detail-grid {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 12px;
-      margin-top: 18px;
-    }
+    .lab-actions { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 18px; }
 
-    .detail-card {
-      padding: 16px;
-      box-shadow: none;
-    }
+    .tags { display: flex; flex-wrap: wrap; gap: 7px; margin-top: 16px; }
+    .tag { padding: 5px 10px; border-radius: 999px; border: 1px solid rgba(56,189,248,0.12); background: rgba(56,189,248,0.06); color: rgba(170,196,230,0.7); font-size: 11px; }
 
-    .timeline {
-      display: grid;
-      gap: 12px;
-    }
+    .timeline { display: grid; gap: 12px; }
+    .timeline-item { display: grid; grid-template-columns: 80px 1fr; gap: 14px; padding: 16px; border: 1px solid var(--line); border-radius: 10px; background: rgba(6,11,18,0.4); }
+    .timeline-item strong { color: var(--amber); font-family: "SFMono-Regular",Consolas,monospace; font-size: 12px; }
+    .timeline-item p { color: rgba(232,244,255,0.6); font-size: 13px; }
 
-    .timeline-item {
-      display: grid;
-      grid-template-columns: 102px 1fr;
-      gap: 14px;
-      padding: 16px;
-      box-shadow: none;
-    }
+    /* SECTION HEAD */
+    .section-head { margin-bottom: 40px; }
+    .section-head-row { display: flex; align-items: end; justify-content: space-between; gap: 24px; }
 
-    .timeline-item strong {
-      color: var(--amber);
-      font-family: "SFMono-Regular", Consolas, "Liberation Mono", monospace;
-      font-size: 13px;
-    }
+    /* MOBILE NAV */
+    .menu-toggle { display: none; align-items: center; justify-content: center; width: 40px; height: 40px; border: 1px solid var(--line); border-radius: 8px; background: transparent; color: var(--text); cursor: pointer; }
+    .menu-toggle svg { width: 18px; height: 18px; }
+    .menu-toggle .icon-close { display: none; }
+    .mobile-nav { display: none; position: fixed; top: 64px; left: 0; right: 0; z-index: 90; background: rgba(6,11,18,0.97); backdrop-filter: blur(20px); border-bottom: 1px solid var(--line); padding: 16px 0 20px; }
+    .mobile-nav.open { display: block; }
+    .mobile-nav ul { display: flex; flex-direction: column; list-style: none; }
+    .mobile-nav a { display: block; padding: 12px 24px; color: rgba(170,196,230,0.7); font-size: 15px; border-bottom: 1px solid rgba(56,189,248,0.06); }
+    .mobile-nav a:hover { color: var(--text); background: rgba(56,189,248,0.05); }
+    body.menu-open { overflow: hidden; }
 
-    .tags {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 8px;
-      margin-top: 20px;
-    }
-
-    .tag {
-      border: 1px solid rgba(255, 255, 255, 0.11);
-      border-radius: 999px;
-      background: rgba(255, 255, 255, 0.045);
-      color: #d7e7df;
-      font-size: 12px;
-      padding: 6px 10px;
-    }
+    @media (prefers-reduced-motion: reduce) { *, *::before, *::after { animation-duration: 0.001ms !important; transition-duration: 0.001ms !important; } }
 
     @media (max-width: 980px) {
-      .hero,
-      .lab-detail-card {
-        grid-template-columns: 1fr;
-        min-height: auto;
-      }
-
-      .detail-grid,
-      .metrics {
-        grid-template-columns: 1fr 1fr;
-      }
-
-      nav ul {
-        display: none;
-      }
+      .hero, .lab-detail-card { grid-template-columns: 1fr; min-height: auto; }
+      .metrics { grid-template-columns: 1fr 1fr; }
+      .detail-grid { grid-template-columns: 1fr 1fr; }
+      .section-head-row { flex-direction: column; align-items: flex-start; }
+      .nav-links { display: none; }
       .menu-toggle { display: flex; }
-      .mobile-nav.open { display: block; }
       .menu-toggle.open .icon-open { display: none; }
       .menu-toggle.open .icon-close { display: block; }
     }
-
     @media (max-width: 640px) {
-      .container {
-        width: min(100% - 28px, 1120px);
-      }
-
-      .nav .btn {
-        display: none;
-      }
-
-      .detail-grid,
-      .metrics {
-        grid-template-columns: 1fr;
-      }
-
-      .terminal-line,
-      .timeline-item {
-        grid-template-columns: 1fr;
-      }
-      .mobile-nav { top: 70px; }
+      .metrics { grid-template-columns: 1fr 1fr; }
+      .detail-grid { grid-template-columns: 1fr; }
+      .timeline-item, .terminal-line { grid-template-columns: 1fr; }
     }
-
-
-    /* interface-upgrade:start */
-    ::selection {
-      background: rgba(105, 230, 161, 0.28);
-      color: var(--text);
-    }
-
-    :focus-visible {
-      outline: 2px solid var(--green);
-      outline-offset: 4px;
-    }
-
-    .skip-link {
-      position: fixed;
-      left: 16px;
-      top: 16px;
-      z-index: 100;
-      transform: translateY(-140%);
-      border: 1px solid var(--line);
-      border-radius: 8px;
-      background: var(--green);
-      color: var(--ink, #07110f);
-      font-weight: 700;
-      padding: 10px 14px;
-      transition: transform 180ms ease;
-    }
-
-    .skip-link:focus {
-      transform: translateY(0);
-    }
-
-    .signal-bar {
-      position: sticky;
-      top: 78px;
-      z-index: 19;
-      height: 2px;
-      overflow: hidden;
-      background: rgba(202, 238, 222, 0.08);
-    }
-
-    .signal-bar span {
-      display: block;
-      width: 42%;
-      height: 100%;
-      background: linear-gradient(90deg, transparent, var(--green), var(--amber, #facc6b), transparent);
-      animation: signalSweep 5.5s linear infinite;
-    }
-
-    nav a[aria-current="page"] {
-      color: var(--green);
-    }
-
-    nav a[aria-current="page"]::after {
-      content: "";
-      display: block;
-      height: 2px;
-      margin-top: 4px;
-      border-radius: 999px;
-      background: var(--green);
-    }
-
-    .command-panel,
-    .lab-card,
-    .lab-detail-card,
-    .panel,
-    .briefing,
-    .about-panel,
-    .project-card,
-    .detail-card,
-    .credential-card,
-    .contact-box,
-    .cert-image-wrapper {
-      position: relative;
-      isolation: isolate;
-    }
-
-    .command-panel::after,
-    .lab-card::after,
-    .lab-detail-card::after,
-    .panel::after,
-    .briefing::after,
-    .about-panel::after,
-    .project-card::after,
-    .detail-card::after,
-    .credential-card::after,
-    .contact-box::after,
-    .cert-image-wrapper::after {
-      content: "";
-      position: absolute;
-      inset: 0;
-      z-index: -1;
-      border-radius: inherit;
-      background: linear-gradient(135deg, rgba(105, 230, 161, 0.08), transparent 42%, rgba(250, 204, 107, 0.06));
-      opacity: 0.72;
-      pointer-events: none;
-    }
-
-    .section {
-      position: relative;
-    }
-
-    .section::before {
-      content: "";
-      display: block;
-      width: min(100%, 1120px);
-      height: 1px;
-      margin: 0 auto 42px;
-      background: linear-gradient(90deg, transparent, rgba(202, 238, 222, 0.18), transparent);
-    }
-
-    .hero + .section::before,
-    main > .section:first-child::before {
-      display: none;
-    }
-
-    @keyframes signalSweep {
-      from {
-        transform: translateX(-110%);
-      }
-
-      to {
-        transform: translateX(260%);
-      }
-    }
-
-    @media (prefers-reduced-motion: reduce) {
-      *,
-      *::before,
-      *::after {
-        animation-duration: 0.001ms !important;
-        animation-iteration-count: 1 !important;
-        scroll-behavior: auto !important;
-        transition-duration: 0.001ms !important;
-      }
-    }
-
-    @media (max-width: 640px) {
-      .signal-bar {
-        top: 70px;
-      }
-    }
-    /* interface-upgrade:end */
-
-    .menu-toggle {
-      display: none;
-      align-items: center;
-      justify-content: center;
-      width: 44px;
-      height: 44px;
-      border: 1px solid var(--line);
-      border-radius: 8px;
-      background: rgba(255, 255, 255, 0.055);
-      color: var(--text);
-      cursor: pointer;
-      flex-shrink: 0;
-    }
-    .menu-toggle:hover {
-      border-color: rgba(105, 230, 161, 0.62);
-      background: rgba(105, 230, 161, 0.13);
-    }
-    .menu-toggle svg { width: 20px; height: 20px; }
-    .menu-toggle .icon-close { display: none; }
-    .mobile-nav {
-      display: none;
-      position: fixed;
-      top: 78px;
-      left: 0;
-      right: 0;
-      z-index: 18;
-      border-bottom: 1px solid var(--line);
-      background: rgba(7, 17, 15, 0.96);
-      backdrop-filter: blur(18px);
-      padding: 18px 0 22px;
-    }
-    .mobile-nav ul { display: flex; flex-direction: column; list-style: none; gap: 0; }
-    .mobile-nav a {
-      display: block;
-      padding: 13px 20px;
-      color: #d7e7df;
-      font-size: 15px;
-      border-bottom: 1px solid rgba(202, 238, 222, 0.07);
-    }
-    .mobile-nav a:hover,
-    .mobile-nav a[aria-current="page"] { color: var(--green); background: rgba(105, 230, 161, 0.06); }
-    .mobile-nav a[aria-current="page"]::after { display: none; }
-    body.mobile-menu-open { overflow: hidden; }
-
   </style>
 </head>
 <body>
   <a class="skip-link" href="#main-content">Skip to content</a>
-  <header>
-    <div class="container nav">
-      <a class="brand" href="index.html#home" aria-label="Khaneil Campbell portfolio home">
-        <small>Khaneil Campbell</small>
-        <span>Security Operations Portfolio</span>
+
+  <nav>
+    <div class="nav-inner container">
+      <a class="nav-brand" href="index.html">
+        <strong>Khaneil Campbell</strong>
+        <small>SOC Analyst · Detection Engineer</small>
       </a>
-
-      <nav aria-label="Primary navigation">
-        <ul>
-          <li><a href="index.html">Home</a></li>
-          <li><a href="lab-details.html" aria-current="page">Labs</a></li>
-          <li><a href="projects.html">Projects</a></li>
-          <li><a href="index.html#about">About</a></li>
-          <li><a href="index.html#contact">Contact</a></li>
-        </ul>
-      </nav>
-
-      <a href="index.html#contact" class="btn">Contact</a>
-      <button class="menu-toggle" aria-label="Open navigation menu" aria-expanded="false" aria-controls="mobile-nav">
-        <svg class="icon-open" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round">
-          <line x1="3" y1="5" x2="17" y2="5"/><line x1="3" y1="10" x2="17" y2="10"/><line x1="3" y1="15" x2="17" y2="15"/>
-        </svg>
-        <svg class="icon-close" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round">
-          <line x1="4" y1="4" x2="16" y2="16"/><line x1="16" y1="4" x2="4" y2="16"/>
-        </svg>
+      <ul class="nav-links">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="labs.html" class="active">Labs</a></li>
+        <li><a href="projects.html">Projects</a></li>
+        <li><a href="index.html#contact">Contact</a></li>
+      </ul>
+      <a href="resume.html" class="nav-resume">Resume</a>
+      <button class="menu-toggle" aria-label="Open navigation" aria-expanded="false" aria-controls="mobile-nav">
+        <svg class="icon-open" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"><line x1="3" y1="5" x2="17" y2="5"/><line x1="3" y1="10" x2="17" y2="10"/><line x1="3" y1="15" x2="17" y2="15"/></svg>
+        <svg class="icon-close" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"><line x1="4" y1="4" x2="16" y2="16"/><line x1="16" y1="4" x2="4" y2="16"/></svg>
       </button>
     </div>
-  </header>
+  </nav>
 
   <nav id="mobile-nav" class="mobile-nav" aria-label="Mobile navigation">
     <ul>
       <li><a href="index.html">Home</a></li>
-      <li><a href="lab-details.html">Labs</a></li>
+      <li><a href="labs.html">Labs</a></li>
       <li><a href="projects.html">Projects</a></li>
-      <li><a href="index.html#about">About</a></li>
       <li><a href="index.html#contact">Contact</a></li>
+      <li><a href="resume.html">Resume</a></li>
     </ul>
   </nav>
 
-  <div class="signal-bar" aria-hidden="true"><span></span></div>
-
   <main id="main-content">
-    <section class="hero container" aria-labelledby="page-title">
-      <div class="hero-copy">
-        <p class="eyebrow">Detailed Lab Views</p>
-        <h1 id="page-title">Every lab, expanded like a case file.</h1>
-        <p>
-          Structured case-file views of each security lab — covering the threat scenario, telemetry sources,
-          tool stack, investigation workflow, and evidence outcomes.
-        </p>
-        <div class="hero-actions">
-          <a href="#soc" class="btn btn-primary">SOC Lab</a>
-          <a href="#phishing" class="btn">Phishing IR</a>
-          <a href="#iam" class="btn">IAM Notes</a>
+    <section class="container" aria-labelledby="page-title">
+      <div class="hero">
+        <div class="hero-copy">
+          <p class="eyebrow">Detailed Lab Views</p>
+          <h1 id="page-title">Every lab, expanded like a case file.</h1>
+          <p class="lead">
+            Structured case-file views of each security lab — covering the threat scenario, telemetry sources,
+            tool stack, investigation workflow, and evidence outcomes.
+          </p>
+          <div class="hero-actions">
+            <a href="#soc" class="btn-blue">SOC Lab</a>
+            <a href="#phishing" class="btn-outline">Phishing IR</a>
+            <a href="#iam" class="btn-outline">IAM Notes</a>
+          </div>
+          <div class="metrics" aria-label="Detailed lab metrics">
+            <div class="metric"><strong>3</strong><span>Lab case views</span></div>
+            <div class="metric"><strong>4</strong><span>Workflow phases</span></div>
+            <div class="metric"><strong>80+</strong><span>Logons detected</span></div>
+            <div class="metric"><strong>1</strong><span>Published deep dive</span></div>
+          </div>
         </div>
 
-        <div class="metrics" aria-label="Detailed lab metrics">
-          <div class="metric">
-            <strong>3</strong>
-            <span>Lab case views</span>
+        <aside class="command-panel" aria-label="Detailed lab preview">
+          <div class="panel-top">
+            <span>Lab Detail Index</span>
+            <span class="pulse">Expanded</span>
           </div>
-          <div class="metric">
-            <strong>4</strong>
-            <span>Workflow phases</span>
+          <div class="terminal">
+            <div class="terminal-line">
+              <span class="terminal-time">SOC</span>
+              <span class="terminal-text">Published case for brute-force detection, SPL logic, and analyst workflow.</span>
+            </div>
+            <div class="terminal-line">
+              <span class="terminal-time">IR</span>
+              <span class="terminal-text">Staged phishing response workflow with host evidence and containment notes.</span>
+            </div>
+            <div class="terminal-line">
+              <span class="terminal-time">IAM</span>
+              <span class="terminal-text">Staged identity security notes for MFA, lifecycle, and recovery workflows.</span>
+            </div>
           </div>
-          <div class="metric">
-            <strong>80+</strong>
-            <span>Logons detected</span>
-          </div>
-          <div class="metric">
-            <strong>1</strong>
-            <span>Published deep dive</span>
-          </div>
-        </div>
+        </aside>
       </div>
-
-      <aside class="command-panel" aria-label="Detailed lab preview">
-        <div class="panel-top">
-          <span>Lab Detail Index</span>
-          <span class="pulse">Expanded</span>
-        </div>
-        <div class="terminal">
-          <div class="terminal-line">
-            <span class="terminal-time">SOC</span>
-            <span class="terminal-text">Published case for brute-force detection, SPL logic, and analyst workflow.</span>
-          </div>
-          <div class="terminal-line">
-            <span class="terminal-time">IR</span>
-            <span class="terminal-text">Staged phishing response workflow with host evidence and containment notes.</span>
-          </div>
-          <div class="terminal-line">
-            <span class="terminal-time">IAM</span>
-            <span class="terminal-text">Staged identity security notes for MFA, lifecycle, and recovery workflows.</span>
-          </div>
-        </div>
-      </aside>
     </section>
+
+    <div class="section-divider"></div>
 
     <section class="section container" aria-labelledby="all-labs-title">
       <div class="section-head">
-        <div>
-          <p class="section-label">All Labs</p>
-          <h2 id="all-labs-title">Lab cases organized by security discipline.</h2>
-          <p class="section-subtext">
-            Each case file documents the threat model, data sources, detection methodology,
-            and analyst workflow behind the lab — mapped to core security operations competencies.
-          </p>
-        </div>
-        <div class="tabs" aria-label="Lab detail tabs">
-          <a href="#soc" class="btn btn-primary">SOC Automation</a>
-          <a href="#phishing" class="btn">Phishing IR</a>
-          <a href="#iam" class="btn">IAM Security</a>
+        <div class="section-head-row">
+          <div>
+            <p class="eyebrow">All Labs</p>
+            <h2 id="all-labs-title">Lab cases organized by security discipline.</h2>
+            <p class="lead" style="margin-top:12px; font-size:16px;">
+              Each case file documents the threat model, data sources, detection methodology,
+              and analyst workflow — mapped to core security operations competencies.
+            </p>
+          </div>
+          <div class="tabs" aria-label="Jump to lab">
+            <a href="#soc" class="btn-blue btn-sm">SOC Automation</a>
+            <a href="#phishing" class="btn-outline btn-sm">Phishing IR</a>
+            <a href="#iam" class="btn-outline btn-sm">IAM Security</a>
+          </div>
         </div>
       </div>
 
@@ -743,8 +291,8 @@
               </div>
             </div>
             <div class="lab-actions">
-              <a href="soc-automation-lab.html" class="btn btn-primary">Open Full Case</a>
-              <a href="https://github.com/khancam15/soc-automation-splunk-bruteforce-lab" class="btn" target="_blank" rel="noopener noreferrer">GitHub</a>
+              <a href="soc-automation-lab.html" class="btn-blue btn-sm">Open Full Case</a>
+              <a href="https://github.com/khancam15/soc-automation-splunk-bruteforce-lab" class="btn-outline btn-sm" target="_blank" rel="noopener noreferrer">GitHub</a>
             </div>
             <div class="tags">
               <span class="tag">Splunk</span>
@@ -793,7 +341,7 @@
               </div>
               <div class="detail-card">
                 <p class="kicker">Evidence Goal</p>
-                <p>Construct an attack timeline linking initial delivery, code execution, persistence mechanisms, and containment actions.</p>
+                <p>Construct an attack timeline linking initial delivery, code execution, persistence, and containment.</p>
               </div>
             </div>
             <div class="tags">
@@ -875,24 +423,21 @@
       </div>
     </section>
   </main>
+
   <script>
     const toggle = document.querySelector('.menu-toggle');
     const mobileNav = document.getElementById('mobile-nav');
-    function openMenu() {
-      toggle.classList.add('open'); mobileNav.classList.add('open');
-      toggle.setAttribute('aria-expanded', 'true');
-      toggle.setAttribute('aria-label', 'Close navigation menu');
-      document.body.classList.add('mobile-menu-open');
-    }
-    function closeMenu() {
-      toggle.classList.remove('open'); mobileNav.classList.remove('open');
-      toggle.setAttribute('aria-expanded', 'false');
-      toggle.setAttribute('aria-label', 'Open navigation menu');
-      document.body.classList.remove('mobile-menu-open');
-    }
-    toggle.addEventListener('click', () => toggle.classList.contains('open') ? closeMenu() : openMenu());
-    mobileNav.querySelectorAll('a').forEach(link => link.addEventListener('click', closeMenu));
-    document.addEventListener('keydown', e => { if (e.key === 'Escape') closeMenu(); });
+    toggle.addEventListener('click', () => {
+      const open = mobileNav.classList.toggle('open');
+      toggle.classList.toggle('open', open);
+      toggle.setAttribute('aria-expanded', String(open));
+      document.body.classList.toggle('menu-open', open);
+    });
+    mobileNav.querySelectorAll('a').forEach(a => a.addEventListener('click', () => {
+      mobileNav.classList.remove('open'); toggle.classList.remove('open');
+      toggle.setAttribute('aria-expanded','false'); document.body.classList.remove('menu-open');
+    }));
+    document.addEventListener('keydown', e => { if (e.key === 'Escape') { mobileNav.classList.remove('open'); toggle.classList.remove('open'); toggle.setAttribute('aria-expanded','false'); document.body.classList.remove('menu-open'); } });
   </script>
 </body>
 </html>
