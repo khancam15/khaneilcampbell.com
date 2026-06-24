@@ -6,6 +6,7 @@
   <meta name="description" content="Resume of Khaneil Campbell — SOC Analyst & Detection Engineer." />
   <meta name="theme-color" content="#060b12" />
   <meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'unsafe-inline'; style-src 'unsafe-inline'; img-src 'self' data:; font-src 'self'; base-uri 'self'; form-action 'none';" />
+  <meta name="referrer" content="strict-origin-when-cross-origin" />
   <meta name="robots" content="noindex" />
   <title>Resume — Khaneil Campbell</title>
   <style>
@@ -34,9 +35,15 @@
       color: var(--text);
       font-family: var(--nav-font);
       line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+      text-rendering: optimizeLegibility;
       min-height: 100vh;
       display: flex;
       flex-direction: column;
+    }
+
+    h1, h2, h3, .rh-name, .rh-title, .download-btn, .nav-brand, .upload-notice, .pdf-fallback p {
+      text-wrap: balance;
     }
 
     body::before {
@@ -93,17 +100,18 @@
     .resume-header-block {
       display: flex; align-items: center; justify-content: space-between;
       gap: 24px; flex-wrap: wrap;
-      padding: 40px 0 32px;
+      padding: 32px 0 24px;
       border-bottom: 1px solid var(--line);
     }
 
     .rh-name {
-      font-size: clamp(36px, 5vw, 56px);
-      font-weight: 700; letter-spacing: -0.02em; line-height: 0.95; text-transform: uppercase;
+      display: flex; gap: 0.2em; align-items: baseline;
+      font-size: clamp(28px, 3.8vw, 44px);
+      font-weight: 700; letter-spacing: -0.02em; line-height: 1.0; text-transform: uppercase;
     }
-    .rh-name .first { display: block; color: var(--text); }
+    .rh-name .first { display: inline; color: var(--text); }
     .rh-name .last {
-      display: block;
+      display: inline;
       background: linear-gradient(135deg, #38bdf8, #818cf8);
       -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
     }
@@ -140,7 +148,7 @@
     .pdf-wrapper {
       flex: 1;
       min-height: 0;
-      padding: 0 0 48px;
+      padding: 0 0 36px;
     }
 
     .pdf-embed-container {
@@ -201,6 +209,7 @@
     }
     @media (max-width: 640px) {
       .resume-header-block { flex-direction: column; align-items: flex-start; }
+      .rh-name { white-space: normal; flex-wrap: wrap; }
     }
   </style>
 </head>
@@ -215,11 +224,12 @@
       </a>
       <ul class="nav-links">
         <li><a href="index.html">Home</a></li>
-        <li><a href="labs.html">Labs</a></li>
         <li><a href="projects.html">Projects</a></li>
+        <li><a href="labs.html">Labs</a></li>
         <li><a href="index.html#contact">Contact</a></li>
+        <li><a href="resume.html" aria-current="page">Resume</a></li>
       </ul>
-      <button class="nav-print" onclick="window.print()">Print / Save PDF</button>
+      <button class="nav-print">Print / Save PDF</button>
       <button class="menu-toggle" aria-label="Open navigation" aria-expanded="false" aria-controls="mobile-nav">
         <svg class="icon-open" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"><line x1="3" y1="5" x2="17" y2="5"/><line x1="3" y1="10" x2="17" y2="10"/><line x1="3" y1="15" x2="17" y2="15"/></svg>
         <svg class="icon-close" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"><line x1="4" y1="4" x2="16" y2="16"/><line x1="16" y1="4" x2="4" y2="16"/></svg>
@@ -230,9 +240,10 @@
   <nav id="mobile-nav" class="mobile-nav" aria-label="Mobile navigation">
     <ul>
       <li><a href="index.html">Home</a></li>
-      <li><a href="labs.html">Labs</a></li>
       <li><a href="projects.html">Projects</a></li>
+      <li><a href="labs.html">Labs</a></li>
       <li><a href="index.html#contact">Contact</a></li>
+      <li><a href="resume.html" aria-current="page">Resume</a></li>
     </ul>
   </nav>
 
@@ -275,6 +286,11 @@
     /* Mobile nav */
     const toggle = document.querySelector('.menu-toggle');
     const mobileNav = document.getElementById('mobile-nav');
+    const printButton = document.querySelector('.nav-print');
+    if (printButton) {
+      printButton.addEventListener('click', () => window.print());
+    }
+
     toggle.addEventListener('click', () => {
       const open = mobileNav.classList.toggle('open');
       toggle.classList.toggle('open', open);
