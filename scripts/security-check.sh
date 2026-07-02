@@ -144,7 +144,36 @@ echo ""
 echo "--- [9] Images must have alt attributes ---"
 for file in "${HTML_FILES[@]}"; do
   name=$(basename "$file")
-  ISSUES=$(grep -n '<img' "$file" | grep -v 'alt=' || true)
+  ISSUES=$(awk '
+    BEGIN { in_img = 0; tag = ""; start = 0 }
+    {
+      line = $0
+      if (!in_img) {
+        if (line ~ /<img([[:space:]>]|$)/) {
+          in_img = 1
+          tag = line
+          start = NR
+          if (line ~ />/) {
+            if (tag !~ /[[:space:]]alt[[:space:]]*=/) print start ":" line
+            in_img = 0
+            tag = ""
+            start = 0
+          }
+        }
+      } else {
+        tag = tag " " line
+        if (line ~ />/) {
+          if (tag !~ /[[:space:]]alt[[:space:]]*=/) print start ":" line
+          in_img = 0
+          tag = ""
+          start = 0
+        }
+      }
+    }
+    END {
+      if (in_img && tag !~ /[[:space:]]alt[[:space:]]*=/) print start ":<img ..."
+    }
+  ' "$file" || true)
   if [ -n "$ISSUES" ]; then
     fail "$name has <img> tags missing alt attribute:"
     echo "$ISSUES" | sed 's/^/       /'

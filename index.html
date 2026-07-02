@@ -12,7 +12,47 @@
   <meta property="og:title" content="Khaneil Campbell | Cybersecurity Portfolio" />
   <meta property="og:description" content="Cybersecurity portfolio featuring Splunk labs, detection engineering, incident response, IAM, and AI automation." />
   <meta property="og:url" content="https://khaneilcampbell.com/" />
+  <meta property="og:image" content="https://khaneilcampbell.com/images/profile.jpg" />
+  <meta property="og:site_name" content="Khaneil Campbell" />
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Khaneil Campbell | Cybersecurity Portfolio" />
+  <meta name="twitter:description" content="Cybersecurity portfolio featuring Splunk labs, detection engineering, incident response, IAM, and AI automation." />
+  <meta name="twitter:image" content="https://khaneilcampbell.com/images/profile.jpg" />
+  <link rel="canonical" href="https://khaneilcampbell.com/" />
   <title>Khaneil Campbell | Cybersecurity Portfolio</title>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "Person",
+        "@id": "https://khaneilcampbell.com/#person",
+        "name": "Khaneil Campbell",
+        "url": "https://khaneilcampbell.com/",
+        "image": "https://khaneilcampbell.com/images/profile.jpg",
+        "jobTitle": "Security Operations",
+        "address": { "@type": "PostalAddress", "addressLocality": "New York", "addressRegion": "NY", "addressCountry": "US" },
+        "email": "mailto:contact@khaneilcampbell.com",
+        "knowsAbout": ["Security Operations", "Detection Engineering", "Splunk", "Incident Response", "Identity and Access Management", "AI Automation"],
+        "hasCredential": [
+          { "@type": "EducationalOccupationalCredential", "name": "CompTIA Security+", "credentialCategory": "certification" },
+          { "@type": "EducationalOccupationalCredential", "name": "ITIL 4 Foundation", "credentialCategory": "certification" }
+        ],
+        "sameAs": [
+          "https://www.linkedin.com/in/khaneil-c-44179a14a/",
+          "https://github.com/khancam15"
+        ]
+      },
+      {
+        "@type": "WebSite",
+        "@id": "https://khaneilcampbell.com/#website",
+        "url": "https://khaneilcampbell.com/",
+        "name": "Khaneil Campbell | Cybersecurity Portfolio",
+        "publisher": { "@id": "https://khaneilcampbell.com/#person" }
+      }
+    ]
+  }
+  </script>
 
   <style>
     /* ── Reset & tokens ── */
@@ -43,9 +83,15 @@
     body {
       background: var(--bg);
       color: var(--text);
-      font-family: "Helvetica Neue", Arial, sans-serif;
+      font-family: var(--nav-font);
       line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+      text-rendering: optimizeLegibility;
       overflow-x: hidden;
+    }
+
+    h1, h2, h3, .sec-title, .hero-name, .lab-title, .hero-stat strong, .fact-value, .cg-label {
+      text-wrap: balance;
     }
 
     ::selection { background: rgba(56,189,248,0.25); }
@@ -197,14 +243,14 @@
     }
 
     /* ── Section ── */
-    section { padding: 100px 0; }
+    section { padding: 72px 0; }
     .sec-label {
       font-size: 11px; font-weight: 700;
       letter-spacing: 0.3em; text-transform: uppercase;
       color: var(--blue); margin-bottom: 14px;
     }
     .sec-title {
-      font-size: clamp(32px,5vw,60px);
+      font-size: clamp(28px,4.2vw,52px);
       font-weight: 900; letter-spacing: -0.02em;
       line-height: 1; text-transform: uppercase;
     }
@@ -225,7 +271,7 @@
       display: flex; flex-direction: column;
       align-items: center; justify-content: center;
       text-align: center;
-      padding: calc(var(--nav-h) + 60px) 24px 80px;
+      padding: calc(var(--nav-h) + 40px) 24px 60px;
       position: relative; overflow: hidden;
     }
 
@@ -367,8 +413,8 @@
     #about .about-grid {
       display: grid;
       grid-template-columns: 360px 1fr;
-      gap: 52px; align-items: start;
-      margin-top: 52px;
+      gap: 40px; align-items: start;
+      margin-top: 40px;
     }
 
     /* 3D profile card */
@@ -445,6 +491,55 @@
     .about-body { color: var(--muted); font-size: 16px; line-height: 1.8; }
     .about-body p + p { margin-top: 14px; }
     .about-content h2 { margin-bottom: 20px; }
+    #about-title {
+      font-size: clamp(20px, 2.1vw, 30px);
+      line-height: 1.05;
+      letter-spacing: -0.03em;
+      white-space: nowrap;
+    }
+
+    #skills-title {
+      font-size: clamp(24px, 2.6vw, 40px);
+      line-height: 1.05;
+      letter-spacing: -0.03em;
+      white-space: nowrap;
+    }
+
+    #labs-title {
+      font-size: clamp(22px, 2.1vw, 32px);
+      line-height: 1.05;
+      letter-spacing: -0.03em;
+      white-space: nowrap;
+    }
+
+    #contact-title {
+      font-size: clamp(30px, 4.6vw, 58px);
+      line-height: 1.02;
+      letter-spacing: -0.03em;
+      white-space: nowrap;
+    }
+
+    @media (max-width: 980px) {
+      #about-title {
+        font-size: clamp(22px, 5vw, 38px);
+        white-space: normal;
+      }
+
+      #skills-title {
+        font-size: clamp(24px, 5vw, 42px);
+        white-space: normal;
+      }
+
+      #labs-title {
+        font-size: clamp(22px, 5vw, 38px);
+        white-space: normal;
+      }
+
+      #contact-title {
+        font-size: clamp(30px, 7vw, 54px);
+        white-space: normal;
+      }
+    }
 
     .motto {
       margin-top: 28px; padding: 20px 24px;
@@ -483,7 +578,7 @@
     #skills { background: var(--bg2); }
     .skills-grid {
       display: grid; grid-template-columns: 1fr 1fr;
-      gap: 52px; margin-top: 52px; align-items: start;
+      gap: 40px; margin-top: 40px; align-items: start;
     }
     .skills-intro { color: var(--muted); font-size: 15px; line-height: 1.8; margin-top: 10px; }
 
@@ -557,7 +652,7 @@
     /* ── LABS ── */
     #labs .labs-head {
       display: flex; justify-content: space-between;
-      align-items: flex-end; gap: 24px; margin-bottom: 40px;
+      align-items: flex-end; gap: 24px; margin-bottom: 28px;
     }
     .filter-row { display: flex; gap: 8px; flex-wrap: wrap; }
     .filter-btn {
@@ -680,7 +775,7 @@
     #creds { background: var(--bg2); }
     .creds-grid {
       display: grid; grid-template-columns: 1fr 1fr;
-      gap: 20px; margin-top: 40px;
+      gap: 20px; margin-top: 28px;
     }
     .cred-card {
       border: 1px solid var(--line);
@@ -735,7 +830,7 @@
     .contact-left .sec-title { font-size: clamp(36px, 6vw, 72px); }
     .contact-motto { margin-top: 20px; font-size: 15px; color: var(--muted); line-height: 1.7; max-width: 400px; }
 
-    .contact-links { margin-top: 40px; display: grid; gap: 24px; }
+    .contact-links { margin-top: 28px; display: grid; gap: 24px; }
     .contact-group h4 {
       font-size: 11px; font-weight: 700;
       letter-spacing: 0.2em; text-transform: uppercase;
@@ -743,15 +838,16 @@
       border-bottom: 1px solid var(--line2);
     }
     .contact-group a {
-      display: flex; align-items: center; gap: 10px;
+      display: flex; align-items: center; gap: 12px;
       font-size: 15px; font-weight: 600; color: var(--text);
-      padding: 4px 0; transition: color 160ms;
+      padding: 10px 0; transition: color 160ms;
     }
+    .contact-group a + a { border-top: 1px solid var(--line2); }
     .contact-group a:hover { color: var(--blue); }
     .cg-label {
       font-size: 11px; color: var(--muted);
       letter-spacing: 0.1em; text-transform: uppercase;
-      font-weight: 600; width: 56px; flex-shrink: 0;
+      font-weight: 600; min-width: 72px; flex-shrink: 0;
     }
 
     .contact-social-title {
@@ -842,10 +938,10 @@
       </a>
       <ul class="nav-links" role="list">
         <li><a href="#hero" class="active">Home</a></li>
-        <li><a href="#about">About</a></li>
-        <li><a href="#skills">Skills</a></li>
+        <li><a href="projects.html">Projects</a></li>
         <li><a href="#labs">Labs</a></li>
         <li><a href="#contact">Contact</a></li>
+        <li><a href="resume.html">Resume</a></li>
       </ul>
       <div class="nav-social">
         <a href="https://www.linkedin.com/in/khaneil-c-44179a14a/" target="_blank" rel="noopener noreferrer">LinkedIn</a>
@@ -861,7 +957,7 @@
   <div id="mobile-menu" class="mobile-menu" aria-label="Mobile navigation">
     <a href="#hero">Home</a>
     <a href="#about">About</a>
-    <a href="#skills">Skills</a>
+    <a href="projects.html">Projects</a>
     <a href="#labs">Labs</a>
     <a href="#contact">Contact</a>
     <a href="resume.html">Resume ↗</a>
@@ -941,7 +1037,8 @@
               <img
                 src="images/profile.jpg"
                 alt="Khaneil Campbell"
-                onerror="this.style.display='none';this.nextElementSibling.style.display='flex';"
+                loading="lazy"
+                decoding="async"
               />
               <div class="profile-photo-placeholder" style="display:none;">
                 <div class="profile-initials" aria-hidden="true">KC</div>
@@ -953,27 +1050,28 @@
               <div class="fact-row"><span class="fact-label">Experience</span><span class="fact-value">5+ Years</span></div>
               <div class="fact-row"><span class="fact-label">Location</span><span class="fact-value">New York, NY</span></div>
               <div class="fact-row"><span class="fact-label">Certs</span><span class="fact-value">Security+ · ITIL 4</span></div>
-              <div class="fact-row"><span class="fact-label">Focus</span><span class="fact-value">Detection · IR · IAM</span></div>
             </div>
           </div>
 
           <div class="about-content">
-            <h2 class="sec-title" id="about-title">Enterprise IT.<br/>Security Operations.</h2>
+            <h2 class="sec-title" id="about-title">ENTERPRISE IT &amp; SECURITY OPERATIONS</h2>
             <div class="about-body">
               <p>Five plus years of enterprise IT experience in high-demand institutional environments, including Columbia University and NYC Health + Hospitals, supporting mission-critical infrastructure and user-facing security workflows at scale.</p>
               <p>Certified in CompTIA Security+ and ITIL 4 Foundation. Building hands-on depth in SOC operations, Splunk detection engineering, identity and access management, and AI-driven automation workflows through structured lab work and production-level projects.</p>
               <p>Structured triage, thorough documentation, evidence-based decisions, and a focus on repeatable, scalable security outcomes.</p>
             </div>
-            <blockquote class="motto">"Build practical detection, response, and automation workflows — document the evidence, repeat the outcome."</blockquote>
+            <blockquote class="motto">"Technology should simplify complexity, strengthen security, and create repeatable outcomes."</blockquote>
             <div class="about-targets">
               <h3>Areas of Practice</h3>
               <div class="role-chips">
                 <span class="role-chip">Security Operations</span>
+                <span class="role-chip">IT Service Management</span>
                 <span class="role-chip">Detection Engineering</span>
-                <span class="role-chip">Incident Response</span>
                 <span class="role-chip">Identity &amp; Access Management</span>
-                <span class="role-chip">AI Automation</span>
-                <span class="role-chip">Threat Analysis</span>
+                <span class="role-chip">AI &amp; Workflow Automation</span>
+                <span class="role-chip">Microsoft 365 Administration</span>
+                <span class="role-chip">Incident Response</span>
+                <span class="role-chip">SIEM &amp; Log Analysis</span>
               </div>
             </div>
           </div>
@@ -1022,7 +1120,7 @@
         <p class="sec-label">Capabilities</p>
         <div class="skills-grid">
           <div>
-            <h2 class="sec-title" id="skills-title">Skills &<br/>Disciplines</h2>
+            <h2 class="sec-title" id="skills-title">Skills & Disciplines</h2>
             <p class="skills-intro">Built through 5+ years of enterprise IT, hands-on security labs, and production AI automation projects. Each metric reflects demonstrated ability across detection, response, identity, and automation workflows.</p>
             <div class="tools-grid">
               <div class="tool-box">
@@ -1100,7 +1198,7 @@
         <div class="labs-head">
           <div>
             <p class="sec-label">Lab Work</p>
-            <h2 class="sec-title" id="labs-title">Threat Scenarios.<br/>Documented Outcomes.</h2>
+            <h2 class="sec-title" id="labs-title">Threat Scenarios. Documented Outcomes.</h2>
           </div>
           <div class="filter-row" aria-label="Filter labs">
             <button class="filter-btn active" data-filter="all">All</button>
@@ -1244,13 +1342,16 @@
         <div class="contact-grid">
           <div class="contact-left">
             <p class="sec-label">Contact</p>
-            <h2 class="sec-title" id="contact-title">Let's<br/>Connect.</h2>
+            <h2 class="sec-title" id="contact-title">Let's Connect.</h2>
             <p class="contact-motto">Based in New York. Available for conversations about cybersecurity, security operations, and AI automation work.</p>
             <div class="contact-links">
               <div class="contact-group">
                 <h4>Email</h4>
                 <a href="mailto:contact@khaneilcampbell.com">
-                  <span class="cg-label">Work</span>contact@khaneilcampbell.com
+                  <span class="cg-label">Personal</span>contact@khaneilcampbell.com
+                </a>
+                <a href="mailto:kc3637@columbia.edu">
+                  <span class="cg-label">Work</span>kc3637@columbia.edu
                 </a>
               </div>
               <div class="contact-group">
@@ -1304,13 +1405,14 @@
   </main>
 
   <footer>
-    <p>© 2025 Khaneil Campbell. All rights reserved.</p>
+    <p>© 2026 Khaneil Campbell. All rights reserved.</p>
     <div class="footer-links">
       <a href="security-plus.html">Security+</a>
       <a href="itil4.html">ITIL 4</a>
       <a href="lab-details.html">Labs</a>
       <a href="projects.html">Projects</a>
       <a href="mailto:contact@khaneilcampbell.com">Email</a>
+      <a href="mailto:kc3637@columbia.edu">Work</a>
     </div>
   </footer>
 
@@ -1335,14 +1437,8 @@
 
     /* ── Scroll spy ── */
     const navLinks = document.querySelectorAll('.nav-links a');
-    new IntersectionObserver(entries => {
-      entries.forEach(e => {
-        if (!e.isIntersecting) return;
-        navLinks.forEach(a => a.classList.toggle('active', a.getAttribute('href') === `#${e.target.id}`));
-      });
-    }, { rootMargin: '-40% 0px -55% 0px' })
-    .observe(... (function(){
-      const ids=['hero','about','skills','labs','creds','contact'];
+    (function(){
+      const ids = ['hero', 'about', 'skills', 'labs', 'creds', 'contact'];
       const obs = new IntersectionObserver(entries => {
         entries.forEach(e => {
           if (!e.isIntersecting) return;
@@ -1350,7 +1446,7 @@
         });
       }, { rootMargin: '-40% 0px -55% 0px' });
       ids.forEach(id => { const el = document.getElementById(id); if (el) obs.observe(el); });
-    })());
+    })();
 
     /* ── Skill bars animate on scroll ── */
     const skillObs = new IntersectionObserver(entries => {
@@ -1388,10 +1484,23 @@
       });
     });
 
+    /* ── Profile image fallback without inline handlers ── */
+    const profileImage = document.querySelector('.profile-photo img');
+    if (profileImage) {
+      profileImage.addEventListener('error', () => {
+        profileImage.style.display = 'none';
+        const placeholder = profileImage.nextElementSibling;
+        if (placeholder) {
+          placeholder.style.display = 'flex';
+        }
+      });
+    }
+
     /* ── Hero canvas: animated dot-grid with connector lines ── */
     (function() {
       const canvas = document.getElementById('hero-canvas');
       if (!canvas) return;
+      if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
       const ctx = canvas.getContext('2d');
       let W, H, dots = [];
       const DOT_COUNT = 60;

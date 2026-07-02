@@ -8,6 +8,16 @@
   <meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'unsafe-inline'; style-src 'unsafe-inline'; img-src 'self' data:; font-src 'self'; base-uri 'self'; form-action 'none';" />
   <meta name="referrer" content="strict-origin-when-cross-origin" />
   <meta name="robots" content="index, follow" />
+  <meta property="og:type" content="website" />
+  <meta property="og:title" content="ITIL 4 Certification | Khaneil Campbell" />
+  <meta property="og:description" content="ITIL 4 Foundation certification — IT service management frameworks, service value chains, and continual improvement practices." />
+  <meta property="og:url" content="https://khaneilcampbell.com/itil4.html" />
+  <meta property="og:image" content="https://khaneilcampbell.com/images/itil-4.png" />
+  <meta property="og:site_name" content="Khaneil Campbell" />
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="ITIL 4 Certification | Khaneil Campbell" />
+  <meta name="twitter:description" content="ITIL 4 Foundation certification — IT service management frameworks, service value chains, and continual improvement practices." />
+  <link rel="canonical" href="https://khaneilcampbell.com/itil4.html" />
   <title>ITIL 4 Certification | Khaneil Campbell</title>
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
@@ -34,8 +44,14 @@
       color: var(--text);
       font-family: var(--nav-font);
       line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+      text-rendering: optimizeLegibility;
       min-height: 100vh;
       overflow-x: hidden;
+    }
+
+    h1, h2, h3, .cert-copy, .detail-box, .detail-value, .section-label {
+      text-wrap: balance;
     }
 
     body::before {
@@ -63,12 +79,12 @@
     .skip-link:focus { transform: translateY(0); }
 
     /* MAIN */
-    main { padding: 72px 0 96px; }
+    main { padding: 64px 0 84px; }
 
-    .cert-hero { display: grid; grid-template-columns: minmax(0,0.8fr) minmax(380px,1.2fr); gap: 40px; align-items: start; }
+    .cert-hero { display: grid; grid-template-columns: minmax(0,0.8fr) minmax(380px,1.2fr); gap: 32px; align-items: start; }
 
     .section-label { font-size: 11px; font-weight: 500; letter-spacing: 0.28em; text-transform: uppercase; color: var(--blue); margin-bottom: 12px; }
-    h1 { font-size: clamp(42px,7vw,76px); font-weight: 700; line-height: 0.98; margin-top: 12px; }
+    h1 { font-size: clamp(30px,4.8vw,58px); font-weight: 700; line-height: 0.98; margin-top: 12px; white-space: nowrap; }
     .cert-copy { color: rgba(232,244,255,0.65); font-size: 17px; line-height: 1.7; margin-top: 18px; }
 
     .detail-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-top: 24px; }
@@ -94,6 +110,11 @@
       pointer-events: none;
     }
     .cert-image-wrapper img { display: block; width: 100%; height: auto; border-radius: 8px; }
+
+    @media (max-width: 900px) {
+      h1 { white-space: normal; }
+      .cert-hero { grid-template-columns: 1fr; }
+    }
 
     /* MOBILE NAV */
     .menu-toggle { display: none; align-items: center; justify-content: center; width: 40px; height: 40px; border: 1px solid var(--line); border-radius: 8px; background: transparent; color: var(--text); cursor: pointer; }
@@ -129,11 +150,11 @@
       </a>
       <ul class="nav-links">
         <li><a href="index.html">Home</a></li>
-        <li><a href="labs.html">Labs</a></li>
         <li><a href="projects.html">Projects</a></li>
+        <li><a href="labs.html">Labs</a></li>
         <li><a href="index.html#contact">Contact</a></li>
+        <li><a href="resume.html">Resume</a></li>
       </ul>
-      <a href="resume.html" class="nav-resume">Resume</a>
       <button class="menu-toggle" aria-label="Open navigation" aria-expanded="false" aria-controls="mobile-nav">
         <svg class="icon-open" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"><line x1="3" y1="5" x2="17" y2="5"/><line x1="3" y1="10" x2="17" y2="10"/><line x1="3" y1="15" x2="17" y2="15"/></svg>
         <svg class="icon-close" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"><line x1="4" y1="4" x2="16" y2="16"/><line x1="16" y1="4" x2="4" y2="16"/></svg>
@@ -144,8 +165,8 @@
   <nav id="mobile-nav" class="mobile-nav" aria-label="Mobile navigation">
     <ul>
       <li><a href="index.html">Home</a></li>
-      <li><a href="labs.html">Labs</a></li>
       <li><a href="projects.html">Projects</a></li>
+      <li><a href="labs.html">Labs</a></li>
       <li><a href="index.html#contact">Contact</a></li>
       <li><a href="resume.html">Resume</a></li>
     </ul>
@@ -180,7 +201,7 @@
       </div>
 
       <div class="cert-image-wrapper">
-        <img src="images/itil-4.png" alt="ITIL 4 Foundation Certification" />
+        <img src="images/itil-4.png" alt="ITIL 4 Foundation Certification" loading="lazy" decoding="async" />
       </div>
     </section>
   </main>

@@ -50,6 +50,10 @@ private_key*
 secret_key*
 .ssh/
 
+# Personal photos not part of the site (keep originals out of the public repo)
+*.heic
+*.HEIC
+
 # OS temp files
 Thumbs.db
 *.swp

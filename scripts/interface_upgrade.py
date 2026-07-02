@@ -10,13 +10,14 @@ from pathlib import Path
 
 PUBLIC_PAGES = {
     "404.html": {"main": "Page Not Found", "current_href": "index.html"},
-    "index.html": {"main": "Home", "current_href": "#home"},
-    "labs.html": {"main": "Featured Labs", "current_href": "#labs"},
-    "lab-details.html": {"main": "Labs", "current_href": "lab-details.html"},
+    "index.html": {"main": "Home", "current_href": "#hero"},
+    "labs.html": {"main": "Featured Labs", "current_href": "labs.html"},
+    "lab-details.html": {"main": "Labs", "current_href": "labs.html"},
     "projects.html": {"main": "Personal Projects", "current_href": "projects.html"},
-    "soc-automation-lab.html": {"main": "SOC Automation Lab", "current_href": "lab-details.html"},
-    "security-plus.html": {"main": "Security+ Certification", "current_href": "index.html#credentials"},
-    "itil4.html": {"main": "ITIL 4 Certification", "current_href": "index.html#credentials"},
+    "resume.html": {"main": "Resume", "current_href": "resume.html"},
+    "soc-automation-lab.html": {"main": "SOC Automation Lab", "current_href": "labs.html"},
+    "security-plus.html": {"main": "Security+ Certification", "current_href": "labs.html"},
+    "itil4.html": {"main": "ITIL 4 Certification", "current_href": "labs.html"},
 }
 
 ENHANCEMENT_CSS = """
@@ -231,7 +232,7 @@ def main() -> int:
     args = parser.parse_args()
 
     root = Path(args.root).resolve()
-    changed = []
+    changed: list[str] = []
 
     for filename, config in PUBLIC_PAGES.items():
         path = root / filename
