@@ -67,8 +67,6 @@
     .nav-links { display: flex; gap: 32px; list-style: none; }
     .nav-links a { font-size: 13px; font-weight: 300; letter-spacing: 0.06em; color: rgba(170,196,230,0.7); transition: color 200ms; }
     .nav-links a:hover { color: #e8f4ff; }
-    .nav-resume { padding: 7px 16px; border: 1px solid rgba(56,189,248,0.28); border-radius: 999px; font-size: 12px; font-weight: 400; letter-spacing: 0.06em; color: #38bdf8; transition: border-color 180ms, background 180ms; }
-    .nav-resume:hover { background: rgba(56,189,248,0.1); border-color: rgba(56,189,248,0.6); }
 
     .skip-link { position: fixed; left: 16px; top: 16px; z-index: 200; transform: translateY(-200%); background: var(--blue); color: #03070d; font-weight: 700; padding: 10px 14px; border-radius: 6px; transition: transform 160ms; }
     .skip-link:focus { transform: translateY(0); }
@@ -115,7 +113,7 @@
 
     h1 {
       font-size: clamp(24px, 3.2vw, 38px); font-weight: 700;
-      line-height: 1.1; margin-bottom: 16px; white-space: nowrap;
+      line-height: 1.1; margin-bottom: 16px;
     }
 
     .error-desc {
@@ -165,14 +163,13 @@
     <div class="nav-inner container">
       <a class="nav-brand" href="index.html">
         <strong>Khaneil Campbell</strong>
-        <small>SOC Analyst · Detection Engineer</small>
+        <small>Cybersecurity · New York</small>
       </a>
       <ul class="nav-links">
         <li><a href="index.html">Home</a></li>
         <li><a href="projects.html">Projects</a></li>
         <li><a href="labs.html">Labs</a></li>
         <li><a href="index.html#contact">Contact</a></li>
-        <li><a href="resume.html">Resume</a></li>
       </ul>
       <button class="menu-toggle" aria-label="Open navigation" aria-expanded="false" aria-controls="mobile-nav">
         <svg class="icon-open" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"><line x1="3" y1="5" x2="17" y2="5"/><line x1="3" y1="10" x2="17" y2="10"/><line x1="3" y1="15" x2="17" y2="15"/></svg>
@@ -187,7 +184,6 @@
       <li><a href="projects.html">Projects</a></li>
       <li><a href="labs.html">Labs</a></li>
       <li><a href="index.html#contact">Contact</a></li>
-      <li><a href="resume.html">Resume</a></li>
     </ul>
   </nav>
 

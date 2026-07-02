@@ -14,7 +14,6 @@ PUBLIC_PAGES = {
     "labs.html": {"main": "Featured Labs", "current_href": "labs.html"},
     "lab-details.html": {"main": "Labs", "current_href": "labs.html"},
     "projects.html": {"main": "Personal Projects", "current_href": "projects.html"},
-    "resume.html": {"main": "Resume", "current_href": "resume.html"},
     "soc-automation-lab.html": {"main": "SOC Automation Lab", "current_href": "labs.html"},
     "security-plus.html": {"main": "Security+ Certification", "current_href": "labs.html"},
     "itil4.html": {"main": "ITIL 4 Certification", "current_href": "labs.html"},
