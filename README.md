@@ -1,6 +1,6 @@
-# Khaneil Campbell — Cybersecurity Portfolio
+# Khaneil Campbell — IT Professional Portfolio
 
-This repository hosts a static cybersecurity portfolio for Khaneil Campbell, showcasing SOC-focused labs, professional background, and certification pages.
+This repository hosts a static IT portfolio for Khaneil Campbell, showcasing hands-on technical labs, professional background, and certification pages.
 
 ## Project Structure
 
@@ -25,7 +25,7 @@ This repository hosts a static cybersecurity portfolio for Khaneil Campbell, sho
 ## Current Site Sections
 
 ### Main Page (`index.html`)
-- Immersive security operations interface with live case-feed styling, metrics, and action links
+- Immersive operations-style interface with live case-feed styling, metrics, and action links
 - Featured Labs section with SOC Automation, Phishing IR, and IAM lab cards
 - Personal Projects section linking to the AI Etsy Product Pipeline
 - Operating Method section explaining scenario, detection, triage, and response standards
