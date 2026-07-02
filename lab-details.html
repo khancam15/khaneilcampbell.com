@@ -8,6 +8,16 @@
   <meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'unsafe-inline'; style-src 'unsafe-inline'; img-src 'self' data:; font-src 'self'; base-uri 'self'; form-action 'none';" />
   <meta name="referrer" content="strict-origin-when-cross-origin" />
   <meta name="robots" content="index, follow" />
+  <meta property="og:type" content="website" />
+  <meta property="og:title" content="Security Lab Case Files | Khaneil Campbell" />
+  <meta property="og:description" content="Detailed breakdowns of SOC automation with Splunk, phishing incident response, and IAM security scenarios." />
+  <meta property="og:url" content="https://khaneilcampbell.com/lab-details.html" />
+  <meta property="og:image" content="https://khaneilcampbell.com/images/profile.jpg" />
+  <meta property="og:site_name" content="Khaneil Campbell" />
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Security Lab Case Files | Khaneil Campbell" />
+  <meta name="twitter:description" content="Detailed breakdowns of SOC automation with Splunk, phishing incident response, and IAM security scenarios." />
+  <link rel="canonical" href="https://khaneilcampbell.com/lab-details.html" />
   <title>Security Lab Case Files | Khaneil Campbell</title>
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
@@ -34,8 +44,14 @@
       color: var(--text);
       font-family: var(--nav-font);
       line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+      text-rendering: optimizeLegibility;
       min-height: 100vh;
       overflow-x: hidden;
+    }
+
+    h1, h2, h3, .lead, .section-label, .detail-card, .kicker, .metric-card, .metric-card p {
+      text-wrap: balance;
     }
 
     body::before {
@@ -66,17 +82,17 @@
 
     /* LAYOUT */
     main { padding-top: 24px; }
-    .section { padding: 72px 0; }
+    .section { padding: 60px 0; }
     .section-divider { height: 1px; background: linear-gradient(90deg, transparent, rgba(56,189,248,0.15), transparent); }
 
     .eyebrow { font-size: 11px; font-weight: 500; letter-spacing: 0.28em; text-transform: uppercase; color: var(--blue); margin-bottom: 12px; }
-    h1 { font-size: clamp(38px,6vw,68px); font-weight: 700; line-height: 1.0; }
-    h2 { font-size: clamp(26px,3vw,40px); font-weight: 700; line-height: 1.05; }
+    h1 { font-size: clamp(30px,4.8vw,58px); font-weight: 700; line-height: 1.0; white-space: nowrap; }
+    h2 { font-size: clamp(20px,2.7vw,32px); font-weight: 700; line-height: 1.05; white-space: nowrap; }
     h3 { font-size: 22px; font-weight: 600; line-height: 1.15; margin: 10px 0 12px; }
     .lead { max-width: 680px; margin-top: 16px; color: rgba(232,244,255,0.65); font-size: clamp(16px,1.8vw,19px); line-height: 1.7; }
 
     /* HERO */
-    .hero { display: grid; grid-template-columns: minmax(0,1.05fr) minmax(320px,0.95fr); gap: 40px; align-items: center; padding: 64px 0 48px; }
+    .hero { display: grid; grid-template-columns: minmax(0,1.05fr) minmax(320px,0.95fr); gap: 32px; align-items: center; padding: 48px 0 36px; }
     .hero-actions { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 32px; }
 
     .metrics { display: grid; grid-template-columns: repeat(4,1fr); gap: 12px; margin-top: 32px; }
@@ -100,6 +116,10 @@
     .btn-blue:hover { transform: translateY(-2px); box-shadow: 0 8px 28px rgba(14,165,233,0.5); color: #fff; }
     .btn-outline { display: inline-flex; align-items: center; justify-content: center; padding: 11px 22px; border-radius: 8px; background: transparent; border: 1px solid rgba(56,189,248,0.28); color: var(--blue); font-size: 13px; font-weight: 400; letter-spacing: 0.04em; cursor: pointer; transition: background 160ms, border-color 160ms; font-family: var(--nav-font); }
     .btn-outline:hover { background: rgba(56,189,248,0.08); border-color: rgba(56,189,248,0.55); color: var(--blue); }
+
+    @media (max-width: 900px) {
+      h1, h2 { white-space: normal; }
+    }
     .btn-sm { padding: 8px 16px; font-size: 12px; }
 
     /* TAB LINKS */
@@ -177,11 +197,11 @@
       </a>
       <ul class="nav-links">
         <li><a href="index.html">Home</a></li>
-        <li><a href="labs.html" class="active">Labs</a></li>
         <li><a href="projects.html">Projects</a></li>
+        <li><a href="labs.html" class="active">Labs</a></li>
         <li><a href="index.html#contact">Contact</a></li>
+        <li><a href="resume.html">Resume</a></li>
       </ul>
-      <a href="resume.html" class="nav-resume">Resume</a>
       <button class="menu-toggle" aria-label="Open navigation" aria-expanded="false" aria-controls="mobile-nav">
         <svg class="icon-open" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"><line x1="3" y1="5" x2="17" y2="5"/><line x1="3" y1="10" x2="17" y2="10"/><line x1="3" y1="15" x2="17" y2="15"/></svg>
         <svg class="icon-close" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"><line x1="4" y1="4" x2="16" y2="16"/><line x1="16" y1="4" x2="4" y2="16"/></svg>
@@ -192,8 +212,8 @@
   <nav id="mobile-nav" class="mobile-nav" aria-label="Mobile navigation">
     <ul>
       <li><a href="index.html">Home</a></li>
-      <li><a href="labs.html">Labs</a></li>
       <li><a href="projects.html">Projects</a></li>
+      <li><a href="labs.html">Labs</a></li>
       <li><a href="index.html#contact">Contact</a></li>
       <li><a href="resume.html">Resume</a></li>
     </ul>

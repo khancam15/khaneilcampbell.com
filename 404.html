@@ -34,6 +34,8 @@
       color: var(--text);
       font-family: var(--nav-font);
       line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+      text-rendering: optimizeLegibility;
       min-height: 100vh;
       overflow-x: hidden;
       display: flex; flex-direction: column;
@@ -74,12 +76,16 @@
     /* 404 MAIN */
     main {
       flex: 1; display: grid; place-items: center;
-      padding: 72px 0;
+      padding: 64px 0;
     }
+    
+      h1, h2, .error-desc, .error-eyebrow {
+        text-wrap: balance;
+      }
 
     .error-panel {
       width: min(720px, 100%);
-      padding: 48px;
+      padding: 40px;
       border: 1px solid var(--line);
       border-radius: 16px;
       background: linear-gradient(135deg, var(--bg3), var(--bg2));
@@ -94,7 +100,7 @@
     }
 
     .error-code {
-      font-size: 120px; font-weight: 800; line-height: 1;
+      font-size: 100px; font-weight: 800; line-height: 1;
       background: linear-gradient(135deg, var(--blue), #818cf8);
       -webkit-background-clip: text; -webkit-text-fill-color: transparent;
       background-clip: text;
@@ -108,8 +114,8 @@
     }
 
     h1 {
-      font-size: clamp(28px, 4vw, 44px); font-weight: 700;
-      line-height: 1.1; margin-bottom: 16px;
+      font-size: clamp(24px, 3.2vw, 38px); font-weight: 700;
+      line-height: 1.1; margin-bottom: 16px; white-space: nowrap;
     }
 
     .error-desc {
@@ -123,6 +129,10 @@
     .btn-blue:hover { transform: translateY(-2px); box-shadow: 0 8px 28px rgba(14,165,233,0.5); color: #fff; }
     .btn-outline { display: inline-flex; align-items: center; justify-content: center; padding: 11px 22px; border-radius: 8px; background: transparent; border: 1px solid rgba(56,189,248,0.28); color: var(--blue); font-size: 13px; font-weight: 400; letter-spacing: 0.04em; cursor: pointer; transition: background 160ms, border-color 160ms; font-family: var(--nav-font); }
     .btn-outline:hover { background: rgba(56,189,248,0.08); border-color: rgba(56,189,248,0.55); color: var(--blue); }
+
+    @media (max-width: 900px) {
+      h1 { white-space: normal; }
+    }
 
     /* MOBILE */
     .menu-toggle { display: none; align-items: center; justify-content: center; width: 40px; height: 40px; border: 1px solid var(--line); border-radius: 8px; background: transparent; color: var(--text); cursor: pointer; }
@@ -159,11 +169,11 @@
       </a>
       <ul class="nav-links">
         <li><a href="index.html">Home</a></li>
-        <li><a href="labs.html">Labs</a></li>
         <li><a href="projects.html">Projects</a></li>
+        <li><a href="labs.html">Labs</a></li>
         <li><a href="index.html#contact">Contact</a></li>
+        <li><a href="resume.html">Resume</a></li>
       </ul>
-      <a href="resume.html" class="nav-resume">Resume</a>
       <button class="menu-toggle" aria-label="Open navigation" aria-expanded="false" aria-controls="mobile-nav">
         <svg class="icon-open" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"><line x1="3" y1="5" x2="17" y2="5"/><line x1="3" y1="10" x2="17" y2="10"/><line x1="3" y1="15" x2="17" y2="15"/></svg>
         <svg class="icon-close" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"><line x1="4" y1="4" x2="16" y2="16"/><line x1="16" y1="4" x2="4" y2="16"/></svg>
@@ -174,8 +184,8 @@
   <nav id="mobile-nav" class="mobile-nav" aria-label="Mobile navigation">
     <ul>
       <li><a href="index.html">Home</a></li>
-      <li><a href="labs.html">Labs</a></li>
       <li><a href="projects.html">Projects</a></li>
+      <li><a href="labs.html">Labs</a></li>
       <li><a href="index.html#contact">Contact</a></li>
       <li><a href="resume.html">Resume</a></li>
     </ul>
