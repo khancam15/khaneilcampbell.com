@@ -10,8 +10,10 @@
                  instead of condensed uppercase.
      · Voice     JetBrains Mono carries every label, index, figure
                  and evidence row — the third voice Benjaire lacks.
-     · Colour    One evergreen accent (#14594a, 7.6:1 on white)
-                 in place of navy.
+     · Colour    One slate-teal accent (#1a5471, 8.2:1 on white).
+                 It sits 17° of hue from benjaire.com's navy, so the
+                 two sites read as related rather than unrelated —
+                 a deliberate choice, not a drift.
      · Structure Numbered full-bleed case rows instead of image
                  cards; asymmetric left-aligned hero with a meta
                  rail; inverted near-black bands and footer.
@@ -46,13 +48,13 @@
   --fg-low:      #6d6d6d;   /* labels               5.2:1 */
   --fg-faint:    #8d8d8d;   /* de-emphasised only   3.2:1 */
 
-  /* evergreen accent — the one hue on the page.
-     --accent is the readable weight (7.6:1), --accent-hi its
-     hover step (4.7:1), --on-accent sits on an accent fill. */
-  --accent:      #14594a;
-  --accent-hi:   #1d7a66;
-  --accent-line: rgba(20,89,74,0.30);
-  --accent-wash: rgba(20,89,74,0.06);
+  /* slate teal accent — the one hue on the page.
+     --accent is the readable weight (8.2:1), --accent-hi its
+     hover step (5.0:1), --on-accent sits on an accent fill (8.2:1). */
+  --accent:      #1a5471;
+  --accent-hi:   #2a779d;
+  --accent-line: rgba(26,84,113,0.30);
+  --accent-wash: rgba(26,84,113,0.06);
   --on-accent:   #ffffff;
 
   /* type */
@@ -89,11 +91,11 @@
   --fg-low:      #91948f;   /* 5.6:1 */
   --fg-faint:    #70736e;   /* 3.4:1 */
 
-  --accent:      #79cfb4;   /* 9.5:1 */
-  --accent-hi:   #a2e2ce;
-  --accent-line: rgba(121,207,180,0.34);
-  --accent-wash: rgba(121,207,180,0.08);
-  --on-accent:   #0b100e;
+  --accent:      #92c2da;   /* 9.8:1 */
+  --accent-hi:   #b4d8ea;   /* 12.5:1 */
+  --accent-line: rgba(146,194,218,0.34);
+  --accent-wash: rgba(146,194,218,0.08);
+  --on-accent:   #0b100e;   /* 10.0:1 on the accent fill */
 
   background: var(--bg);
   color: var(--fg-mid);
