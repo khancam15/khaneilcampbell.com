@@ -42,7 +42,7 @@
 
   /* ink (contrast vs #ffffff) */
   --fg:          #101010;   /* headings, strong    18.9:1 */
-  --fg-mid:      #4b4b4b;   /* body                 8.5:1 */
+  --fg-mid:      #434343;   /* body                 9.9:1 */
   --fg-low:      #6d6d6d;   /* labels               5.2:1 */
   --fg-faint:    #8d8d8d;   /* de-emphasised only   3.2:1 */
 
@@ -813,3 +813,48 @@ h1, h2, h3 { font-weight: 700; }
 .row-side:empty { display: none; }
 .lost-h1 { margin: 26px 0 24px; }
 .lost-actions { margin-top: 34px; }
+
+/* ============================================================
+   DESCRIPTION WEIGHT
+   ------------------------------------------------------------
+   Body and description copy runs heavier than Inter's 400 default
+   so it holds on a white ground. Weight scales inversely with
+   size: the smaller the text, the more weight it needs to stay
+   legible, which is why the 12.5px evidence rows carry 500 while
+   the 16px lead only needs 450.
+
+   Requires the variable Inter range (wght@400..600) requested in
+   each page head — against the old static 400/500/600 request,
+   450 would snap rather than render.
+
+   Headings, mono labels, buttons and tags are deliberately
+   untouched; they set their own weights and already read clearly.
+   ============================================================ */
+
+/* 15-16px — long-form reading */
+.lead,
+.prose p            { font-weight: 450; }
+
+/* 14.5px — case row descriptions, the main body copy of the site */
+.row-desc           { font-weight: 450; }
+
+/* 13-13.5px — supporting copy in tighter blocks */
+.step-desc,
+.def-v,
+.matrix-cell p      { font-weight: 500; }
+
+/* 12.5px — the smallest running text on the site */
+.side-v,
+.matrix-list li     { font-weight: 500; }
+
+/* Light-on-dark text gains apparent weight, so inverted blocks
+   step back down to keep the same optical colour as the light
+   sections rather than looking heavier than them. */
+.invert .step-desc,
+.invert .def-v,
+.invert .matrix-cell p,
+.invert .side-v,
+.invert .matrix-list li { font-weight: 450; }
+.invert .lead,
+.invert .prose p,
+.invert .row-desc       { font-weight: 400; }
