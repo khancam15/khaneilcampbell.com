@@ -1,638 +1,312 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta name="description" content="Hands-on technical labs by Khaneil Campbell — Splunk log analysis, incident response, and identity and access management. Outcome-based documentation with clear decisions and repeatable workflows." />
-  <meta name="theme-color" content="#060b12" />
-  <meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'unsafe-inline'; style-src 'unsafe-inline'; img-src 'self' data:; font-src 'self'; base-uri 'self'; form-action 'none';" />
-  <meta name="referrer" content="strict-origin-when-cross-origin" />
-  <meta name="robots" content="index, follow" />
-  <meta property="og:type" content="website" />
-  <meta property="og:title" content="Hands-On Technical Labs | Khaneil Campbell" />
-  <meta property="og:description" content="Outcome-based technical labs featuring Splunk log analysis, incident response, and IAM workflows." />
-  <meta property="og:url" content="https://khaneilcampbell.com/labs.html" />
-  <meta property="og:image" content="https://khaneilcampbell.com/images/profile.jpg" />
-  <meta property="og:site_name" content="Khaneil Campbell" />
-  <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="Hands-On Technical Labs | Khaneil Campbell" />
-  <meta name="twitter:description" content="Outcome-based technical labs featuring Splunk log analysis, incident response, and IAM workflows." />
-  <link rel="canonical" href="https://khaneilcampbell.com/labs.html" />
-  <title>Hands-On Technical Labs | Khaneil Campbell</title>
-  <style>
-    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-    html { scroll-behavior: smooth; }
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'self'; style-src 'self' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; img-src 'self' data:; connect-src 'none'; base-uri 'self'; form-action 'none';">
+<meta name="referrer" content="strict-origin-when-cross-origin">
+<meta name="theme-color" content="#ffffff">
+<meta name="robots" content="index, follow">
+<title>Labs | Khaneil Campbell</title>
+<meta name="description" content="Hands-on IT and security labs by Khaneil Campbell — log analysis in Splunk, incident response walkthroughs, and identity and access management workflows, each documented end to end.">
 
-    :root {
-      --bg: #060b12;
-      --bg2: #0a1628;
-      --bg3: #0f1f3a;
-      --line: rgba(56,189,248,0.12);
-      --text: #e8f4ff;
-      --muted: #7a9ab8;
-      --blue: #38bdf8;
-      --blue2: #0ea5e9;
-      --purple: #818cf8;
-      --amber: #f9c847;
-      --nav-font: "SF Pro Display","SF Pro Text",-apple-system,BlinkMacSystemFont,"Segoe UI Variable Display","Segoe UI",system-ui,sans-serif;
-    }
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://khaneilcampbell.com/labs.html">
+<meta property="og:title" content="Labs | Khaneil Campbell">
+<meta property="og:description" content="Hands-on labs documented like case files — log analysis, incident response, and access management workflows with evidence and outcomes.">
+<meta property="og:image" content="https://khaneilcampbell.com/images/profile.jpg">
+<meta property="og:site_name" content="Khaneil Campbell">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Labs | Khaneil Campbell">
+<meta name="twitter:description" content="Hands-on labs documented like case files — log analysis, incident response, and access management workflows.">
+<meta name="twitter:image" content="https://khaneilcampbell.com/images/profile.jpg">
+<link rel="canonical" href="https://khaneilcampbell.com/labs.html">
 
-    ::selection { background: rgba(56,189,248,0.25); }
-    :focus-visible { outline: 2px solid var(--blue); outline-offset: 3px; }
-
-    body {
-      background: var(--bg);
-      color: var(--text);
-      font-family: var(--nav-font);
-      line-height: 1.6;
-      -webkit-font-smoothing: antialiased;
-      text-rendering: optimizeLegibility;
-      min-height: 100vh;
-      overflow-x: hidden;
-    }
-
-    h1, h2, h3, .lead, .metric, .panel-top, .terminal, .lab-title, .lab-desc, .lab-cat {
-      text-wrap: balance;
-    }
-
-    body::before {
-      content: "";
-      position: fixed; inset: 0; pointer-events: none; z-index: 0;
-      background:
-        radial-gradient(ellipse 80% 50% at 50% -10%, rgba(56,189,248,0.07) 0%, transparent 60%),
-        radial-gradient(ellipse 60% 40% at 80% 80%, rgba(129,140,248,0.05) 0%, transparent 55%);
-    }
-
-    a { color: inherit; text-decoration: none; }
-    .container { width: min(1100px, calc(100% - 48px)); margin: 0 auto; }
-
-    /* NAV */
-    nav {
-      position: sticky; top: 0; z-index: 100; height: 64px;
-      display: flex; align-items: center;
-      background: rgba(6,11,18,0.9);
-      backdrop-filter: blur(32px) saturate(140%);
-      border-bottom: 1px solid rgba(255,255,255,0.06);
-    }
-    .nav-inner {
-      display: flex; align-items: center; justify-content: space-between;
-      gap: 24px; width: min(1100px,calc(100% - 48px)); margin: 0 auto;
-    }
-    .nav-brand { display: flex; flex-direction: column; gap: 2px; }
-    .nav-brand strong {
-      font-size: 14px; font-weight: 600; letter-spacing: 0.12em;
-      text-transform: uppercase; color: #e8f4ff;
-    }
-    .nav-brand small {
-      font-size: 10px; font-weight: 400; letter-spacing: 0.22em;
-      text-transform: uppercase; color: #38bdf8; opacity: 0.85;
-    }
-    .nav-links { display: flex; gap: 32px; list-style: none; }
-    .nav-links a {
-      font-size: 13px; font-weight: 300; letter-spacing: 0.06em;
-      color: rgba(170,196,230,0.7); transition: color 200ms;
-    }
-    .nav-links a:hover, .nav-links a.active { color: #e8f4ff; }
-
-    /* SKIP */
-    .skip-link {
-      position: fixed; left: 16px; top: 16px; z-index: 200;
-      transform: translateY(-200%);
-      background: var(--blue); color: #03070d;
-      font-weight: 700; padding: 10px 14px; border-radius: 6px;
-      transition: transform 160ms;
-    }
-    .skip-link:focus { transform: translateY(0); }
-
-    /* LAYOUT */
-    main { padding-top: 24px; }
-    .section { padding: 60px 0; position: relative; }
-    .section-head { margin-bottom: 40px; }
-    .eyebrow {
-      font-size: 11px; font-weight: 500; letter-spacing: 0.28em;
-      text-transform: uppercase; color: var(--blue); margin-bottom: 12px;
-    }
-    h1 {
-      font-size: clamp(30px, 4.6vw, 56px); font-weight: 700;
-      line-height: 1.0; color: var(--text);
-    }
-    h2 {
-      font-size: clamp(22px, 3vw, 34px); font-weight: 700;
-      line-height: 1.05; color: var(--text);
-    }
-    h3 { font-size: 22px; font-weight: 600; color: var(--text); }
-
-    .lead {
-      max-width: 640px; margin-top: 18px;
-      color: rgba(232,244,255,0.65); font-size: clamp(16px, 1.8vw, 19px);
-      line-height: 1.7;
-    }
-
-    /* HERO */
-    .hero {
-      display: grid;
-      grid-template-columns: minmax(0,1.05fr) minmax(320px,0.95fr);
-      gap: 32px; align-items: center;
-      padding: 48px 0 36px;
-    }
-    .hero-actions {
-      display: flex; flex-wrap: wrap; gap: 12px; margin-top: 32px;
-    }
-
-    /* METRICS */
-    .metrics {
-      display: grid; grid-template-columns: repeat(4,1fr);
-      gap: 12px; margin-top: 32px;
-    }
-    .metric {
-      padding: 18px;
-      border: 1px solid var(--line);
-      border-radius: 10px;
-      background: linear-gradient(135deg, var(--bg3), var(--bg2));
-    }
-    .metric strong { display: block; font-size: 30px; font-weight: 700; color: var(--blue); line-height: 1; }
-    .metric span { display: block; font-size: 12px; color: var(--muted); margin-top: 8px; }
-
-    /* COMMAND PANEL */
-    .command-panel {
-      border: 1px solid var(--line);
-      border-radius: 12px;
-      background: linear-gradient(135deg, var(--bg3), var(--bg2));
-      overflow: hidden;
-    }
-    .panel-top {
-      display: flex; justify-content: space-between;
-      padding: 14px 18px; border-bottom: 1px solid var(--line);
-      font-size: 12px; color: var(--muted); font-weight: 300;
-    }
-    .pulse {
-      display: inline-flex; align-items: center; gap: 8px;
-      color: var(--blue); font-weight: 500;
-    }
-    .pulse::before {
-      content: ""; width: 8px; height: 8px; border-radius: 50%;
-      background: var(--blue); box-shadow: 0 0 0 3px rgba(56,189,248,0.2);
-      animation: pulseAnim 2s ease-in-out infinite;
-    }
-    @keyframes pulseAnim {
-      0%,100% { box-shadow: 0 0 0 3px rgba(56,189,248,0.2); }
-      50% { box-shadow: 0 0 0 6px rgba(56,189,248,0.08); }
-    }
-    .terminal { display: grid; gap: 10px; padding: 18px; font-family: "SFMono-Regular",Consolas,monospace; font-size: 12px; }
-    .terminal-line {
-      display: grid; grid-template-columns: 80px 1fr;
-      gap: 12px; padding: 11px 14px;
-      border: 1px solid rgba(56,189,248,0.08);
-      border-radius: 8px; background: rgba(6,11,18,0.5);
-    }
-    .terminal-time { color: var(--amber); }
-    .terminal-text { color: rgba(232,244,255,0.75); }
-
-    /* BUTTONS */
-    .btn-blue {
-      display: inline-flex; align-items: center; justify-content: center;
-      padding: 11px 22px; border-radius: 8px;
-      background: linear-gradient(135deg, #0ea5e9, #0284c7);
-      color: #fff; font-size: 13px; font-weight: 500;
-      letter-spacing: 0.04em; border: none; cursor: pointer;
-      box-shadow: 0 4px 18px rgba(14,165,233,0.35);
-      transition: transform 160ms, box-shadow 160ms;
-    }
-    .btn-blue:hover { transform: translateY(-2px); box-shadow: 0 8px 28px rgba(14,165,233,0.5); color: #fff; }
-    .btn-outline {
-      display: inline-flex; align-items: center; justify-content: center;
-      padding: 11px 22px; border-radius: 8px;
-      background: transparent; border: 1px solid rgba(56,189,248,0.28);
-      color: var(--blue); font-size: 13px; font-weight: 400;
-      letter-spacing: 0.04em; cursor: pointer;
-      transition: background 160ms, border-color 160ms;
-    }
-    .btn-outline:hover { background: rgba(56,189,248,0.08); border-color: rgba(56,189,248,0.55); color: var(--blue); }
-
-    @media (max-width: 900px) {
-      h1, h2 { white-space: normal; }
-    }
-
-    /* FILTER */
-    .filter-row { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 20px; }
-    .filter-btn {
-      padding: 7px 16px; border-radius: 999px;
-      border: 1px solid var(--line);
-      background: transparent; color: var(--muted);
-      font-size: 12px; font-weight: 400; letter-spacing: 0.06em;
-      cursor: pointer; font-family: var(--nav-font);
-      transition: border-color 160ms, color 160ms, background 160ms;
-    }
-    .filter-btn:hover, .filter-btn.is-active {
-      border-color: rgba(56,189,248,0.5); color: var(--blue);
-      background: rgba(56,189,248,0.08);
-    }
-
-    /* LAB CARDS */
-    .lab-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 20px; }
-    .lab-card {
-      display: flex; flex-direction: column;
-      padding: 24px; min-height: 440px;
-      border: 1px solid var(--line); border-radius: 12px;
-      background: linear-gradient(135deg, var(--bg3), var(--bg2));
-      transition: border-color 200ms, transform 200ms;
-    }
-    .lab-card:hover { border-color: rgba(56,189,248,0.35); transform: translateY(-3px); }
-    .lab-card.is-hidden { display: none; }
-
-    .card-top {
-      display: flex; justify-content: space-between;
-      align-items: flex-start; gap: 12px; margin-bottom: 16px;
-    }
-    .card-type {
-      font-size: 10px; font-weight: 600; letter-spacing: 0.24em;
-      text-transform: uppercase; color: var(--blue);
-    }
-    .status {
-      padding: 4px 10px; border-radius: 999px; font-size: 11px; white-space: nowrap;
-      border: 1px solid rgba(56,189,248,0.3); color: rgba(56,189,248,0.85);
-    }
-    .status.staged { border-color: rgba(249,200,71,0.35); color: rgba(249,200,71,0.85); }
-
-    .lab-card h3 { font-size: 20px; font-weight: 600; margin-bottom: 10px; line-height: 1.2; }
-    .lab-card > p { color: rgba(232,244,255,0.6); font-size: 14px; line-height: 1.65; }
-
-    .lab-meta {
-      margin-top: 16px; padding: 14px;
-      border: 1px solid rgba(56,189,248,0.08); border-radius: 8px;
-      background: rgba(6,11,18,0.4); font-size: 12px;
-      display: grid; gap: 8px;
-    }
-    .lab-meta-row { display: grid; grid-template-columns: 68px 1fr; gap: 8px; }
-    .lab-meta-row span:first-child { color: var(--amber); font-family: "SFMono-Regular",Consolas,monospace; }
-    .lab-meta-row span:last-child { color: rgba(232,244,255,0.7); }
-
-    .lab-actions { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 16px; }
-    .lab-actions .btn-blue, .lab-actions .btn-outline { padding: 8px 16px; font-size: 12px; }
-    .placeholder-link { opacity: 0.45; cursor: not-allowed; }
-
-    .tags {
-      display: flex; flex-wrap: wrap; gap: 7px;
-      margin-top: auto; padding-top: 16px;
-    }
-    .tag {
-      padding: 5px 10px; border-radius: 999px;
-      border: 1px solid rgba(56,189,248,0.12);
-      background: rgba(56,189,248,0.06);
-      color: rgba(170,196,230,0.7); font-size: 11px; font-weight: 400;
-    }
-
-    /* BRIEFING */
-    .briefing-grid { display: grid; grid-template-columns: 0.9fr 1.1fr; gap: 20px; }
-    .briefing-panel {
-      padding: 24px; border: 1px solid var(--line); border-radius: 12px;
-      background: linear-gradient(135deg, var(--bg3), var(--bg2));
-    }
-    .briefing-panel h3 { font-size: 22px; margin: 10px 0; }
-    .briefing-panel p { color: rgba(232,244,255,0.6); font-size: 14px; }
-    .kicker {
-      font-size: 10px; font-weight: 600; letter-spacing: 0.24em;
-      text-transform: uppercase; color: var(--blue); margin-bottom: 6px;
-    }
-    .tool-list { list-style: none; margin-top: 16px; display: grid; gap: 10px; }
-    .tool-list li {
-      display: flex; justify-content: space-between; gap: 16px;
-      border-bottom: 1px solid rgba(56,189,248,0.08); padding-bottom: 10px;
-      color: rgba(232,244,255,0.8); font-size: 13px;
-    }
-    .tool-list li span { color: var(--muted); text-align: right; font-size: 13px; }
-
-    .timeline { display: grid; gap: 12px; }
-    .timeline-item {
-      display: grid; grid-template-columns: 80px 1fr; gap: 14px; padding: 16px;
-      border: 1px solid var(--line); border-radius: 10px;
-      background: linear-gradient(135deg, var(--bg3), var(--bg2));
-    }
-    .timeline-item strong {
-      color: var(--amber); font-family: "SFMono-Regular",Consolas,monospace; font-size: 12px;
-    }
-    .timeline-item p { color: rgba(232,244,255,0.6); font-size: 13px; }
-
-    /* DIVIDER */
-    .section-divider {
-      height: 1px;
-      background: linear-gradient(90deg, transparent, rgba(56,189,248,0.15), transparent);
-      margin: 0;
-    }
-
-    /* MOBILE NAV */
-    .menu-toggle {
-      display: none; align-items: center; justify-content: center;
-      width: 40px; height: 40px;
-      border: 1px solid var(--line); border-radius: 8px;
-      background: transparent; color: var(--text); cursor: pointer;
-    }
-    .menu-toggle svg { width: 18px; height: 18px; }
-    .menu-toggle .icon-close { display: none; }
-    .mobile-nav {
-      display: none; position: fixed; top: 64px; left: 0; right: 0; z-index: 90;
-      background: rgba(6,11,18,0.97); backdrop-filter: blur(20px);
-      border-bottom: 1px solid var(--line); padding: 16px 0 20px;
-    }
-    .mobile-nav.open { display: block; }
-    .mobile-nav ul { display: flex; flex-direction: column; list-style: none; }
-    .mobile-nav a {
-      display: block; padding: 12px 24px; color: rgba(170,196,230,0.7);
-      font-size: 15px; border-bottom: 1px solid rgba(56,189,248,0.06);
-    }
-    .mobile-nav a:hover { color: var(--text); background: rgba(56,189,248,0.05); }
-    body.menu-open { overflow: hidden; }
-
-    @media (prefers-reduced-motion: reduce) {
-      *, *::before, *::after {
-        animation-duration: 0.001ms !important;
-        transition-duration: 0.001ms !important;
-      }
-    }
-
-    @media (max-width: 980px) {
-      .hero { grid-template-columns: 1fr; min-height: auto; }
-      .lab-grid { grid-template-columns: 1fr 1fr; }
-      .metrics { grid-template-columns: 1fr 1fr; }
-      .briefing-grid { grid-template-columns: 1fr; }
-      .nav-links { display: none; }
-      .menu-toggle { display: flex; }
-      .menu-toggle.open .icon-open { display: none; }
-      .menu-toggle.open .icon-close { display: block; }
-    }
-    @media (max-width: 640px) {
-      .lab-grid { grid-template-columns: 1fr; }
-      .metrics { grid-template-columns: 1fr 1fr; }
-      .lab-meta-row { grid-template-columns: 1fr; gap: 2px; }
-      .timeline-item { grid-template-columns: 1fr; }
-      .terminal-line { grid-template-columns: 1fr; }
-    }
-  </style>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wght@600;700&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap">
+<link rel="stylesheet" href="assets/site.css">
+<script src="assets/site.js" defer></script>
 </head>
 <body>
-  <a class="skip-link" href="#main-content">Skip to content</a>
 
-  <nav>
-    <div class="nav-inner container">
-      <a class="nav-brand" href="index.html">
-        <strong>Khaneil Campbell</strong>
-        <small>IT Professional · New York</small>
-      </a>
-      <ul class="nav-links">
-        <li><a href="index.html">Home</a></li>
-        <li><a href="index.html#about">About</a></li>
-        <li><a href="projects.html">Projects</a></li>
-        <li><a href="labs.html" class="active">Labs</a></li>
-        <li><a href="index.html#contact">Contact</a></li>
-      </ul>
-      <button class="menu-toggle" aria-label="Open navigation" aria-expanded="false" aria-controls="mobile-nav">
-        <svg class="icon-open" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round">
-          <line x1="3" y1="5" x2="17" y2="5"/><line x1="3" y1="10" x2="17" y2="10"/><line x1="3" y1="15" x2="17" y2="15"/>
-        </svg>
-        <svg class="icon-close" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round">
-          <line x1="4" y1="4" x2="16" y2="16"/><line x1="16" y1="4" x2="4" y2="16"/>
-        </svg>
-      </button>
+<a class="skip-link" href="#main">Skip to content</a>
+<div class="progress-rail" aria-hidden="true"><span></span></div>
+
+<nav class="nav">
+  <a href="index.html" class="nav-brand">
+    <span class="nav-name">Khaneil Campbell</span>
+    <span class="nav-role">IT Professional · New York</span>
+  </a>
+  <ul class="nav-links">
+    <li><a href="index.html">Home</a></li>
+    <li><a href="about.html">About</a></li>
+    <li><a href="labs.html" class="active">Labs</a></li>
+    <li><a href="projects.html">Projects</a></li>
+    <li><a href="contact.html">Contact</a></li>
+  </ul>
+  <a href="mailto:contact@khaneilcampbell.com" class="nav-cta">Email Me &#8599;</a>
+  <button class="nav-burger" id="navBurger" type="button" aria-label="Open menu"><span></span><span></span><span></span></button>
+</nav>
+
+<div class="mobile-menu" id="mobileMenu">
+  <a href="index.html">Home</a>
+  <a href="about.html">About</a>
+  <a href="labs.html" class="active">Labs</a>
+  <a href="projects.html">Projects</a>
+  <a href="contact.html">Contact</a>
+  <a href="mailto:contact@khaneilcampbell.com" class="m-cta">Email Me &#8599;</a>
+</div>
+
+<div class="page">
+<main id="main">
+
+<header class="page-head">
+  <div class="page-head-inner">
+    <span class="eyebrow reveal">Labs</span>
+    <h1 class="d-xl reveal dl1">
+      <span class="tone-ink">Labs written up</span>
+      <span class="tone-edge">like case files.</span>
+    </h1>
+    <p class="lead reveal dl2">
+      Self-directed work built to practise the parts of the job you cannot
+      rehearse on production. Each lab covers the scenario, the telemetry, the
+      decisions I made, and what the evidence actually showed.
+    </p>
+    <div class="btn-set reveal dl3">
+      <a href="soc-automation-lab.html" class="btn btn--solid">Open the Published Case</a>
+      <a href="lab-details.html" class="btn btn--ghost">Expanded Case Files</a>
     </div>
-  </nav>
+  </div>
+</header>
 
-  <nav id="mobile-nav" class="mobile-nav" aria-label="Mobile navigation">
-    <ul>
-      <li><a href="index.html">Home</a></li>
-      <li><a href="index.html#about">About</a></li>
-      <li><a href="projects.html">Projects</a></li>
-      <li><a href="labs.html">Labs</a></li>
-      <li><a href="index.html#contact">Contact</a></li>
-    </ul>
-  </nav>
+<section class="figures" aria-label="Lab figures">
+  <div class="figure reveal">
+    <div class="fig-num">03</div>
+    <div class="fig-label">Lab Tracks</div>
+  </div>
+  <div class="figure reveal dl1">
+    <div class="fig-num">80+</div>
+    <div class="fig-label">Failed Logons Isolated</div>
+  </div>
+  <div class="figure reveal dl2">
+    <div class="fig-num">04</div>
+    <div class="fig-label">Workflow Phases</div>
+  </div>
+  <div class="figure reveal dl3">
+    <div class="fig-num">01</div>
+    <div class="fig-label">Published Deep Dive</div>
+  </div>
+</section>
 
-  <main id="main-content">
-    <section class="container" aria-labelledby="page-title">
-      <div class="hero">
-        <div class="hero-copy">
-          <p class="eyebrow">Lab Environment</p>
-          <h1 id="page-title">Labs built like operational evidence.</h1>
-          <p class="lead">
-            A focused view of hands-on technical projects — from scenario setup to analysis,
-            decisions, documentation, and measurable outcomes.
-          </p>
-          <div class="hero-actions">
-            <a href="#labs" class="btn-blue">Featured Labs</a>
-            <a href="lab-details.html" class="btn-outline">All Labs</a>
-            <a href="soc-automation-lab.html" class="btn-outline">Open Featured Case</a>
-          </div>
-          <div class="metrics" aria-label="Portfolio lab metrics">
-            <div class="metric"><strong>03</strong><span>Featured technical labs</span></div>
-            <div class="metric"><strong>80+</strong><span>Failed logons detected</span></div>
-            <div class="metric"><strong>04</strong><span>Response workflow phases</span></div>
-            <div class="metric"><strong>02</strong><span>Professional certifications</span></div>
-          </div>
+<section>
+  <div class="sec-head">
+    <div>
+      <span class="eyebrow reveal">The Board</span>
+      <h2 class="d-lg reveal dl1">Filter by<br>discipline.</h2>
+    </div>
+    <p class="lead reveal dl2">
+      Published cases have a full write-up behind them. Staged cases have the
+      scenario, telemetry plan, and workflow defined, with the write-up still in
+      progress — flagged rather than dressed up.
+    </p>
+  </div>
+
+  <div class="tabs" role="group" aria-label="Filter labs by discipline" data-filter-group>
+    <button class="tab active" type="button" data-filter="all" aria-pressed="true">All Labs</button>
+    <button class="tab" type="button" data-filter="detection" aria-pressed="false">Log Analysis</button>
+    <button class="tab" type="button" data-filter="response" aria-pressed="false">Incident Response</button>
+    <button class="tab" type="button" data-filter="identity" aria-pressed="false">Identity</button>
+  </div>
+
+  <div class="rowset">
+    <article class="row reveal" data-cat="detection" id="log-analysis">
+      <div class="row-idx">L/01</div>
+      <div class="row-main">
+        <div class="row-meta">
+          <span class="row-kicker">Log Analysis</span>
+          <span class="status is-live">Published</span>
         </div>
-
-        <aside class="command-panel" aria-label="Live lab activity preview">
-          <div class="panel-top">
-            <span>operations-feed.log</span>
-            <span class="pulse">Monitoring</span>
-          </div>
-          <div class="terminal">
-            <div class="terminal-line">
-              <span class="terminal-time">09:12:04</span>
-              <span class="terminal-text">auth anomaly: repeated failures grouped by source host</span>
-            </div>
-            <div class="terminal-line">
-              <span class="terminal-time">09:15:31</span>
-              <span class="terminal-text">spl query tuned: threshold reduced noise while preserving signal</span>
-            </div>
-            <div class="terminal-line">
-              <span class="terminal-time">09:22:18</span>
-              <span class="terminal-text">case notes generated: timeline, indicators, response actions</span>
-            </div>
-            <div class="terminal-line">
-              <span class="terminal-time">09:37:55</span>
-              <span class="terminal-text">analyst workflow packaged for repeatable triage</span>
-            </div>
-          </div>
-        </aside>
-      </div>
-    </section>
-
-    <div class="section-divider"></div>
-
-    <section id="labs" class="section container" aria-labelledby="labs-title">
-      <div class="section-head">
-        <p class="eyebrow">Featured Labs</p>
-        <h2 id="labs-title">Hands-on work with clear outcomes.</h2>
-        <p class="lead" style="margin-top:12px;">
-          Filter the lab board by discipline and open the work that has the strongest evidence trail.
+        <h3 class="row-title d-md">Authentication log analysis with Splunk</h3>
+        <p class="row-desc">
+          A simulated brute-force attempt against Windows accounts, worked from raw
+          event data to a written response. Windows Security logs ingested into
+          Splunk, SPL queries grouping failed logons by source host and account,
+          thresholds tuned so the alert survives contact with real noise, and
+          analyst notes written for reuse.
         </p>
-        <div class="filter-row" aria-label="Lab filters">
-          <button class="filter-btn is-active" type="button" data-filter="all">All</button>
-          <button class="filter-btn" type="button" data-filter="detection">Detection</button>
-          <button class="filter-btn" type="button" data-filter="response">Response</button>
-          <button class="filter-btn" type="button" data-filter="identity">Identity</button>
+        <div class="row-links">
+          <a href="soc-automation-lab.html">Read the case study</a>
+          <a href="lab-details.html#log-analysis">Case file</a>
+          <a href="https://github.com/khancam15" target="_blank" rel="noopener noreferrer">GitHub &#8599;</a>
+        </div>
+        <div class="tagline-set">
+          <span class="tag">Splunk</span>
+          <span class="tag">SPL</span>
+          <span class="tag">Windows Logs</span>
+          <span class="tag">Event ID 4625</span>
         </div>
       </div>
-
-      <div class="lab-grid">
-        <article class="lab-card" data-category="detection">
-          <div class="card-top">
-            <p class="card-type">Detection Engineering</p>
-            <span class="status">Published</span>
-          </div>
-          <h3><a href="soc-automation-lab.html">SOC Automation with Splunk</a></h3>
-          <p>
-            Brute-force detection workflow using Windows authentication events, SPL alert logic,
-            triage decisions, and repeatable analyst response notes.
-          </p>
-          <div class="lab-meta" aria-label="Lab details">
-            <div class="lab-meta-row"><span>Scenario</span><span>Simulated brute-force attack targeting Windows accounts</span></div>
-            <div class="lab-meta-row"><span>Tools</span><span>Splunk, Windows Security Logs (Event ID 4625), SPL</span></div>
-            <div class="lab-meta-row"><span>Outcome</span><span>80+ failed logons detected; triage workflow documented for reuse</span></div>
-          </div>
-          <div class="lab-actions">
-            <a href="soc-automation-lab.html" class="btn-blue">View Case Study</a>
-            <a href="lab-details.html#soc" class="btn-outline">Details</a>
-            <a href="https://github.com/khancam15/soc-automation-splunk-bruteforce-lab" class="btn-outline" target="_blank" rel="noopener noreferrer">GitHub</a>
-          </div>
-          <div class="tags">
-            <span class="tag">Splunk</span>
-            <span class="tag">SPL</span>
-            <span class="tag">Windows Logs</span>
-            <span class="tag">Detection</span>
-          </div>
-        </article>
-
-        <article class="lab-card" data-category="response">
-          <div class="card-top">
-            <p class="card-type">Incident Response</p>
-            <span class="status staged">Staged</span>
-          </div>
-          <h3>Phishing-to-Malware Incident Response Lab</h3>
-          <p>
-            Phishing-to-malware scenario with host investigation, process review, log evidence,
-            containment notes, and structured incident documentation.
-          </p>
-          <div class="lab-meta" aria-label="Lab details">
-            <div class="lab-meta-row"><span>Scenario</span><span>Phishing email delivers malware; analyst investigates host indicators</span></div>
-            <div class="lab-meta-row"><span>Tools</span><span>Sysinternals, Windows Event Logs, containment playbook</span></div>
-            <div class="lab-meta-row"><span>Outcome</span><span>Structured IR documentation and containment decision record</span></div>
-          </div>
-          <div class="lab-actions">
-            <a href="#" class="btn-blue placeholder-link" data-placeholder="true">Case Pending</a>
-            <a href="lab-details.html#phishing" class="btn-outline">Details</a>
-          </div>
-          <div class="tags">
-            <span class="tag">IR</span>
-            <span class="tag">Sysinternals</span>
-            <span class="tag">Event Logs</span>
-            <span class="tag">Containment</span>
-          </div>
-        </article>
-
-        <article class="lab-card" data-category="identity">
-          <div class="card-top">
-            <p class="card-type">Identity Security</p>
-            <span class="status staged">Staged</span>
-          </div>
-          <h3>Identity &amp; Access Management Security Lab</h3>
-          <p>
-            Operational access-control scenarios covering MFA, least privilege, recovery controls,
-            account lifecycle decisions, and escalation-resistant support workflows.
-          </p>
-          <div class="lab-meta" aria-label="Lab details">
-            <div class="lab-meta-row"><span>Scenario</span><span>Account lifecycle, MFA enforcement, and least-privilege policy review</span></div>
-            <div class="lab-meta-row"><span>Tools</span><span>Active Directory, MFA policies, PAM workflows</span></div>
-            <div class="lab-meta-row"><span>Outcome</span><span>Access governance documentation and escalation-resistant support flows</span></div>
-          </div>
-          <div class="lab-actions">
-            <a href="#" class="btn-blue placeholder-link" data-placeholder="true">Case Pending</a>
-            <a href="lab-details.html#iam" class="btn-outline">Details</a>
-          </div>
-          <div class="tags">
-            <span class="tag">IAM</span>
-            <span class="tag">MFA</span>
-            <span class="tag">Active Directory</span>
-            <span class="tag">Least Privilege</span>
-          </div>
-        </article>
+      <div class="row-side">
+        <div class="side-row"><div class="side-k">Scenario</div><div class="side-v">Repeated failed logons against Windows accounts</div></div>
+        <div class="side-row"><div class="side-k">Telemetry</div><div class="side-v">Windows Security Event Logs, normalised in Splunk</div></div>
+        <div class="side-row"><div class="side-k">Outcome</div><div class="side-v">80+ failed logons isolated; triage workflow documented for reuse</div></div>
       </div>
-    </section>
+    </article>
 
-    <div class="section-divider"></div>
-
-    <section class="section container" aria-labelledby="briefing-title">
-      <div class="section-head">
-        <p class="eyebrow">Analyst Briefing</p>
-        <h2 id="briefing-title">How each case is evaluated.</h2>
-      </div>
-
-      <div class="briefing-grid">
-        <div class="briefing-panel">
-          <p class="kicker">Case Standard</p>
-          <h3>From signal to response</h3>
-          <p>
-            Each project is framed around a practical security question: what happened, what evidence
-            proves it, how should an analyst respond, and how can the workflow become repeatable?
-          </p>
-          <ul class="tool-list">
-            <li>Scenario <span>Threat model and assumptions</span></li>
-            <li>Detection <span>Query logic and thresholds</span></li>
-            <li>Triage <span>Evidence and decision points</span></li>
-            <li>Response <span>Actions, notes, and outcome</span></li>
-          </ul>
+    <article class="row reveal" data-cat="response" id="phishing">
+      <div class="row-idx">L/02</div>
+      <div class="row-main">
+        <div class="row-meta">
+          <span class="row-kicker">Incident Response</span>
+          <span class="status is-staged">Staged</span>
         </div>
-
-        <div class="timeline" aria-label="SOC investigation timeline">
-          <div class="timeline-item">
-            <strong>Phase 01</strong>
-            <p>Build a controlled scenario with enough realism to produce meaningful telemetry.</p>
-          </div>
-          <div class="timeline-item">
-            <strong>Phase 02</strong>
-            <p>Write detection logic, validate the signal, and document false-positive boundaries.</p>
-          </div>
-          <div class="timeline-item">
-            <strong>Phase 03</strong>
-            <p>Translate raw events into analyst-ready findings with clear severity and scope.</p>
-          </div>
-          <div class="timeline-item">
-            <strong>Phase 04</strong>
-            <p>Package the response workflow so the same pattern can be repeated and improved.</p>
-          </div>
+        <h3 class="row-title d-md">Phishing-to-malware response walkthrough</h3>
+        <p class="row-desc">
+          A phishing intrusion followed from the user report through host indicator
+          analysis, process review, log evidence, containment decisions, and an
+          incident summary written for readers who were not involved in the
+          investigation.
+        </p>
+        <div class="row-links">
+          <a href="lab-details.html#phishing">Case file</a>
+          <span>Write-up in progress</span>
+        </div>
+        <div class="tagline-set">
+          <span class="tag">Incident Response</span>
+          <span class="tag">Sysinternals</span>
+          <span class="tag">Event Logs</span>
+          <span class="tag">Containment</span>
         </div>
       </div>
-    </section>
-  </main>
+      <div class="row-side">
+        <div class="side-row"><div class="side-k">Scenario</div><div class="side-v">User reports a suspicious email; host behaves oddly afterwards</div></div>
+        <div class="side-row"><div class="side-k">Telemetry</div><div class="side-v">Host process review, Windows Event Logs, endpoint notes</div></div>
+        <div class="side-row"><div class="side-k">Goal</div><div class="side-v">Structured incident documentation and a containment decision record</div></div>
+      </div>
+    </article>
 
-  <script>
-    const filterButtons = document.querySelectorAll("[data-filter]");
-    const labCards = document.querySelectorAll("[data-category]");
-    filterButtons.forEach(btn => {
-      btn.addEventListener("click", () => {
-        const filter = btn.dataset.filter;
-        filterButtons.forEach(b => b.classList.remove("is-active"));
-        btn.classList.add("is-active");
-        labCards.forEach(card => {
-          card.classList.toggle("is-hidden", filter !== "all" && card.dataset.category !== filter);
-        });
-      });
-    });
-    document.querySelectorAll('[data-placeholder="true"]').forEach(link => {
-      link.addEventListener("click", e => e.preventDefault());
-    });
-    const toggle = document.querySelector('.menu-toggle');
-    const mobileNav = document.getElementById('mobile-nav');
-    toggle.addEventListener('click', () => {
-      const open = mobileNav.classList.toggle('open');
-      toggle.classList.toggle('open', open);
-      toggle.setAttribute('aria-expanded', String(open));
-      document.body.classList.toggle('menu-open', open);
-    });
-    mobileNav.querySelectorAll('a').forEach(a => a.addEventListener('click', () => {
-      mobileNav.classList.remove('open'); toggle.classList.remove('open');
-      toggle.setAttribute('aria-expanded','false'); document.body.classList.remove('menu-open');
-    }));
-    document.addEventListener('keydown', e => { if (e.key === 'Escape') { mobileNav.classList.remove('open'); toggle.classList.remove('open'); toggle.setAttribute('aria-expanded','false'); document.body.classList.remove('menu-open'); } });
-  </script>
+    <article class="row reveal" data-cat="identity" id="iam">
+      <div class="row-idx">L/03</div>
+      <div class="row-main">
+        <div class="row-meta">
+          <span class="row-kicker">Identity &amp; Access</span>
+          <span class="status is-staged">Staged</span>
+        </div>
+        <h3 class="row-title d-md">Access control and account lifecycle workflows</h3>
+        <p class="row-desc">
+          Operational access-control scenarios: MFA enforcement, least-privilege
+          review, account lifecycle decisions, and recovery requests handled in a
+          way that stays consistent when the person asking is senior and in a hurry.
+        </p>
+        <div class="row-links">
+          <a href="lab-details.html#iam">Case file</a>
+          <span>Write-up in progress</span>
+        </div>
+        <div class="tagline-set">
+          <span class="tag">Active Directory</span>
+          <span class="tag">MFA</span>
+          <span class="tag">Least Privilege</span>
+          <span class="tag">Account Lifecycle</span>
+        </div>
+      </div>
+      <div class="row-side">
+        <div class="side-row"><div class="side-k">Scenario</div><div class="side-v">Access request or recovery needing validation before approval</div></div>
+        <div class="side-row"><div class="side-k">Telemetry</div><div class="side-v">Directory attributes, group membership, MFA state, request context</div></div>
+        <div class="side-row"><div class="side-k">Goal</div><div class="side-v">Least-privilege enforcement and escalation-resistant approval flow</div></div>
+      </div>
+    </article>
+  </div>
+</section>
+
+<!-- ─── CASE STANDARD (inverted) ─── -->
+<section class="band invert">
+  <div class="sec-head">
+    <div>
+      <span class="eyebrow reveal">Case Standard</span>
+      <h2 class="d-lg reveal dl1">How every lab<br>gets evaluated.</h2>
+    </div>
+    <p class="lead reveal dl2">
+      Each lab answers the same four questions: what happened, what evidence proves
+      it, how should someone respond, and how does this become repeatable? Anything
+      that cannot answer all four stays staged.
+    </p>
+  </div>
+
+  <div class="steps">
+    <div class="step reveal">
+      <span class="step-num">Phase 01</span>
+      <h3 class="step-name">Scenario</h3>
+      <p class="step-desc">Build a controlled situation with enough realism to produce meaningful telemetry, and state the assumptions up front.</p>
+    </div>
+    <div class="step reveal dl1">
+      <span class="step-num">Phase 02</span>
+      <h3 class="step-name">Detection</h3>
+      <p class="step-desc">Write the query logic, validate the signal, and document where the false-positive boundary actually sits.</p>
+    </div>
+    <div class="step reveal dl2">
+      <span class="step-num">Phase 03</span>
+      <h3 class="step-name">Triage</h3>
+      <p class="step-desc">Turn raw events into findings with clear severity and scope, and record the decision points along the way.</p>
+    </div>
+    <div class="step reveal dl3">
+      <span class="step-num">Phase 04</span>
+      <h3 class="step-name">Response</h3>
+      <p class="step-desc">Package the workflow — actions, notes, escalation criteria — so the same pattern can be repeated and improved.</p>
+    </div>
+  </div>
+</section>
+
+<section class="closer">
+  <div>
+    <span class="eyebrow reveal">Next</span>
+    <h2 class="d-lg reveal dl1">
+      <span class="tone-ink">Open a case,</span>
+      <span class="tone-mid">or ask about one.</span>
+    </h2>
+  </div>
+  <div class="btn-set reveal dl2">
+    <a href="lab-details.html" class="btn btn--solid">Expanded Case Files</a>
+    <a href="contact.html" class="btn btn--ghost">Get in Touch</a>
+  </div>
+</section>
+
+</main>
+
+<footer class="footer invert">
+  <div class="footer-inner">
+    <div>
+      <span class="footer-name">Khaneil Campbell</span>
+      <p class="footer-tag">Enterprise IT support, systems administration, and automation.</p>
+      <span class="footer-loc">New York, NY</span>
+    </div>
+    <div class="footer-col">
+      <span class="footer-label">Navigate</span>
+      <a href="index.html">Home</a>
+      <a href="about.html">About</a>
+      <a href="labs.html">Labs</a>
+      <a href="projects.html">Projects</a>
+      <a href="contact.html">Contact</a>
+    </div>
+    <div class="footer-col">
+      <span class="footer-label">Work</span>
+      <a href="soc-automation-lab.html">Log Analysis Case</a>
+      <a href="lab-details.html">Lab Case Files</a>
+      <a href="projects.html">AI Product Pipeline</a>
+    </div>
+    <div class="footer-col">
+      <span class="footer-label">Elsewhere</span>
+      <a href="https://www.linkedin.com/in/khaneil-c-44179a14a/" target="_blank" rel="noopener noreferrer">LinkedIn &#8599;</a>
+      <a href="https://github.com/khancam15" target="_blank" rel="noopener noreferrer">GitHub &#8599;</a>
+      <a href="mailto:contact@khaneilcampbell.com">Email &#8599;</a>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <span>&copy; 2026 Khaneil Campbell</span>
+    <span>Built and maintained by hand</span>
+  </div>
+</footer>
+</div>
+
 </body>
 </html>
