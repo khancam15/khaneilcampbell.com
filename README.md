@@ -19,10 +19,33 @@ wide-tracked uppercase micro-labels — while keeping its own identity:
 | Hero | Left-aligned, asymmetric, with a mono meta rail | Centred, full-height |
 | Contrast device | Inverted near-black bands and footer | Light throughout |
 | Scroll indicator | Right-edge vertical rule | Top progress bar |
+| Page ground | Type-area hairlines + an accent wash in dark bands | Deliberately untextured |
 
 All colour comes from the `--accent*` tokens at the top of `assets/site.css`, so
 re-tinting the site means editing those values alone. Adding `.invert` to any
 section flips it to the dark palette — no component-level overrides needed.
+
+### Page frame
+
+Every page carries a `<div class="page-frame">` immediately after the scroll
+rail. It paints two hairlines marking the type area — offset outward from the
+gutter by `--frame-inset` so they sit in the margin rather than on the text
+edge — and it is the one background treatment the site has.
+
+Two constraints come with it:
+
+- **Opaque full-bleed surfaces break it into dashes.** That is why row hover,
+  `.case--alt`, and the `.split--sidebar` panel use the translucent `--tint`
+  rather than `--bg-raised`, and why `.invert` redraws the frame in its own
+  flipped `--line` instead of simply covering it. Small inset panels
+  (`.plate`, `.tree`, `.matrix-cell`) sit inside the type area and may stay
+  opaque.
+- **It is desktop-only.** Below 1080px the gutter collapses toward 20px,
+  leaving no margin for the rule to sit in; it lands on the text edge and reads
+  as a stray line, so it drops out entirely.
+
+`.invert` blocks also carry a low `--accent-wash` radial so they read as lit
+surfaces rather than flat slabs.
 
 ## Project structure
 
