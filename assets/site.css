@@ -150,9 +150,12 @@ h1, h2, h3 { font-weight: 700; }
 .d-md { font-size: clamp(26px, 3.4vw, 44px);  line-height: 1.04; letter-spacing: -0.025em; }
 .d-sm { font-size: clamp(21px, 2.2vw, 28px);  line-height: 1.12; letter-spacing: -0.02em; }
 
-/* Three-tone lines: ink, grey, stroked. */
+/* Three-tone lines: ink, accent, stroked. The middle line carries the
+   accent, so every split headline states the site's colour once without
+   the whole heading leaving near-black. Inside .invert it picks up the
+   inverted accent on its own. */
 .tone-ink  { display: block; color: var(--fg); }
-.tone-mid  { display: block; color: var(--fg-low); }
+.tone-mid  { display: block; color: var(--accent); }
 .tone-edge {
   display: block; color: transparent;
   -webkit-text-stroke: 1px var(--line-strong);
