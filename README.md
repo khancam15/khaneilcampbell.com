@@ -14,7 +14,7 @@ wide-tracked uppercase micro-labels — while keeping its own identity:
 |---|---|---|
 | Display type | Archivo, sentence case, negative tracking | Bebas Neue, condensed uppercase |
 | Label voice | JetBrains Mono for every label, index, and figure | Inter |
-| Accent | Evergreen `#14594a` | Navy `#1b3a6b` |
+| Accent | Slate teal `#1a5471` | Navy `#1b3a6b` |
 | Primary pattern | Numbered full-bleed case rows | Image card grid |
 | Hero | Left-aligned, asymmetric, with a mono meta rail | Centred, full-height |
 | Contrast device | Inverted near-black bands and footer | Light throughout |
@@ -22,7 +22,9 @@ wide-tracked uppercase micro-labels — while keeping its own identity:
 | Page ground | Type-area hairlines + an accent wash in dark bands | Deliberately untextured |
 
 All colour comes from the `--accent*` tokens at the top of `assets/site.css`, so
-re-tinting the site means editing those values alone. Adding `.invert` to any
+re-tinting the site means editing those values alone — four in the light set,
+four in the `.invert` set, and nothing else. The accent sits 17° of hue from
+Benjaire's navy, which is close by design: the two sites read as related. Adding `.invert` to any
 section flips it to the dark palette — no component-level overrides needed.
 
 ### Page frame
