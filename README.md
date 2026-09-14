@@ -1,85 +1,87 @@
 # Khaneil Campbell — IT Professional Portfolio
 
-This repository hosts a static IT portfolio for Khaneil Campbell, showcasing hands-on technical labs, professional background, and certification pages.
+Static portfolio for Khaneil Campbell: enterprise IT support, systems and identity
+administration, IT service management, and automation work. Hosted on GitHub Pages
+at `khaneilcampbell.com`.
 
-## Project Structure
+## Design system
 
-- `index.html` — main portfolio landing page
-- `labs.html` — dedicated Featured Labs listing page
-- `lab-details.html` — expanded detailed views for every security lab
-- `projects.html` — personal projects page showcasing AI developer and automation work
-- `soc-automation-lab.html` — deep-dive detail page for the SOC Automation lab
-- `security-plus.html` — dedicated Security+ certification page
-- `itil4.html` — dedicated ITIL 4 certification page
-- `404.html` — branded fallback page for GitHub Pages routing
-- `robots.txt` — crawler directives pointing to the sitemap
-- `sitemap.xml` — public URL index for search engines
-- `images/security-plus-cert.png` — Security+ certificate image asset
-- `images/itil-4.png` — ITIL 4 certificate image asset
-- `scripts/interface_upgrade.py` — repeatable Python interface polish for public HTML pages
-- `scripts/site_audit.py` — dependency-free Python audit for HTML security, accessibility, and link hygiene
-- `scripts/site_inventory.py` — dependency-free Python inventory generator for pages, links, headings, and assets
-- `CNAME` — custom domain configuration for GitHub Pages
-- `.gitignore` — security-focused ignore rules for local/system/secrets files
+The site shares a visual family with [benjaire.com](https://benjaire.com) —
+white ground, hairline-ruled full-bleed grids, flat surfaces, no radii or shadows,
+wide-tracked uppercase micro-labels — while keeping its own identity:
 
-## Current Site Sections
+| | khaneilcampbell.com | benjaire.com |
+|---|---|---|
+| Display type | Archivo, sentence case, negative tracking | Bebas Neue, condensed uppercase |
+| Label voice | JetBrains Mono for every label, index, and figure | Inter |
+| Accent | Evergreen `#14594a` | Navy `#1b3a6b` |
+| Primary pattern | Numbered full-bleed case rows | Image card grid |
+| Hero | Left-aligned, asymmetric, with a mono meta rail | Centred, full-height |
+| Contrast device | Inverted near-black bands and footer | Light throughout |
+| Scroll indicator | Right-edge vertical rule | Top progress bar |
 
-### Main Page (`index.html`)
-- Immersive operations-style interface with live case-feed styling, metrics, and action links
-- Featured Labs section with SOC Automation, Phishing IR, and IAM lab cards
-- Personal Projects section linking to the AI Etsy Product Pipeline
-- Operating Method section explaining scenario, detection, triage, and response standards
-- About section focused on enterprise IT experience, detection work, IAM, and investigation methods
-- Credentials section linking to Security+ and ITIL 4 pages
-- Contact section with LinkedIn, GitHub, and Email actions
+All colour comes from the `--accent*` tokens at the top of `assets/site.css`, so
+re-tinting the site means editing those values alone. Adding `.invert` to any
+section flips it to the dark palette — no component-level overrides needed.
 
-### Featured Labs Page (`labs.html`)
-- Immersive cyber range interface with command-feed styling, metrics, filtering, and analyst briefing sections
-- SOC Automation card linking to detail page and GitHub repo
-- Staged cards for phishing IR and IAM workflows
+## Project structure
 
-### Labs Page (`lab-details.html`)
-- Expanded case-file views for SOC Automation, Phishing IR, and IAM labs
-- Shows scenario, telemetry, evidence goals, workflow phases, tools, and status for each lab
+```
+index.html               Home — hero, figures, practice, selected work, method, about, credentials
+about.html               Full background, capabilities, toolset, credentials
+labs.html                Filterable lab board with the case standard
+lab-details.html         Expanded case file per lab
+soc-automation-lab.html  Published deep dive: authentication log analysis with Splunk
+projects.html            AI product pipeline — flow, stack, controls, skills
+contact.html             Contact routes and fit (no form; mailto only)
+security-plus.html       CompTIA Security+ credential page
+itil4.html               ITIL 4 Foundation credential page
+404.html                 Inverted not-found page
 
-### Personal Projects Page (`projects.html`)
-- AI developer showcase for the AI Etsy Product Pipeline
-- Highlights autonomous workflow design, CrewAI orchestration, Anthropic API usage, Canva Connect automation, Etsy REST API publishing, SQLite state tracking, and VPS operation
+assets/site.css          Shared stylesheet — tokens, components, responsive, print
+assets/site.js           Shared behaviour — menu, scroll rule, filter, reveal
+images/                  Portrait and certificate assets
+_headers                 HTTP security headers (Netlify / Cloudflare Pages)
+robots.txt sitemap.xml   Crawler directives and URL index
+CNAME                    Custom domain for GitHub Pages
+scripts/                 Dependency-free audit and inventory tooling
+```
 
-### SOC Automation Lab (`soc-automation-lab.html`)
-- Objective, 4-step workflow, stack, skills demonstrated, and outcome
-- Links back to portfolio and GitHub repo
+## Conventions
 
-### Certification Pages
-- Top navigation linking back to `index.html`
-- Individual certificate detail cards with image display
+- **No inline `style` or `on*` attributes.** The CSP keeps `script-src` and
+  `style-src` at `'self'`, so stagger delays use the `.dl1`–`.dl6` utility
+  classes rather than inline `transition-delay`.
+- **Progressive enhancement.** `assets/site.js` adds `.js` to `<html>`; the
+  `.reveal` animation is only armed once that class exists, so a blocked or
+  failed script leaves every section fully visible.
+- **Fonts** come from Google Fonts (Archivo, Inter, JetBrains Mono) and are the
+  only external origin the CSP allows.
+- **Every page** carries a CSP meta tag, a referrer policy, canonical and
+  Open Graph tags, and `rel="noopener noreferrer"` on any `target="_blank"` link —
+  all four are enforced by the GitHub Actions security check.
 
-## Deployment
+## Local development
 
-This is a static HTML/CSS site deployed on GitHub Pages with a custom domain.
-
-### GitHub Pages
-
-1. Push all updates to the `main` branch
-2. In repository Settings, enable GitHub Pages from `main`
-3. Custom domain is configured via `CNAME` → `khaneilcampbell.com`
-
-## Local Development
-
-1. Edit any `.html` file directly — no build step required
-2. Add/update assets in the `images/` folder
-3. Run local checks before committing
-4. Commit and push
+Edit any `.html` file directly — there is no build step.
 
 ```bash
-python3 scripts/interface_upgrade.py .
+python3 -m http.server 3000
+```
+
+Run the checks before committing:
+
+```bash
 python3 scripts/site_audit.py .
 python3 scripts/site_inventory.py .
 bash scripts/security-check.sh .
 ```
 
-```bash
-git add .
-git commit -m "Update portfolio content and pages"
-git push origin main
-```
+Note: `site_audit.py` flags the bare words `password`, `secret`, and `api key`
+anywhere in page text, not just in credential-shaped values — prose that needs
+those words should be reworded, or the pattern narrowed.
+
+## Deployment
+
+Push to `main`; GitHub Pages serves from that branch with the domain set by
+`CNAME`. The `security-check.yml` workflow runs on every push and pull request.
