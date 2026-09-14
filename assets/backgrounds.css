@@ -1,0 +1,193 @@
+/* ============================================================
+   KHANEIL CAMPBELL — background treatments (PROTOTYPE)
+   ------------------------------------------------------------
+   Five candidate page-background treatments, each opt-in via a
+   class on <html> so exactly one is active at a time:
+
+     .bg-margins        visible type area — rules at the gutters
+     .bg-spine          left spine with a tick + numeral per section
+     .bg-numerals       oversized outlined section numbers, bleeding right
+     .bg-registration   print registration marks at section corners
+     .bg-grain          fine grain on white + an accent wash in dark bands
+
+   Everything reads the existing tokens (--line, --gutter, --accent,
+   --display, --mono), so each treatment flips automatically inside
+   .invert and re-tints with the accent.
+
+   LAYERING NOTE
+   Most sections have no background of their own and sit transparent
+   over <body>, but .invert bands and raised rows are opaque. The
+   fixed .bg-layer therefore paints above the body background and
+   below page content, and .invert sections redraw the treatment in
+   their own flipped --line so the effect continues through the dark
+   blocks instead of stopping at them.
+   ============================================================ */
+
+.bg-layer {
+  position: fixed; inset: 0; z-index: 0;
+  pointer-events: none;
+}
+.page, body > main, body > .footer { position: relative; z-index: 1; }
+
+/* ============================================================
+   1 — VISIBLE TYPE AREA
+   Two full-height hairlines at the gutter, the way printed layout
+   guides mark out the text block. Cannot misalign: it reads the
+   same --gutter token the content is padded with.
+   ============================================================ */
+.bg-margins .bg-layer::before {
+  content: '';
+  position: absolute; top: 0; bottom: 0;
+  left: var(--gutter); right: var(--gutter);
+  border-left: 1px solid var(--line);
+  border-right: 1px solid var(--line);
+}
+/* continue the rules through opaque dark blocks */
+.bg-margins .invert { position: relative; }
+.bg-margins .invert::after {
+  content: '';
+  position: absolute; top: 0; bottom: 0;
+  left: var(--gutter); right: var(--gutter);
+  border-left: 1px solid var(--line);
+  border-right: 1px solid var(--line);
+  pointer-events: none;
+}
+
+/* Below 1080px the gutter collapses toward 20px, which puts the rule
+   directly under the text edge and against full-bleed buttons and rows —
+   it stops reading as a margin guide and starts reading as a stray line.
+   Verified at 375px. Desktop only. */
+@media (max-width: 1080px) {
+  .bg-margins .bg-layer::before,
+  .bg-margins .invert::after { display: none; }
+}
+
+/* ============================================================
+   2 — SECTION SPINE
+   The left margin rule, plus a tick and a mono numeral where each
+   section begins. Turns the page frame into a ruler and gives long
+   pages a sense of position. Ticks are placed by backgrounds-lab.js.
+   ============================================================ */
+.bg-spine .bg-layer::before {
+  content: '';
+  position: absolute; top: 0; bottom: 0;
+  left: var(--gutter);
+  border-left: 1px solid var(--line);
+}
+/* Marks scroll with the document, so they sit outside the fixed
+   .bg-layer — absolutely positioned against the initial containing
+   block and placed by document offset. */
+.spine-marks {
+  position: absolute; top: 0; left: 0; right: 0; height: 0;
+  z-index: 0; pointer-events: none; display: none;
+}
+.bg-spine .spine-marks { display: block; }
+
+.spine-tick {
+  position: absolute;
+  left: 0; width: var(--gutter);
+  display: flex; align-items: center; justify-content: flex-end; gap: 5px;
+  transform: translateY(-50%);
+}
+.spine-tick span {
+  font-family: var(--mono); font-size: 9px; font-weight: 500;
+  letter-spacing: 0.06em;
+  color: var(--accent); white-space: nowrap;
+}
+.spine-tick::after {
+  content: '';
+  width: 11px; height: 1px; background: var(--accent); flex-shrink: 0;
+}
+
+/* The gutter collapses to 20px on small screens — no room for a
+   numeral beside the rule, so the marks drop out and the plain
+   spine remains. */
+@media (max-width: 1080px) {
+  .bg-spine .spine-marks { display: none; }
+}
+
+/* ============================================================
+   3 — GHOST NUMERALS
+   Oversized outlined section numbers bleeding off the right edge,
+   reusing the same -webkit-text-stroke treatment as .tone-edge so
+   it reads as existing vocabulary rather than a new element.
+   ============================================================ */
+.ghost-num {
+  position: absolute; right: -0.06em; top: 50%;
+  transform: translateY(-50%);
+  z-index: 0; pointer-events: none; user-select: none;
+  font-family: var(--display); font-weight: 700;
+  font-size: clamp(120px, 21vw, 300px); line-height: 0.8;
+  letter-spacing: -0.05em;
+  color: transparent;
+  -webkit-text-stroke: 1px var(--line);
+  display: none;
+}
+.bg-numerals .ghost-num { display: block; }
+.bg-numerals main > section,
+.bg-numerals main > header { position: relative; overflow: hidden; }
+.bg-numerals main > section > *:not(.ghost-num),
+.bg-numerals main > header > *:not(.ghost-num) { position: relative; z-index: 1; }
+
+/* ============================================================
+   4 — REGISTRATION MARKS
+   Small print-style crop ticks at the top corners of each section.
+   Craft without noise — deliberately only at section boundaries.
+   ============================================================ */
+.bg-registration main > section,
+.bg-registration main > header { position: relative; }
+.bg-registration main > section::before,
+.bg-registration main > section::after,
+.bg-registration main > header::before,
+.bg-registration main > header::after {
+  content: '';
+  position: absolute; top: 14px;
+  width: 9px; height: 9px;
+  pointer-events: none;
+}
+.bg-registration main > section::before,
+.bg-registration main > header::before {
+  left: calc(var(--gutter) - 14px);
+  border-left: 1px solid var(--line-mid);
+  border-top: 1px solid var(--line-mid);
+}
+.bg-registration main > section::after,
+.bg-registration main > header::after {
+  right: calc(var(--gutter) - 14px);
+  border-right: 1px solid var(--line-mid);
+  border-top: 1px solid var(--line-mid);
+}
+/* Same gutter problem as the type area: no room to sit outside the
+   text block once the gutter collapses. */
+@media (max-width: 1080px) {
+  .bg-registration main > section::before,
+  .bg-registration main > section::after,
+  .bg-registration main > header::before,
+  .bg-registration main > header::after { display: none; }
+}
+
+/* ============================================================
+   5 — GRAIN
+   Fine SVG noise to warm up the flat white, plus a low accent wash
+   so the dark bands stop reading as pure black slabs. The data URI
+   is covered by the existing img-src 'self' data: policy.
+   ============================================================ */
+.bg-grain .bg-layer::before {
+  content: '';
+  position: absolute; inset: 0;
+  opacity: 0.38;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='140' height='140'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.82' numOctaves='3' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='140' height='140' filter='url(%23n)' opacity='0.09'/%3E%3C/svg%3E");
+}
+.bg-grain .invert { position: relative; }
+.bg-grain .invert::after {
+  content: '';
+  position: absolute; inset: 0; pointer-events: none;
+  background:
+    radial-gradient(120% 80% at 18% 0%, var(--accent-wash), transparent 62%),
+    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='140' height='140'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.82' numOctaves='3' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='140' height='140' filter='url(%23n)' opacity='0.16'/%3E%3C/svg%3E");
+}
+.bg-grain .invert > * { position: relative; z-index: 1; }
+
+@media (prefers-reduced-motion: reduce) {
+  .bg-layer { transition: none; }
+}
