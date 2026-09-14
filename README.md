@@ -79,7 +79,15 @@ scripts/                 Dependency-free audit and inventory tooling
   `.reveal` animation is only armed once that class exists, so a blocked or
   failed script leaves every section fully visible.
 - **Fonts** come from Google Fonts (Archivo, Inter, JetBrains Mono) and are the
-  only external origin the CSP allows.
+  only external origin the CSP allows. Inter is requested as a variable range
+  (`wght@400..600`) because description copy uses intermediate weights — against
+  a static 400/500/600 request, 450 would snap rather than render.
+- **Description copy runs heavier than 400**, and weight scales inversely with
+  size: 450 at 15-16px down to 500 at 12.5px, since small text needs more weight
+  to hold on a white ground. Inverted blocks step back down one stop, because
+  light-on-dark text gains apparent weight. The scale lives in one block at the
+  end of `assets/site.css`; headings, mono labels, buttons and tags set their
+  own weights and are untouched.
 - **Every page** carries a CSP meta tag, a referrer policy, canonical and
   Open Graph tags, and `rel="noopener noreferrer"` on any `target="_blank"` link —
   all four are enforced by the GitHub Actions security check.
