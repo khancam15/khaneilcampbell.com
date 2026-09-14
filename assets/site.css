@@ -28,8 +28,12 @@
 :root {
   /* surfaces */
   --bg:          #ffffff;
-  --bg-raised:   #f6f6f4;   /* row hover, alternating bands */
+  --bg-raised:   #f6f6f4;   /* opaque panels — plates, code blocks */
   --bg-sunk:     #eeeeeb;
+  /* Translucent raised tint. Used wherever a full-bleed surface would
+     otherwise paint over the page frame; an opaque fill there breaks
+     the margin rules into dashes. */
+  --tint:        rgba(0,0,0,0.028);
 
   /* hairlines */
   --line:        rgba(0,0,0,0.12);
@@ -74,6 +78,7 @@
   --bg:          #101210;
   --bg-raised:   #191c19;
   --bg-sunk:     #0a0c0a;
+  --tint:        rgba(255,255,255,0.045);
 
   --line:        rgba(255,255,255,0.14);
   --line-mid:    rgba(255,255,255,0.24);
@@ -224,6 +229,58 @@ h1, h2, h3 { font-weight: 700; }
 .dl4 { transition-delay: .20s; }
 .dl5 { transition-delay: .26s; }
 .dl6 { transition-delay: .32s; }
+
+/* ─── PAGE FRAME ─── */
+/* Two hairlines marking the type area, the way printed layout guides do.
+   They read the same --gutter the content is padded with, offset outward
+   by --frame-inset so they sit in the margin rather than on the text edge.
+
+   The fixed layer paints above the body background and below page content,
+   so it shows through every transparent section. Opaque blocks would cut
+   it, which is why .invert redraws it in its own flipped --line and why
+   full-bleed raised surfaces use the translucent --tint instead of a fill.
+
+   Below 1080px the gutter collapses toward 20px, leaving no margin to sit
+   in — the rule lands on the text edge and reads as a stray line, so it
+   drops out entirely. Verified at 375px. */
+:root { --frame-inset: 12px; }
+
+.page-frame {
+  position: fixed; inset: 0; z-index: 0;
+  pointer-events: none;
+}
+.page-frame::before {
+  content: '';
+  position: absolute; top: 0; bottom: 0;
+  left: calc(var(--gutter) - var(--frame-inset));
+  right: calc(var(--gutter) - var(--frame-inset));
+  border-left: 1px solid var(--line);
+  border-right: 1px solid var(--line);
+}
+.page, body > main, body > .footer { position: relative; z-index: 1; }
+
+/* Inverted blocks are opaque, so they carry their own copy of the frame
+   plus a low accent wash that keeps them from reading as flat slabs. */
+.invert { position: relative; }
+.invert::before,
+.invert::after { content: ''; position: absolute; pointer-events: none; }
+.invert::before {
+  inset: 0;
+  background: radial-gradient(120% 80% at 18% 0%, var(--accent-wash), transparent 62%);
+}
+.invert::after {
+  top: 0; bottom: 0;
+  left: calc(var(--gutter) - var(--frame-inset));
+  right: calc(var(--gutter) - var(--frame-inset));
+  border-left: 1px solid var(--line);
+  border-right: 1px solid var(--line);
+}
+.invert > * { position: relative; z-index: 1; }
+
+@media (max-width: 1080px) {
+  .page-frame::before,
+  .invert::after { display: none; }
+}
 
 /* ─── SCROLL RULE (right edge, vertical) ─── */
 .progress-rail {
@@ -383,7 +440,7 @@ h1, h2, h3 { font-weight: 700; }
   border-bottom: 1px solid var(--line);
   transition: background .35s var(--ease);
 }
-.row:hover { background: var(--bg-raised); }
+.row:hover { background: var(--tint); }
 .row.is-hidden { display: none; }
 
 .row-idx {
@@ -557,7 +614,7 @@ h1, h2, h3 { font-weight: 700; }
 }
 .split > *:last-child { border-right: none; }
 .split--sidebar { grid-template-columns: 340px minmax(0,1fr); }
-.split--sidebar > *:first-child { background: var(--bg-raised); }
+.split--sidebar > *:first-child { background: var(--tint); }
 
 .stack { display: flex; flex-direction: column; gap: clamp(28px, 3.4vw, 44px); }
 .stack h3 { margin-bottom: 16px; }
@@ -719,7 +776,7 @@ h1, h2, h3 { font-weight: 700; }
 
 /* ─── CASE FILE (expanded lab views) ─── */
 .case { border-bottom: 1px solid var(--line); }
-.case--alt { background: var(--bg-raised); }
+.case--alt { background: var(--tint); }
 .case-head {
   display: grid; grid-template-columns: 320px minmax(0,1fr);
   gap: clamp(28px, 4vw, 56px);
@@ -735,7 +792,7 @@ h1, h2, h3 { font-weight: 700; }
   letter-spacing: var(--track); text-transform: uppercase; color: var(--fg-low);
 }
 .case-main { display: flex; flex-direction: column; gap: 18px; align-items: flex-start; }
-.case--alt .matrix-cell, .case--alt .plate { background: var(--bg-raised); }
+.case--alt .matrix-cell, .case--alt .plate { background: var(--bg); }
 
 @media (max-width: 1080px) {
   .case-head { grid-template-columns: 1fr; }
