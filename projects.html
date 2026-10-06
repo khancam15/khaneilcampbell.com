@@ -3,431 +3,188 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'self'; style-src 'self' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; img-src 'self' data:; connect-src 'none'; base-uri 'self'; form-action 'none';">
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; style-src 'self' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; img-src 'self' data:; connect-src 'none'; base-uri 'self'; form-action 'none';">
 <meta name="referrer" content="strict-origin-when-cross-origin">
-<meta name="theme-color" content="#ffffff">
+<meta name="theme-color" content="#fdfdfc">
 <meta name="robots" content="index, follow">
-<title>Projects | Khaneil Campbell</title>
-<meta name="description" content="AI automation projects by Khaneil Campbell — a multi-agent product pipeline built with CrewAI and the Anthropic API, OAuth platform integration, SQLite state tracking, and VPS deployment.">
+<title>Projects — Khaneil Campbell</title>
+<meta name="description" content="An autonomous AI product pipeline built with CrewAI and the Anthropic API: OAuth integration, validation gates, SQLite state tracking and VPS deployment.">
 
 <meta property="og:type" content="website">
 <meta property="og:url" content="https://khaneilcampbell.com/projects.html">
-<meta property="og:title" content="Projects | Khaneil Campbell">
-<meta property="og:description" content="A multi-agent AI product pipeline with OAuth platform integration, validation gates, SQLite state tracking, credential scanning, and VPS deployment.">
+<meta property="og:title" content="Projects — Khaneil Campbell">
+<meta property="og:description" content="An autonomous AI product pipeline built with CrewAI and the Anthropic API: OAuth integration, validation gates, SQLite state tracking and VPS deployment.">
 <meta property="og:image" content="https://khaneilcampbell.com/images/profile.jpg">
 <meta property="og:site_name" content="Khaneil Campbell">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Projects | Khaneil Campbell">
-<meta name="twitter:description" content="A multi-agent AI product pipeline with OAuth integration, validation gates, SQLite state tracking, and VPS deployment.">
+<meta name="twitter:title" content="Projects — Khaneil Campbell">
+<meta name="twitter:description" content="An autonomous AI product pipeline built with CrewAI and the Anthropic API: OAuth integration, validation gates, SQLite state tracking and VPS deployment.">
 <meta name="twitter:image" content="https://khaneilcampbell.com/images/profile.jpg">
 <link rel="canonical" href="https://khaneilcampbell.com/projects.html">
 
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "WebPage",
+      "@id": "https://khaneilcampbell.com/projects.html#webpage",
+      "url": "https://khaneilcampbell.com/projects.html",
+      "name": "Projects \u2014 Khaneil Campbell",
+      "inLanguage": "en",
+      "isPartOf": {
+        "@id": "https://khaneilcampbell.com/#website"
+      },
+      "about": {
+        "@id": "https://khaneilcampbell.com/#person"
+      }
+    },
+    {
+      "@type": "BreadcrumbList",
+      "@id": "https://khaneilcampbell.com/projects.html#crumbs",
+      "itemListElement": [
+        {
+          "@type": "ListItem",
+          "position": 1,
+          "name": "Home",
+          "item": "https://khaneilcampbell.com/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 2,
+          "name": "Projects",
+          "item": "https://khaneilcampbell.com/projects.html"
+        }
+      ]
+    }
+  ]
+}
+</script>
+
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wght@600;700&family=Inter:wght@400..600&family=JetBrains+Mono:wght@400;500&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wght@500;600&family=Inter:wght@400;500;600&display=swap">
 <link rel="stylesheet" href="assets/site.css">
-<script src="assets/site.js" defer></script>
 </head>
 <body>
 
 <a class="skip-link" href="#main">Skip to content</a>
-<div class="progress-rail" aria-hidden="true"><span></span></div>
-<div class="page-frame" aria-hidden="true"></div>
 
-<nav class="nav">
-  <a href="index.html" class="nav-brand">
-    <span class="nav-name">Khaneil Campbell</span>
-    <span class="nav-role">IT Professional · New York</span>
-  </a>
-  <ul class="nav-links">
-    <li><a href="index.html">Home</a></li>
-    <li><a href="about.html">About</a></li>
-    <li><a href="labs.html">Labs</a></li>
-    <li><a href="projects.html" class="active">Projects</a></li>
-    <li><a href="contact.html">Contact</a></li>
-  </ul>
-  <a href="mailto:contact@khaneilcampbell.com" class="nav-cta">Email Me &#8599;</a>
-  <button class="nav-burger" id="navBurger" type="button" aria-label="Open menu"><span></span><span></span><span></span></button>
-</nav>
-
-<div class="mobile-menu" id="mobileMenu">
-  <a href="index.html">Home</a>
-  <a href="about.html">About</a>
-  <a href="labs.html">Labs</a>
-  <a href="projects.html" class="active">Projects</a>
-  <a href="contact.html">Contact</a>
-  <a href="mailto:contact@khaneilcampbell.com" class="m-cta">Email Me &#8599;</a>
-</div>
-
-<div class="page">
-<main id="main">
-
-<header class="page-head">
-  <div class="page-head-inner">
-    <span class="eyebrow reveal">Projects</span>
-    <h1 class="d-xl reveal dl1">
-      <span class="tone-ink">Automation</span>
-      <span class="tone-edge">that runs itself.</span>
-    </h1>
-    <p class="lead reveal dl2">
-      Build work outside the day job: AI and API automation written with production
-      habits — credential isolation, validation before action, retry logic, and
-      state you can audit after the fact.
-    </p>
-    <div class="btn-set reveal dl3">
-      <a href="#pipeline" class="btn btn--solid">The Pipeline</a>
-      <a href="https://github.com/khancam15" target="_blank" rel="noopener noreferrer" class="btn btn--ghost">GitHub &#8599;</a>
-    </div>
+<header class="nav">
+  <div class="wrap nav-in">
+    <a class="nav-name" href="index.html">Khaneil Campbell</a>
+    <nav aria-label="Primary">
+      <ul class="nav-links">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="projects.html" aria-current="page">Projects</a></li>
+        <li><a href="labs.html">Labs</a></li>
+        <li><a href="about.html">About</a></li>
+        <li><a href="contact.html">Contact</a></li>
+      </ul>
+    </nav>
   </div>
 </header>
 
-<section class="figures" aria-label="Project figures">
-  <div class="figure reveal">
-    <div class="fig-num">07</div>
-    <div class="fig-label">Pipeline Phases</div>
-  </div>
-  <div class="figure reveal dl1">
-    <div class="fig-num">03</div>
-    <div class="fig-label">Autonomous Modes</div>
-  </div>
-  <div class="figure reveal dl2">
-    <div class="fig-num">05</div>
-    <div class="fig-label">SQLite Tables</div>
-  </div>
-  <div class="figure reveal dl3">
-    <div class="fig-num">API</div>
-    <div class="fig-label">Driven Architecture</div>
-  </div>
-</section>
+<main id="main">
 
-<!-- ─── THE PROJECT ─── -->
-<section class="split" id="pipeline">
-  <div class="reveal">
-    <span class="eyebrow">Project 01 · Built</span>
-    <h2 class="d-md profile-h2">AI product pipeline.</h2>
-    <div class="prose">
-      <p>
-        A fully autonomous commerce pipeline. It researches and assembles a brand
-        guide, generates product ideas and listing copy, produces design mockups
-        through Canva automation, publishes to a marketplace over the Etsy REST API,
-        audits its own SEO quality, and emails a daily operational health report.
+  <section class="hero">
+    <div class="wrap">
+      <span class="label">Projects</span>
+      <h1 class="t-page">Automation that runs itself.</h1>
+      <p class="lede">
+        Build work outside the day job, written with production habits — credential
+        isolation, validation before action, retry logic, and state you can audit.
       </p>
-      <p>
-        It runs unattended on a VPS under <code>systemd</code>, cycling through
-        <strong>BUILD</strong>, <strong>DESIGN</strong>, and <strong>MAINTAIN</strong>
-        modes depending on publish limits and configured cooldowns — which means the
-        interesting engineering is not the AI, it is everything around it that stops
-        the AI doing something expensive.
-      </p>
-      <p class="pull">Autonomous does not mean unsupervised. It means the supervision is written down as code.</p>
     </div>
-    <div class="btn-set case-tags">
-      <a href="https://github.com/khancam15" target="_blank" rel="noopener noreferrer" class="btn btn--solid">View Repository &#8599;</a>
-      <a href="contact.html" class="btn btn--ghost">Discuss It</a>
-    </div>
-  </div>
+  </section>
 
-  <div class="reveal dl1">
-    <span class="eyebrow">Profile</span>
-    <h2 class="d-md profile-h2">At a glance.</h2>
-    <div class="defs">
-      <div class="def"><span class="def-k">Type</span><span class="def-v">Autonomous multi-agent pipeline</span></div>
-      <div class="def"><span class="def-k">Core Stack</span><span class="def-v">Python 3.12, CrewAI, Anthropic API, SQLite</span></div>
-      <div class="def"><span class="def-k">Integrations</span><span class="def-v">Etsy REST v3, Canva Connect, Serper, Gmail SMTP</span></div>
-      <div class="def"><span class="def-k">Runtime</span><span class="def-v">Ubuntu VPS, systemd service, shell loop control</span></div>
-      <div class="def"><span class="def-k">Guardrails</span><span class="def-v">gitleaks pre-commit, OAuth2 PKCE, validation gates</span></div>
-      <div class="def"><span class="def-k">Status</span><span class="def-v">Built and operating</span></div>
-    </div>
-    <div class="tagline-set">
-      <span class="tag">Python</span>
-      <span class="tag">Bash</span>
-      <span class="tag">CrewAI</span>
-      <span class="tag">Anthropic API</span>
-      <span class="tag">Canva Connect</span>
-      <span class="tag">Etsy REST</span>
-      <span class="tag">SQLite</span>
-      <span class="tag">systemd</span>
-      <span class="tag">gitleaks</span>
-    </div>
-  </div>
-</section>
+  <section class="section">
+    <div class="wrap">
+      <div class="section-head">
+        <span class="label">Project 01 &middot; Built</span>
+        <h2 class="t-sec">AI product pipeline</h2>
+      </div>
 
-<!-- ─── FLOW ─── -->
-<section>
-  <div class="sec-head">
-    <div>
-      <span class="eyebrow reveal">Flow</span>
-      <h2 class="d-lg reveal dl1">Seven phases,<br>four stages.</h2>
-    </div>
-    <p class="lead reveal dl2">
-      Each stage hands a concrete artefact to the next. Nothing publishes until the
-      stage before it has produced something valid.
-    </p>
-  </div>
-
-  <div class="steps">
-    <div class="step reveal">
-      <span class="step-num">Phase 1</span>
-      <h3 class="step-name">Brand</h3>
-      <p class="step-desc">CrewAI agents research positioning, visual identity, and SEO direction, then assemble a reusable brand guide.</p>
-    </div>
-    <div class="step reveal dl1">
-      <span class="step-num">Phase 2</span>
-      <h3 class="step-name">Generate</h3>
-      <p class="step-desc">Product ideas, titles, tags, descriptions, and template direction generated from the current brand guide.</p>
-    </div>
-    <div class="step reveal dl2">
-      <span class="step-num">Phase 3</span>
-      <h3 class="step-name">Design</h3>
-      <p class="step-desc">Canva automation produces mockups and buyer-ready digital template files from the generated direction.</p>
-    </div>
-    <div class="step reveal dl3">
-      <span class="step-num">Phase 4&ndash;7</span>
-      <h3 class="step-name">Publish</h3>
-      <p class="step-desc">Assets processed, listings validated, published via Etsy, SEO reviewed, and status reported.</p>
-    </div>
-  </div>
-</section>
-
-<!-- ─── STACK (inverted) ─── -->
-<section class="band invert">
-  <div class="sec-head">
-    <div>
-      <span class="eyebrow reveal">Stack</span>
-      <h2 class="d-lg reveal dl1">Tools and<br>languages.</h2>
-    </div>
-    <p class="lead reveal dl2">
-      AI frameworks, platform APIs, local storage, image processing, deployment
-      automation, and security checks — the full inventory.
-    </p>
-  </div>
-
-  <div class="matrix matrix--3 reveal">
-    <div class="matrix-cell">
-      <div class="matrix-k">Languages</div>
-      <ul class="matrix-list">
-        <li>Python 3.12+</li>
-        <li>Bash shell scripting</li>
-        <li>SQL via SQLite</li>
-        <li>JSON payload design</li>
-        <li>Markdown documentation</li>
-      </ul>
-    </div>
-    <div class="matrix-cell">
-      <div class="matrix-k">AI and Data</div>
-      <ul class="matrix-list">
-        <li>Anthropic API</li>
-        <li>CrewAI</li>
-        <li>CrewAI Tools</li>
-        <li>Serper API</li>
-        <li>SQLite database</li>
-      </ul>
-    </div>
-    <div class="matrix-cell">
-      <div class="matrix-k">Platform APIs</div>
-      <ul class="matrix-list">
-        <li>Etsy REST API v3</li>
-        <li>Etsy OAuth2 PKCE</li>
-        <li>Canva Connect REST API</li>
-        <li>Canva OAuth2 PKCE</li>
-        <li>Gmail SMTP digest</li>
-      </ul>
-    </div>
-    <div class="matrix-cell">
-      <div class="matrix-k">Python Libraries</div>
-      <ul class="matrix-list">
-        <li>requests</li>
-        <li>python-dotenv</li>
-        <li>Pillow</li>
-        <li>Rich</li>
-        <li>sqlite3 standard library</li>
-      </ul>
-    </div>
-    <div class="matrix-cell">
-      <div class="matrix-k">Automation</div>
-      <ul class="matrix-list">
-        <li>run.sh command router</li>
-        <li>loop.sh autonomous loop</li>
-        <li>BUILD / DESIGN / MAINTAIN modes</li>
-        <li>Preflight credential checks</li>
-        <li>Exponential API retry logic</li>
-      </ul>
-    </div>
-    <div class="matrix-cell">
-      <div class="matrix-k">Deployment</div>
-      <ul class="matrix-list">
-        <li>Ubuntu VPS</li>
-        <li>systemd service</li>
-        <li>setup_vps.sh bootstrap</li>
-        <li>Runtime logs</li>
-        <li>Daily health dashboard</li>
-      </ul>
-    </div>
-  </div>
-</section>
-
-<!-- ─── CONTROLS ─── -->
-<section>
-  <div class="sec-head">
-    <div>
-      <span class="eyebrow reveal">Controls</span>
-      <h2 class="d-lg reveal dl1">Guardrails,<br>not good intentions.</h2>
-    </div>
-    <p class="lead reveal dl2">
-      The system touches marketplace publishing, OAuth tokens, email, and generated
-      content. These are the controls that keep credentials contained and stop the
-      automation doing something it cannot undo.
-    </p>
-  </div>
-
-  <div class="matrix matrix--3 reveal">
-    <div class="matrix-cell">
-      <div class="matrix-k">Credentials</div>
-      <div class="matrix-title">No committed credentials</div>
-      <p>API keys and OAuth tokens stay in <code>.env</code>, while <code>.env.example</code> documents the required variables without exposing real values. Runtime output and logs stay out of version control.</p>
-    </div>
-    <div class="matrix-cell">
-      <div class="matrix-k">Scanning</div>
-      <div class="matrix-title">Pre-commit leak detection</div>
-      <p>A <code>gitleaks</code> pre-commit hook with redaction enabled catches accidental credentials before they leave the local environment.</p>
-    </div>
-    <div class="matrix-cell">
-      <div class="matrix-k">OAuth</div>
-      <div class="matrix-title">Token lifecycle handling</div>
-      <p>Etsy and Canva tokens are acquired through OAuth setup scripts, checked during preflight, and refreshed automatically on expiry rather than hardcoded.</p>
-    </div>
-    <div class="matrix-cell">
-      <div class="matrix-k">Validation</div>
-      <div class="matrix-title">Checks before publishing</div>
-      <p>The upload flow validates title length, tag count, price range, asset count, and staged file readiness before attempting a live publish.</p>
-    </div>
-    <div class="matrix-cell">
-      <div class="matrix-k">Resilience</div>
-      <div class="matrix-title">Controlled API behaviour</div>
-      <p>Calls retry with exponential backoff on rate limits and server errors, while publish limits and cooldowns prevent burst automation.</p>
-    </div>
-    <div class="matrix-cell">
-      <div class="matrix-k">Operations</div>
-      <div class="matrix-title">Auditable runtime state</div>
-      <p>SQLite tables track queue state, published listings, run logs, SEO reviews, and sales — so failures are diagnosable instead of mysterious.</p>
-    </div>
-  </div>
-</section>
-
-<!-- ─── SKILLS ─── -->
-<section>
-  <div class="sec-head sec-head--tight">
-    <div>
-      <span class="eyebrow reveal">Demonstrated</span>
-      <h2 class="d-lg reveal dl1">What the project<br>proves.</h2>
-    </div>
-    <p class="lead reveal dl2">
-      AI development with operational habits attached — which is the part most
-      demo projects leave out.
-    </p>
-  </div>
-
-  <div class="rowset">
-    <article class="row reveal">
-      <div class="row-idx">01</div>
-      <div class="row-main">
-        <span class="row-kicker">AI Orchestration</span>
-        <h3 class="row-title d-sm">Multi-agent workflow design</h3>
-        <p class="row-desc">
-          Separate phases for brand research, content generation, product design,
-          publishing, SEO review, and reporting — rather than one oversized script
-          doing everything and failing opaquely.
+      <div class="prose">
+        <p>
+          A fully autonomous commerce pipeline. It researches and assembles a brand guide,
+          generates product ideas and listing copy, produces design mockups through Canva
+          automation, publishes to a marketplace over the Etsy REST API, audits its own SEO
+          quality, and emails a daily operational health report.
+        </p>
+        <p>
+          It runs unattended on a VPS under <strong>systemd</strong>, cycling through BUILD,
+          DESIGN and MAINTAIN modes depending on publish limits and configured cooldowns.
+          The interesting engineering is not the AI — it is everything around it that stops
+          the AI doing something expensive.
         </p>
       </div>
-      <div class="row-side">
-        <div class="side-row"><div class="side-k">Framework</div><div class="side-v">CrewAI with Anthropic API</div></div>
-      </div>
-    </article>
 
-    <article class="row reveal">
-      <div class="row-idx">02</div>
-      <div class="row-main">
-        <span class="row-kicker">Platform Integration</span>
-        <h3 class="row-title d-sm">API-first automation</h3>
-        <p class="row-desc">
-          Anthropic, Canva, Etsy, Serper, Gmail SMTP, and local SQLite state
-          coordinated into one workflow, with validation standing between generation
-          and anything that goes live.
-        </p>
+      <div class="actions">
+        <a class="btn" href="https://github.com/khancam15" target="_blank" rel="noopener noreferrer">View repository</a>
+        <a class="btn-text" href="contact.html">Discuss it</a>
       </div>
-      <div class="row-side">
-        <div class="side-row"><div class="side-k">Auth</div><div class="side-v">OAuth2 PKCE, refresh handling</div></div>
-      </div>
-    </article>
+    </div>
+  </section>
 
-    <article class="row reveal">
-      <div class="row-idx">03</div>
-      <div class="row-main">
-        <span class="row-kicker">Operations</span>
-        <h3 class="row-title d-sm">VPS-ready execution</h3>
-        <p class="row-desc">
-          Loop control, preflight checks, retry handling, daily digest reporting,
-          sales sync, and service management — the difference between a script that
-          ran once and a system that keeps running.
-        </p>
+  <section class="section">
+    <div class="wrap">
+      <div class="section-head"><span class="label">How it runs</span><h2 class="t-sec">Seven phases, four stages.</h2></div>
+      <div class="cols">
+        <div class="col"><h3 class="t-item">Brand</h3><p>CrewAI agents research positioning, visual identity and SEO direction, then assemble a reusable brand guide.</p></div>
+        <div class="col"><h3 class="t-item">Generate</h3><p>Product ideas, titles, tags and descriptions generated from the current brand guide.</p></div>
+        <div class="col"><h3 class="t-item">Design</h3><p>Canva automation produces mockups and buyer-ready template files from the generated direction.</p></div>
+        <div class="col"><h3 class="t-item">Publish</h3><p>Assets processed, listings validated, published via Etsy, SEO reviewed and status reported.</p></div>
       </div>
-      <div class="row-side">
-        <div class="side-row"><div class="side-k">Runtime</div><div class="side-v">Ubuntu VPS under systemd</div></div>
-      </div>
-    </article>
-  </div>
-</section>
+    </div>
+  </section>
 
-<section class="closer">
-  <div>
-    <span class="eyebrow reveal">Next</span>
-    <h2 class="d-lg reveal dl1">
-      <span class="tone-ink">Want the</span>
-      <span class="tone-mid">details?</span>
-    </h2>
-  </div>
-  <div class="btn-set reveal dl2">
-    <a href="https://github.com/khancam15" target="_blank" rel="noopener noreferrer" class="btn btn--solid">View Repository &#8599;</a>
-    <a href="contact.html" class="btn btn--ghost">Get in Touch</a>
-  </div>
-</section>
+  <section class="section">
+    <div class="wrap">
+      <div class="section-head"><span class="label">Guardrails</span><h2 class="t-sec">Controls, not good intentions.</h2></div>
+      <div class="cols">
+        <div class="col"><h3 class="t-item">Credentials</h3><p>API keys and OAuth tokens stay in <code>.env</code>; <code>.env.example</code> documents the required variables without exposing real values.</p></div>
+        <div class="col"><h3 class="t-item">Scanning</h3><p>A gitleaks pre-commit hook with redaction catches accidental credentials before they leave the local environment.</p></div>
+        <div class="col"><h3 class="t-item">OAuth</h3><p>Etsy and Canva tokens are acquired through setup scripts, checked at preflight and refreshed on expiry rather than hardcoded.</p></div>
+        <div class="col"><h3 class="t-item">Validation</h3><p>The upload flow checks title length, tag count, price range and asset readiness before any live publish.</p></div>
+        <div class="col"><h3 class="t-item">Resilience</h3><p>Calls retry with exponential backoff on rate limits and server errors; publish limits and cooldowns prevent burst automation.</p></div>
+        <div class="col"><h3 class="t-item">Operations</h3><p>SQLite tables track queue state, published listings, run logs, SEO reviews and sales, so failures are diagnosable.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="wrap">
+      <div class="section-head"><span class="label">Stack</span><h2 class="t-sec">Tools and languages.</h2></div>
+      <div class="cols">
+        <div class="col"><h3 class="t-item">Languages</h3><ul><li>Python 3.12+</li><li>Bash shell scripting</li><li>SQL via SQLite</li><li>JSON payload design</li></ul></div>
+        <div class="col"><h3 class="t-item">AI and data</h3><ul><li>Anthropic API</li><li>CrewAI</li><li>Serper API</li><li>SQLite database</li></ul></div>
+        <div class="col"><h3 class="t-item">Platform APIs</h3><ul><li>Etsy REST API v3</li><li>Canva Connect REST API</li><li>OAuth2 PKCE</li><li>Gmail SMTP digest</li></ul></div>
+        <div class="col"><h3 class="t-item">Deployment</h3><ul><li>Ubuntu VPS</li><li>systemd service</li><li>Runtime logs</li><li>Daily health dashboard</li></ul></div>
+      </div>
+      <div class="actions"><a class="btn-text" href="labs.html">See the labs</a></div>
+    </div>
+  </section>
 
 </main>
 
-<footer class="footer invert">
-  <div class="footer-inner">
+<footer class="foot">
+  <div class="wrap foot-in">
     <div>
-      <span class="footer-name">Khaneil Campbell</span>
-      <p class="footer-tag">Enterprise IT support, systems administration, and automation.</p>
-      <span class="footer-loc">New York, NY</span>
+      <span class="nav-name">Khaneil Campbell</span>
+      <p class="foot-note">IT professional &middot; New York, NY</p>
     </div>
-    <div class="footer-col">
-      <span class="footer-label">Navigate</span>
-      <a href="index.html">Home</a>
-      <a href="about.html">About</a>
-      <a href="labs.html">Labs</a>
-      <a href="projects.html">Projects</a>
-      <a href="contact.html">Contact</a>
-    </div>
-    <div class="footer-col">
-      <span class="footer-label">Work</span>
-      <a href="soc-automation-lab.html">Log Analysis Case</a>
-      <a href="lab-details.html">Lab Case Files</a>
-      <a href="projects.html">AI Product Pipeline</a>
-    </div>
-    <div class="footer-col">
-      <span class="footer-label">Elsewhere</span>
-      <a href="https://www.linkedin.com/in/khaneil-c-44179a14a/" target="_blank" rel="noopener noreferrer">LinkedIn &#8599;</a>
-      <a href="https://github.com/khancam15" target="_blank" rel="noopener noreferrer">GitHub &#8599;</a>
-      <a href="mailto:contact@khaneilcampbell.com">Email &#8599;</a>
-    </div>
+    <ul class="foot-links">
+      <li><a href="projects.html">Projects</a></li>
+      <li><a href="labs.html">Labs</a></li>
+      <li><a href="about.html">About</a></li>
+      <li><a href="contact.html">Contact</a></li>
+      <li><a href="https://www.linkedin.com/in/khaneil-c-44179a14a/" target="_blank" rel="noopener noreferrer">LinkedIn</a></li>
+      <li><a href="https://github.com/khancam15" target="_blank" rel="noopener noreferrer">GitHub</a></li>
+    </ul>
   </div>
-  <div class="footer-bottom">
-    <span>&copy; 2026 Khaneil Campbell</span>
-    <span>Built and maintained by hand</span>
-  </div>
+  <div class="wrap"><p class="foot-note">&copy; 2026 Khaneil Campbell</p></div>
 </footer>
-</div>
 
 </body>
 </html>
