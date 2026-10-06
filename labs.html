@@ -3,311 +3,185 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'self'; style-src 'self' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; img-src 'self' data:; connect-src 'none'; base-uri 'self'; form-action 'none';">
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; style-src 'self' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; img-src 'self' data:; connect-src 'none'; base-uri 'self'; form-action 'none';">
 <meta name="referrer" content="strict-origin-when-cross-origin">
-<meta name="theme-color" content="#ffffff">
+<meta name="theme-color" content="#fdfdfc">
 <meta name="robots" content="index, follow">
-<title>Labs | Khaneil Campbell</title>
-<meta name="description" content="Hands-on IT and security labs by Khaneil Campbell — log analysis in Splunk, incident response walkthroughs, and identity and access management workflows, each documented end to end.">
+<title>Labs — Khaneil Campbell</title>
+<meta name="description" content="Hands-on IT and security labs: Splunk log analysis, phishing incident response, and access management workflows — each documented end to end.">
 
 <meta property="og:type" content="website">
 <meta property="og:url" content="https://khaneilcampbell.com/labs.html">
-<meta property="og:title" content="Labs | Khaneil Campbell">
-<meta property="og:description" content="Hands-on labs documented like case files — log analysis, incident response, and access management workflows with evidence and outcomes.">
+<meta property="og:title" content="Labs — Khaneil Campbell">
+<meta property="og:description" content="Hands-on IT and security labs: Splunk log analysis, phishing incident response, and access management workflows — each documented end to end.">
 <meta property="og:image" content="https://khaneilcampbell.com/images/profile.jpg">
 <meta property="og:site_name" content="Khaneil Campbell">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Labs | Khaneil Campbell">
-<meta name="twitter:description" content="Hands-on labs documented like case files — log analysis, incident response, and access management workflows.">
+<meta name="twitter:title" content="Labs — Khaneil Campbell">
+<meta name="twitter:description" content="Hands-on IT and security labs: Splunk log analysis, phishing incident response, and access management workflows — each documented end to end.">
 <meta name="twitter:image" content="https://khaneilcampbell.com/images/profile.jpg">
 <link rel="canonical" href="https://khaneilcampbell.com/labs.html">
 
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "WebPage",
+      "@id": "https://khaneilcampbell.com/labs.html#webpage",
+      "url": "https://khaneilcampbell.com/labs.html",
+      "name": "Labs \u2014 Khaneil Campbell",
+      "inLanguage": "en",
+      "isPartOf": {
+        "@id": "https://khaneilcampbell.com/#website"
+      },
+      "about": {
+        "@id": "https://khaneilcampbell.com/#person"
+      }
+    },
+    {
+      "@type": "BreadcrumbList",
+      "@id": "https://khaneilcampbell.com/labs.html#crumbs",
+      "itemListElement": [
+        {
+          "@type": "ListItem",
+          "position": 1,
+          "name": "Home",
+          "item": "https://khaneilcampbell.com/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 2,
+          "name": "Labs",
+          "item": "https://khaneilcampbell.com/labs.html"
+        }
+      ]
+    }
+  ]
+}
+</script>
+
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wght@600;700&family=Inter:wght@400..600&family=JetBrains+Mono:wght@400;500&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wght@500;600&family=Inter:wght@400;500;600&display=swap">
 <link rel="stylesheet" href="assets/site.css">
-<script src="assets/site.js" defer></script>
 </head>
 <body>
 
 <a class="skip-link" href="#main">Skip to content</a>
-<div class="progress-rail" aria-hidden="true"><span></span></div>
-<div class="page-frame" aria-hidden="true"></div>
 
-<nav class="nav">
-  <a href="index.html" class="nav-brand">
-    <span class="nav-name">Khaneil Campbell</span>
-    <span class="nav-role">IT Professional · New York</span>
-  </a>
-  <ul class="nav-links">
-    <li><a href="index.html">Home</a></li>
-    <li><a href="about.html">About</a></li>
-    <li><a href="labs.html" class="active">Labs</a></li>
-    <li><a href="projects.html">Projects</a></li>
-    <li><a href="contact.html">Contact</a></li>
-  </ul>
-  <a href="mailto:contact@khaneilcampbell.com" class="nav-cta">Email Me &#8599;</a>
-  <button class="nav-burger" id="navBurger" type="button" aria-label="Open menu"><span></span><span></span><span></span></button>
-</nav>
-
-<div class="mobile-menu" id="mobileMenu">
-  <a href="index.html">Home</a>
-  <a href="about.html">About</a>
-  <a href="labs.html" class="active">Labs</a>
-  <a href="projects.html">Projects</a>
-  <a href="contact.html">Contact</a>
-  <a href="mailto:contact@khaneilcampbell.com" class="m-cta">Email Me &#8599;</a>
-</div>
-
-<div class="page">
-<main id="main">
-
-<header class="page-head">
-  <div class="page-head-inner">
-    <span class="eyebrow reveal">Labs</span>
-    <h1 class="d-xl reveal dl1">
-      <span class="tone-ink">Labs written up</span>
-      <span class="tone-edge">like case files.</span>
-    </h1>
-    <p class="lead reveal dl2">
-      Self-directed work built to practise the parts of the job you cannot
-      rehearse on production. Each lab covers the scenario, the telemetry, the
-      decisions I made, and what the evidence actually showed.
-    </p>
-    <div class="btn-set reveal dl3">
-      <a href="soc-automation-lab.html" class="btn btn--solid">Open the Published Case</a>
-      <a href="lab-details.html" class="btn btn--ghost">Expanded Case Files</a>
-    </div>
+<header class="nav">
+  <div class="wrap nav-in">
+    <a class="nav-name" href="index.html">Khaneil Campbell</a>
+    <nav aria-label="Primary">
+      <ul class="nav-links">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="projects.html">Projects</a></li>
+        <li><a href="labs.html" aria-current="page">Labs</a></li>
+        <li><a href="about.html">About</a></li>
+        <li><a href="contact.html">Contact</a></li>
+      </ul>
+    </nav>
   </div>
 </header>
 
-<section class="figures" aria-label="Lab figures">
-  <div class="figure reveal">
-    <div class="fig-num">03</div>
-    <div class="fig-label">Lab Tracks</div>
-  </div>
-  <div class="figure reveal dl1">
-    <div class="fig-num">80+</div>
-    <div class="fig-label">Failed Logons Isolated</div>
-  </div>
-  <div class="figure reveal dl2">
-    <div class="fig-num">04</div>
-    <div class="fig-label">Workflow Phases</div>
-  </div>
-  <div class="figure reveal dl3">
-    <div class="fig-num">01</div>
-    <div class="fig-label">Published Deep Dive</div>
-  </div>
-</section>
+<main id="main">
 
-<section>
-  <div class="sec-head">
-    <div>
-      <span class="eyebrow reveal">The Board</span>
-      <h2 class="d-lg reveal dl1">Filter by<br>discipline.</h2>
+  <section class="hero">
+    <div class="wrap">
+      <span class="label">Labs</span>
+      <h1 class="t-page">Labs written up like case files.</h1>
+      <p class="lede">
+        Self-directed work to practise the parts of the job you cannot rehearse on
+        production. Scenario, telemetry, decisions, and what the evidence showed.
+      </p>
     </div>
-    <p class="lead reveal dl2">
-      Published cases have a full write-up behind them. Staged cases have the
-      scenario, telemetry plan, and workflow defined, with the write-up still in
-      progress — flagged rather than dressed up.
-    </p>
-  </div>
+  </section>
 
-  <div class="tabs" role="group" aria-label="Filter labs by discipline" data-filter-group>
-    <button class="tab active" type="button" data-filter="all" aria-pressed="true">All Labs</button>
-    <button class="tab" type="button" data-filter="detection" aria-pressed="false">Log Analysis</button>
-    <button class="tab" type="button" data-filter="response" aria-pressed="false">Incident Response</button>
-    <button class="tab" type="button" data-filter="identity" aria-pressed="false">Identity</button>
-  </div>
-
-  <div class="rowset">
-    <article class="row reveal" data-cat="detection" id="log-analysis">
-      <div class="row-idx">L/01</div>
-      <div class="row-main">
-        <div class="row-meta">
-          <span class="row-kicker">Log Analysis</span>
-          <span class="status is-live">Published</span>
+  <section class="section">
+    <div class="wrap">
+      <a class="work" href="soc-automation-lab.html">
+        <div class="work-top">
+          <h2 class="t-item work-title">Authentication log analysis with Splunk</h2>
+          <span class="work-when">Published</span>
         </div>
-        <h3 class="row-title d-md">Authentication log analysis with Splunk</h3>
-        <p class="row-desc">
-          A simulated brute-force attempt against Windows accounts, worked from raw
-          event data to a written response. Windows Security logs ingested into
-          Splunk, SPL queries grouping failed logons by source host and account,
-          thresholds tuned so the alert survives contact with real noise, and
-          analyst notes written for reuse.
+        <p class="work-desc">
+          A simulated brute-force attempt against Windows accounts, worked from raw event
+          data to a written response. Windows Security logs ingested into Splunk, SPL
+          queries grouping failed logons by source host and account, thresholds tuned so
+          the alert survives contact with real noise, and analyst notes written for reuse.
         </p>
-        <div class="row-links">
-          <a href="soc-automation-lab.html">Read the case study</a>
-          <a href="lab-details.html#log-analysis">Case file</a>
-          <a href="https://github.com/khancam15" target="_blank" rel="noopener noreferrer">GitHub &#8599;</a>
-        </div>
-        <div class="tagline-set">
-          <span class="tag">Splunk</span>
-          <span class="tag">SPL</span>
-          <span class="tag">Windows Logs</span>
-          <span class="tag">Event ID 4625</span>
-        </div>
-      </div>
-      <div class="row-side">
-        <div class="side-row"><div class="side-k">Scenario</div><div class="side-v">Repeated failed logons against Windows accounts</div></div>
-        <div class="side-row"><div class="side-k">Telemetry</div><div class="side-v">Windows Security Event Logs, normalised in Splunk</div></div>
-        <div class="side-row"><div class="side-k">Outcome</div><div class="side-v">80+ failed logons isolated; triage workflow documented for reuse</div></div>
-      </div>
-    </article>
+        <span class="work-built">Splunk &middot; SPL &middot; Windows Security logs &middot; Event ID 4625</span>
+      </a>
 
-    <article class="row reveal" data-cat="response" id="phishing">
-      <div class="row-idx">L/02</div>
-      <div class="row-main">
-        <div class="row-meta">
-          <span class="row-kicker">Incident Response</span>
-          <span class="status is-staged">Staged</span>
+      <a class="work" href="lab-details.html#phishing">
+        <div class="work-top">
+          <h2 class="t-item work-title">Phishing-to-malware response walkthrough</h2>
+          <span class="work-when">In progress</span>
         </div>
-        <h3 class="row-title d-md">Phishing-to-malware response walkthrough</h3>
-        <p class="row-desc">
-          A phishing intrusion followed from the user report through host indicator
-          analysis, process review, log evidence, containment decisions, and an
-          incident summary written for readers who were not involved in the
-          investigation.
+        <p class="work-desc">
+          A phishing intrusion followed from the user report through host indicator analysis,
+          process review, log evidence, containment decisions, and an incident summary written
+          for readers who were not involved in the investigation.
         </p>
-        <div class="row-links">
-          <a href="lab-details.html#phishing">Case file</a>
-          <span>Write-up in progress</span>
-        </div>
-        <div class="tagline-set">
-          <span class="tag">Incident Response</span>
-          <span class="tag">Sysinternals</span>
-          <span class="tag">Event Logs</span>
-          <span class="tag">Containment</span>
-        </div>
-      </div>
-      <div class="row-side">
-        <div class="side-row"><div class="side-k">Scenario</div><div class="side-v">User reports a suspicious email; host behaves oddly afterwards</div></div>
-        <div class="side-row"><div class="side-k">Telemetry</div><div class="side-v">Host process review, Windows Event Logs, endpoint notes</div></div>
-        <div class="side-row"><div class="side-k">Goal</div><div class="side-v">Structured incident documentation and a containment decision record</div></div>
-      </div>
-    </article>
+        <span class="work-built">Sysinternals &middot; Windows Event Logs &middot; containment</span>
+      </a>
 
-    <article class="row reveal" data-cat="identity" id="iam">
-      <div class="row-idx">L/03</div>
-      <div class="row-main">
-        <div class="row-meta">
-          <span class="row-kicker">Identity &amp; Access</span>
-          <span class="status is-staged">Staged</span>
+      <a class="work" href="lab-details.html#iam">
+        <div class="work-top">
+          <h2 class="t-item work-title">Access control and account lifecycle</h2>
+          <span class="work-when">In progress</span>
         </div>
-        <h3 class="row-title d-md">Access control and account lifecycle workflows</h3>
-        <p class="row-desc">
-          Operational access-control scenarios: MFA enforcement, least-privilege
-          review, account lifecycle decisions, and recovery requests handled in a
-          way that stays consistent when the person asking is senior and in a hurry.
+        <p class="work-desc">
+          Operational access-control scenarios: MFA enforcement, least-privilege review,
+          account lifecycle decisions, and recovery requests handled in a way that stays
+          consistent when the person asking is senior and in a hurry.
         </p>
-        <div class="row-links">
-          <a href="lab-details.html#iam">Case file</a>
-          <span>Write-up in progress</span>
-        </div>
-        <div class="tagline-set">
-          <span class="tag">Active Directory</span>
-          <span class="tag">MFA</span>
-          <span class="tag">Least Privilege</span>
-          <span class="tag">Account Lifecycle</span>
-        </div>
+        <span class="work-built">Active Directory &middot; MFA &middot; least privilege</span>
+      </a>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="wrap">
+      <div class="section-head">
+        <span class="label">Case standard</span>
+        <h2 class="t-sec">How every lab gets evaluated.</h2>
       </div>
-      <div class="row-side">
-        <div class="side-row"><div class="side-k">Scenario</div><div class="side-v">Access request or recovery needing validation before approval</div></div>
-        <div class="side-row"><div class="side-k">Telemetry</div><div class="side-v">Directory attributes, group membership, MFA state, request context</div></div>
-        <div class="side-row"><div class="side-k">Goal</div><div class="side-v">Least-privilege enforcement and escalation-resistant approval flow</div></div>
+      <p class="prose">
+        Each lab answers the same four questions: what happened, what evidence proves it,
+        how should someone respond, and how does this become repeatable? Anything that
+        cannot answer all four stays marked in progress rather than dressed up as finished.
+      </p>
+      <div class="cols" style-x>
+        <div class="col"><h3 class="t-item">Scenario</h3><p>Build a controlled situation with enough realism to produce meaningful telemetry, and state the assumptions up front.</p></div>
+        <div class="col"><h3 class="t-item">Detection</h3><p>Write the query logic, validate the signal, and document where the false-positive boundary actually sits.</p></div>
+        <div class="col"><h3 class="t-item">Triage</h3><p>Turn raw events into findings with clear severity and scope, recording the decision points along the way.</p></div>
+        <div class="col"><h3 class="t-item">Response</h3><p>Package the workflow so the same pattern can be repeated and improved by someone else.</p></div>
       </div>
-    </article>
-  </div>
-</section>
-
-<!-- ─── CASE STANDARD (inverted) ─── -->
-<section class="band invert">
-  <div class="sec-head">
-    <div>
-      <span class="eyebrow reveal">Case Standard</span>
-      <h2 class="d-lg reveal dl1">How every lab<br>gets evaluated.</h2>
+      <div class="actions"><a class="btn-text" href="lab-details.html">Expanded case files</a></div>
     </div>
-    <p class="lead reveal dl2">
-      Each lab answers the same four questions: what happened, what evidence proves
-      it, how should someone respond, and how does this become repeatable? Anything
-      that cannot answer all four stays staged.
-    </p>
-  </div>
-
-  <div class="steps">
-    <div class="step reveal">
-      <span class="step-num">Phase 01</span>
-      <h3 class="step-name">Scenario</h3>
-      <p class="step-desc">Build a controlled situation with enough realism to produce meaningful telemetry, and state the assumptions up front.</p>
-    </div>
-    <div class="step reveal dl1">
-      <span class="step-num">Phase 02</span>
-      <h3 class="step-name">Detection</h3>
-      <p class="step-desc">Write the query logic, validate the signal, and document where the false-positive boundary actually sits.</p>
-    </div>
-    <div class="step reveal dl2">
-      <span class="step-num">Phase 03</span>
-      <h3 class="step-name">Triage</h3>
-      <p class="step-desc">Turn raw events into findings with clear severity and scope, and record the decision points along the way.</p>
-    </div>
-    <div class="step reveal dl3">
-      <span class="step-num">Phase 04</span>
-      <h3 class="step-name">Response</h3>
-      <p class="step-desc">Package the workflow — actions, notes, escalation criteria — so the same pattern can be repeated and improved.</p>
-    </div>
-  </div>
-</section>
-
-<section class="closer">
-  <div>
-    <span class="eyebrow reveal">Next</span>
-    <h2 class="d-lg reveal dl1">
-      <span class="tone-ink">Open a case,</span>
-      <span class="tone-mid">or ask about one.</span>
-    </h2>
-  </div>
-  <div class="btn-set reveal dl2">
-    <a href="lab-details.html" class="btn btn--solid">Expanded Case Files</a>
-    <a href="contact.html" class="btn btn--ghost">Get in Touch</a>
-  </div>
-</section>
+  </section>
 
 </main>
 
-<footer class="footer invert">
-  <div class="footer-inner">
+<footer class="foot">
+  <div class="wrap foot-in">
     <div>
-      <span class="footer-name">Khaneil Campbell</span>
-      <p class="footer-tag">Enterprise IT support, systems administration, and automation.</p>
-      <span class="footer-loc">New York, NY</span>
+      <span class="nav-name">Khaneil Campbell</span>
+      <p class="foot-note">IT professional &middot; New York, NY</p>
     </div>
-    <div class="footer-col">
-      <span class="footer-label">Navigate</span>
-      <a href="index.html">Home</a>
-      <a href="about.html">About</a>
-      <a href="labs.html">Labs</a>
-      <a href="projects.html">Projects</a>
-      <a href="contact.html">Contact</a>
-    </div>
-    <div class="footer-col">
-      <span class="footer-label">Work</span>
-      <a href="soc-automation-lab.html">Log Analysis Case</a>
-      <a href="lab-details.html">Lab Case Files</a>
-      <a href="projects.html">AI Product Pipeline</a>
-    </div>
-    <div class="footer-col">
-      <span class="footer-label">Elsewhere</span>
-      <a href="https://www.linkedin.com/in/khaneil-c-44179a14a/" target="_blank" rel="noopener noreferrer">LinkedIn &#8599;</a>
-      <a href="https://github.com/khancam15" target="_blank" rel="noopener noreferrer">GitHub &#8599;</a>
-      <a href="mailto:contact@khaneilcampbell.com">Email &#8599;</a>
-    </div>
+    <ul class="foot-links">
+      <li><a href="projects.html">Projects</a></li>
+      <li><a href="labs.html">Labs</a></li>
+      <li><a href="about.html">About</a></li>
+      <li><a href="contact.html">Contact</a></li>
+      <li><a href="https://www.linkedin.com/in/khaneil-c-44179a14a/" target="_blank" rel="noopener noreferrer">LinkedIn</a></li>
+      <li><a href="https://github.com/khancam15" target="_blank" rel="noopener noreferrer">GitHub</a></li>
+    </ul>
   </div>
-  <div class="footer-bottom">
-    <span>&copy; 2026 Khaneil Campbell</span>
-    <span>Built and maintained by hand</span>
-  </div>
+  <div class="wrap"><p class="foot-note">&copy; 2026 Khaneil Campbell</p></div>
 </footer>
-</div>
 
 </body>
 </html>

@@ -1,98 +1,75 @@
 # Khaneil Campbell — IT Professional Portfolio
 
 Static portfolio for Khaneil Campbell: enterprise IT support, systems and identity
-administration, IT service management, and automation work. Hosted on GitHub Pages
-at `khaneilcampbell.com`.
+administration, IT service management, and automation. Hosted on GitHub Pages at
+`khaneilcampbell.com`.
 
-## Design system
+## Design
 
-The site shares a visual family with [benjaire.com](https://benjaire.com) —
-white ground, hairline-ruled full-bleed grids, flat surfaces, no radii or shadows,
-wide-tracked uppercase micro-labels — while keeping its own identity:
+A minimal portfolio. One centred measure, two typefaces, very few rules, and a lot
+of air — the previous build's problem was density, not decoration, so the fix was
+space rather than more styling.
 
-| | khaneilcampbell.com | benjaire.com |
-|---|---|---|
-| Display type | Archivo, sentence case, negative tracking | Bebas Neue, condensed uppercase |
-| Label voice | JetBrains Mono for every label, index, and figure | Inter |
-| Accent | Slate teal `#1a5471` | Navy `#1b3a6b` |
-| Primary pattern | Numbered full-bleed case rows | Image card grid |
-| Hero | Left-aligned, asymmetric, with a mono meta rail | Centred, full-height |
-| Contrast device | Inverted near-black bands and footer | Light throughout |
-| Scroll indicator | Right-edge vertical rule | Top progress bar |
-| Page ground | Type-area hairlines + an accent wash in dark bands | Deliberately untextured |
+Removed in this build: page-frame hairlines, the scroll rail, inverted dark bands,
+three-tone outlined headlines, mono micro-labels, status chips, evidence rails,
+figure bands, the full-bleed ruled grid, and all JavaScript.
 
-All colour comes from the `--accent*` tokens at the top of `assets/site.css`, so
-re-tinting the site means editing those values alone — four in the light set,
-four in the `.invert` set, and nothing else. The accent sits 17° of hue from
-Benjaire's navy, which is close by design: the two sites read as related. Adding `.invert` to any
-section flips it to the dark palette — no component-level overrides needed.
+| | |
+|---|---|
+| Ground | Warm white `#fdfdfc` |
+| Ink | `#141414` (16.4:1), body `#3f3f3f` (10.5:1) |
+| Accent | Slate teal `#1a5471` (8.1:1), on links and the primary action only |
+| Display | Archivo 500/600 |
+| Body | Inter 400/500/600 |
+| Measure | 1060px centred |
 
-### Page frame
+Every colour is a token at the top of `assets/site.css`; retinting means editing
+those values alone.
 
-Every page carries a `<div class="page-frame">` immediately after the scroll
-rail. It paints two hairlines marking the type area — offset outward from the
-gutter by `--frame-inset` so they sit in the margin rather than on the text
-edge — and it is the one background treatment the site has.
+## Conventions
 
-Two constraints come with it:
+- **No JavaScript.** The site ships none, so the CSP has no `script-src` at all —
+  `default-src 'none'` covers it. Keep it that way: the nav wraps rather than
+  collapsing into a menu, and nothing depends on scroll handlers.
+- **No inline `style` or `on*` attributes.** `style-src` stays at `'self'` with no
+  `'unsafe-inline'`, so inline styles silently fail — use the `.mt-s` / `.mt-m` /
+  `.mt-l` / `.cols-1` utilities instead.
+- **Fonts** come from Google Fonts and are the only external origin the CSP allows.
+- **Every page** carries a CSP meta tag, a referrer policy, canonical and Open Graph
+  tags, JSON-LD, and `rel="noopener noreferrer"` on any `target="_blank"` link.
+  The first, second and last are enforced by the GitHub Actions security check.
 
-- **Opaque full-bleed surfaces break it into dashes.** That is why row hover,
-  `.case--alt`, and the `.split--sidebar` panel use the translucent `--tint`
-  rather than `--bg-raised`, and why `.invert` redraws the frame in its own
-  flipped `--line` instead of simply covering it. Small inset panels
-  (`.plate`, `.tree`, `.matrix-cell`) sit inside the type area and may stay
-  opaque.
-- **It is desktop-only.** Below 1080px the gutter collapses toward 20px,
-  leaving no margin for the rule to sit in; it lands on the text edge and reads
-  as a stray line, so it drops out entirely.
+## SEO
 
-`.invert` blocks also carry a low `--accent-wash` radial so they read as lit
-surfaces rather than flat slabs.
+- Titles are kept under 60 characters, meta descriptions under 160, so neither
+  truncates in results.
+- Every page except the 404 carries JSON-LD: a `WebPage` tied to the site-wide
+  `Person`, plus a `BreadcrumbList`.
+- Known gap: total indexable copy is roughly 5,000 words across 10 pages, and
+  there is no writing or articles section. The site currently competes only on the
+  owner's name. Adding genuinely useful write-ups is the highest-value next step.
 
 ## Project structure
 
 ```
-index.html               Home — hero, figures, practice, selected work, method, about, credentials
-about.html               Full background, capabilities, toolset, credentials
-labs.html                Filterable lab board with the case standard
+index.html               Home — hero, selected work, about, contact
+about.html               Background, capabilities, toolset, credentials
+projects.html            AI product pipeline — flow, guardrails, stack
+labs.html                Lab index and the case standard
 lab-details.html         Expanded case file per lab
-soc-automation-lab.html  Published deep dive: authentication log analysis with Splunk
-projects.html            AI product pipeline — flow, stack, controls, skills
-contact.html             Contact routes and fit (no form; mailto only)
+soc-automation-lab.html  Published deep dive: log analysis with Splunk
+contact.html             Contact routes
 security-plus.html       CompTIA Security+ credential page
 itil4.html               ITIL 4 Foundation credential page
-404.html                 Inverted not-found page
+404.html                 Not-found page
 
-assets/site.css          Shared stylesheet — tokens, components, responsive, print
-assets/site.js           Shared behaviour — menu, scroll rule, filter, reveal
+assets/site.css          The entire design system — one file, no JS
 images/                  Portrait and certificate assets
-_headers                 HTTP security headers (Netlify / Cloudflare Pages)
+_headers                 HTTP security headers
 robots.txt sitemap.xml   Crawler directives and URL index
 CNAME                    Custom domain for GitHub Pages
 scripts/                 Dependency-free audit and inventory tooling
 ```
-
-## Conventions
-
-- **No inline `style` or `on*` attributes.** The CSP keeps `script-src` and
-  `style-src` at `'self'`, so stagger delays use the `.dl1`–`.dl6` utility
-  classes rather than inline `transition-delay`.
-- **Progressive enhancement.** `assets/site.js` adds `.js` to `<html>`; the
-  `.reveal` animation is only armed once that class exists, so a blocked or
-  failed script leaves every section fully visible.
-- **Fonts** come from Google Fonts (Archivo, Inter, JetBrains Mono) and are the
-  only external origin the CSP allows. Inter is requested as a variable range
-  (`wght@400..600`) because description copy uses intermediate weights — against
-  a static 400/500/600 request, 450 would snap rather than render.
-- **Description copy runs heavier than 400**, and weight scales inversely with
-  size: 450 at 15-16px down to 500 at 12.5px, since small text needs more weight
-  to hold on a white ground. Inverted blocks step back down one stop, because
-  light-on-dark text gains apparent weight. The scale lives in one block at the
-  end of `assets/site.css`; headings, mono labels, buttons and tags set their
-  own weights and are untouched.
-- **Every page** carries a CSP meta tag, a referrer policy, canonical and
-  Open Graph tags, and `rel="noopener noreferrer"` on any `target="_blank"` link —
-  all four are enforced by the GitHub Actions security check.
 
 ## Local development
 
@@ -102,19 +79,17 @@ Edit any `.html` file directly — there is no build step.
 python3 -m http.server 3000
 ```
 
-Run the checks before committing:
+Checks before committing:
 
 ```bash
 python3 scripts/site_audit.py .
-python3 scripts/site_inventory.py .
 bash scripts/security-check.sh .
 ```
 
 Note: `site_audit.py` flags the bare words `password`, `secret`, and `api key`
-anywhere in page text, not just in credential-shaped values — prose that needs
-those words should be reworded, or the pattern narrowed.
+anywhere in page text, not just in credential-shaped values.
 
 ## Deployment
 
-Push to `main`; GitHub Pages serves from that branch with the domain set by
-`CNAME`. The `security-check.yml` workflow runs on every push and pull request.
+Push to `main`; GitHub Pages serves from that branch with the domain set by `CNAME`.
+The `security-check.yml` workflow runs on every push and pull request.

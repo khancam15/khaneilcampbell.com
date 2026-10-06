@@ -3,76 +3,86 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'self'; style-src 'self' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; img-src 'self' data:; connect-src 'none'; base-uri 'self'; form-action 'none';">
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; style-src 'self' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; img-src 'self' data:; connect-src 'none'; base-uri 'self'; form-action 'none';">
 <meta name="referrer" content="strict-origin-when-cross-origin">
-<meta name="theme-color" content="#101210">
+<meta name="theme-color" content="#fdfdfc">
 <meta name="robots" content="noindex, follow">
-<title>Page Not Found | Khaneil Campbell</title>
+<title>Page Not Found — Khaneil Campbell</title>
 <meta name="description" content="That page could not be found on khaneilcampbell.com. Navigate back to the portfolio from here.">
+
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://khaneilcampbell.com/404.html">
+<meta property="og:title" content="Page Not Found — Khaneil Campbell">
+<meta property="og:description" content="That page could not be found on khaneilcampbell.com. Navigate back to the portfolio from here.">
+<meta property="og:image" content="https://khaneilcampbell.com/images/profile.jpg">
+<meta property="og:site_name" content="Khaneil Campbell">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Page Not Found — Khaneil Campbell">
+<meta name="twitter:description" content="That page could not be found on khaneilcampbell.com. Navigate back to the portfolio from here.">
+<meta name="twitter:image" content="https://khaneilcampbell.com/images/profile.jpg">
+
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wght@600;700&family=Inter:wght@400..600&family=JetBrains+Mono:wght@400;500&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wght@500;600&family=Inter:wght@400;500;600&display=swap">
 <link rel="stylesheet" href="assets/site.css">
-<script src="assets/site.js" defer></script>
 </head>
 <body>
 
 <a class="skip-link" href="#main">Skip to content</a>
-<div class="page-frame" aria-hidden="true"></div>
 
-<nav class="nav">
-  <a href="index.html" class="nav-brand">
-    <span class="nav-name">Khaneil Campbell</span>
-    <span class="nav-role">IT Professional · New York</span>
-  </a>
-  <ul class="nav-links">
-    <li><a href="index.html">Home</a></li>
-    <li><a href="about.html">About</a></li>
-    <li><a href="labs.html">Labs</a></li>
-    <li><a href="projects.html">Projects</a></li>
-    <li><a href="contact.html">Contact</a></li>
-  </ul>
-  <a href="mailto:contact@khaneilcampbell.com" class="nav-cta">Email Me &#8599;</a>
-  <button class="nav-burger" id="navBurger" type="button" aria-label="Open menu"><span></span><span></span><span></span></button>
-</nav>
-
-<div class="mobile-menu" id="mobileMenu">
-  <a href="index.html">Home</a>
-  <a href="about.html">About</a>
-  <a href="labs.html">Labs</a>
-  <a href="projects.html">Projects</a>
-  <a href="contact.html">Contact</a>
-  <a href="mailto:contact@khaneilcampbell.com" class="m-cta">Email Me &#8599;</a>
-</div>
-
-<div class="page invert">
-<main id="main" class="lost">
-  <span class="eyebrow">Error 404</span>
-  <div class="lost-code">404</div>
-  <h1 class="d-lg lost-h1">
-    <span class="tone-ink">That page</span>
-    <span class="tone-mid">is not here.</span>
-  </h1>
-  <p class="lead">
-    The link may be stale, or the page may have moved during the site rebuild.
-    Everything else is still online — pick a route below.
-  </p>
-  <div class="btn-set lost-actions">
-    <a href="index.html" class="btn btn--solid">Back to Home</a>
-    <a href="labs.html" class="btn btn--ghost">Labs</a>
-    <a href="projects.html" class="btn btn--ghost">Projects</a>
-    <a href="contact.html" class="btn btn--ghost">Contact</a>
+<header class="nav">
+  <div class="wrap nav-in">
+    <a class="nav-name" href="index.html">Khaneil Campbell</a>
+    <nav aria-label="Primary">
+      <ul class="nav-links">
+        <li><a href="index.html" aria-current="page">Home</a></li>
+        <li><a href="projects.html">Projects</a></li>
+        <li><a href="labs.html">Labs</a></li>
+        <li><a href="about.html">About</a></li>
+        <li><a href="contact.html">Contact</a></li>
+      </ul>
+    </nav>
   </div>
+</header>
+
+<main id="main">
+
+  <section class="lost">
+    <div class="wrap">
+      <span class="label">Error 404</span>
+      <h1 class="t-page">That page is not here.</h1>
+      <p class="lede">
+        The link may be stale, or the page may have moved. Everything else is still
+        online — pick a route below.
+      </p>
+      <div class="actions">
+        <a class="btn" href="index.html">Back to home</a>
+        <a class="btn-text" href="projects.html">Projects</a>
+        <a class="btn-text" href="labs.html">Labs</a>
+      </div>
+    </div>
+  </section>
+
 </main>
 
-<footer class="footer">
-  <div class="footer-bottom">
-    <span>&copy; 2026 Khaneil Campbell</span>
-    <span>New York, NY</span>
+<footer class="foot">
+  <div class="wrap foot-in">
+    <div>
+      <span class="nav-name">Khaneil Campbell</span>
+      <p class="foot-note">IT professional &middot; New York, NY</p>
+    </div>
+    <ul class="foot-links">
+      <li><a href="projects.html">Projects</a></li>
+      <li><a href="labs.html">Labs</a></li>
+      <li><a href="about.html">About</a></li>
+      <li><a href="contact.html">Contact</a></li>
+      <li><a href="https://www.linkedin.com/in/khaneil-c-44179a14a/" target="_blank" rel="noopener noreferrer">LinkedIn</a></li>
+      <li><a href="https://github.com/khancam15" target="_blank" rel="noopener noreferrer">GitHub</a></li>
+    </ul>
   </div>
+  <div class="wrap"><p class="foot-note">&copy; 2026 Khaneil Campbell</p></div>
 </footer>
-</div>
 
 </body>
 </html>
