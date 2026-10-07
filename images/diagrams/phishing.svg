@@ -2,40 +2,40 @@
 <rect width="1200" height="474" fill="#ffffff"/>
 <rect x="72.0" y="72" width="244.5" height="196" rx="3" fill="#ffffff" stroke="#dde6f1" stroke-width="1"/>
 <circle cx="98.0" cy="106" r="4.5" fill="#8995a6"/>
-<text x="112.0" y="111" font-family="Poppins,'Helvetica Neue',Helvetica,Arial,sans-serif" font-size="15" letter-spacing="1.8" fill="#8995a6">01</text>
-<text x="98.0" y="158" font-family="Poppins,'Helvetica Neue',Helvetica,Arial,sans-serif" font-size="26" font-weight="600" letter-spacing="-0.4" fill="#0d1521">Report</text>
-<text x="98.0" y="192" font-family="Poppins,'Helvetica Neue',Helvetica,Arial,sans-serif" font-size="17.5" fill="#4d596a">User report captured with</text>
-<text x="98.0" y="215" font-family="Poppins,'Helvetica Neue',Helvetica,Arial,sans-serif" font-size="17.5" fill="#4d596a">sender, link and affected</text>
-<text x="98.0" y="238" font-family="Poppins,'Helvetica Neue',Helvetica,Arial,sans-serif" font-size="17.5" fill="#4d596a">host</text>
+<text x="112.0" y="111" font-family="'Helvetica Neue',Helvetica,Arial,sans-serif" font-size="15" letter-spacing="1.8" fill="#8995a6">01</text>
+<text x="98.0" y="158" font-family="'Helvetica Neue',Helvetica,Arial,sans-serif" font-size="26" font-weight="600" letter-spacing="-0.4" fill="#0d1521">Report</text>
+<text x="98.0" y="192" font-family="'Helvetica Neue',Helvetica,Arial,sans-serif" font-size="17.5" fill="#4d596a">User report captured with</text>
+<text x="98.0" y="215" font-family="'Helvetica Neue',Helvetica,Arial,sans-serif" font-size="17.5" fill="#4d596a">sender, link and affected</text>
+<text x="98.0" y="238" font-family="'Helvetica Neue',Helvetica,Arial,sans-serif" font-size="17.5" fill="#4d596a">host</text>
 <path d="M 326.0 165 l 7 5 l -7 5" fill="none" stroke="#8995a6" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
 <rect x="342.5" y="72" width="244.5" height="196" rx="3" fill="#ffffff" stroke="#dde6f1" stroke-width="1"/>
 <circle cx="368.5" cy="106" r="4.5" fill="#8995a6"/>
-<text x="382.5" y="111" font-family="Poppins,'Helvetica Neue',Helvetica,Arial,sans-serif" font-size="15" letter-spacing="1.8" fill="#8995a6">02</text>
-<text x="368.5" y="158" font-family="Poppins,'Helvetica Neue',Helvetica,Arial,sans-serif" font-size="26" font-weight="600" letter-spacing="-0.4" fill="#0d1521">Analyze</text>
-<text x="368.5" y="192" font-family="Poppins,'Helvetica Neue',Helvetica,Arial,sans-serif" font-size="17.5" fill="#4d596a">Process activity and event</text>
-<text x="368.5" y="215" font-family="Poppins,'Helvetica Neue',Helvetica,Arial,sans-serif" font-size="17.5" fill="#4d596a">logs reviewed for</text>
-<text x="368.5" y="238" font-family="Poppins,'Helvetica Neue',Helvetica,Arial,sans-serif" font-size="17.5" fill="#4d596a">indicators</text>
+<text x="382.5" y="111" font-family="'Helvetica Neue',Helvetica,Arial,sans-serif" font-size="15" letter-spacing="1.8" fill="#8995a6">02</text>
+<text x="368.5" y="158" font-family="'Helvetica Neue',Helvetica,Arial,sans-serif" font-size="26" font-weight="600" letter-spacing="-0.4" fill="#0d1521">Analyze</text>
+<text x="368.5" y="192" font-family="'Helvetica Neue',Helvetica,Arial,sans-serif" font-size="17.5" fill="#4d596a">Process activity and event</text>
+<text x="368.5" y="215" font-family="'Helvetica Neue',Helvetica,Arial,sans-serif" font-size="17.5" fill="#4d596a">logs reviewed for</text>
+<text x="368.5" y="238" font-family="'Helvetica Neue',Helvetica,Arial,sans-serif" font-size="17.5" fill="#4d596a">indicators</text>
 <path d="M 596.5 165 l 7 5 l -7 5" fill="none" stroke="#8995a6" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
 <rect x="613.0" y="72" width="244.5" height="196" rx="3" fill="#ffffff" stroke="#1470af" stroke-width="2"/>
 <circle cx="639.0" cy="106" r="4.5" fill="#1470af"/>
-<text x="653.0" y="111" font-family="Poppins,'Helvetica Neue',Helvetica,Arial,sans-serif" font-size="15" letter-spacing="1.8" fill="#8995a6">03</text>
-<text x="639.0" y="158" font-family="Poppins,'Helvetica Neue',Helvetica,Arial,sans-serif" font-size="26" font-weight="600" letter-spacing="-0.4" fill="#0d1521">Contain</text>
-<text x="639.0" y="192" font-family="Poppins,'Helvetica Neue',Helvetica,Arial,sans-serif" font-size="17.5" fill="#4d596a">Isolation, account</text>
-<text x="639.0" y="215" font-family="Poppins,'Helvetica Neue',Helvetica,Arial,sans-serif" font-size="17.5" fill="#4d596a">protection and blocking</text>
-<text x="639.0" y="238" font-family="Poppins,'Helvetica Neue',Helvetica,Arial,sans-serif" font-size="17.5" fill="#4d596a">decided</text>
+<text x="653.0" y="111" font-family="'Helvetica Neue',Helvetica,Arial,sans-serif" font-size="15" letter-spacing="1.8" fill="#8995a6">03</text>
+<text x="639.0" y="158" font-family="'Helvetica Neue',Helvetica,Arial,sans-serif" font-size="26" font-weight="600" letter-spacing="-0.4" fill="#0d1521">Contain</text>
+<text x="639.0" y="192" font-family="'Helvetica Neue',Helvetica,Arial,sans-serif" font-size="17.5" fill="#4d596a">Isolation, account</text>
+<text x="639.0" y="215" font-family="'Helvetica Neue',Helvetica,Arial,sans-serif" font-size="17.5" fill="#4d596a">protection and blocking</text>
+<text x="639.0" y="238" font-family="'Helvetica Neue',Helvetica,Arial,sans-serif" font-size="17.5" fill="#4d596a">decided</text>
 <path d="M 867.0 165 l 7 5 l -7 5" fill="none" stroke="#8995a6" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
 <rect x="883.5" y="72" width="244.5" height="196" rx="3" fill="#ffffff" stroke="#dde6f1" stroke-width="1"/>
 <circle cx="909.5" cy="106" r="4.5" fill="#8995a6"/>
-<text x="923.5" y="111" font-family="Poppins,'Helvetica Neue',Helvetica,Arial,sans-serif" font-size="15" letter-spacing="1.8" fill="#8995a6">04</text>
-<text x="909.5" y="158" font-family="Poppins,'Helvetica Neue',Helvetica,Arial,sans-serif" font-size="26" font-weight="600" letter-spacing="-0.4" fill="#0d1521">Write up</text>
-<text x="909.5" y="192" font-family="Poppins,'Helvetica Neue',Helvetica,Arial,sans-serif" font-size="17.5" fill="#4d596a">Incident summary for</text>
-<text x="909.5" y="215" font-family="Poppins,'Helvetica Neue',Helvetica,Arial,sans-serif" font-size="17.5" fill="#4d596a">readers who were not</text>
-<text x="909.5" y="238" font-family="Poppins,'Helvetica Neue',Helvetica,Arial,sans-serif" font-size="17.5" fill="#4d596a">involved</text>
+<text x="923.5" y="111" font-family="'Helvetica Neue',Helvetica,Arial,sans-serif" font-size="15" letter-spacing="1.8" fill="#8995a6">04</text>
+<text x="909.5" y="158" font-family="'Helvetica Neue',Helvetica,Arial,sans-serif" font-size="26" font-weight="600" letter-spacing="-0.4" fill="#0d1521">Write up</text>
+<text x="909.5" y="192" font-family="'Helvetica Neue',Helvetica,Arial,sans-serif" font-size="17.5" fill="#4d596a">Incident summary for</text>
+<text x="909.5" y="215" font-family="'Helvetica Neue',Helvetica,Arial,sans-serif" font-size="17.5" fill="#4d596a">readers who were not</text>
+<text x="909.5" y="238" font-family="'Helvetica Neue',Helvetica,Arial,sans-serif" font-size="17.5" fill="#4d596a">involved</text>
 <line x1="72" y1="306" x2="1128" y2="306" stroke="#dde6f1" stroke-width="1"/>
-<text x="72" y="340" font-family="Poppins,'Helvetica Neue',Helvetica,Arial,sans-serif" font-size="16" letter-spacing="2.2" fill="#8995a6">EVIDENCE GOAL</text>
-<text x="72.0" y="378" font-family="Poppins,'Helvetica Neue',Helvetica,Arial,sans-serif" font-size="19" fill="#0d1521">Delivery</text>
-<text x="336.0" y="378" font-family="Poppins,'Helvetica Neue',Helvetica,Arial,sans-serif" font-size="19" fill="#0d1521">Execution</text>
-<text x="600.0" y="378" font-family="Poppins,'Helvetica Neue',Helvetica,Arial,sans-serif" font-size="19" fill="#0d1521">Persistence</text>
-<text x="864.0" y="378" font-family="Poppins,'Helvetica Neue',Helvetica,Arial,sans-serif" font-size="19" fill="#0d1521">Containment</text>
-<text x="72" y="434" font-family="Poppins,'Helvetica Neue',Helvetica,Arial,sans-serif" font-size="17.5" fill="#8995a6">The output is a timeline somebody else can audit, not a list of tools run.</text>
+<text x="72" y="340" font-family="'Helvetica Neue',Helvetica,Arial,sans-serif" font-size="16" letter-spacing="2.2" fill="#8995a6">EVIDENCE GOAL</text>
+<text x="72.0" y="378" font-family="'Helvetica Neue',Helvetica,Arial,sans-serif" font-size="19" fill="#0d1521">Delivery</text>
+<text x="336.0" y="378" font-family="'Helvetica Neue',Helvetica,Arial,sans-serif" font-size="19" fill="#0d1521">Execution</text>
+<text x="600.0" y="378" font-family="'Helvetica Neue',Helvetica,Arial,sans-serif" font-size="19" fill="#0d1521">Persistence</text>
+<text x="864.0" y="378" font-family="'Helvetica Neue',Helvetica,Arial,sans-serif" font-size="19" fill="#0d1521">Containment</text>
+<text x="72" y="434" font-family="'Helvetica Neue',Helvetica,Arial,sans-serif" font-size="17.5" fill="#8995a6">The output is a timeline somebody else can audit, not a list of tools run.</text>
 </svg>
