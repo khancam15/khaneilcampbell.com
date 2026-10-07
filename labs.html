@@ -89,7 +89,7 @@
 
   <section class="hero">
     <div class="wrap">
-      <span class="label">Labs</span>
+      <span class="eyebrow">Labs</span>
       <h1 class="t-page">Labs written up like case files.</h1>
       <p class="lede">
         Self-directed work to practise the parts of the job you cannot rehearse on
@@ -100,44 +100,44 @@
 
   <section class="section">
     <div class="wrap">
-      <a class="work" href="soc-automation-lab.html">
-        <div class="work-top">
-          <h2 class="t-item work-title">Authentication log analysis with Splunk</h2>
-          <span class="work-when">Published</span>
+      <a class="piece" href="soc-automation-lab.html">
+        <div class="piece-meta">
+          <h2 class="t-item piece-title">Authentication log analysis with Splunk</h2>
+          <span class="piece-state">Published</span>
         </div>
-        <p class="work-desc">
+        <p class="piece-desc">
           A simulated brute-force attempt against Windows accounts, worked from raw event
           data to a written response. Windows Security logs ingested into Splunk, SPL
           queries grouping failed logons by source host and account, thresholds tuned so
           the alert survives contact with real noise, and analyst notes written for reuse.
         </p>
-        <span class="work-built">Splunk &middot; SPL &middot; Windows Security logs &middot; Event ID 4625</span>
+        <span class="piece-built">Splunk &middot; SPL &middot; Windows Security logs &middot; Event ID 4625</span>
       </a>
 
-      <a class="work" href="lab-details.html#phishing">
-        <div class="work-top">
-          <h2 class="t-item work-title">Phishing-to-malware response walkthrough</h2>
-          <span class="work-when">In progress</span>
+      <a class="piece" href="lab-details.html#phishing">
+        <div class="piece-meta">
+          <h2 class="t-item piece-title">Phishing-to-malware response walkthrough</h2>
+          <span class="piece-state">In progress</span>
         </div>
-        <p class="work-desc">
+        <p class="piece-desc">
           A phishing intrusion followed from the user report through host indicator analysis,
           process review, log evidence, containment decisions, and an incident summary written
           for readers who were not involved in the investigation.
         </p>
-        <span class="work-built">Sysinternals &middot; Windows Event Logs &middot; containment</span>
+        <span class="piece-built">Sysinternals &middot; Windows Event Logs &middot; containment</span>
       </a>
 
-      <a class="work" href="lab-details.html#iam">
-        <div class="work-top">
-          <h2 class="t-item work-title">Access control and account lifecycle</h2>
-          <span class="work-when">In progress</span>
+      <a class="piece" href="lab-details.html#iam">
+        <div class="piece-meta">
+          <h2 class="t-item piece-title">Access control and account lifecycle</h2>
+          <span class="piece-state">In progress</span>
         </div>
-        <p class="work-desc">
+        <p class="piece-desc">
           Operational access-control scenarios: MFA enforcement, least-privilege review,
           account lifecycle decisions, and recovery requests handled in a way that stays
           consistent when the person asking is senior and in a hurry.
         </p>
-        <span class="work-built">Active Directory &middot; MFA &middot; least privilege</span>
+        <span class="piece-built">Active Directory &middot; MFA &middot; least privilege</span>
       </a>
     </div>
   </section>
@@ -145,7 +145,7 @@
   <section class="section">
     <div class="wrap">
       <div class="section-head">
-        <span class="label">Case standard</span>
+        <span class="eyebrow">Case standard</span>
         <h2 class="t-sec">How every lab gets evaluated.</h2>
       </div>
       <p class="prose">
@@ -153,11 +153,11 @@
         how should someone respond, and how does this become repeatable? Anything that
         cannot answer all four stays marked in progress rather than dressed up as finished.
       </p>
-      <div class="cols" style-x>
-        <div class="col"><h3 class="t-item">Scenario</h3><p>Build a controlled situation with enough realism to produce meaningful telemetry, and state the assumptions up front.</p></div>
-        <div class="col"><h3 class="t-item">Detection</h3><p>Write the query logic, validate the signal, and document where the false-positive boundary actually sits.</p></div>
-        <div class="col"><h3 class="t-item">Triage</h3><p>Turn raw events into findings with clear severity and scope, recording the decision points along the way.</p></div>
-        <div class="col"><h3 class="t-item">Response</h3><p>Package the workflow so the same pattern can be repeated and improved by someone else.</p></div>
+      <div class="tiles">
+        <div class="tile"><h3 class="t-item">Scenario</h3><p>Build a controlled situation with enough realism to produce meaningful telemetry, and state the assumptions up front.</p></div>
+        <div class="tile"><h3 class="t-item">Detection</h3><p>Write the query logic, validate the signal, and document where the false-positive boundary actually sits.</p></div>
+        <div class="tile"><h3 class="t-item">Triage</h3><p>Turn raw events into findings with clear severity and scope, recording the decision points along the way.</p></div>
+        <div class="tile"><h3 class="t-item">Response</h3><p>Package the workflow so the same pattern can be repeated and improved by someone else.</p></div>
       </div>
       <div class="actions"><a class="btn-text" href="lab-details.html">Expanded case files</a></div>
     </div>
@@ -166,21 +166,23 @@
 </main>
 
 <footer class="foot">
-  <div class="wrap foot-in">
-    <div>
-      <span class="nav-name">Khaneil Campbell</span>
-      <p class="foot-note">IT professional &middot; New York, NY</p>
+  <div class="wrap">
+    <div class="foot-in">
+      <div>
+        <span class="nav-name">Khaneil Campbell</span>
+        <p class="foot-note">IT professional &middot; New York, NY</p>
+      </div>
+      <ul class="foot-links">
+        <li><a href="projects.html">Projects</a></li>
+        <li><a href="labs.html">Labs</a></li>
+        <li><a href="about.html">About</a></li>
+        <li><a href="contact.html">Contact</a></li>
+        <li><a href="https://www.linkedin.com/in/khaneil-c-44179a14a/" target="_blank" rel="noopener noreferrer">LinkedIn</a></li>
+        <li><a href="https://github.com/khancam15" target="_blank" rel="noopener noreferrer">GitHub</a></li>
+      </ul>
     </div>
-    <ul class="foot-links">
-      <li><a href="projects.html">Projects</a></li>
-      <li><a href="labs.html">Labs</a></li>
-      <li><a href="about.html">About</a></li>
-      <li><a href="contact.html">Contact</a></li>
-      <li><a href="https://www.linkedin.com/in/khaneil-c-44179a14a/" target="_blank" rel="noopener noreferrer">LinkedIn</a></li>
-      <li><a href="https://github.com/khancam15" target="_blank" rel="noopener noreferrer">GitHub</a></li>
-    </ul>
+    <p class="foot-note mt-m">&copy; 2026 Khaneil Campbell</p>
   </div>
-  <div class="wrap"><p class="foot-note">&copy; 2026 Khaneil Campbell</p></div>
 </footer>
 
 </body>

@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta http-equiv="Content-Security-Policy" content="default-src 'none'; style-src 'self' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; img-src 'self' data:; connect-src 'none'; base-uri 'self'; form-action 'none';">
 <meta name="referrer" content="strict-origin-when-cross-origin">
-<meta name="theme-color" content="#fdfdfc">
+<meta name="theme-color" content="#f6f6f3">
 <meta name="robots" content="index, follow">
 <title>Khaneil Campbell — IT Professional, New York</title>
 <meta name="description" content="New York IT professional. Enterprise support, Microsoft 365 and Active Directory administration, IT service management, and workflow automation.">
@@ -13,12 +13,12 @@
 <meta property="og:type" content="website">
 <meta property="og:url" content="https://khaneilcampbell.com/">
 <meta property="og:title" content="Khaneil Campbell — IT Professional, New York">
-<meta property="og:description" content="Enterprise IT support, systems administration, and workflow automation — with the labs and projects to show for it.">
+<meta property="og:description" content="New York IT professional. Enterprise support, Microsoft 365 and Active Directory administration, IT service management, and workflow automation.">
 <meta property="og:image" content="https://khaneilcampbell.com/images/profile.jpg">
 <meta property="og:site_name" content="Khaneil Campbell">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Khaneil Campbell — IT Professional, New York">
-<meta name="twitter:description" content="Enterprise IT support, systems administration, and workflow automation.">
+<meta name="twitter:description" content="New York IT professional. Enterprise support, Microsoft 365 and Active Directory administration, IT service management, and workflow automation.">
 <meta name="twitter:image" content="https://khaneilcampbell.com/images/profile.jpg">
 <link rel="canonical" href="https://khaneilcampbell.com/">
 
@@ -33,14 +33,41 @@
       "url": "https://khaneilcampbell.com/",
       "image": "https://khaneilcampbell.com/images/profile.jpg",
       "jobTitle": "IT Professional",
-      "address": { "@type": "PostalAddress", "addressLocality": "New York", "addressRegion": "NY", "addressCountry": "US" },
+      "address": {
+        "@type": "PostalAddress",
+        "addressLocality": "New York",
+        "addressRegion": "NY",
+        "addressCountry": "US"
+      },
       "email": "mailto:contact@khaneilcampbell.com",
-      "knowsAbout": ["Enterprise IT Support", "Microsoft 365 Administration", "Active Directory", "IT Service Management", "Identity and Access Management", "Workflow Automation"],
-      "hasCredential": [
-        { "@type": "EducationalOccupationalCredential", "name": "CompTIA Security+", "credentialCategory": "certification", "dateCreated": "2025-05-12", "url": "https://khaneilcampbell.com/security-plus.html" },
-        { "@type": "EducationalOccupationalCredential", "name": "ITIL 4 Foundation", "credentialCategory": "certification", "dateCreated": "2023-04-23", "url": "https://khaneilcampbell.com/itil4.html" }
+      "knowsAbout": [
+        "Enterprise IT Support",
+        "Microsoft 365 Administration",
+        "Active Directory",
+        "IT Service Management",
+        "Identity and Access Management",
+        "Workflow Automation"
       ],
-      "sameAs": ["https://www.linkedin.com/in/khaneil-c-44179a14a/", "https://github.com/khancam15"]
+      "hasCredential": [
+        {
+          "@type": "EducationalOccupationalCredential",
+          "name": "CompTIA Security+",
+          "credentialCategory": "certification",
+          "dateCreated": "2025-05-12",
+          "url": "https://khaneilcampbell.com/security-plus.html"
+        },
+        {
+          "@type": "EducationalOccupationalCredential",
+          "name": "ITIL 4 Foundation",
+          "credentialCategory": "certification",
+          "dateCreated": "2023-04-23",
+          "url": "https://khaneilcampbell.com/itil4.html"
+        }
+      ],
+      "sameAs": [
+        "https://www.linkedin.com/in/khaneil-c-44179a14a/",
+        "https://github.com/khancam15"
+      ]
     },
     {
       "@type": "WebSite",
@@ -48,7 +75,9 @@
       "url": "https://khaneilcampbell.com/",
       "name": "Khaneil Campbell",
       "inLanguage": "en",
-      "publisher": { "@id": "https://khaneilcampbell.com/#person" }
+      "publisher": {
+        "@id": "https://khaneilcampbell.com/#person"
+      }
     }
   ]
 }
@@ -84,8 +113,8 @@
     <div class="wrap">
       <h1 class="t-hero">Enterprise IT support,<br>systems, and automation.</h1>
       <p class="lede">
-        I keep the technology people depend on working — and I automate the parts
-        that should never have been manual.
+        I keep the technology people depend on working &mdash; and I automate the
+        parts that should never have been manual.
       </p>
       <div class="actions">
         <a class="btn" href="projects.html">See the work</a>
@@ -97,89 +126,117 @@
   <section class="section">
     <div class="wrap">
       <div class="section-head">
-        <span class="label">Selected work</span>
-        <h2 class="t-sec">Things I built and wrote up.</h2>
+        <span class="eyebrow">Selected work</span>
+        <h2 class="t-sec">Built, documented, and open to inspection.</h2>
+        <p>Each one is written up the way I would hand it to a colleague: what the problem was, what I did, and what the evidence says.</p>
       </div>
-
-      <a class="work" href="projects.html">
-        <div class="work-top">
-          <h3 class="t-item work-title">AI product pipeline</h3>
-          <span class="work-when">Built</span>
+      <div class="pieces">
+      <a class="piece" href="projects.html">
+        <div class="piece-visual">
+          <img src="images/diagrams/pipeline.svg" width="1200" height="474" alt="Four-stage flow diagram: Brand, Generate, Design, then a highlighted Validate gate, over a layer showing Python, SQLite, VPS and credential controls." loading="lazy" decoding="async">
         </div>
-        <p class="work-desc">
-          An autonomous multi-agent pipeline that researches a brand, writes listings,
-          generates mockups and publishes over OAuth — with credential scanning,
-          validation gates and auditable state. Runs unattended on a VPS.
-        </p>
-        <span class="work-built">Python · CrewAI · Anthropic API · SQLite · systemd</span>
+        <div class="piece-body">
+          <div class="piece-meta"><span class="piece-kind">Project</span><span class="piece-state">Built</span></div>
+          <h3 class="t-item piece-title">AI product pipeline</h3>
+          <p class="piece-desc">An autonomous multi-agent pipeline that researches a brand, writes listings, generates mockups and publishes over OAuth — with credential scanning, validation gates and auditable state. Runs unattended on a VPS.</p>
+          <span class="piece-built">Python · CrewAI · Anthropic API · SQLite · systemd</span>
+        </div>
       </a>
 
-      <a class="work" href="soc-automation-lab.html">
-        <div class="work-top">
-          <h3 class="t-item work-title">Authentication log analysis</h3>
-          <span class="work-when">Published</span>
+      <a class="piece" href="soc-automation-lab.html">
+        <div class="piece-visual">
+          <img src="images/diagrams/log-analysis.svg" width="1200" height="474" alt="Four-stage flow diagram: Ingest, Detect, a highlighted Tune step, then Respond, over evidence showing Event ID 4625 and 80-plus failed logons isolated." loading="lazy" decoding="async">
         </div>
-        <p class="work-desc">
-          Windows authentication logs into Splunk, SPL queries grouping failed logons
-          by source and account, thresholds tuned to cut noise, and the triage path
-          written up so someone else can repeat it.
-        </p>
-        <span class="work-built">Splunk · SPL · Windows Security logs</span>
+        <div class="piece-body">
+          <div class="piece-meta"><span class="piece-kind">Lab</span><span class="piece-state">Published</span></div>
+          <h3 class="t-item piece-title">Authentication log analysis</h3>
+          <p class="piece-desc">Windows authentication logs into Splunk, SPL queries grouping failed logons by source and account, thresholds tuned to cut noise, and the triage path written up so someone else can repeat it.</p>
+          <span class="piece-built">Splunk · SPL · Windows Security logs · Event ID 4625</span>
+        </div>
       </a>
 
-      <a class="work" href="lab-details.html#phishing">
-        <div class="work-top">
-          <h3 class="t-item work-title">Phishing response walkthrough</h3>
-          <span class="work-when">In progress</span>
+      <a class="piece" href="lab-details.html#phishing">
+        <div class="piece-visual">
+          <img src="images/diagrams/phishing.svg" width="1200" height="474" alt="Four-stage flow diagram: Report, Analyse, a highlighted Contain step, then Write up, over an evidence goal of delivery, execution, persistence and containment." loading="lazy" decoding="async">
         </div>
-        <p class="work-desc">
-          A phishing-to-malware scenario worked end to end: user report, host indicator
-          review, containment decisions, and an incident summary written for people who
-          were not in the room.
-        </p>
-        <span class="work-built">Sysinternals · Windows Event Logs · containment</span>
+        <div class="piece-body">
+          <div class="piece-meta"><span class="piece-kind">Lab</span><span class="piece-state">In progress</span></div>
+          <h3 class="t-item piece-title">Phishing response walkthrough</h3>
+          <p class="piece-desc">A phishing-to-malware scenario worked end to end: user report, host indicator review, containment decisions, and an incident summary written for people who were not in the room.</p>
+          <span class="piece-built">Sysinternals · Windows Event Logs · containment</span>
+        </div>
       </a>
 
-      <a class="work" href="lab-details.html#iam">
-        <div class="work-top">
-          <h3 class="t-item work-title">Access control workflows</h3>
-          <span class="work-when">In progress</span>
+      <a class="piece" href="lab-details.html#iam">
+        <div class="piece-visual">
+          <img src="images/diagrams/access-control.svg" width="1200" height="474" alt="Four-stage flow diagram: Request, a highlighted Verify step, Control, then Record, checked against directory attributes, group membership and MFA state." loading="lazy" decoding="async">
         </div>
-        <p class="work-desc">
-          Access-request, recovery and MFA scenarios documented with the decisions that
-          matter — who approves, what proves identity, and what gets recorded.
-        </p>
-        <span class="work-built">Active Directory · MFA policy · least privilege</span>
+        <div class="piece-body">
+          <div class="piece-meta"><span class="piece-kind">Lab</span><span class="piece-state">In progress</span></div>
+          <h3 class="t-item piece-title">Access control workflows</h3>
+          <p class="piece-desc">Access-request, recovery and MFA scenarios documented with the decisions that matter — who approves, what proves identity, what least privilege resolves to, and what gets recorded.</p>
+          <span class="piece-built">Active Directory · MFA policy · least privilege</span>
+        </div>
       </a>
+      </div>
     </div>
   </section>
 
   <section class="section">
     <div class="wrap">
       <div class="section-head">
-        <span class="label">About</span>
-        <h2 class="t-sec">Five years in rooms that cannot go down.</h2>
+        <span class="eyebrow">What I do</span>
+        <h2 class="t-sec">Four things I get asked for.</h2>
       </div>
-      <div class="cols">
-        <div class="col prose">
-          <p>
-            I have spent five plus years in enterprise IT at <strong>Columbia University</strong>
-            and <strong>NYC Health + Hospitals</strong> — environments where downtime is not
-            an inconvenience.
-          </p>
-          <p>
-            My work sits where support, administration and process meet: keeping endpoints
-            and accounts healthy in Microsoft 365 and Active Directory, running requests
-            through ITIL 4 practices, and replacing repetitive work with automation I can
-            audit. <a href="about.html">More about how I work</a>.
-          </p>
+      <div class="tiles">
+        <div class="tile">
+          <h3 class="t-sub">Systems and end-user support</h3>
+          <p>Frontline and escalated support for staff in high-demand institutional environments &mdash; Windows endpoints, peripherals, access problems, and the long-tail issues that never match a script.</p>
         </div>
-        <div class="col">
-          <dl class="facts">
+        <div class="tile">
+          <h3 class="t-sub">Microsoft 365 and identity</h3>
+          <p>Account lifecycle, group membership, licensing, mailbox and Teams administration, MFA enforcement, and least-privilege access reviews in Active Directory.</p>
+        </div>
+        <div class="tile">
+          <h3 class="t-sub">Service management</h3>
+          <p>ITIL 4 practices applied to the ordinary stuff: incident and request handling, queue hygiene, knowledge articles people reuse, and handoffs that survive a shift change.</p>
+        </div>
+        <div class="tile">
+          <h3 class="t-sub">Scripted and AI workflows</h3>
+          <p>Python and shell automation for repetitive work, plus production AI workflows with real guardrails &mdash; credential isolation, validation gates, retry logic, and auditable state.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="wrap">
+      <div class="split">
+        <div>
+          <span class="eyebrow">About</span>
+          <h2 class="t-sec mt-s">Five years in rooms that cannot go down.</h2>
+          <div class="prose mt-m">
+            <p>
+              I have spent five plus years in enterprise IT at <strong>Columbia University</strong>
+              and <strong>NYC Health + Hospitals</strong> &mdash; environments where downtime is
+              not an inconvenience.
+            </p>
+            <p>
+              My work sits where support, administration and process meet: keeping endpoints and
+              accounts healthy in Microsoft 365 and Active Directory, running requests through
+              ITIL 4 practices, and replacing repetitive work with automation I can audit.
+              <a href="about.html">More about how I work</a>.
+            </p>
+          </div>
+        </div>
+        <div>
+          <div class="portrait">
+            <img src="images/profile.jpg" alt="Khaneil Campbell" width="3024" height="4032" loading="lazy" decoding="async">
+          </div>
+          <dl class="facts mt-m">
             <div class="fact"><dt>Based</dt><dd>New York, NY</dd></div>
             <div class="fact"><dt>Experience</dt><dd>5+ years enterprise IT</dd></div>
-            <div class="fact"><dt>Certified</dt><dd><a class="link" href="security-plus.html">CompTIA Security+</a> · 2025</dd></div>
-            <div class="fact"><dt>Also passed</dt><dd><a class="link" href="itil4.html">ITIL 4 Foundation</a> · 2023</dd></div>
+            <div class="fact"><dt>Certified</dt><dd><a class="link" href="security-plus.html">CompTIA Security+</a></dd></div>
           </dl>
         </div>
       </div>
@@ -188,17 +245,12 @@
 
   <section class="section">
     <div class="wrap">
-      <div class="section-head">
-        <span class="label">Contact</span>
+      <div class="cta">
         <h2 class="t-sec">Got a system that needs a hand?</h2>
-      </div>
-      <p class="prose">
-        Based in New York and open to conversations about enterprise IT support,
-        systems and identity administration, service management, and automation work.
-      </p>
-      <div class="actions">
-        <a class="btn" href="mailto:contact@khaneilcampbell.com">contact@khaneilcampbell.com</a>
-        <a class="btn-text" href="contact.html">All contact routes</a>
+        <p>Based in New York and open to conversations about enterprise IT support, systems and identity administration, service management, and automation work.</p>
+        <div class="actions">
+          <a class="btn" href="mailto:contact@khaneilcampbell.com">contact@khaneilcampbell.com</a>
+        </div>
       </div>
     </div>
   </section>
@@ -206,21 +258,23 @@
 </main>
 
 <footer class="foot">
-  <div class="wrap foot-in">
-    <div>
-      <span class="nav-name">Khaneil Campbell</span>
-      <p class="foot-note">IT professional · New York, NY</p>
+  <div class="wrap">
+    <div class="foot-in">
+      <div>
+        <span class="nav-name">Khaneil Campbell</span>
+        <p class="foot-note">IT professional &middot; New York, NY</p>
+      </div>
+      <ul class="foot-links">
+        <li><a href="projects.html">Projects</a></li>
+        <li><a href="labs.html">Labs</a></li>
+        <li><a href="about.html">About</a></li>
+        <li><a href="contact.html">Contact</a></li>
+        <li><a href="https://www.linkedin.com/in/khaneil-c-44179a14a/" target="_blank" rel="noopener noreferrer">LinkedIn</a></li>
+        <li><a href="https://github.com/khancam15" target="_blank" rel="noopener noreferrer">GitHub</a></li>
+      </ul>
     </div>
-    <ul class="foot-links">
-      <li><a href="projects.html">Projects</a></li>
-      <li><a href="labs.html">Labs</a></li>
-      <li><a href="about.html">About</a></li>
-      <li><a href="contact.html">Contact</a></li>
-      <li><a href="https://www.linkedin.com/in/khaneil-c-44179a14a/" target="_blank" rel="noopener noreferrer">LinkedIn</a></li>
-      <li><a href="https://github.com/khancam15" target="_blank" rel="noopener noreferrer">GitHub</a></li>
-    </ul>
+    <p class="foot-note mt-m">&copy; 2026 Khaneil Campbell</p>
   </div>
-  <div class="wrap"><p class="foot-note">&copy; 2026 Khaneil Campbell</p></div>
 </footer>
 
 </body>
