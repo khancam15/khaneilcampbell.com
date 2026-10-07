@@ -6,22 +6,29 @@ administration, IT service management, and automation. Hosted on GitHub Pages at
 
 ## Design
 
-Work-led, in the register of [nomadgoods.com](https://nomadgoods.com): a warm
-off-white ground, white panels lifting off it on soft elevation, a large visual
-leading each entry with a short caption underneath, and a lot of air.
+Blue and white, in the register of [daxnyc.ai](https://www.daxnyc.ai): geometric
+display type, square corners, a saturated brand blue, and full-bleed navy bands
+breaking up the light sections. The structure underneath is unchanged from the
+work-led pass — panels lifting off the ground, a visual leading each entry.
 
-The homepage leads with the work, not with the person. Each project gets a
-full-width panel carrying its own diagram.
+The homepage leads with the work, not with the person.
 
 | | |
 |---|---|
-| Ground | Warm off-white `#f6f6f3`, panels `#ffffff` |
-| Ink | `#15161a` (15.9:1), body `#4a4c52` (8.4:1) |
-| Accent | Slate teal `#1a5471` (7.8:1), links and primary action only |
-| Display | Archivo 500/600 |
+| Ground | Cool blue-white `#f2f6fb`, panels `#ffffff`, wash `#e7eff9` |
+| Ink | `#0d1521` (18.2:1), body `#44505e` (7.9:1) |
+| Blue | `#1470af` (5.3:1) — sampled from the reference; links use `#0f5586` (7.9:1) |
+| Navy bands | `#0a1a2b` gradient, accent `#5aa9e6` (6.9:1 on navy) |
+| Display | Poppins 500/600/700 |
 | Body | Inter 400/500/600 |
-| Measure | 1200px, 780px for reading |
-| Elevation | Two soft shadow steps, `--lift` and `--lift-2` |
+| Radius | 4px — square-ish, following the reference |
+
+The ground is **tinted rather than pure white on purpose**: panels are white, so
+a white ground would collapse the elevation that separates them. Elevation
+shadows carry a blue cast for the same reason.
+
+Two section devices carry the blue rhythm: `.section--tint` for a light wash and
+`.band-navy` for a full-bleed dark gradient. Both break out of the container.
 
 ### Diagrams
 
@@ -36,9 +43,10 @@ single portrait photo.
 
 Two things to know before editing them:
 
-- They use a **system font stack**, not Inter. An SVG loaded through `<img>`
-  cannot fetch a web font, so matching the page type would mean inlining the
-  SVG into every page.
+- They fall back to a **system font**. The stack names Poppins first, but an SVG
+  loaded through `<img>` cannot fetch a web font, so it renders in Helvetica or
+  Arial. Matching the page type exactly would mean inlining each SVG into every
+  page that shows it.
 - They carry **no title**, deliberately. The page caption names each piece, and
   having both read as a duplicate.
 

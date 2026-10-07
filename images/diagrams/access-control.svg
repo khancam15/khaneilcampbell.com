@@ -1,37 +1,37 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 474" width="1200" height="474" role="img" aria-label="Access control workflows">
 <rect width="1200" height="474" fill="#ffffff"/>
-<rect x="72.0" y="72" width="244.5" height="196" rx="3" fill="#ffffff" stroke="#e3e3df" stroke-width="1"/>
-<circle cx="98.0" cy="106" r="4.5" fill="#8a8d94"/>
-<text x="112.0" y="111" font-family="'Helvetica Neue',Helvetica,Arial,sans-serif" font-size="15" letter-spacing="1.8" fill="#8a8d94">01</text>
-<text x="98.0" y="158" font-family="'Helvetica Neue',Helvetica,Arial,sans-serif" font-size="26" font-weight="600" letter-spacing="-0.4" fill="#15161a">Request</text>
-<text x="98.0" y="192" font-family="'Helvetica Neue',Helvetica,Arial,sans-serif" font-size="17.5" fill="#55575e">The access, recovery or</text>
-<text x="98.0" y="215" font-family="'Helvetica Neue',Helvetica,Arial,sans-serif" font-size="17.5" fill="#55575e">MFA need is stated plainly</text>
-<path d="M 326.0 165 l 7 5 l -7 5" fill="none" stroke="#8a8d94" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-<rect x="342.5" y="72" width="244.5" height="196" rx="3" fill="#ffffff" stroke="#1a5471" stroke-width="2"/>
-<circle cx="368.5" cy="106" r="4.5" fill="#1a5471"/>
-<text x="382.5" y="111" font-family="'Helvetica Neue',Helvetica,Arial,sans-serif" font-size="15" letter-spacing="1.8" fill="#8a8d94">02</text>
-<text x="368.5" y="158" font-family="'Helvetica Neue',Helvetica,Arial,sans-serif" font-size="26" font-weight="600" letter-spacing="-0.4" fill="#15161a">Verify</text>
-<text x="368.5" y="192" font-family="'Helvetica Neue',Helvetica,Arial,sans-serif" font-size="17.5" fill="#55575e">Identity, ownership and</text>
-<text x="368.5" y="215" font-family="'Helvetica Neue',Helvetica,Arial,sans-serif" font-size="17.5" fill="#55575e">approval path validated</text>
-<path d="M 596.5 165 l 7 5 l -7 5" fill="none" stroke="#8a8d94" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-<rect x="613.0" y="72" width="244.5" height="196" rx="3" fill="#ffffff" stroke="#e3e3df" stroke-width="1"/>
-<circle cx="639.0" cy="106" r="4.5" fill="#8a8d94"/>
-<text x="653.0" y="111" font-family="'Helvetica Neue',Helvetica,Arial,sans-serif" font-size="15" letter-spacing="1.8" fill="#8a8d94">03</text>
-<text x="639.0" y="158" font-family="'Helvetica Neue',Helvetica,Arial,sans-serif" font-size="26" font-weight="600" letter-spacing="-0.4" fill="#15161a">Control</text>
-<text x="639.0" y="192" font-family="'Helvetica Neue',Helvetica,Arial,sans-serif" font-size="17.5" fill="#55575e">Least privilege, MFA and</text>
-<text x="639.0" y="215" font-family="'Helvetica Neue',Helvetica,Arial,sans-serif" font-size="17.5" fill="#55575e">group membership applied</text>
-<path d="M 867.0 165 l 7 5 l -7 5" fill="none" stroke="#8a8d94" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-<rect x="883.5" y="72" width="244.5" height="196" rx="3" fill="#ffffff" stroke="#e3e3df" stroke-width="1"/>
-<circle cx="909.5" cy="106" r="4.5" fill="#8a8d94"/>
-<text x="923.5" y="111" font-family="'Helvetica Neue',Helvetica,Arial,sans-serif" font-size="15" letter-spacing="1.8" fill="#8a8d94">04</text>
-<text x="909.5" y="158" font-family="'Helvetica Neue',Helvetica,Arial,sans-serif" font-size="26" font-weight="600" letter-spacing="-0.4" fill="#15161a">Record</text>
-<text x="909.5" y="192" font-family="'Helvetica Neue',Helvetica,Arial,sans-serif" font-size="17.5" fill="#55575e">Rationale, changes and</text>
-<text x="909.5" y="215" font-family="'Helvetica Neue',Helvetica,Arial,sans-serif" font-size="17.5" fill="#55575e">review date documented</text>
-<line x1="72" y1="306" x2="1128" y2="306" stroke="#e3e3df" stroke-width="1"/>
-<text x="72" y="340" font-family="'Helvetica Neue',Helvetica,Arial,sans-serif" font-size="16" letter-spacing="2.2" fill="#8a8d94">CHECKED AGAINST</text>
-<text x="72.0" y="378" font-family="'Helvetica Neue',Helvetica,Arial,sans-serif" font-size="19" fill="#15161a">Directory attributes</text>
-<text x="336.0" y="378" font-family="'Helvetica Neue',Helvetica,Arial,sans-serif" font-size="19" fill="#15161a">Group membership</text>
-<text x="600.0" y="378" font-family="'Helvetica Neue',Helvetica,Arial,sans-serif" font-size="19" fill="#15161a">MFA state</text>
-<text x="864.0" y="378" font-family="'Helvetica Neue',Helvetica,Arial,sans-serif" font-size="19" fill="#15161a">Business justification</text>
-<text x="72" y="434" font-family="'Helvetica Neue',Helvetica,Arial,sans-serif" font-size="17.5" fill="#8a8d94">Verification is the step that gets skipped when the person asking is senior and in a hurry.</text>
+<rect x="72.0" y="72" width="244.5" height="196" rx="3" fill="#ffffff" stroke="#dde6f1" stroke-width="1"/>
+<circle cx="98.0" cy="106" r="4.5" fill="#8995a6"/>
+<text x="112.0" y="111" font-family="Poppins,'Helvetica Neue',Helvetica,Arial,sans-serif" font-size="15" letter-spacing="1.8" fill="#8995a6">01</text>
+<text x="98.0" y="158" font-family="Poppins,'Helvetica Neue',Helvetica,Arial,sans-serif" font-size="26" font-weight="600" letter-spacing="-0.4" fill="#0d1521">Request</text>
+<text x="98.0" y="192" font-family="Poppins,'Helvetica Neue',Helvetica,Arial,sans-serif" font-size="17.5" fill="#4d596a">The access, recovery or</text>
+<text x="98.0" y="215" font-family="Poppins,'Helvetica Neue',Helvetica,Arial,sans-serif" font-size="17.5" fill="#4d596a">MFA need is stated plainly</text>
+<path d="M 326.0 165 l 7 5 l -7 5" fill="none" stroke="#8995a6" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+<rect x="342.5" y="72" width="244.5" height="196" rx="3" fill="#ffffff" stroke="#1470af" stroke-width="2"/>
+<circle cx="368.5" cy="106" r="4.5" fill="#1470af"/>
+<text x="382.5" y="111" font-family="Poppins,'Helvetica Neue',Helvetica,Arial,sans-serif" font-size="15" letter-spacing="1.8" fill="#8995a6">02</text>
+<text x="368.5" y="158" font-family="Poppins,'Helvetica Neue',Helvetica,Arial,sans-serif" font-size="26" font-weight="600" letter-spacing="-0.4" fill="#0d1521">Verify</text>
+<text x="368.5" y="192" font-family="Poppins,'Helvetica Neue',Helvetica,Arial,sans-serif" font-size="17.5" fill="#4d596a">Identity, ownership and</text>
+<text x="368.5" y="215" font-family="Poppins,'Helvetica Neue',Helvetica,Arial,sans-serif" font-size="17.5" fill="#4d596a">approval path validated</text>
+<path d="M 596.5 165 l 7 5 l -7 5" fill="none" stroke="#8995a6" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+<rect x="613.0" y="72" width="244.5" height="196" rx="3" fill="#ffffff" stroke="#dde6f1" stroke-width="1"/>
+<circle cx="639.0" cy="106" r="4.5" fill="#8995a6"/>
+<text x="653.0" y="111" font-family="Poppins,'Helvetica Neue',Helvetica,Arial,sans-serif" font-size="15" letter-spacing="1.8" fill="#8995a6">03</text>
+<text x="639.0" y="158" font-family="Poppins,'Helvetica Neue',Helvetica,Arial,sans-serif" font-size="26" font-weight="600" letter-spacing="-0.4" fill="#0d1521">Control</text>
+<text x="639.0" y="192" font-family="Poppins,'Helvetica Neue',Helvetica,Arial,sans-serif" font-size="17.5" fill="#4d596a">Least privilege, MFA and</text>
+<text x="639.0" y="215" font-family="Poppins,'Helvetica Neue',Helvetica,Arial,sans-serif" font-size="17.5" fill="#4d596a">group membership applied</text>
+<path d="M 867.0 165 l 7 5 l -7 5" fill="none" stroke="#8995a6" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+<rect x="883.5" y="72" width="244.5" height="196" rx="3" fill="#ffffff" stroke="#dde6f1" stroke-width="1"/>
+<circle cx="909.5" cy="106" r="4.5" fill="#8995a6"/>
+<text x="923.5" y="111" font-family="Poppins,'Helvetica Neue',Helvetica,Arial,sans-serif" font-size="15" letter-spacing="1.8" fill="#8995a6">04</text>
+<text x="909.5" y="158" font-family="Poppins,'Helvetica Neue',Helvetica,Arial,sans-serif" font-size="26" font-weight="600" letter-spacing="-0.4" fill="#0d1521">Record</text>
+<text x="909.5" y="192" font-family="Poppins,'Helvetica Neue',Helvetica,Arial,sans-serif" font-size="17.5" fill="#4d596a">Rationale, changes and</text>
+<text x="909.5" y="215" font-family="Poppins,'Helvetica Neue',Helvetica,Arial,sans-serif" font-size="17.5" fill="#4d596a">review date documented</text>
+<line x1="72" y1="306" x2="1128" y2="306" stroke="#dde6f1" stroke-width="1"/>
+<text x="72" y="340" font-family="Poppins,'Helvetica Neue',Helvetica,Arial,sans-serif" font-size="16" letter-spacing="2.2" fill="#8995a6">CHECKED AGAINST</text>
+<text x="72.0" y="378" font-family="Poppins,'Helvetica Neue',Helvetica,Arial,sans-serif" font-size="19" fill="#0d1521">Directory attributes</text>
+<text x="336.0" y="378" font-family="Poppins,'Helvetica Neue',Helvetica,Arial,sans-serif" font-size="19" fill="#0d1521">Group membership</text>
+<text x="600.0" y="378" font-family="Poppins,'Helvetica Neue',Helvetica,Arial,sans-serif" font-size="19" fill="#0d1521">MFA state</text>
+<text x="864.0" y="378" font-family="Poppins,'Helvetica Neue',Helvetica,Arial,sans-serif" font-size="19" fill="#0d1521">Business justification</text>
+<text x="72" y="434" font-family="Poppins,'Helvetica Neue',Helvetica,Arial,sans-serif" font-size="17.5" fill="#8995a6">Verification is the step that gets skipped when the person asking is senior and in a hurry.</text>
 </svg>
