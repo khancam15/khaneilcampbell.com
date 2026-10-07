@@ -7,17 +7,17 @@
 <meta name="referrer" content="strict-origin-when-cross-origin">
 <meta name="theme-color" content="#fdfdfc">
 <meta name="robots" content="index, follow">
-<title>Log Analysis with Splunk — Khaneil Campbell</title>
+<title>Log Analysis with Splunk | Khaneil Campbell</title>
 <meta name="description" content="Windows authentication logs in Splunk: SPL detection logic, threshold tuning, and a documented, repeatable analyst response workflow.">
 
 <meta property="og:type" content="article">
 <meta property="og:url" content="https://khaneilcampbell.com/soc-automation-lab.html">
-<meta property="og:title" content="Log Analysis with Splunk — Khaneil Campbell">
+<meta property="og:title" content="Log Analysis with Splunk | Khaneil Campbell">
 <meta property="og:description" content="Windows authentication logs in Splunk: SPL detection logic, threshold tuning, and a documented, repeatable analyst response workflow.">
 <meta property="og:image" content="https://khaneilcampbell.com/images/profile.jpg">
 <meta property="og:site_name" content="Khaneil Campbell">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Log Analysis with Splunk — Khaneil Campbell">
+<meta name="twitter:title" content="Log Analysis with Splunk | Khaneil Campbell">
 <meta name="twitter:description" content="Windows authentication logs in Splunk: SPL detection logic, threshold tuning, and a documented, repeatable analyst response workflow.">
 <meta name="twitter:image" content="https://khaneilcampbell.com/images/profile.jpg">
 <link rel="canonical" href="https://khaneilcampbell.com/soc-automation-lab.html">
@@ -30,7 +30,7 @@
       "@type": "WebPage",
       "@id": "https://khaneilcampbell.com/soc-automation-lab.html#webpage",
       "url": "https://khaneilcampbell.com/soc-automation-lab.html",
-      "name": "Log Analysis with Splunk \u2014 Khaneil Campbell",
+      "name": "Log Analysis with Splunk | Khaneil Campbell",
       "inLanguage": "en",
       "isPartOf": {
         "@id": "https://khaneilcampbell.com/#website"
@@ -112,7 +112,7 @@
       <div class="prose">
         <p>
           Failed logons are constant in any Windows estate. Most are a mistyped credential;
-          a few are not. The goal was to find the difference reliably — identify anomalous
+          a few are not. The goal was to find the difference reliably: identify anomalous
           authentication patterns, cut alert fatigue through threshold tuning, and turn raw
           event data into a structured, repeatable response workflow.
         </p>
@@ -123,7 +123,7 @@
         </p>
       </div>
       <dl class="facts">
-        <div class="fact"><dt>Focus</dt><dd>Authentication anomalies and brute-force behaviour</dd></div>
+        <div class="fact"><dt>Focus</dt><dd>Authentication anomalies and brute-force behavior</dd></div>
         <div class="fact"><dt>Telemetry</dt><dd>Windows Security Event Logs in Splunk Enterprise</dd></div>
         <div class="fact"><dt>Signal</dt><dd>Event ID 4625, grouped by source and account</dd></div>
         <div class="fact"><dt>Result</dt><dd>80+ failed logons isolated in a defined window</dd></div>
@@ -135,8 +135,8 @@
     <div class="wrap">
       <div class="section-head"><span class="eyebrow eyebrow--rule">Workflow</span><h2 class="t-sec">Four steps, in order.</h2></div>
       <div class="tiles">
-        <div class="tile"><h3 class="t-item">Ingestion</h3><p>Windows Security Event Logs — specifically Event ID 4625 — ingested into Splunk Enterprise and normalised so source host, account and timestamp can be queried consistently.</p></div>
-        <div class="tile"><h3 class="t-item">Detection</h3><p>SPL queries correlating failed logon volume across source IP, user account and time window — the combination that separates one frustrated user from a host hammering many accounts.</p></div>
+        <div class="tile"><h3 class="t-item">Ingestion</h3><p>Windows Security Event Logs, specifically Event ID 4625, ingested into Splunk Enterprise and normalized so source host, account and timestamp can be queried consistently.</p></div>
+        <div class="tile"><h3 class="t-item">Detection</h3><p>SPL queries correlating failed logon volume across source IP, user account and time window. That combination separates one frustrated user from a host hammering many accounts.</p></div>
         <div class="tile"><h3 class="t-item">Triage</h3><p>Correlated events reviewed, thresholds adjusted to cut false positives without losing signal, and the decision points written down including what was ruled out.</p></div>
         <div class="tile"><h3 class="t-item">Response</h3><p>Analyst actions, escalation criteria and reusable case notes defined so the next occurrence follows a known path.</p></div>
       </div>

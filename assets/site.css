@@ -58,7 +58,14 @@
   --ease: cubic-bezier(.22, .7, .24, 1);
 }
 
-html { scroll-behavior: smooth; -webkit-text-size-adjust: 100%; }
+html {
+  scroll-behavior: smooth;
+  -webkit-text-size-adjust: 100%;
+  /* Short pages (404, the credential pages) do not scroll while long ones do.
+     Without a reserved gutter the scrollbar appears and disappears between
+     routes, shifting the whole layout sideways on every navigation. */
+  scrollbar-gutter: stable;
+}
 
 body {
   background: var(--ground);
