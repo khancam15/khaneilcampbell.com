@@ -143,25 +143,122 @@
 
   <section class="section">
     <div class="wrap">
-      <div class="section-head"><span class="eyebrow eyebrow--rule">Capabilities</span><h2 class="t-sec">The work in detail.</h2></div>
-      <div class="tiles">
-        <div class="tile"><h3 class="t-item">Windows systems and end-user support</h3><p>Endpoint troubleshooting, profile and policy issues, application and peripheral faults, imaging and refresh work, and the escalated tickets that come back a second time.</p></div>
-        <div class="tile"><h3 class="t-item">Microsoft 365 administration</h3><p>User and group management, license assignment, Exchange and Teams administration, shared mailbox hygiene, and tenant settings that affect everyone downstream.</p></div>
-        <div class="tile"><h3 class="t-item">Active Directory and access</h3><p>Account lifecycle from onboarding to offboarding, nested-group untangling, MFA enforcement, credential reset and recovery workflows, and least-privilege reviews.</p></div>
-        <div class="tile"><h3 class="t-item">IT service management</h3><p>Incident, request and change practices under ITIL 4: prioritization, queue management, escalation paths, and documentation that makes a service supportable by more than one person.</p></div>
-        <div class="tile"><h3 class="t-item">Automation and AI workflows</h3><p>Python and shell automation, REST API integration, OAuth token lifecycle handling, local state in SQLite, and multi-agent orchestration with validation gates rather than blind execution.</p></div>
-        <div class="tile"><h3 class="t-item">Log analysis and fundamentals</h3><p>Reading authentication and system logs, writing queries that separate signal from noise, tuning thresholds, and documenting the response so it holds up to review.</p></div>
+      <div class="section-head">
+        <span class="eyebrow eyebrow--rule">Capabilities</span>
+        <h2 class="t-sec">The work in detail.</h2>
+        <p>Grouped by how it shows up in practice. Where a capability has been exercised outside of work, the lab or project that demonstrates it is linked.</p>
       </div>
-    </div>
-  </section>
 
-  <section class="section">
-    <div class="wrap">
-      <div class="section-head"><span class="eyebrow eyebrow--rule">Toolset</span><h2 class="t-sec">Tools and methods.</h2></div>
-      <div class="tiles">
-        <div class="tile"><h3 class="t-item">Platforms</h3><ul><li>Microsoft 365</li><li>Active Directory</li><li>Windows 10 / 11</li><li>ServiceNow</li><li>Splunk</li></ul></div>
-        <div class="tile"><h3 class="t-item">Languages and data</h3><ul><li>Python</li><li>Bash / shell</li><li>SQL via SQLite</li><li>JSON payload design</li><li>Markdown documentation</li></ul></div>
-        <div class="tile"><h3 class="t-item">Methods</h3><ul><li>Structured troubleshooting</li><li>Ticket triage and prioritization</li><li>Access review and least privilege</li><li>Runbook and knowledge authoring</li><li>Change documentation</li></ul></div>
+      <div class="domains">
+
+        <div class="domain">
+          <div class="domain-label">
+            <span class="domain-n">01</span>
+            <span class="domain-name">Operations</span>
+          </div>
+          <div class="caps">
+            <article class="cap">
+              <h3>Systems and end-user support</h3>
+              <p class="cap-line">Frontline and escalated support in environments where a stalled workflow reaches patients or teaching within minutes.</p>
+              <ul class="cap-list">
+                <li>Endpoint troubleshooting</li>
+                <li>Profile and policy faults</li>
+                <li>Application and peripheral issues</li>
+                <li>Imaging and refresh</li>
+                <li>Structured diagnosis</li>
+                <li>Escalated and repeat incidents</li>
+              </ul>
+              <div class="cap-meta"><span>Windows 10 / 11 &middot; ServiceNow</span></div>
+            </article>
+
+            <article class="cap">
+              <h3>IT service management</h3>
+              <p class="cap-line">ITIL 4 practice applied to routine volume, which is where a service desk is actually judged.</p>
+              <ul class="cap-list">
+                <li>Prioritization and triage</li>
+                <li>Queue discipline</li>
+                <li>Escalation paths</li>
+                <li>Runbook authoring</li>
+                <li>Knowledge articles</li>
+                <li>Change documentation</li>
+              </ul>
+              <div class="cap-meta"><a href="itil4.html">ITIL 4 Foundation</a></div>
+            </article>
+          </div>
+        </div>
+
+        <div class="domain">
+          <div class="domain-label">
+            <span class="domain-n">02</span>
+            <span class="domain-name">Systems and identity</span>
+          </div>
+          <div class="caps">
+            <article class="cap">
+              <h3>Microsoft 365 administration</h3>
+              <p class="cap-line">Tenant-level administration, where a single setting reaches every user downstream.</p>
+              <ul class="cap-list">
+                <li>User and group management</li>
+                <li>License assignment</li>
+                <li>Exchange administration</li>
+                <li>Teams administration</li>
+                <li>Shared mailbox hygiene</li>
+                <li>Tenant configuration</li>
+              </ul>
+              <div class="cap-meta"><span>Microsoft 365</span></div>
+            </article>
+
+            <article class="cap">
+              <h3>Active Directory and access</h3>
+              <p class="cap-line">Account lifecycle and access control, from onboarding through to revocation.</p>
+              <ul class="cap-list">
+                <li>Joiner, mover, leaver</li>
+                <li>Nested group resolution</li>
+                <li>MFA enforcement</li>
+                <li>Credential reset and recovery</li>
+                <li>Least-privilege review</li>
+                <li>Access request approval</li>
+              </ul>
+              <div class="cap-meta"><span>Active Directory</span><a href="lab-details.html#iam">Access control workflows</a></div>
+            </article>
+          </div>
+        </div>
+
+        <div class="domain">
+          <div class="domain-label">
+            <span class="domain-n">03</span>
+            <span class="domain-name">Engineering</span>
+          </div>
+          <div class="caps">
+            <article class="cap">
+              <h3>Automation and AI workflows</h3>
+              <p class="cap-line">Replacing repetitive operational work with systems whose behavior can be reconstructed after a failure.</p>
+              <ul class="cap-list">
+                <li>Python and shell automation</li>
+                <li>REST API integration</li>
+                <li>OAuth token lifecycle</li>
+                <li>SQLite state tracking</li>
+                <li>Multi-agent orchestration</li>
+                <li>Validation and retry logic</li>
+              </ul>
+              <div class="cap-meta"><span>Python &middot; Bash &middot; SQLite</span><a href="projects.html">AI product pipeline</a></div>
+            </article>
+
+            <article class="cap">
+              <h3>Log analysis</h3>
+              <p class="cap-line">Turning high-volume event data into something an analyst can act on without second-guessing it.</p>
+              <ul class="cap-list">
+                <li>Authentication and system logs</li>
+                <li>Query design</li>
+                <li>Threshold tuning</li>
+                <li>False-positive boundaries</li>
+                <li>Written triage notes</li>
+                <li>Escalation criteria</li>
+              </ul>
+              <div class="cap-meta"><span>Splunk &middot; SPL</span><a href="soc-automation-lab.html">Authentication log analysis</a><a href="security-plus.html">CompTIA Security+</a></div>
+            </article>
+          </div>
+        </div>
+
       </div>
     </div>
   </section>

@@ -307,3 +307,53 @@ a.piece:hover .piece-title { color: var(--blue-deep); }
   .piece-visual, .tile, .panel, .shot { box-shadow: none; border: 1px solid var(--line); }
   body { background: #fff; font-size: 11pt; }
 }
+
+/* ─── CAPABILITIES ─── */
+/* Six identical prose tiles gave the eye nothing to land on, and the
+   tools lived in a separate block from the capability that used them.
+   Each capability now carries its own specifics and its own tooling,
+   grouped under a numbered domain. */
+.domains { display: grid; }
+.domain {
+  display: grid; grid-template-columns: 210px minmax(0, 1fr);
+  gap: clamp(22px, 3vw, 48px);
+  padding-block: clamp(34px, 4vw, 54px);
+  border-top: 1px solid var(--line);
+}
+.domain:last-child { border-bottom: 1px solid var(--line); }
+.domain-label { display: flex; flex-direction: column; gap: 8px; }
+.domain-n {
+  font-family: var(--display); font-weight: 400; font-size: 30px;
+  line-height: 1; color: var(--blue);
+}
+.domain-name { font-size: 11px; letter-spacing: 0.22em; text-transform: uppercase; color: var(--muted); }
+
+.caps { display: grid; gap: clamp(28px, 3vw, 42px); }
+.cap { display: grid; gap: 10px; }
+.cap h3 { font-size: 19px; font-weight: 600; letter-spacing: -0.01em; }
+.cap-line { font-size: 15.5px; color: var(--body); max-width: 60ch; }
+
+.cap-list {
+  list-style: none;
+  display: grid; grid-template-columns: repeat(auto-fit, minmax(188px, 1fr));
+  gap: 2px 26px; margin-top: 4px;
+}
+.cap-list li {
+  position: relative; padding-left: 16px;
+  font-size: 14.5px; line-height: 1.75; color: var(--body);
+}
+.cap-list li::before {
+  content: ''; position: absolute; left: 0; top: 12px;
+  width: 7px; height: 1px; background: var(--blue-line);
+}
+
+.cap-meta { display: flex; flex-wrap: wrap; gap: 6px 18px; margin-top: 8px; align-items: baseline; }
+.cap-meta span, .cap-meta a { font-size: 12px; letter-spacing: 0.1em; text-transform: uppercase; }
+.cap-meta span { color: var(--faint); }
+.cap-meta a { color: var(--blue-deep); border-bottom: 1px solid var(--blue-line); padding-bottom: 1px; transition: color var(--slow) var(--ease), border-color var(--slow) var(--ease); }
+.cap-meta a:hover { color: var(--blue); border-bottom-color: var(--blue); }
+
+@media (max-width: 760px) {
+  .domain { grid-template-columns: 1fr; gap: 18px; }
+  .domain-label { flex-direction: row; align-items: baseline; gap: 14px; }
+}
