@@ -2,37 +2,37 @@
 <rect width="1200" height="474" fill="#ffffff"/>
 <rect x="72.0" y="72" width="244.5" height="196" rx="3" fill="#ffffff" stroke="#dde6f1" stroke-width="1"/>
 <circle cx="98.0" cy="106" r="4.5" fill="#8995a6"/>
-<text x="112.0" y="111" font-family="Poppins,'Helvetica Neue',Helvetica,Arial,sans-serif" font-size="15" letter-spacing="1.8" fill="#8995a6">01</text>
-<text x="98.0" y="158" font-family="Poppins,'Helvetica Neue',Helvetica,Arial,sans-serif" font-size="26" font-weight="600" letter-spacing="-0.4" fill="#0d1521">Ingest</text>
-<text x="98.0" y="192" font-family="Poppins,'Helvetica Neue',Helvetica,Arial,sans-serif" font-size="17.5" fill="#4d596a">Windows Security events</text>
-<text x="98.0" y="215" font-family="Poppins,'Helvetica Neue',Helvetica,Arial,sans-serif" font-size="17.5" fill="#4d596a">normalized into Splunk</text>
+<text x="112.0" y="111" font-family="'Helvetica Neue',Helvetica,Arial,sans-serif" font-size="15" letter-spacing="1.8" fill="#8995a6">01</text>
+<text x="98.0" y="158" font-family="'Helvetica Neue',Helvetica,Arial,sans-serif" font-size="26" font-weight="600" letter-spacing="-0.4" fill="#0d1521">Ingest</text>
+<text x="98.0" y="192" font-family="'Helvetica Neue',Helvetica,Arial,sans-serif" font-size="17.5" fill="#4d596a">Windows Security events</text>
+<text x="98.0" y="215" font-family="'Helvetica Neue',Helvetica,Arial,sans-serif" font-size="17.5" fill="#4d596a">normalized into Splunk</text>
 <path d="M 326.0 165 l 7 5 l -7 5" fill="none" stroke="#8995a6" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
 <rect x="342.5" y="72" width="244.5" height="196" rx="3" fill="#ffffff" stroke="#dde6f1" stroke-width="1"/>
 <circle cx="368.5" cy="106" r="4.5" fill="#8995a6"/>
-<text x="382.5" y="111" font-family="Poppins,'Helvetica Neue',Helvetica,Arial,sans-serif" font-size="15" letter-spacing="1.8" fill="#8995a6">02</text>
-<text x="368.5" y="158" font-family="Poppins,'Helvetica Neue',Helvetica,Arial,sans-serif" font-size="26" font-weight="600" letter-spacing="-0.4" fill="#0d1521">Detect</text>
-<text x="368.5" y="192" font-family="Poppins,'Helvetica Neue',Helvetica,Arial,sans-serif" font-size="17.5" fill="#4d596a">SPL groups failed logons</text>
-<text x="368.5" y="215" font-family="Poppins,'Helvetica Neue',Helvetica,Arial,sans-serif" font-size="17.5" fill="#4d596a">by source host and account</text>
+<text x="382.5" y="111" font-family="'Helvetica Neue',Helvetica,Arial,sans-serif" font-size="15" letter-spacing="1.8" fill="#8995a6">02</text>
+<text x="368.5" y="158" font-family="'Helvetica Neue',Helvetica,Arial,sans-serif" font-size="26" font-weight="600" letter-spacing="-0.4" fill="#0d1521">Detect</text>
+<text x="368.5" y="192" font-family="'Helvetica Neue',Helvetica,Arial,sans-serif" font-size="17.5" fill="#4d596a">SPL groups failed logons</text>
+<text x="368.5" y="215" font-family="'Helvetica Neue',Helvetica,Arial,sans-serif" font-size="17.5" fill="#4d596a">by source host and account</text>
 <path d="M 596.5 165 l 7 5 l -7 5" fill="none" stroke="#8995a6" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
 <rect x="613.0" y="72" width="244.5" height="196" rx="3" fill="#ffffff" stroke="#1470af" stroke-width="2"/>
 <circle cx="639.0" cy="106" r="4.5" fill="#1470af"/>
-<text x="653.0" y="111" font-family="Poppins,'Helvetica Neue',Helvetica,Arial,sans-serif" font-size="15" letter-spacing="1.8" fill="#8995a6">03</text>
-<text x="639.0" y="158" font-family="Poppins,'Helvetica Neue',Helvetica,Arial,sans-serif" font-size="26" font-weight="600" letter-spacing="-0.4" fill="#0d1521">Tune</text>
-<text x="639.0" y="192" font-family="Poppins,'Helvetica Neue',Helvetica,Arial,sans-serif" font-size="17.5" fill="#4d596a">Threshold raised until</text>
-<text x="639.0" y="215" font-family="Poppins,'Helvetica Neue',Helvetica,Arial,sans-serif" font-size="17.5" fill="#4d596a">routine noise drops out</text>
+<text x="653.0" y="111" font-family="'Helvetica Neue',Helvetica,Arial,sans-serif" font-size="15" letter-spacing="1.8" fill="#8995a6">03</text>
+<text x="639.0" y="158" font-family="'Helvetica Neue',Helvetica,Arial,sans-serif" font-size="26" font-weight="600" letter-spacing="-0.4" fill="#0d1521">Tune</text>
+<text x="639.0" y="192" font-family="'Helvetica Neue',Helvetica,Arial,sans-serif" font-size="17.5" fill="#4d596a">Threshold raised until</text>
+<text x="639.0" y="215" font-family="'Helvetica Neue',Helvetica,Arial,sans-serif" font-size="17.5" fill="#4d596a">routine noise drops out</text>
 <path d="M 867.0 165 l 7 5 l -7 5" fill="none" stroke="#8995a6" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
 <rect x="883.5" y="72" width="244.5" height="196" rx="3" fill="#ffffff" stroke="#dde6f1" stroke-width="1"/>
 <circle cx="909.5" cy="106" r="4.5" fill="#8995a6"/>
-<text x="923.5" y="111" font-family="Poppins,'Helvetica Neue',Helvetica,Arial,sans-serif" font-size="15" letter-spacing="1.8" fill="#8995a6">04</text>
-<text x="909.5" y="158" font-family="Poppins,'Helvetica Neue',Helvetica,Arial,sans-serif" font-size="26" font-weight="600" letter-spacing="-0.4" fill="#0d1521">Respond</text>
-<text x="909.5" y="192" font-family="Poppins,'Helvetica Neue',Helvetica,Arial,sans-serif" font-size="17.5" fill="#4d596a">Triage notes and</text>
-<text x="909.5" y="215" font-family="Poppins,'Helvetica Neue',Helvetica,Arial,sans-serif" font-size="17.5" fill="#4d596a">escalation criteria</text>
-<text x="909.5" y="238" font-family="Poppins,'Helvetica Neue',Helvetica,Arial,sans-serif" font-size="17.5" fill="#4d596a">written for reuse</text>
+<text x="923.5" y="111" font-family="'Helvetica Neue',Helvetica,Arial,sans-serif" font-size="15" letter-spacing="1.8" fill="#8995a6">04</text>
+<text x="909.5" y="158" font-family="'Helvetica Neue',Helvetica,Arial,sans-serif" font-size="26" font-weight="600" letter-spacing="-0.4" fill="#0d1521">Respond</text>
+<text x="909.5" y="192" font-family="'Helvetica Neue',Helvetica,Arial,sans-serif" font-size="17.5" fill="#4d596a">Triage notes and</text>
+<text x="909.5" y="215" font-family="'Helvetica Neue',Helvetica,Arial,sans-serif" font-size="17.5" fill="#4d596a">escalation criteria</text>
+<text x="909.5" y="238" font-family="'Helvetica Neue',Helvetica,Arial,sans-serif" font-size="17.5" fill="#4d596a">written for reuse</text>
 <line x1="72" y1="306" x2="1128" y2="306" stroke="#dde6f1" stroke-width="1"/>
-<text x="72" y="340" font-family="Poppins,'Helvetica Neue',Helvetica,Arial,sans-serif" font-size="16" letter-spacing="2.2" fill="#8995a6">EVIDENCE</text>
-<text x="72.0" y="378" font-family="Poppins,'Helvetica Neue',Helvetica,Arial,sans-serif" font-size="19" fill="#0d1521">Event ID 4625</text>
-<text x="336.0" y="378" font-family="Poppins,'Helvetica Neue',Helvetica,Arial,sans-serif" font-size="19" fill="#0d1521">80+ failed logons isolated</text>
-<text x="600.0" y="378" font-family="Poppins,'Helvetica Neue',Helvetica,Arial,sans-serif" font-size="19" fill="#0d1521">One defined time window</text>
-<text x="864.0" y="378" font-family="Poppins,'Helvetica Neue',Helvetica,Arial,sans-serif" font-size="19" fill="#0d1521">Repeatable by someone else</text>
-<text x="72" y="434" font-family="Poppins,'Helvetica Neue',Helvetica,Arial,sans-serif" font-size="17.5" fill="#8995a6">The tuning step is where most of the work went. A detection nobody trusts gets muted.</text>
+<text x="72" y="340" font-family="'Helvetica Neue',Helvetica,Arial,sans-serif" font-size="16" letter-spacing="2.2" fill="#8995a6">EVIDENCE</text>
+<text x="72.0" y="378" font-family="'Helvetica Neue',Helvetica,Arial,sans-serif" font-size="19" fill="#0d1521">Event ID 4625</text>
+<text x="336.0" y="378" font-family="'Helvetica Neue',Helvetica,Arial,sans-serif" font-size="19" fill="#0d1521">80+ failed logons isolated</text>
+<text x="600.0" y="378" font-family="'Helvetica Neue',Helvetica,Arial,sans-serif" font-size="19" fill="#0d1521">One defined time window</text>
+<text x="864.0" y="378" font-family="'Helvetica Neue',Helvetica,Arial,sans-serif" font-size="19" fill="#0d1521">Repeatable by someone else</text>
+<text x="72" y="434" font-family="'Helvetica Neue',Helvetica,Arial,sans-serif" font-size="17.5" fill="#8995a6">The tuning step is where most of the work went. A detection nobody trusts gets muted.</text>
 </svg>
