@@ -6,31 +6,48 @@ administration, IT service management, and automation. Hosted on GitHub Pages at
 
 ## Design
 
-A minimal portfolio. One centred measure, two typefaces, very few rules, and a lot
-of air — the previous build's problem was density, not decoration, so the fix was
-space rather than more styling.
+Work-led, in the register of [nomadgoods.com](https://nomadgoods.com): a warm
+off-white ground, white panels lifting off it on soft elevation, a large visual
+leading each entry with a short caption underneath, and a lot of air.
 
-Removed in this build: page-frame hairlines, the scroll rail, inverted dark bands,
-three-tone outlined headlines, mono micro-labels, status chips, evidence rails,
-figure bands, the full-bleed ruled grid, and all JavaScript.
+The homepage leads with the work, not with the person. Each project gets a
+full-width panel carrying its own diagram.
 
 | | |
 |---|---|
-| Ground | Warm white `#fdfdfc` |
-| Ink | `#141414` (16.4:1), body `#3f3f3f` (10.5:1) |
-| Accent | Slate teal `#1a5471` (8.1:1), on links and the primary action only |
+| Ground | Warm off-white `#f6f6f3`, panels `#ffffff` |
+| Ink | `#15161a` (15.9:1), body `#4a4c52` (8.4:1) |
+| Accent | Slate teal `#1a5471` (7.8:1), links and primary action only |
 | Display | Archivo 500/600 |
 | Body | Inter 400/500/600 |
-| Measure | 1060px centred |
+| Measure | 1200px, 780px for reading |
+| Elevation | Two soft shadow steps, `--lift` and `--lift-2` |
 
-Every colour is a token at the top of `assets/site.css`; retinting means editing
-those values alone.
+### Diagrams
+
+The references this design follows are photography-led; this site has no
+photography beyond one portrait. The visual weight is carried instead by four
+SVG diagrams in `images/diagrams/`, generated to a single visual language so
+they read as a set: four stages across, one highlighted as the step that
+matters, a supporting layer underneath, and a one-line note.
+
+They are 1200×474 and about 5KB each — 32KB for all four, against 1.9MB for the
+single portrait photo.
+
+Two things to know before editing them:
+
+- They use a **system font stack**, not Inter. An SVG loaded through `<img>`
+  cannot fetch a web font, so matching the page type would mean inlining the
+  SVG into every page.
+- They carry **no title**, deliberately. The page caption names each piece, and
+  having both read as a duplicate.
 
 ## Conventions
 
 - **No JavaScript.** The site ships none, so the CSP has no `script-src` at all —
-  `default-src 'none'` covers it. Keep it that way: the nav wraps rather than
-  collapsing into a menu, and nothing depends on scroll handlers.
+  `default-src 'none'` covers it. JSON-LD blocks are data, not executed scripts,
+  so they are unaffected. Keep it that way: the nav wraps rather than collapsing
+  into a menu, and nothing depends on scroll handlers.
 - **No inline `style` or `on*` attributes.** `style-src` stays at `'self'` with no
   `'unsafe-inline'`, so inline styles silently fail — use the `.mt-s` / `.mt-m` /
   `.mt-l` / `.cols-1` utilities instead.
@@ -64,6 +81,7 @@ itil4.html               ITIL 4 Foundation credential page
 404.html                 Not-found page
 
 assets/site.css          The entire design system — one file, no JS
+images/diagrams/         Four generated SVG work diagrams
 images/                  Portrait and certificate assets
 _headers                 HTTP security headers
 robots.txt sitemap.xml   Crawler directives and URL index

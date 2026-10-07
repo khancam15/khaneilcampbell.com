@@ -1,0 +1,41 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 474" width="1200" height="474" role="img" aria-label="Phishing response walkthrough">
+<rect width="1200" height="474" fill="#ffffff"/>
+<rect x="72.0" y="72" width="244.5" height="196" rx="3" fill="#ffffff" stroke="#e3e3df" stroke-width="1"/>
+<circle cx="98.0" cy="106" r="4.5" fill="#8a8d94"/>
+<text x="112.0" y="111" font-family="'Helvetica Neue',Helvetica,Arial,sans-serif" font-size="15" letter-spacing="1.8" fill="#8a8d94">01</text>
+<text x="98.0" y="158" font-family="'Helvetica Neue',Helvetica,Arial,sans-serif" font-size="26" font-weight="600" letter-spacing="-0.4" fill="#15161a">Report</text>
+<text x="98.0" y="192" font-family="'Helvetica Neue',Helvetica,Arial,sans-serif" font-size="17.5" fill="#55575e">User report captured with</text>
+<text x="98.0" y="215" font-family="'Helvetica Neue',Helvetica,Arial,sans-serif" font-size="17.5" fill="#55575e">sender, link and affected</text>
+<text x="98.0" y="238" font-family="'Helvetica Neue',Helvetica,Arial,sans-serif" font-size="17.5" fill="#55575e">host</text>
+<path d="M 326.0 165 l 7 5 l -7 5" fill="none" stroke="#8a8d94" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+<rect x="342.5" y="72" width="244.5" height="196" rx="3" fill="#ffffff" stroke="#e3e3df" stroke-width="1"/>
+<circle cx="368.5" cy="106" r="4.5" fill="#8a8d94"/>
+<text x="382.5" y="111" font-family="'Helvetica Neue',Helvetica,Arial,sans-serif" font-size="15" letter-spacing="1.8" fill="#8a8d94">02</text>
+<text x="368.5" y="158" font-family="'Helvetica Neue',Helvetica,Arial,sans-serif" font-size="26" font-weight="600" letter-spacing="-0.4" fill="#15161a">Analyse</text>
+<text x="368.5" y="192" font-family="'Helvetica Neue',Helvetica,Arial,sans-serif" font-size="17.5" fill="#55575e">Process activity and event</text>
+<text x="368.5" y="215" font-family="'Helvetica Neue',Helvetica,Arial,sans-serif" font-size="17.5" fill="#55575e">logs reviewed for</text>
+<text x="368.5" y="238" font-family="'Helvetica Neue',Helvetica,Arial,sans-serif" font-size="17.5" fill="#55575e">indicators</text>
+<path d="M 596.5 165 l 7 5 l -7 5" fill="none" stroke="#8a8d94" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+<rect x="613.0" y="72" width="244.5" height="196" rx="3" fill="#ffffff" stroke="#1a5471" stroke-width="2"/>
+<circle cx="639.0" cy="106" r="4.5" fill="#1a5471"/>
+<text x="653.0" y="111" font-family="'Helvetica Neue',Helvetica,Arial,sans-serif" font-size="15" letter-spacing="1.8" fill="#8a8d94">03</text>
+<text x="639.0" y="158" font-family="'Helvetica Neue',Helvetica,Arial,sans-serif" font-size="26" font-weight="600" letter-spacing="-0.4" fill="#15161a">Contain</text>
+<text x="639.0" y="192" font-family="'Helvetica Neue',Helvetica,Arial,sans-serif" font-size="17.5" fill="#55575e">Isolation, account</text>
+<text x="639.0" y="215" font-family="'Helvetica Neue',Helvetica,Arial,sans-serif" font-size="17.5" fill="#55575e">protection and blocking</text>
+<text x="639.0" y="238" font-family="'Helvetica Neue',Helvetica,Arial,sans-serif" font-size="17.5" fill="#55575e">decided</text>
+<path d="M 867.0 165 l 7 5 l -7 5" fill="none" stroke="#8a8d94" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+<rect x="883.5" y="72" width="244.5" height="196" rx="3" fill="#ffffff" stroke="#e3e3df" stroke-width="1"/>
+<circle cx="909.5" cy="106" r="4.5" fill="#8a8d94"/>
+<text x="923.5" y="111" font-family="'Helvetica Neue',Helvetica,Arial,sans-serif" font-size="15" letter-spacing="1.8" fill="#8a8d94">04</text>
+<text x="909.5" y="158" font-family="'Helvetica Neue',Helvetica,Arial,sans-serif" font-size="26" font-weight="600" letter-spacing="-0.4" fill="#15161a">Write up</text>
+<text x="909.5" y="192" font-family="'Helvetica Neue',Helvetica,Arial,sans-serif" font-size="17.5" fill="#55575e">Incident summary for</text>
+<text x="909.5" y="215" font-family="'Helvetica Neue',Helvetica,Arial,sans-serif" font-size="17.5" fill="#55575e">readers who were not</text>
+<text x="909.5" y="238" font-family="'Helvetica Neue',Helvetica,Arial,sans-serif" font-size="17.5" fill="#55575e">involved</text>
+<line x1="72" y1="306" x2="1128" y2="306" stroke="#e3e3df" stroke-width="1"/>
+<text x="72" y="340" font-family="'Helvetica Neue',Helvetica,Arial,sans-serif" font-size="16" letter-spacing="2.2" fill="#8a8d94">EVIDENCE GOAL</text>
+<text x="72.0" y="378" font-family="'Helvetica Neue',Helvetica,Arial,sans-serif" font-size="19" fill="#15161a">Delivery</text>
+<text x="336.0" y="378" font-family="'Helvetica Neue',Helvetica,Arial,sans-serif" font-size="19" fill="#15161a">Execution</text>
+<text x="600.0" y="378" font-family="'Helvetica Neue',Helvetica,Arial,sans-serif" font-size="19" fill="#15161a">Persistence</text>
+<text x="864.0" y="378" font-family="'Helvetica Neue',Helvetica,Arial,sans-serif" font-size="19" fill="#15161a">Containment</text>
+<text x="72" y="434" font-family="'Helvetica Neue',Helvetica,Arial,sans-serif" font-size="17.5" fill="#8a8d94">The output is a timeline somebody else can audit, not a list of tools run.</text>
+</svg>

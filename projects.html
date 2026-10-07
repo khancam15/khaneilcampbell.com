@@ -89,7 +89,7 @@
 
   <section class="hero">
     <div class="wrap">
-      <span class="label">Projects</span>
+      <span class="eyebrow">Projects</span>
       <h1 class="t-page">Automation that runs itself.</h1>
       <p class="lede">
         Build work outside the day job, written with production habits — credential
@@ -101,7 +101,7 @@
   <section class="section">
     <div class="wrap">
       <div class="section-head">
-        <span class="label">Project 01 &middot; Built</span>
+        <span class="eyebrow">Project 01 &middot; Built</span>
         <h2 class="t-sec">AI product pipeline</h2>
       </div>
 
@@ -129,38 +129,38 @@
 
   <section class="section">
     <div class="wrap">
-      <div class="section-head"><span class="label">How it runs</span><h2 class="t-sec">Seven phases, four stages.</h2></div>
-      <div class="cols">
-        <div class="col"><h3 class="t-item">Brand</h3><p>CrewAI agents research positioning, visual identity and SEO direction, then assemble a reusable brand guide.</p></div>
-        <div class="col"><h3 class="t-item">Generate</h3><p>Product ideas, titles, tags and descriptions generated from the current brand guide.</p></div>
-        <div class="col"><h3 class="t-item">Design</h3><p>Canva automation produces mockups and buyer-ready template files from the generated direction.</p></div>
-        <div class="col"><h3 class="t-item">Publish</h3><p>Assets processed, listings validated, published via Etsy, SEO reviewed and status reported.</p></div>
+      <div class="section-head"><span class="eyebrow">How it runs</span><h2 class="t-sec">Seven phases, four stages.</h2></div>
+      <div class="tiles">
+        <div class="tile"><h3 class="t-item">Brand</h3><p>CrewAI agents research positioning, visual identity and SEO direction, then assemble a reusable brand guide.</p></div>
+        <div class="tile"><h3 class="t-item">Generate</h3><p>Product ideas, titles, tags and descriptions generated from the current brand guide.</p></div>
+        <div class="tile"><h3 class="t-item">Design</h3><p>Canva automation produces mockups and buyer-ready template files from the generated direction.</p></div>
+        <div class="tile"><h3 class="t-item">Publish</h3><p>Assets processed, listings validated, published via Etsy, SEO reviewed and status reported.</p></div>
       </div>
     </div>
   </section>
 
   <section class="section">
     <div class="wrap">
-      <div class="section-head"><span class="label">Guardrails</span><h2 class="t-sec">Controls, not good intentions.</h2></div>
-      <div class="cols">
-        <div class="col"><h3 class="t-item">Credentials</h3><p>API keys and OAuth tokens stay in <code>.env</code>; <code>.env.example</code> documents the required variables without exposing real values.</p></div>
-        <div class="col"><h3 class="t-item">Scanning</h3><p>A gitleaks pre-commit hook with redaction catches accidental credentials before they leave the local environment.</p></div>
-        <div class="col"><h3 class="t-item">OAuth</h3><p>Etsy and Canva tokens are acquired through setup scripts, checked at preflight and refreshed on expiry rather than hardcoded.</p></div>
-        <div class="col"><h3 class="t-item">Validation</h3><p>The upload flow checks title length, tag count, price range and asset readiness before any live publish.</p></div>
-        <div class="col"><h3 class="t-item">Resilience</h3><p>Calls retry with exponential backoff on rate limits and server errors; publish limits and cooldowns prevent burst automation.</p></div>
-        <div class="col"><h3 class="t-item">Operations</h3><p>SQLite tables track queue state, published listings, run logs, SEO reviews and sales, so failures are diagnosable.</p></div>
+      <div class="section-head"><span class="eyebrow">Guardrails</span><h2 class="t-sec">Controls, not good intentions.</h2></div>
+      <div class="tiles">
+        <div class="tile"><h3 class="t-item">Credentials</h3><p>API keys and OAuth tokens stay in <code>.env</code>; <code>.env.example</code> documents the required variables without exposing real values.</p></div>
+        <div class="tile"><h3 class="t-item">Scanning</h3><p>A gitleaks pre-commit hook with redaction catches accidental credentials before they leave the local environment.</p></div>
+        <div class="tile"><h3 class="t-item">OAuth</h3><p>Etsy and Canva tokens are acquired through setup scripts, checked at preflight and refreshed on expiry rather than hardcoded.</p></div>
+        <div class="tile"><h3 class="t-item">Validation</h3><p>The upload flow checks title length, tag count, price range and asset readiness before any live publish.</p></div>
+        <div class="tile"><h3 class="t-item">Resilience</h3><p>Calls retry with exponential backoff on rate limits and server errors; publish limits and cooldowns prevent burst automation.</p></div>
+        <div class="tile"><h3 class="t-item">Operations</h3><p>SQLite tables track queue state, published listings, run logs, SEO reviews and sales, so failures are diagnosable.</p></div>
       </div>
     </div>
   </section>
 
   <section class="section">
     <div class="wrap">
-      <div class="section-head"><span class="label">Stack</span><h2 class="t-sec">Tools and languages.</h2></div>
-      <div class="cols">
-        <div class="col"><h3 class="t-item">Languages</h3><ul><li>Python 3.12+</li><li>Bash shell scripting</li><li>SQL via SQLite</li><li>JSON payload design</li></ul></div>
-        <div class="col"><h3 class="t-item">AI and data</h3><ul><li>Anthropic API</li><li>CrewAI</li><li>Serper API</li><li>SQLite database</li></ul></div>
-        <div class="col"><h3 class="t-item">Platform APIs</h3><ul><li>Etsy REST API v3</li><li>Canva Connect REST API</li><li>OAuth2 PKCE</li><li>Gmail SMTP digest</li></ul></div>
-        <div class="col"><h3 class="t-item">Deployment</h3><ul><li>Ubuntu VPS</li><li>systemd service</li><li>Runtime logs</li><li>Daily health dashboard</li></ul></div>
+      <div class="section-head"><span class="eyebrow">Stack</span><h2 class="t-sec">Tools and languages.</h2></div>
+      <div class="tiles">
+        <div class="tile"><h3 class="t-item">Languages</h3><ul><li>Python 3.12+</li><li>Bash shell scripting</li><li>SQL via SQLite</li><li>JSON payload design</li></ul></div>
+        <div class="tile"><h3 class="t-item">AI and data</h3><ul><li>Anthropic API</li><li>CrewAI</li><li>Serper API</li><li>SQLite database</li></ul></div>
+        <div class="tile"><h3 class="t-item">Platform APIs</h3><ul><li>Etsy REST API v3</li><li>Canva Connect REST API</li><li>OAuth2 PKCE</li><li>Gmail SMTP digest</li></ul></div>
+        <div class="tile"><h3 class="t-item">Deployment</h3><ul><li>Ubuntu VPS</li><li>systemd service</li><li>Runtime logs</li><li>Daily health dashboard</li></ul></div>
       </div>
       <div class="actions"><a class="btn-text" href="labs.html">See the labs</a></div>
     </div>
@@ -169,21 +169,23 @@
 </main>
 
 <footer class="foot">
-  <div class="wrap foot-in">
-    <div>
-      <span class="nav-name">Khaneil Campbell</span>
-      <p class="foot-note">IT professional &middot; New York, NY</p>
+  <div class="wrap">
+    <div class="foot-in">
+      <div>
+        <span class="nav-name">Khaneil Campbell</span>
+        <p class="foot-note">IT professional &middot; New York, NY</p>
+      </div>
+      <ul class="foot-links">
+        <li><a href="projects.html">Projects</a></li>
+        <li><a href="labs.html">Labs</a></li>
+        <li><a href="about.html">About</a></li>
+        <li><a href="contact.html">Contact</a></li>
+        <li><a href="https://www.linkedin.com/in/khaneil-c-44179a14a/" target="_blank" rel="noopener noreferrer">LinkedIn</a></li>
+        <li><a href="https://github.com/khancam15" target="_blank" rel="noopener noreferrer">GitHub</a></li>
+      </ul>
     </div>
-    <ul class="foot-links">
-      <li><a href="projects.html">Projects</a></li>
-      <li><a href="labs.html">Labs</a></li>
-      <li><a href="about.html">About</a></li>
-      <li><a href="contact.html">Contact</a></li>
-      <li><a href="https://www.linkedin.com/in/khaneil-c-44179a14a/" target="_blank" rel="noopener noreferrer">LinkedIn</a></li>
-      <li><a href="https://github.com/khancam15" target="_blank" rel="noopener noreferrer">GitHub</a></li>
-    </ul>
+    <p class="foot-note mt-m">&copy; 2026 Khaneil Campbell</p>
   </div>
-  <div class="wrap"><p class="foot-note">&copy; 2026 Khaneil Campbell</p></div>
 </footer>
 
 </body>

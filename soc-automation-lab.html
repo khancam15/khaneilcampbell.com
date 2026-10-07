@@ -95,7 +95,7 @@
 
   <section class="hero">
     <div class="wrap">
-      <span class="label">Case study &middot; Published</span>
+      <span class="eyebrow">Case study &middot; Published</span>
       <h1 class="t-page">Authentication log analysis with Splunk.</h1>
       <p class="lede">
         Brute-force credential detection: SPL alert logic, a structured triage method, and
@@ -110,7 +110,7 @@
 
   <section class="section">
     <div class="wrap">
-      <div class="section-head"><span class="label">Objective</span><h2 class="t-sec">Turn authentication noise into analyst-ready signal.</h2></div>
+      <div class="section-head"><span class="eyebrow">Objective</span><h2 class="t-sec">Turn authentication noise into analyst-ready signal.</h2></div>
       <div class="prose">
         <p>
           Failed logons are constant in any Windows estate. Most are a mistyped credential;
@@ -135,19 +135,19 @@
 
   <section class="section">
     <div class="wrap">
-      <div class="section-head"><span class="label">Workflow</span><h2 class="t-sec">Four steps, in order.</h2></div>
-      <div class="cols">
-        <div class="col"><h3 class="t-item">Ingestion</h3><p>Windows Security Event Logs — specifically Event ID 4625 — ingested into Splunk Enterprise and normalised so source host, account and timestamp can be queried consistently.</p></div>
-        <div class="col"><h3 class="t-item">Detection</h3><p>SPL queries correlating failed logon volume across source IP, user account and time window — the combination that separates one frustrated user from a host hammering many accounts.</p></div>
-        <div class="col"><h3 class="t-item">Triage</h3><p>Correlated events reviewed, thresholds adjusted to cut false positives without losing signal, and the decision points written down including what was ruled out.</p></div>
-        <div class="col"><h3 class="t-item">Response</h3><p>Analyst actions, escalation criteria and reusable case notes defined so the next occurrence follows a known path.</p></div>
+      <div class="section-head"><span class="eyebrow">Workflow</span><h2 class="t-sec">Four steps, in order.</h2></div>
+      <div class="tiles">
+        <div class="tile"><h3 class="t-item">Ingestion</h3><p>Windows Security Event Logs — specifically Event ID 4625 — ingested into Splunk Enterprise and normalised so source host, account and timestamp can be queried consistently.</p></div>
+        <div class="tile"><h3 class="t-item">Detection</h3><p>SPL queries correlating failed logon volume across source IP, user account and time window — the combination that separates one frustrated user from a host hammering many accounts.</p></div>
+        <div class="tile"><h3 class="t-item">Triage</h3><p>Correlated events reviewed, thresholds adjusted to cut false positives without losing signal, and the decision points written down including what was ruled out.</p></div>
+        <div class="tile"><h3 class="t-item">Response</h3><p>Analyst actions, escalation criteria and reusable case notes defined so the next occurrence follows a known path.</p></div>
       </div>
     </div>
   </section>
 
   <section class="section">
     <div class="wrap">
-      <div class="section-head"><span class="label">Outcome</span><h2 class="t-sec">A lab that behaves like real work.</h2></div>
+      <div class="section-head"><span class="eyebrow">Outcome</span><h2 class="t-sec">A lab that behaves like real work.</h2></div>
       <div class="prose">
         <p>
           A self-contained use case demonstrating credential-attack detection, a structured
@@ -165,21 +165,23 @@
 </main>
 
 <footer class="foot">
-  <div class="wrap foot-in">
-    <div>
-      <span class="nav-name">Khaneil Campbell</span>
-      <p class="foot-note">IT professional &middot; New York, NY</p>
+  <div class="wrap">
+    <div class="foot-in">
+      <div>
+        <span class="nav-name">Khaneil Campbell</span>
+        <p class="foot-note">IT professional &middot; New York, NY</p>
+      </div>
+      <ul class="foot-links">
+        <li><a href="projects.html">Projects</a></li>
+        <li><a href="labs.html">Labs</a></li>
+        <li><a href="about.html">About</a></li>
+        <li><a href="contact.html">Contact</a></li>
+        <li><a href="https://www.linkedin.com/in/khaneil-c-44179a14a/" target="_blank" rel="noopener noreferrer">LinkedIn</a></li>
+        <li><a href="https://github.com/khancam15" target="_blank" rel="noopener noreferrer">GitHub</a></li>
+      </ul>
     </div>
-    <ul class="foot-links">
-      <li><a href="projects.html">Projects</a></li>
-      <li><a href="labs.html">Labs</a></li>
-      <li><a href="about.html">About</a></li>
-      <li><a href="contact.html">Contact</a></li>
-      <li><a href="https://www.linkedin.com/in/khaneil-c-44179a14a/" target="_blank" rel="noopener noreferrer">LinkedIn</a></li>
-      <li><a href="https://github.com/khancam15" target="_blank" rel="noopener noreferrer">GitHub</a></li>
-    </ul>
+    <p class="foot-note mt-m">&copy; 2026 Khaneil Campbell</p>
   </div>
-  <div class="wrap"><p class="foot-note">&copy; 2026 Khaneil Campbell</p></div>
 </footer>
 
 </body>
