@@ -180,6 +180,10 @@ h3, h4 {
   transition: box-shadow var(--slow) var(--ease), transform var(--slow) var(--ease), border-color var(--slow) var(--ease);
 }
 a.piece:hover .piece-visual { box-shadow: var(--lift-2); border-color: var(--blue-line); transform: translateY(-3px); }
+.piece-visual picture { display: block; }
+/* The wide diagram scales to 0.27 on a 375px screen, which renders its
+   labels at under 5px. Narrow screens get a stacked variant instead,
+   swapped by <picture> so it costs no JavaScript. */
 .piece-visual img { width: 100%; }
 .piece-body { display: grid; gap: 12px; margin-top: 30px; max-width: 62ch; }
 .piece-meta { display: flex; align-items: baseline; gap: 16px; flex-wrap: wrap; }
@@ -193,7 +197,12 @@ a.piece:hover .piece-title { color: var(--blue-deep); }
 /* ─── TILES ─── */
 /* Hairline grid rather than floating cards — quieter, and it lets the
    whitespace between sections do the separating instead. */
-.tiles { display: grid; gap: 1px; background: var(--line); grid-template-columns: repeat(auto-fit, minmax(262px, 1fr)); border: 1px solid var(--line); }
+/* Four items of running prose. auto-fit stranded one on its own row from
+   ~900px, and four across at full width leaves a 22-character measure.
+   Fixed at one or two columns so the count always divides evenly and the
+   text keeps a readable line. */
+.tiles { display: grid; gap: 1px; background: var(--line); grid-template-columns: 1fr; border: 1px solid var(--line); }
+@media (min-width: 620px) { .tiles { grid-template-columns: repeat(2, 1fr); } }
 .tile { background: var(--ground); padding: clamp(28px, 3vw, 40px); transition: background var(--slow) var(--ease); }
 .tile:hover { background: var(--surface); }
 .tile h3 { margin-bottom: 12px; }
@@ -251,7 +260,11 @@ a.piece:hover .piece-title { color: var(--blue-deep); }
 .band-navy h2, .band-navy h3 { color: #fff; }
 .band-navy .eyebrow { color: var(--blue-bright); }
 .band-navy .eyebrow--rule::before { background: var(--blue-bright); }
-.figures { display: grid; gap: clamp(28px, 3.5vw, 52px); grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); }
+/* Four items: one, two or four columns, never three. auto-fit landed on
+   three from ~768px and stranded the fourth figure on its own row. */
+.figures { display: grid; gap: clamp(28px, 3.5vw, 52px); grid-template-columns: 1fr; }
+@media (min-width: 560px)  { .figures { grid-template-columns: repeat(2, 1fr); } }
+@media (min-width: 1000px) { .figures { grid-template-columns: repeat(4, 1fr); } }
 .figure-n { font-family: var(--display); font-weight: 400; font-size: clamp(44px, 5.6vw, 72px); line-height: 1; color: #fff; }
 .figure-l { margin-top: 14px; font-size: 12px; letter-spacing: 0.16em; text-transform: uppercase; color: #9fb4ca; }
 
@@ -335,7 +348,10 @@ a.piece:hover .piece-title { color: var(--blue-deep); }
 
 .cap-list {
   list-style: none;
-  display: grid; grid-template-columns: repeat(auto-fit, minmax(188px, 1fr));
+  /* Six items: one, two or three columns, never four or five. auto-fit
+     resolved to five at desktop width and stranded the sixth, on every
+     capability on the page. */
+  display: grid; grid-template-columns: 1fr;
   gap: 2px 26px; margin-top: 4px;
 }
 .cap-list li {
@@ -352,6 +368,9 @@ a.piece:hover .piece-title { color: var(--blue-deep); }
 .cap-meta span { color: var(--faint); }
 .cap-meta a { color: var(--blue-deep); border-bottom: 1px solid var(--blue-line); padding-bottom: 1px; transition: color var(--slow) var(--ease), border-color var(--slow) var(--ease); }
 .cap-meta a:hover { color: var(--blue); border-bottom-color: var(--blue); }
+
+@media (min-width: 520px)  { .cap-list { grid-template-columns: repeat(2, 1fr); } }
+@media (min-width: 1000px) { .cap-list { grid-template-columns: repeat(3, 1fr); } }
 
 @media (max-width: 760px) {
   .domain { grid-template-columns: 1fr; gap: 18px; }

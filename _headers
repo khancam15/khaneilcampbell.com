@@ -1,3 +1,13 @@
+# NOTE: GitHub Pages does not read this file. It is a Netlify / Cloudflare
+# Pages convention. Verified against the live site: the only header here that
+# actually reaches a visitor is Strict-Transport-Security, and GitHub sets that
+# itself. The Content-Security-Policy that is really in force is the meta tag
+# in each page's <head>.
+#
+# Kept so the policy moves with the repo if hosting ever changes, and because
+# the GitHub Actions security check asserts this file exists. Do not treat the
+# headers below as applied protection on the current host.
+
 /*
   X-Frame-Options: DENY
   X-Content-Type-Options: nosniff

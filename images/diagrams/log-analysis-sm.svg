@@ -1,0 +1,38 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 360 596" width="360" height="596" role="img" aria-label="log analysis diagram">
+<rect width="360" height="596" fill="#ffffff"/>
+<rect x="18" y="18" width="324" height="86" rx="3" fill="#ffffff" stroke="#dde6f1" stroke-width="1"/>
+<circle cx="34" cy="38" r="3.5" fill="#8995a6"/>
+<text x="44" y="42" font-family="'Helvetica Neue',Helvetica,Arial,sans-serif" font-size="11" letter-spacing="1.3" fill="#8995a6">01</text>
+<text x="72" y="43" font-family="'Helvetica Neue',Helvetica,Arial,sans-serif" font-size="18" font-weight="600" letter-spacing="-0.3" fill="#0d1521">Ingest</text>
+<text x="34" y="64" font-family="'Helvetica Neue',Helvetica,Arial,sans-serif" font-size="13" fill="#4d596a">Windows Security events normalized</text>
+<text x="34" y="81" font-family="'Helvetica Neue',Helvetica,Arial,sans-serif" font-size="13" fill="#4d596a">into Splunk</text>
+<path d="M 176 107 l 4 5 l 4 -5" fill="none" stroke="#8995a6" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/>
+<rect x="18" y="116" width="324" height="86" rx="3" fill="#ffffff" stroke="#dde6f1" stroke-width="1"/>
+<circle cx="34" cy="136" r="3.5" fill="#8995a6"/>
+<text x="44" y="140" font-family="'Helvetica Neue',Helvetica,Arial,sans-serif" font-size="11" letter-spacing="1.3" fill="#8995a6">02</text>
+<text x="72" y="141" font-family="'Helvetica Neue',Helvetica,Arial,sans-serif" font-size="18" font-weight="600" letter-spacing="-0.3" fill="#0d1521">Detect</text>
+<text x="34" y="162" font-family="'Helvetica Neue',Helvetica,Arial,sans-serif" font-size="13" fill="#4d596a">SPL groups failed logons by source</text>
+<text x="34" y="179" font-family="'Helvetica Neue',Helvetica,Arial,sans-serif" font-size="13" fill="#4d596a">host and account</text>
+<path d="M 176 205 l 4 5 l 4 -5" fill="none" stroke="#8995a6" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/>
+<rect x="18" y="214" width="324" height="86" rx="3" fill="#ffffff" stroke="#1470af" stroke-width="2"/>
+<circle cx="34" cy="234" r="3.5" fill="#1470af"/>
+<text x="44" y="238" font-family="'Helvetica Neue',Helvetica,Arial,sans-serif" font-size="11" letter-spacing="1.3" fill="#8995a6">03</text>
+<text x="72" y="239" font-family="'Helvetica Neue',Helvetica,Arial,sans-serif" font-size="18" font-weight="600" letter-spacing="-0.3" fill="#0d1521">Tune</text>
+<text x="34" y="260" font-family="'Helvetica Neue',Helvetica,Arial,sans-serif" font-size="13" fill="#4d596a">Threshold raised until routine noise</text>
+<text x="34" y="277" font-family="'Helvetica Neue',Helvetica,Arial,sans-serif" font-size="13" fill="#4d596a">drops out</text>
+<path d="M 176 303 l 4 5 l 4 -5" fill="none" stroke="#8995a6" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/>
+<rect x="18" y="312" width="324" height="86" rx="3" fill="#ffffff" stroke="#dde6f1" stroke-width="1"/>
+<circle cx="34" cy="332" r="3.5" fill="#8995a6"/>
+<text x="44" y="336" font-family="'Helvetica Neue',Helvetica,Arial,sans-serif" font-size="11" letter-spacing="1.3" fill="#8995a6">04</text>
+<text x="72" y="337" font-family="'Helvetica Neue',Helvetica,Arial,sans-serif" font-size="18" font-weight="600" letter-spacing="-0.3" fill="#0d1521">Respond</text>
+<text x="34" y="358" font-family="'Helvetica Neue',Helvetica,Arial,sans-serif" font-size="13" fill="#4d596a">Triage notes and escalation criteria</text>
+<text x="34" y="375" font-family="'Helvetica Neue',Helvetica,Arial,sans-serif" font-size="13" fill="#4d596a">written for reuse</text>
+<line x1="18" y1="406" x2="342" y2="406" stroke="#dde6f1" stroke-width="1"/>
+<text x="18" y="420" font-family="'Helvetica Neue',Helvetica,Arial,sans-serif" font-size="11" letter-spacing="1.6" fill="#8995a6">EVIDENCE</text>
+<text x="18" y="440" font-family="'Helvetica Neue',Helvetica,Arial,sans-serif" font-size="13" fill="#0d1521">Event ID 4625</text>
+<text x="18" y="460" font-family="'Helvetica Neue',Helvetica,Arial,sans-serif" font-size="13" fill="#0d1521">80+ failed logons isolated</text>
+<text x="18" y="480" font-family="'Helvetica Neue',Helvetica,Arial,sans-serif" font-size="13" fill="#0d1521">One defined time window</text>
+<text x="18" y="500" font-family="'Helvetica Neue',Helvetica,Arial,sans-serif" font-size="13" fill="#0d1521">Repeatable by someone else</text>
+<text x="18" y="530" font-family="'Helvetica Neue',Helvetica,Arial,sans-serif" font-size="12" fill="#8995a6">The tuning step is where most of the work</text>
+<text x="18" y="546" font-family="'Helvetica Neue',Helvetica,Arial,sans-serif" font-size="12" fill="#8995a6">went. A detection nobody trusts gets muted.</text>
+</svg>
