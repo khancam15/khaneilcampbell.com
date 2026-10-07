@@ -7,18 +7,18 @@
 <meta name="referrer" content="strict-origin-when-cross-origin">
 <meta name="theme-color" content="#fdfdfc">
 <meta name="robots" content="index, follow">
-<title>Projects — Khaneil Campbell</title>
-<meta name="description" content="An autonomous AI product pipeline built with CrewAI and the Anthropic API: OAuth integration, validation gates, SQLite state tracking and VPS deployment.">
+<title>Work — Automation and IT Labs | Khaneil Campbell</title>
+<meta name="description" content="An autonomous AI product pipeline plus hands-on IT labs: OAuth integration, validation gates, SQLite state tracking, Splunk log analysis and access workflows.">
 
 <meta property="og:type" content="website">
 <meta property="og:url" content="https://khaneilcampbell.com/projects.html">
-<meta property="og:title" content="Projects — Khaneil Campbell">
-<meta property="og:description" content="An autonomous AI product pipeline built with CrewAI and the Anthropic API: OAuth integration, validation gates, SQLite state tracking and VPS deployment.">
+<meta property="og:title" content="Work — Automation and IT Labs | Khaneil Campbell">
+<meta property="og:description" content="An autonomous AI product pipeline plus hands-on IT labs: OAuth integration, validation gates, SQLite state tracking, Splunk log analysis and access workflows.">
 <meta property="og:image" content="https://khaneilcampbell.com/images/profile.jpg">
 <meta property="og:site_name" content="Khaneil Campbell">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Projects — Khaneil Campbell">
-<meta name="twitter:description" content="An autonomous AI product pipeline built with CrewAI and the Anthropic API: OAuth integration, validation gates, SQLite state tracking and VPS deployment.">
+<meta name="twitter:title" content="Work — Automation and IT Labs | Khaneil Campbell">
+<meta name="twitter:description" content="An autonomous AI product pipeline plus hands-on IT labs: OAuth integration, validation gates, SQLite state tracking, Splunk log analysis and access workflows.">
 <meta name="twitter:image" content="https://khaneilcampbell.com/images/profile.jpg">
 <link rel="canonical" href="https://khaneilcampbell.com/projects.html">
 
@@ -30,7 +30,7 @@
       "@type": "WebPage",
       "@id": "https://khaneilcampbell.com/projects.html#webpage",
       "url": "https://khaneilcampbell.com/projects.html",
-      "name": "Projects \u2014 Khaneil Campbell",
+      "name": "Work \u2014 Automation and IT Labs | Khaneil Campbell",
       "inLanguage": "en",
       "isPartOf": {
         "@id": "https://khaneilcampbell.com/#website"
@@ -75,9 +75,7 @@
     <a class="nav-name" href="index.html">Khaneil Campbell</a>
     <nav aria-label="Primary">
       <ul class="nav-links">
-        <li><a href="index.html">Home</a></li>
-        <li><a href="projects.html" aria-current="page">Projects</a></li>
-        <li><a href="labs.html">Labs</a></li>
+        <li><a href="projects.html" aria-current="page">Work</a></li>
         <li><a href="about.html">About</a></li>
         <li><a href="contact.html">Contact</a></li>
       </ul>
@@ -89,11 +87,11 @@
 
   <section class="hero">
     <div class="wrap">
-      <span class="eyebrow eyebrow--rule">Projects</span>
-      <h1 class="t-page">Automation that runs itself.</h1>
+      <span class="eyebrow eyebrow--rule">Work</span>
+      <h1 class="t-page">Built, documented, and open to inspection.</h1>
       <p class="lede">
-        Build work outside the day job, written with production habits — credential
-        isolation, validation before action, retry logic, and state you can audit.
+        One shipped project and three hands-on labs, each written up the way I would
+        hand it to a colleague — problem, approach, and what the evidence says.
       </p>
     </div>
   </section>
@@ -162,7 +160,49 @@
         <div class="tile"><h3 class="t-item">Platform APIs</h3><ul><li>Etsy REST API v3</li><li>Canva Connect REST API</li><li>OAuth2 PKCE</li><li>Gmail SMTP digest</li></ul></div>
         <div class="tile"><h3 class="t-item">Deployment</h3><ul><li>Ubuntu VPS</li><li>systemd service</li><li>Runtime logs</li><li>Daily health dashboard</li></ul></div>
       </div>
-      <div class="actions"><a class="btn-text" href="labs.html">See the labs</a></div>
+    </div>
+  </section>
+
+  <section class="section section--tint">
+    <div class="wrap">
+      <div class="section-head">
+        <span class="eyebrow eyebrow--rule">Labs</span>
+        <h2 class="t-sec">Three more, worked end to end.</h2>
+        <p>Self-directed work to practise the parts of the job you cannot rehearse on production.</p>
+      </div>
+      <div class="pieces">
+        <a class="piece" href="soc-automation-lab.html">
+          <div class="piece-visual"><img src="images/diagrams/log-analysis.svg" width="1200" height="474" alt="Four-stage flow: Ingest, Detect, a highlighted Tune step, then Respond, over evidence showing Event ID 4625 and 80-plus failed logons isolated." loading="lazy" decoding="async"></div>
+          <div class="piece-body">
+            <div class="piece-meta"><span class="piece-kind">Lab</span><span class="piece-state">Published</span></div>
+            <h3 class="t-item piece-title">Authentication log analysis</h3>
+            <p class="piece-desc">Windows authentication logs into Splunk, SPL queries grouping failed logons by source and account, thresholds tuned to cut noise, and the triage path written up for reuse.</p>
+            <span class="piece-built">Splunk &middot; SPL &middot; Windows Security logs</span>
+          </div>
+        </a>
+        <a class="piece" href="lab-details.html#phishing">
+          <div class="piece-visual"><img src="images/diagrams/phishing.svg" width="1200" height="474" alt="Four-stage flow: Report, Analyse, a highlighted Contain step, then Write up, over an evidence goal of delivery, execution, persistence and containment." loading="lazy" decoding="async"></div>
+          <div class="piece-body">
+            <div class="piece-meta"><span class="piece-kind">Lab</span><span class="piece-state">In progress</span></div>
+            <h3 class="t-item piece-title">Phishing response walkthrough</h3>
+            <p class="piece-desc">A phishing-to-malware scenario worked end to end: user report, host indicator review, containment decisions, and an incident summary for people who were not in the room.</p>
+            <span class="piece-built">Sysinternals &middot; Windows Event Logs &middot; containment</span>
+          </div>
+        </a>
+        <a class="piece" href="lab-details.html#iam">
+          <div class="piece-visual"><img src="images/diagrams/access-control.svg" width="1200" height="474" alt="Four-stage flow: Request, a highlighted Verify step, Control, then Record, checked against directory attributes, group membership and MFA state." loading="lazy" decoding="async"></div>
+          <div class="piece-body">
+            <div class="piece-meta"><span class="piece-kind">Lab</span><span class="piece-state">In progress</span></div>
+            <h3 class="t-item piece-title">Access control workflows</h3>
+            <p class="piece-desc">Access-request, recovery and MFA scenarios documented with the decisions that matter — who approves, what proves identity, and what gets recorded.</p>
+            <span class="piece-built">Active Directory &middot; MFA policy &middot; least privilege</span>
+          </div>
+        </a>
+      </div>
+      <div class="actions">
+        <a class="btn-text" href="labs.html">The lab board</a>
+        <a class="btn-text" href="lab-details.html">Expanded case files</a>
+      </div>
     </div>
   </section>
 
@@ -176,8 +216,9 @@
         <p class="foot-note">IT professional &middot; New York, NY</p>
       </div>
       <ul class="foot-links">
-        <li><a href="projects.html">Projects</a></li>
+        <li><a href="projects.html">Work</a></li>
         <li><a href="labs.html">Labs</a></li>
+        <li><a href="lab-details.html">Case files</a></li>
         <li><a href="about.html">About</a></li>
         <li><a href="contact.html">Contact</a></li>
         <li><a href="https://www.linkedin.com/in/khaneil-c-44179a14a/" target="_blank" rel="noopener noreferrer">LinkedIn</a></li>
