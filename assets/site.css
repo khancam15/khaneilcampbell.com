@@ -31,10 +31,14 @@
   --tint:    #e7eff9;
   --navy:    #0a1a2b;
 
-  --ink:   #0d1521;   /* 18.2:1 on ground */
-  --body:  #44505e;   /*  7.9:1 */
-  --muted: #6b7889;   /*  4.6:1 */
-  --faint: #93a0b0;   /*  2.6:1 — non-text only */
+  /* Ratios below are the worst case across the three grounds this text
+     actually sits on: the page (#f2f6fb), the tint wash (#e7eff9) and a
+     white panel. Measuring only against white was the earlier mistake:
+     the ground is darker than white, so it is the binding constraint. */
+  --ink:   #0d1521;   /* 15.8:1 worst case */
+  --body:  #44505e;   /*  7.1:1 */
+  --muted: #525e6e;   /*  5.7:1 — nav, eyebrows, labels */
+  --faint: #5e6a79;   /*  4.8:1 — quietest text, still real text */
 
   --line:   rgba(13,33,58,0.075);   /* thinner than the previous build */
   --line-2: rgba(13,33,58,0.15);
