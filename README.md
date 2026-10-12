@@ -6,12 +6,12 @@ administration, IT service management, and automation. Hosted on GitHub Pages at
 
 ## Design
 
-Blue and white, in the register of [daxnyc.ai](https://www.daxnyc.ai): geometric
-display type, square corners, a saturated brand blue, and full-bleed navy bands
-breaking up the light sections. The structure underneath is unchanged from the
-work-led pass — panels lifting off the ground, a visual leading each entry.
+Blue and white, carried by a high-contrast serif display face, generous spacing,
+letterspaced small-caps micro-type and full-bleed navy bands. Panels lift off the
+ground; a diagram leads each entry and sits beside its text on wide screens.
 
-The homepage leads with the work, not with the person.
+The homepage leads with the work, not with the person, and positions around AI
+workflows grounded in enterprise IT.
 
 | | |
 |---|---|
@@ -19,7 +19,7 @@ The homepage leads with the work, not with the person.
 | Ink | `#0d1521` (18.2:1), body `#44505e` (7.9:1) |
 | Blue | `#1470af` (5.3:1) — sampled from the reference; links use `#0f5586` (7.9:1) |
 | Navy bands | `#0a1a2b` gradient, accent `#5aa9e6` (6.9:1 on navy) |
-| Display | Poppins 500/600/700 |
+| Display | Instrument Serif |
 | Body | Inter 400/500/600 |
 | Radius | 4px — square-ish, following the reference |
 
@@ -38,15 +38,21 @@ SVG diagrams in `images/diagrams/`, generated to a single visual language so
 they read as a set: four stages across, one highlighted as the step that
 matters, a supporting layer underneath, and a one-line note.
 
-They are 1200×474 and about 5KB each — 32KB for all four, against 1.9MB for the
-single portrait photo.
+Each diagram ships in **two variants**, swapped by `<picture>` with no JavaScript:
+
+| variant | canvas | used | why |
+|---|---|---|---|
+| `-sm` | 360 wide, stacked | at or below 700px | a wide banner scales to 0.27 on a phone, rendering its labels under 5px |
+| `-md` | 700 wide, two by two | above 700px | the piece column caps near 646px, where a 1200px banner renders labels at 9.4px |
+
+A 1200px banner variant existed earlier. It has no context left where it renders
+better, so it was retired rather than kept as a third file.
 
 Two things to know before editing them:
 
-- They fall back to a **system font**. The stack names Poppins first, but an SVG
-  loaded through `<img>` cannot fetch a web font, so it renders in Helvetica or
-  Arial. Matching the page type exactly would mean inlining each SVG into every
-  page that shows it.
+- They fall back to a **system font**. An SVG loaded through `<img>` cannot fetch
+  a web font, so it renders in Helvetica or Arial. Matching the page type exactly
+  would mean inlining each SVG into every page that shows it.
 - They carry **no title**, deliberately. The page caption names each piece, and
   having both read as a duplicate.
 
@@ -60,6 +66,14 @@ Two things to know before editing them:
   `'unsafe-inline'`, so inline styles silently fail — use the `.mt-s` / `.mt-m` /
   `.mt-l` / `.cols-1` utilities instead.
 - **Fonts** come from Google Fonts and are the only external origin the CSP allows.
+- **The stylesheet URL carries a content hash** (`assets/site.css?v=…`). The host
+  caches HTML and CSS separately for ten minutes with no version in the path, so
+  a browser can otherwise pair fresh markup with a stale stylesheet. Recompute the
+  hash whenever `assets/site.css` changes:
+
+  ```bash
+  python3 -c "import hashlib;print(hashlib.sha256(open('assets/site.css','rb').read()).hexdigest()[:8])"
+  ```
 - **Every page** carries a CSP meta tag, a referrer policy, canonical and Open Graph
   tags, JSON-LD, and `rel="noopener noreferrer"` on any `target="_blank"` link.
   The first, second and last are enforced by the GitHub Actions security check.
@@ -89,7 +103,7 @@ itil4.html               ITIL 4 Foundation credential page
 404.html                 Not-found page
 
 assets/site.css          The entire design system — one file, no JS
-images/diagrams/         Four generated SVG work diagrams
+images/diagrams/         Work diagrams, two size variants each
 images/                  Portrait and certificate assets
 _headers                 HTTP security headers
 robots.txt sitemap.xml   Crawler directives and URL index
