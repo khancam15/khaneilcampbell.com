@@ -7,18 +7,18 @@
 <meta name="referrer" content="strict-origin-when-cross-origin">
 <meta name="theme-color" content="#fdfdfc">
 <meta name="robots" content="index, follow">
-<title>Work: Automation and IT Labs | Khaneil Campbell</title>
-<meta name="description" content="An autonomous AI product pipeline plus hands-on IT labs: OAuth integration, validation gates, SQLite state tracking, Splunk log analysis and access workflows.">
+<title>Work: AI Workflows and Security Labs | Khaneil Campbell</title>
+<meta name="description" content="A multi-agent AI product pipeline built with Claude, CrewAI and Canva's MCP server, plus hands-on security labs in Splunk log analysis and access control.">
 
 <meta property="og:type" content="website">
 <meta property="og:url" content="https://khaneilcampbell.com/projects.html">
-<meta property="og:title" content="Work: Automation and IT Labs | Khaneil Campbell">
-<meta property="og:description" content="An autonomous AI product pipeline plus hands-on IT labs: OAuth integration, validation gates, SQLite state tracking, Splunk log analysis and access workflows.">
+<meta property="og:title" content="Work: AI Workflows and Security Labs | Khaneil Campbell">
+<meta property="og:description" content="A multi-agent AI product pipeline built with Claude, CrewAI and Canva's MCP server, plus hands-on security labs in Splunk log analysis and access control.">
 <meta property="og:image" content="https://khaneilcampbell.com/images/profile.jpg">
 <meta property="og:site_name" content="Khaneil Campbell">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Work: Automation and IT Labs | Khaneil Campbell">
-<meta name="twitter:description" content="An autonomous AI product pipeline plus hands-on IT labs: OAuth integration, validation gates, SQLite state tracking, Splunk log analysis and access workflows.">
+<meta name="twitter:title" content="Work: AI Workflows and Security Labs | Khaneil Campbell">
+<meta name="twitter:description" content="A multi-agent AI product pipeline built with Claude, CrewAI and Canva's MCP server, plus hands-on security labs in Splunk log analysis and access control.">
 <meta name="twitter:image" content="https://khaneilcampbell.com/images/profile.jpg">
 <link rel="canonical" href="https://khaneilcampbell.com/projects.html">
 
@@ -30,7 +30,7 @@
       "@type": "WebPage",
       "@id": "https://khaneilcampbell.com/projects.html#webpage",
       "url": "https://khaneilcampbell.com/projects.html",
-      "name": "Work: Automation and IT Labs | Khaneil Campbell",
+      "name": "Work: AI Workflows and Security Labs | Khaneil Campbell",
       "inLanguage": "en",
       "isPartOf": {
         "@id": "https://khaneilcampbell.com/#website"
@@ -64,7 +64,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Inter:wght@300;400;500;600&display=swap">
-<link rel="stylesheet" href="assets/site.css?v=289ecdd3">
+<link rel="stylesheet" href="assets/site.css?v=563da23c">
 </head>
 <body>
 
@@ -90,8 +90,8 @@
       <span class="eyebrow eyebrow--rule">Work</span>
       <h1 class="t-page">Built, documented, and open to inspection.</h1>
       <p class="lede">
-        One system running in production and three investigations. Each entry sets out
-        the problem, the approach taken, and what the evidence supports.
+        One AI system built and tested end to end, and three security labs. Each entry
+        sets out the problem, the approach taken, and what the evidence supports.
       </p>
     </div>
   </section>
@@ -99,27 +99,28 @@
   <section class="section">
     <div class="wrap">
       <div class="section-head">
-        <span class="eyebrow eyebrow--rule">Project 01 &middot; Built</span>
+        <span class="eyebrow eyebrow--rule">Project 01 &middot; Built and tested</span>
         <h2 class="t-sec">AI product pipeline</h2>
       </div>
 
       <div class="prose">
         <p>
-          A fully autonomous commerce pipeline. It researches and assembles a brand guide,
-          generates product ideas and listing copy, produces design mockups through Canva
-          automation, publishes to a marketplace over the Etsy REST API, audits its own SEO
-          quality, and emails a daily operational health report.
+          A multi-agent commerce pipeline. CrewAI agents running on Claude research and
+          assemble a brand guide, generate product ideas and listing copy, create design
+          mockups through Canva's remote MCP server, publish products over the Shopify
+          Admin API, audit SEO quality, and email a daily operational health report.
         </p>
         <p>
-          It runs unattended on a VPS under <strong>systemd</strong>, cycling through BUILD,
-          DESIGN and MAINTAIN modes depending on publish limits and configured cooldowns.
-          The interesting engineering is not the AI. It is everything around it that
-          stops the AI doing something expensive.
+          It is built to run unattended on a VPS under <strong>systemd</strong>, cycling
+          through BUILD, DESIGN and MAINTAIN modes depending on publish limits and configured
+          cooldowns. Each phase has been built and tested; live publishing is the final stage
+          still being brought online. The interesting engineering is not the AI. It is
+          everything around it that stops the AI doing something expensive.
         </p>
       </div>
 
       <div class="actions">
-        <a class="btn" href="https://github.com/khancam15" target="_blank" rel="noopener noreferrer">View repository</a>
+        <a class="btn" href="https://github.com/khancam15/multi-agent-commerce-pipeline" target="_blank" rel="noopener noreferrer">View repository</a>
         <a class="btn-text" href="contact.html">Discuss it</a>
       </div>
     </div>
@@ -128,11 +129,11 @@
   <section class="section">
     <div class="wrap">
       <div class="section-head"><span class="eyebrow eyebrow--rule">How it runs</span><h2 class="t-sec">Seven phases, four stages.</h2></div>
-      <div class="tiles">
+      <div class="tiles tiles--4">
         <div class="tile"><h3 class="t-item">Brand</h3><p>CrewAI agents research positioning, visual identity and SEO direction, then assemble a reusable brand guide.</p></div>
         <div class="tile"><h3 class="t-item">Generate</h3><p>Product ideas, titles, tags and descriptions generated from the current brand guide.</p></div>
-        <div class="tile"><h3 class="t-item">Design</h3><p>Canva automation produces mockups and buyer-ready template files from the generated direction.</p></div>
-        <div class="tile"><h3 class="t-item">Publish</h3><p>Assets processed, listings validated, published via Etsy, SEO reviewed and status reported.</p></div>
+        <div class="tile"><h3 class="t-item">Design</h3><p>Claude calls Canva's remote MCP server to generate mockups and template designs, with the Canva Connect API handling reliable exports.</p></div>
+        <div class="tile"><h3 class="t-item">Publish</h3><p>Assets processed, listings validated, published through the Shopify Admin API, SEO reviewed and status reported.</p></div>
       </div>
     </div>
   </section>
@@ -140,10 +141,10 @@
   <section class="section">
     <div class="wrap">
       <div class="section-head"><span class="eyebrow eyebrow--rule">Guardrails</span><h2 class="t-sec">Controls, not good intentions.</h2></div>
-      <div class="tiles">
+      <div class="tiles tiles--3">
         <div class="tile"><h3 class="t-item">Credentials</h3><p>API keys and OAuth tokens stay in <code>.env</code>; <code>.env.example</code> documents the required variables without exposing real values.</p></div>
-        <div class="tile"><h3 class="t-item">Scanning</h3><p>A gitleaks pre-commit hook with redaction catches accidental credentials before they leave the local environment.</p></div>
-        <div class="tile"><h3 class="t-item">OAuth</h3><p>Etsy and Canva tokens are acquired through setup scripts, checked at preflight and refreshed on expiry rather than hardcoded.</p></div>
+        <div class="tile"><h3 class="t-item">Scanning</h3><p>gitleaks runs as a pre-commit hook and again in GitHub Actions on every pull request, alongside a pip-audit dependency check.</p></div>
+        <div class="tile"><h3 class="t-item">OAuth</h3><p>Canva tokens are acquired through an OAuth PKCE setup script and Shopify credentials through a verified setup script; both are checked at preflight rather than hardcoded.</p></div>
         <div class="tile"><h3 class="t-item">Validation</h3><p>The upload flow checks title length, tag count, price range and asset readiness before any live publish.</p></div>
         <div class="tile"><h3 class="t-item">Resilience</h3><p>Calls retry with exponential backoff on rate limits and server errors; publish limits and cooldowns prevent burst automation.</p></div>
         <div class="tile"><h3 class="t-item">Operations</h3><p>SQLite tables track queue state, published listings, run logs, SEO reviews and sales, so failures are diagnosable.</p></div>
@@ -154,10 +155,10 @@
   <section class="section">
     <div class="wrap">
       <div class="section-head"><span class="eyebrow eyebrow--rule">Stack</span><h2 class="t-sec">The stack in full.</h2></div>
-      <div class="tiles">
+      <div class="tiles tiles--4">
         <div class="tile"><h3 class="t-item">Languages</h3><ul><li>Python 3.12+</li><li>Bash shell scripting</li><li>SQL via SQLite</li><li>JSON payload design</li></ul></div>
-        <div class="tile"><h3 class="t-item">AI and data</h3><ul><li>Anthropic API</li><li>CrewAI</li><li>Serper API</li><li>SQLite database</li></ul></div>
-        <div class="tile"><h3 class="t-item">Platform APIs</h3><ul><li>Etsy REST API v3</li><li>Canva Connect REST API</li><li>OAuth2 PKCE</li><li>Gmail SMTP digest</li></ul></div>
+        <div class="tile"><h3 class="t-item">AI and data</h3><ul><li>Anthropic API (Claude)</li><li>CrewAI</li><li>Canva MCP server</li><li>Serper API</li><li>SQLite database</li></ul></div>
+        <div class="tile"><h3 class="t-item">Platform APIs</h3><ul><li>Shopify Admin API</li><li>Canva Connect REST API</li><li>OAuth2 PKCE</li><li>Gmail SMTP digest</li></ul></div>
         <div class="tile"><h3 class="t-item">Deployment</h3><ul><li>Ubuntu VPS</li><li>systemd service</li><li>Runtime logs</li><li>Daily health dashboard</li></ul></div>
       </div>
     </div>
