@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-# security-check.sh — Local HTML security audit for khancam.com
+# security-check.sh — Local HTML security audit for khaneilcampbell.com
 # Usage: bash scripts/security-check.sh [path/to/dir]  (defaults to current dir)
 
 set -euo pipefail
@@ -19,7 +19,7 @@ fail() { echo -e "${RED}[FAIL]${NC} $1"; FAIL=$((FAIL + 1)); }
 warn() { echo -e "${YELLOW}[WARN]${NC} $1"; WARN=$((WARN + 1)); }
 
 echo "================================================="
-echo " khancam.com — Security Audit"
+echo " khaneilcampbell.com — Security Audit"
 echo " Directory: $DIR"
 echo "================================================="
 echo ""

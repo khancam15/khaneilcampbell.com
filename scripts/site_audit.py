@@ -167,7 +167,7 @@ def print_report(issues: list[Issue], page_count: int) -> int:
     failures = [issue for issue in issues if issue.severity == "fail"]
     warnings = [issue for issue in issues if issue.severity == "warn"]
 
-    print("khancam.com site audit")
+    print("khaneilcampbell.com site audit")
     print(f"pages checked: {page_count}")
     print(f"failures: {len(failures)}")
     print(f"warnings: {len(warnings)}")
