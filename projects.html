@@ -64,7 +64,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Inter:wght@300;400;500;600&display=swap">
-<link rel="stylesheet" href="assets/site.css?v=289ecdd3">
+<link rel="stylesheet" href="assets/site.css?v=563da23c">
 </head>
 <body>
 
@@ -129,7 +129,7 @@
   <section class="section">
     <div class="wrap">
       <div class="section-head"><span class="eyebrow eyebrow--rule">How it runs</span><h2 class="t-sec">Seven phases, four stages.</h2></div>
-      <div class="tiles">
+      <div class="tiles tiles--4">
         <div class="tile"><h3 class="t-item">Brand</h3><p>CrewAI agents research positioning, visual identity and SEO direction, then assemble a reusable brand guide.</p></div>
         <div class="tile"><h3 class="t-item">Generate</h3><p>Product ideas, titles, tags and descriptions generated from the current brand guide.</p></div>
         <div class="tile"><h3 class="t-item">Design</h3><p>Claude calls Canva's remote MCP server to generate mockups and template designs, with the Canva Connect API handling reliable exports.</p></div>
@@ -141,7 +141,7 @@
   <section class="section">
     <div class="wrap">
       <div class="section-head"><span class="eyebrow eyebrow--rule">Guardrails</span><h2 class="t-sec">Controls, not good intentions.</h2></div>
-      <div class="tiles">
+      <div class="tiles tiles--3">
         <div class="tile"><h3 class="t-item">Credentials</h3><p>API keys and OAuth tokens stay in <code>.env</code>; <code>.env.example</code> documents the required variables without exposing real values.</p></div>
         <div class="tile"><h3 class="t-item">Scanning</h3><p>gitleaks runs as a pre-commit hook and again in GitHub Actions on every pull request, alongside a pip-audit dependency check.</p></div>
         <div class="tile"><h3 class="t-item">OAuth</h3><p>Canva tokens are acquired through an OAuth PKCE setup script and Shopify credentials through a verified setup script; both are checked at preflight rather than hardcoded.</p></div>
@@ -155,7 +155,7 @@
   <section class="section">
     <div class="wrap">
       <div class="section-head"><span class="eyebrow eyebrow--rule">Stack</span><h2 class="t-sec">The stack in full.</h2></div>
-      <div class="tiles">
+      <div class="tiles tiles--4">
         <div class="tile"><h3 class="t-item">Languages</h3><ul><li>Python 3.12+</li><li>Bash shell scripting</li><li>SQL via SQLite</li><li>JSON payload design</li></ul></div>
         <div class="tile"><h3 class="t-item">AI and data</h3><ul><li>Anthropic API (Claude)</li><li>CrewAI</li><li>Canva MCP server</li><li>Serper API</li><li>SQLite database</li></ul></div>
         <div class="tile"><h3 class="t-item">Platform APIs</h3><ul><li>Shopify Admin API</li><li>Canva Connect REST API</li><li>OAuth2 PKCE</li><li>Gmail SMTP digest</li></ul></div>
