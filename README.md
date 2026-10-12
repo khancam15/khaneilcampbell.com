@@ -117,5 +117,9 @@ anywhere in page text, not just in credential-shaped values.
 
 ## Deployment
 
-Push to `main`; GitHub Pages serves from that branch with the domain set by `CNAME`.
-The `security-check.yml` workflow runs on every push and pull request.
+The domain is registered on Cloudflare, which manages DNS and Email Routing. GitHub Pages serves the site from `main` with the domain set by `CNAME`.
+The `security-check.yml` workflow runs on every push and pull request. Changes reach `main` through squash merged pull requests; see [CONTRIBUTING.md](CONTRIBUTING.md).
+
+## Built with AI Assistance
+
+This site was designed and built with Claude as a working partner. Claude helped with layout and visual design, HTML and CSS, copy edits, and the Python audit scripts in `scripts/`. I set the direction, made the design and content decisions, and reviewed every change on the live site before publishing it.
