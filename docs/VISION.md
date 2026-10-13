@@ -41,13 +41,36 @@ Recruiters, hiring managers, technology leaders and potential collaborators. The
 site should let any of them recognise the capability within the first screen and
 confirm it within the first scroll.
 
+## Visual direction
+
+Dark premium: sophisticated technology company meets interactive portfolio, never
+an overworked cyberpunk aesthetic.
+
+| Element | Direction |
+|---|---|
+| Theme | Dark premium |
+| Backgrounds | Near-black primary, charcoal secondary |
+| Accent | Electric blue |
+| Typography | Modern sans-serif (Geist, Geist Mono for labels) |
+| Layout | Editorial, spacious |
+| Animation | Smooth, cinematic |
+| Navigation | Floating |
+| Effects | Subtle 3D and particles |
+| Responsiveness | Desktop, tablet, mobile |
+
+Immersive features: cinematic loading, animated typography, interactive 3D,
+smooth scroll transitions, scroll-triggered reveals, magnetic hover, an animated
+career timeline, interactive skill visualisation, dynamic case studies and custom
+page transitions. Immersive does not mean slow: fast, accessible and easy to
+navigate come first.
+
 ## Principles
 
 - **Show, then tell.** Lead with work that can be examined. Numbers and claims are
   kept only when the work behind them is published.
-- **Immersive, not heavy.** Motion and depth are done in CSS. The site ships no
-  JavaScript, so the CSP stays at `default-src 'none'`; any future step that wants
-  scripting has to justify relaxing that.
+- **Immersive, not heavy.** Motion and depth come from CSS and one small
+  first-party script that only enhances. The CSP allows `script-src 'self'` and
+  nothing more; every page works with JavaScript off.
 - **Motion is optional.** Everything animated stops under `prefers-reduced-motion`,
   and nothing is hidden if an animation never runs.
 - **Accessible by default.** Contrast ratios in the README are a floor, not a target.
