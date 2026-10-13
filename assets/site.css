@@ -227,7 +227,12 @@ h3, h4 {
 .hero--intro .lede { margin-top: 22px; animation: rise-in 1s var(--ease) 1.25s both; }
 .hero--intro .actions { animation: rise-in 1s var(--ease) 1.45s both; }
 
-@media (max-width: 480px) { .hero-fields { letter-spacing: 0.2em; } .hero-fields span { margin-inline: 0.25em; } }
+/* Keep the three disciplines on one line down to a 320px phone: size and tracking
+   shrink with the viewport instead of letting the line break. */
+@media (max-width: 480px) {
+  .hero-fields { font-size: clamp(10px, 3.1vw, 12px); letter-spacing: 0.16em; white-space: nowrap; }
+  .hero-fields span { margin-inline: 0.2em; }
+}
 
 @keyframes name-in {
   from { opacity: 0; letter-spacing: 0.08em; filter: blur(6px); transform: translateY(10px); }
