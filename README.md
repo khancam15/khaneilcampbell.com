@@ -41,6 +41,8 @@ on top, and `prefers-reduced-motion` switches all of it off.
 | Floating nav | pill nav tightens once the page is scrolled | static pill |
 | Reading progress | CSS scroll-driven animation in the nav | — |
 | Page transitions | CSS cross-document view transitions; the nav holds still | normal navigation |
+| Career timeline (About) | rail fills with scroll progress; each node lights as the fill reaches it | full rail, all nodes lit |
+| Skill map (About) | six areas become tabs; each tab's dots mark where the area was used, forming a matrix | six cards, all visible (also on phones) |
 
 Speed rules: animation is transform and opacity only, the canvas caps its pixel
 ratio at 2 and its point count by area, edges are computed once (rotation keeps

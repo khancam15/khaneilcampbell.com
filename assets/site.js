@@ -11,6 +11,8 @@
      · magnetic hover       buttons and nav lean toward the pointer
      · 3D tilt, spotlight   work panels respond to the pointer
      · floating nav         tightens once the page is scrolled
+     · career timeline      the rail fills and nodes light as you scroll
+     · skill map            tabs whose dots form a where-used matrix
 
    It is loaded in <head> without defer, so the classes it sets on
    <html> land before first paint and nothing flashes. Everything
@@ -55,6 +57,8 @@
     }
     spotlight();
     particles();
+    timeline();
+    skillMap();
   });
 
   /* ─── Animated typography ─── */
@@ -103,7 +107,7 @@
     if (!('IntersectionObserver' in window)) return;
     var groups = [
       '.section-head', '.piece', '.tiles > .tile', '.domain', '.figures > div',
-      '.cta', '.split > *', '.panel'
+      '.cta', '.split > *', '.panel', '.skillmap'
     ];
     var seenEls = new Set();
     var targets = [];
@@ -179,6 +183,147 @@
         el.style.setProperty('--my', (ev.clientY - r.top) + 'px');
       });
     });
+  }
+
+  /* ─── Career timeline ───
+     --p is the share of the timeline the reader has passed, measured at
+     60% down the viewport. A node lights once the fill reaches it. */
+  function timeline() {
+    var tl = document.querySelector('.timeline');
+    if (!tl) return;
+    var items = Array.prototype.slice.call(tl.querySelectorAll('.tl-item'));
+    if (reduced) { items.forEach(function (it) { it.classList.add('is-lit'); }); return; }
+    var ticking = false;
+    function update() {
+      ticking = false;
+      var r = tl.getBoundingClientRect();
+      var line = window.innerHeight * 0.6;
+      var p = Math.max(0, Math.min(1, (line - r.top) / r.height));
+      tl.style.setProperty('--p', p.toFixed(4));
+      items.forEach(function (it) {
+        it.classList.toggle('is-lit', it.getBoundingClientRect().top + 10 <= line);
+      });
+    }
+    window.addEventListener('scroll', function () {
+      if (!ticking) { ticking = true; requestAnimationFrame(update); }
+    }, { passive: true });
+    window.addEventListener('resize', update);
+    update();
+  }
+
+  /* ─── Skill map ───
+     Rebuilds the six cards as a tab list. Each tab carries one dot per
+     place a skill area was used, read from the links already in its card,
+     so the tabs together form a matrix. Arrow keys move between tabs. */
+  function skillMap() {
+    var map = document.querySelector('.skillmap');
+    if (!map) return;
+    // On a phone the panel would open below six tabs, out of sight, so the
+    // plain cards stay: every area is readable without a tap.
+    if (!window.matchMedia('(min-width: 720px)').matches) return;
+    var panels = Array.prototype.slice.call(map.querySelectorAll('.sk'));
+    if (!panels.length) return;
+
+    var COLS = [
+      ['Columbia', /columbia university/i],
+      ['NYC H+H', /nyc health/i],
+      ['Montefiore', /montefiore/i],
+      ['SOC lab', /soc lab/i],
+      ['Pipeline', /pipeline/i],
+      ['This site', /this site/i],
+      ['ITIL 4', /itil 4/i],
+      ['Security+', /security\+/i]
+    ];
+
+    var tabs = document.createElement('div');
+    tabs.className = 'sk-tabs';
+    tabs.setAttribute('role', 'tablist');
+    tabs.setAttribute('aria-label', 'Skill areas');
+    tabs.setAttribute('aria-orientation', 'vertical');
+
+    var head = document.createElement('div');
+    head.className = 'sk-head';
+    head.setAttribute('aria-hidden', 'true');
+    head.appendChild(document.createElement('span'));
+    var headCols = document.createElement('span');
+    headCols.className = 'sk-cols';
+    var colEls = COLS.map(function (c) {
+      var el = document.createElement('span');
+      el.className = 'sk-col'; el.textContent = c[0];
+      headCols.appendChild(el);
+      return el;
+    });
+    head.appendChild(headCols);
+
+    var buttons = panels.map(function (panel, i) {
+      var name = panel.querySelector('.sk-name');
+      var label = name.cloneNode(true);
+      var used = panel.querySelector('.sk-used').textContent;
+      var hits = COLS.map(function (c) { return c[1].test(used); });
+
+      var b = document.createElement('button');
+      b.type = 'button';
+      b.className = 'sk-tab';
+      b.id = panel.id + '-tab';
+      b.setAttribute('role', 'tab');
+      b.setAttribute('aria-controls', panel.id);
+      var l = document.createElement('span');
+      l.className = 'sk-tab-label';
+      while (label.firstChild) l.appendChild(label.firstChild);
+      b.appendChild(l);
+      var dots = document.createElement('span');
+      dots.className = 'sk-cols';
+      dots.setAttribute('aria-hidden', 'true');
+      hits.forEach(function (h, k) {
+        var d = document.createElement('span');
+        d.className = 'sk-dot' + (h ? ' is-used' : '');
+        if (h) d.title = COLS[k][0];
+        dots.appendChild(d);
+      });
+      b.appendChild(dots);
+      b._hits = hits;
+
+      panel.setAttribute('role', 'tabpanel');
+      panel.setAttribute('aria-labelledby', b.id);
+      panel.setAttribute('tabindex', '0');
+
+      b.addEventListener('click', function () { select(i, false); });
+      b.addEventListener('keydown', function (ev) {
+        var k = ev.key, n = buttons.length, to = -1;
+        if (k === 'ArrowDown' || k === 'ArrowRight') to = (i + 1) % n;
+        else if (k === 'ArrowUp' || k === 'ArrowLeft') to = (i - 1 + n) % n;
+        else if (k === 'Home') to = 0;
+        else if (k === 'End') to = n - 1;
+        if (to >= 0) { ev.preventDefault(); select(to, true); }
+      });
+      tabs.appendChild(b);
+      return b;
+    });
+
+    var left = document.createElement('div');
+    left.appendChild(head);
+    left.appendChild(tabs);
+    var right = document.createElement('div');
+    panels.forEach(function (p) { right.appendChild(p); });
+    map.appendChild(left);
+    map.appendChild(right);
+    map.classList.add('is-live');
+
+    var current = -1;
+    function select(i, focus) {
+      if (i === current) { if (focus) buttons[i].focus(); return; }
+      current = i;
+      buttons.forEach(function (b, k) {
+        var on = k === i;
+        b.setAttribute('aria-selected', on ? 'true' : 'false');
+        b.tabIndex = on ? 0 : -1;
+        panels[k].hidden = !on;
+        panels[k].classList.toggle('is-entering', on && !reduced);
+      });
+      colEls.forEach(function (c, k) { c.classList.toggle('is-on', buttons[i]._hits[k]); });
+      if (focus) buttons[i].focus();
+    }
+    select(0, false);
   }
 
   /* ─── Particle field ───
