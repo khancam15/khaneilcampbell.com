@@ -175,6 +175,73 @@ h3, h4 {
 .hero { padding-block: clamp(56px, 8vw, 104px) clamp(36px, 4.5vw, 60px); }
 .hero .lede { margin-top: 30px; }
 
+/* ─── HOMEPAGE INTRO ───
+   The opening sequence is CSS only, so the no-JavaScript rule and CSP hold.
+   The name rises out of a tightened tracking, then the fields, tagline and
+   statement follow in sequence. Content is fully visible if animation never runs. */
+.hero--intro { position: relative; overflow: hidden; isolation: isolate; padding-block: clamp(80px, 12vw, 160px) clamp(56px, 7vw, 96px); }
+.hero-in { position: relative; z-index: 1; }
+
+/* Depth: a blueprint grid that fades toward the edges, under two slow blue glows. */
+.hero-field {
+  position: absolute; inset: 0; z-index: 0; pointer-events: none;
+  /* Fade out at the foot so the hero dissolves into the page instead of ending on an edge. */
+  -webkit-mask-image: linear-gradient(#000 60%, transparent);
+          mask-image: linear-gradient(#000 60%, transparent);
+}
+.hero-field::before {
+  content: ''; position: absolute; inset: -60px;
+  background-image:
+    linear-gradient(var(--line-2) 1px, transparent 1px),
+    linear-gradient(90deg, var(--line-2) 1px, transparent 1px);
+  background-size: 60px 60px;
+  -webkit-mask-image: radial-gradient(ellipse 70% 65% at 30% 45%, #000 0%, transparent 75%);
+          mask-image: radial-gradient(ellipse 70% 65% at 30% 45%, #000 0%, transparent 75%);
+  animation: field-drift 40s linear infinite;
+}
+.hero-field::after {
+  content: ''; position: absolute; inset: -20%;
+  background:
+    radial-gradient(circle at 78% 30%, rgba(90,169,230,0.22), transparent 38%),
+    radial-gradient(circle at 18% 78%, rgba(20,112,175,0.12), transparent 42%);
+  animation: glow-drift 24s var(--ease) infinite alternate;
+}
+@keyframes field-drift { to { transform: translate3d(60px, 60px, 0); } }
+@keyframes glow-drift  { to { transform: translate3d(-4%, 3%, 0) scale(1.08); } }
+
+.hero-name {
+  font-size: clamp(46px, 9vw, 112px); line-height: 0.98; letter-spacing: -0.02em;
+  animation: name-in 1.6s var(--ease) both;
+}
+.hero-fields {
+  margin-top: 22px;
+  font-size: 12px; font-weight: 500; letter-spacing: 0.3em; text-transform: uppercase; color: var(--blue);
+  animation: rise-in 1s var(--ease) .7s both;
+}
+.hero-fields span { color: var(--faint); margin-inline: 0.5em; }
+.hero-tagline {
+  margin-top: clamp(28px, 3.5vw, 40px); max-width: 22ch;
+  font-family: var(--display); font-style: italic; font-size: clamp(26px, 3.4vw, 40px); line-height: 1.15; color: var(--ink);
+  animation: rise-in 1s var(--ease) 1s both;
+}
+.hero--intro .lede { margin-top: 22px; animation: rise-in 1s var(--ease) 1.25s both; }
+.hero--intro .actions { animation: rise-in 1s var(--ease) 1.45s both; }
+
+@media (max-width: 480px) { .hero-fields { letter-spacing: 0.2em; } .hero-fields span { margin-inline: 0.25em; } }
+
+@keyframes name-in {
+  from { opacity: 0; letter-spacing: 0.08em; filter: blur(6px); transform: translateY(10px); }
+  to   { opacity: 1; letter-spacing: -0.02em; filter: blur(0); transform: none; }
+}
+@keyframes rise-in {
+  from { opacity: 0; transform: translateY(14px); }
+  to   { opacity: 1; transform: none; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { animation: none !important; transition: none !important; }
+}
+
 /* ─── WORK ─── */
 .pieces { display: grid; gap: clamp(44px, 5vw, 64px); }
 .piece { display: block; }

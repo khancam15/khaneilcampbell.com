@@ -1,8 +1,10 @@
-# Khaneil Campbell — IT Professional Portfolio
+# Khaneil Campbell — AI & Technology Portfolio
 
-Static portfolio for Khaneil Campbell: enterprise IT support, systems and identity
-administration, IT service management, and automation. Hosted on GitHub Pages at
-`khaneilcampbell.com`.
+Static portfolio for Khaneil Campbell, AI and technology professional: AI workflows,
+cybersecurity, and enterprise IT. Hosted on GitHub Pages at `khaneilcampbell.com`.
+
+The brand positioning and the goals every page answers to are set out in
+[docs/VISION.md](docs/VISION.md).
 
 ## Design
 
@@ -10,8 +12,10 @@ Blue and white, carried by a high-contrast serif display face, generous spacing,
 letterspaced small-caps micro-type and full-bleed navy bands. Panels lift off the
 ground; a diagram leads each entry and sits beside its text on wide screens.
 
-The homepage leads with the work, not with the person, and positions around AI
-workflows grounded in enterprise IT.
+The homepage opens on a CSS-only intro: the name resolves out of a wide tracking
+over a drifting blueprint grid and two slow blue glows, then the disciplines,
+tagline and supporting statement follow in sequence. All motion stops under
+`prefers-reduced-motion`, and the content is fully visible if animation never runs.
 
 | | |
 |---|---|
@@ -91,7 +95,8 @@ Two things to know before editing them:
 ## Project structure
 
 ```
-index.html               Home — hero, selected work, about, contact
+index.html               Home — intro, selected work, about, contact
+docs/VISION.md           Brand vision and positioning
 about.html               Background, capabilities, toolset, credentials
 projects.html            AI product pipeline — flow, guardrails, stack
 labs.html                Lab index and the case standard
