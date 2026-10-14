@@ -258,7 +258,7 @@ The existing branch (`claude/stoic-hypatia-1bo10a`) stays as it is until M3. Not
 | "Columbia University Information Technology" as the organisation name | **NEEDS EVIDENCE** | Brief only; the résumé says Columbia University |
 | n8n agent work | **NEEDS EVIDENCE** | Skill lists only (D10) |
 | Benjaire live status; your hands-on share of the work | **NEEDS EVIDENCE** | D2, D3 |
-| LinkedIn URL | **CONFLICT** | Résumé `khaneil-campbell` vs site `khaneil-c-44179a14a` (D14) |
+| LinkedIn URL: `linkedin.com/in/khaneil-campbell` | CONFIRMED | You, 2026-10-14 (D14); applied across the site |
 
 ## 12. Decisions needed
 
@@ -277,4 +277,4 @@ The existing branch (`claude/stoic-hypatia-1bo10a`) stays as it is until M3. Not
 | **D11** | Source for the 85% survey and 2.41% abandoned-call figures | Omit until supplied |
 | **D12** | Include HDI KCS Foundation (on the résumé, not in the brief)? | Include |
 | **D13** | Mentorship: résumé wording or brief wording? | Résumé wording unless you confirm the brief |
-| **D14** | Which LinkedIn URL is current? | — |
+| ~~D14~~ | ~~Which LinkedIn URL is current?~~ | **Resolved 2026-10-14:** `linkedin.com/in/khaneil-campbell` |
