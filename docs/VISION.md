@@ -15,14 +15,15 @@ through the work, the background, the credentials and where the career is headed
 | | |
 |---|---|
 | Name | Khaneil Campbell |
-| Title | AI & Technology Professional |
-| Disciplines | AI • Cybersecurity • Technology |
-| Tagline | Engineering intelligent solutions for a connected world. |
-| Statement | Exploring the intersection of artificial intelligence, cybersecurity, and enterprise technology to build smarter, more secure digital experiences. |
+| Headline | Designing systems. Engineering what's next. |
+| Focus | AI solutions · intelligent automation · cybersecurity · enterprise systems |
+| Statement | Technology professional specializing in AI solutions, intelligent automation, cybersecurity, and digital systems. I combine technical expertise with strategic thinking to develop practical solutions for modern organizations. |
+| Current role | Service Desk Technician, Columbia University (stated exactly; target roles are never presented as titles) |
 
-The title leads with AI without discarding the cybersecurity and enterprise IT
-experience behind it. That experience is the evidence the AI work is built on, not
-a separate career to apologise for.
+The enterprise IT experience is the evidence the AI work is built on, not a separate
+career to apologise for. The site leads with what has been built; support-desk
+metrics are kept off it because they describe a different job from the one it
+positions for.
 
 ## What every visitor should leave knowing
 
@@ -43,26 +44,20 @@ confirm it within the first scroll.
 
 ## Visual direction
 
-Dark premium: sophisticated technology company meets interactive portfolio, never
-an overworked cyberpunk aesthetic.
+**Mist and glass** (live since 14 Oct 2026): premium architectural technology, never
+an overworked cyberpunk or "glowing brain" aesthetic.
 
 | Element | Direction |
 |---|---|
-| Theme | Dark premium |
-| Backgrounds | Near-black primary, charcoal secondary |
-| Accent | Electric blue |
-| Typography | Modern sans-serif (Geist, Geist Mono for labels) |
-| Layout | Editorial, spacious |
-| Animation | Smooth, cinematic |
-| Navigation | Floating |
-| Effects | Subtle 3D and particles |
+| Signature image | A white terraced pavilion of four levels over still water, labelled Enterprise IT, Security, Automation and AI |
+| Palette | Mist white, stone and white surfaces; near-black ink; one lit-glass blue accent |
+| Typography | Geist, with Geist Mono for labels |
+| Components | Frosted glass panels, hairlines, pill buttons, a floating nav |
+| Motion | Layered parallax, scroll reveals, a filling timeline; all optional |
 | Responsiveness | Desktop, tablet, mobile |
 
-Immersive features: cinematic loading, animated typography, interactive 3D,
-smooth scroll transitions, scroll-triggered reveals, magnetic hover, an animated
-career timeline, interactive skill visualisation, dynamic case studies and custom
-page transitions. Immersive does not mean slow: fast, accessible and easy to
-navigate come first.
+Every visual should carry information: real project structures, diagrams and
+evidence, not decoration.
 
 ## Principles
 
