@@ -1,41 +1,46 @@
-# Khaneil Campbell — IT Professional Portfolio
+# Khaneil Campbell — AI & Technology Portfolio
 
-Static portfolio for Khaneil Campbell: enterprise IT support, systems and identity
-administration, IT service management, and automation. Hosted on GitHub Pages at
-`khaneilcampbell.com`.
+Static portfolio for Khaneil Campbell, AI and technology professional: AI workflows,
+cybersecurity, and enterprise IT. Hosted on GitHub Pages at `khaneilcampbell.com`.
+
+The brand positioning and the goals every page answers to are set out in
+[docs/VISION.md](docs/VISION.md).
 
 ## Design
 
-Blue and white, carried by a high-contrast serif display face, generous spacing,
-letterspaced small-caps micro-type and full-bleed navy bands. Panels lift off the
-ground; a diagram leads each entry and sits beside its text on wide screens.
-
-The homepage leads with the work, not with the person, and positions around AI
-workflows grounded in enterprise IT.
+**Mist and glass.** Premium architectural technology, built around one image: a
+white terraced pavilion of four levels over still water in morning mist. The
+homepage draws it as layered SVG, with the levels labelled Enterprise IT,
+Security, Automation and AI. Colours are sampled from that scene.
 
 | | |
 |---|---|
-| Ground | Cool blue-white `#f2f6fb`, panels `#ffffff`, wash `#e7eff9` |
-| Ink | `#0d1521` (18.2:1), body `#44505e` (7.9:1) |
-| Blue | `#1470af` (5.3:1) — sampled from the reference; links use `#0f5586` (7.9:1) |
-| Navy bands | `#0a1a2b` gradient, accent `#5aa9e6` (6.9:1 on navy) |
-| Display | Instrument Serif |
-| Body | Inter 400/500/600 |
-| Radius | 4px — square-ish, following the reference |
+| Ground | Mist `#eef1f3`; stone bands `#e7e5e0`; white panels; one charcoal surface `#16191e` |
+| Ink | `#12151a` (15.2:1 worst case), body `#454b54` (7.3:1), labels `#59606a` (5.4:1) |
+| Accent | Lit-glass blue `#2a64a8` (5.1:1 on stone); links `#1f4f87` (7.2:1) |
+| Type | Geist for display and body, Geist Mono for labels |
+| Surfaces | Frosted glass panels, hairlines, 20px radius, pill buttons and nav |
 
-The ground is **tinted rather than pure white on purpose**: panels are white, so
-a white ground would collapse the elevation that separates them. Elevation
-shadows carry a blue cast for the same reason.
+### Motion and interaction
 
-Two section devices carry the blue rhythm: `.section--tint` for a light wash and
-`.band-navy` for a full-bleed dark gradient. Both break out of the container.
+Every page is complete with no JavaScript; `assets/site.js` adds the layer
+below, and `prefers-reduced-motion` switches all of it off.
+
+| Feature | Where | Without JS |
+|---|---|---|
+| Pavilion scene: layers drift against the pointer, labels settle in | Home | Mist gradient; all text present |
+| "How I build" steps as tabs with one detail panel | Home | A numbered list with every step written out |
+| Scroll reveals, 3D tilt and a pointer spotlight on cards and panels | All | Static |
+| Career timeline that fills with scroll | About | Full rail, all nodes lit |
+| Skill map tabs whose dots form a where-used matrix | About | Six cards |
+| Reading progress in the nav; cross-document page transitions | All (CSS) | Normal navigation |
 
 ### Diagrams
 
 The references this design follows are photography-led; this site has no
 photography beyond one portrait. The visual weight is carried instead by four
 SVG diagrams in `images/diagrams/`, generated to a single visual language so
-they read as a set: four stages across, one highlighted as the step that
+they read as a set (recoloured to the Mist and glass palette): four stages across, one highlighted as the step that
 matters, a supporting layer underneath, and a one-line note.
 
 Each diagram ships in **two variants**, swapped by `<picture>` with no JavaScript:
@@ -58,18 +63,18 @@ Two things to know before editing them:
 
 ## Conventions
 
-- **No JavaScript.** The site ships none, so the CSP has no `script-src` at all —
-  `default-src 'none'` covers it. JSON-LD blocks are data, not executed scripts,
-  so they are unaffected. Keep it that way: the nav wraps rather than collapsing
-  into a menu, and nothing depends on scroll handlers.
+- **One first-party script, as enhancement only.** `assets/site.js` is the only
+  script, and the CSP allows exactly that: `script-src 'self'`, no inline code, no
+  third-party origins, no network calls. Nothing may depend on it: content,
+  navigation and links must work with JavaScript off.
 - **No inline `style` or `on*` attributes.** `style-src` stays at `'self'` with no
   `'unsafe-inline'`, so inline styles silently fail — use the `.mt-s` / `.mt-m` /
   `.mt-l` / `.cols-1` utilities instead.
 - **Fonts** come from Google Fonts and are the only external origin the CSP allows.
-- **The stylesheet URL carries a content hash** (`assets/site.css?v=…`). The host
-  caches HTML and CSS separately for ten minutes with no version in the path, so
-  a browser can otherwise pair fresh markup with a stale stylesheet. Recompute the
-  hash whenever `assets/site.css` changes:
+- **The stylesheet and script URLs carry a content hash** (`assets/site.css?v=…`,
+  `assets/site.js?v=…`). The host caches HTML and assets separately for ten minutes
+  with no version in the path, so a browser can otherwise pair fresh markup with a
+  stale file. Recompute the hash whenever either file changes:
 
   ```bash
   python3 -c "import hashlib;print(hashlib.sha256(open('assets/site.css','rb').read()).hexdigest()[:8])"
@@ -91,7 +96,8 @@ Two things to know before editing them:
 ## Project structure
 
 ```
-index.html               Home — hero, selected work, about, contact
+index.html               Home — intro, selected work, about, contact
+docs/VISION.md           Brand vision and positioning
 about.html               Background, capabilities, toolset, credentials
 projects.html            AI product pipeline — flow, guardrails, stack
 labs.html                Lab index and the case standard
@@ -102,7 +108,8 @@ security-plus.html       CompTIA Security+ credential page
 itil4.html               ITIL 4 Foundation credential page
 404.html                 Not-found page
 
-assets/site.css          The entire design system — one file, no JS
+assets/site.css          The entire design system
+assets/site.js           Motion layer: pavilion scene, reveals, timeline, skill map
 images/diagrams/         Work diagrams, two size variants each
 images/                  Portrait and certificate assets
 _headers                 HTTP security headers
