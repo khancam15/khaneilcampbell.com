@@ -269,7 +269,7 @@ The existing branch (`claude/stoic-hypatia-1bo10a`) stays as it is until M3. Not
 | **D3** | Is the Astro build live at benjaire.com yet? | Case study says "in development" until it is |
 | **D4** | Hosting: stay on GitHub Pages, or move to Cloudflare as Benjaire did | Stay on GitHub Pages for launch |
 | **D5** | Hero visual: SVG axonometric drawing (light, sharp) or a pre-rendered architectural still, as Benjaire uses (richer, heavier, needs an original render) | SVG drawing |
-| **D6** | Résumé download: your PDF includes your phone number and personal email. Supply a public version without them, or publish a web-only résumé | A public PDF without the phone number |
+| ~~D6~~ | ~~Résumé download~~ | **Resolved 2026-10-14:** public copy at `assets/khaneil-campbell-resume.pdf`, phone number removed and Gmail replaced with contact@khaneilcampbell.com; linked discreetly from the footer and Contact |
 | **D7** | Accent: restrained signal blue, or fully monochrome like Benjaire | Signal blue, for clear separation |
 | **D8** | Navigation: keep Expertise as its own page, or fold it into About | Keep it |
 | **D9** | Unpublish the phishing and access-control "in progress" case files until evidence exists | Yes |
