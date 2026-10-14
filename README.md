@@ -1,10 +1,25 @@
 # Khaneil Campbell — AI & Technology Portfolio
 
-Static portfolio for Khaneil Campbell, AI and technology professional: AI workflows,
-cybersecurity, and enterprise IT. Hosted on GitHub Pages at `khaneilcampbell.com`.
+Static portfolio for Khaneil Campbell: AI solutions, intelligent automation,
+cybersecurity and enterprise systems. Live at [khaneilcampbell.com](https://khaneilcampbell.com),
+served by GitHub Pages from `main`.
 
-The brand positioning and the goals every page answers to are set out in
-[docs/VISION.md](docs/VISION.md).
+> *Designing systems. Engineering what's next.*
+
+- Positioning and principles: [docs/VISION.md](docs/VISION.md)
+- Plan, verified content and open decisions: [docs/PORTFOLIO-PLAN.md](docs/PORTFOLIO-PLAN.md)
+
+## Current production
+
+| Area | State |
+|---|---|
+| Design | Mist and glass, launched 14 Oct 2026 ([#8](https://github.com/khancam15/khaneilcampbell.com/pull/8)) |
+| Homepage | Pavilion hero; at-a-glance strip (4+ years at Columbia, 3 documented builds, 7-phase pipeline, 4 certifications); two project cards; "How I build with AI"; six expertise areas; experience; contact row |
+| About | Background, career timeline, skill map, capabilities, certifications, education |
+| Work | Multi-agent commerce pipeline (built and tested); SOC brute-force detection lab (published); phishing and access-control case files (in progress) |
+| Résumé | `assets/khaneil-campbell-resume.pdf`, a public copy with the phone number removed |
+| Links | [LinkedIn](https://www.linkedin.com/in/khaneil-campbell) · [GitHub](https://github.com/khancam15) · contact@khaneilcampbell.com |
+| Not yet published | The Benjaire case study, pending decision D1 in the plan |
 
 ## Design
 
@@ -40,8 +55,9 @@ below, and `prefers-reduced-motion` switches all of it off.
 The references this design follows are photography-led; this site has no
 photography beyond one portrait. The visual weight is carried instead by four
 SVG diagrams in `images/diagrams/`, generated to a single visual language so
-they read as a set (recoloured to the Mist and glass palette): four stages across, one highlighted as the step that
-matters, a supporting layer underneath, and a one-line note.
+they read as a set: four stages, one highlighted as the step that matters, a
+supporting layer underneath, and a one-line note. They use the Mist and glass
+palette, and each card is sized to fit its text.
 
 Each diagram ships in **two variants**, swapped by `<picture>` with no JavaScript:
 
@@ -69,7 +85,8 @@ Two things to know before editing them:
   navigation and links must work with JavaScript off.
 - **No inline `style` or `on*` attributes.** `style-src` stays at `'self'` with no
   `'unsafe-inline'`, so inline styles silently fail — use the `.mt-s` / `.mt-m` /
-  `.mt-l` / `.cols-1` utilities instead.
+  `.mt-l` utilities instead. Scripts may still set styles through the CSSOM
+  (`el.style.setProperty`), which the CSP allows.
 - **Fonts** come from Google Fonts and are the only external origin the CSP allows.
 - **The stylesheet and script URLs carry a content hash** (`assets/site.css?v=…`,
   `assets/site.js?v=…`). The host caches HTML and assets separately for ten minutes
@@ -89,15 +106,14 @@ Two things to know before editing them:
   truncates in results.
 - Every page except the 404 carries JSON-LD: a `WebPage` tied to the site-wide
   `Person`, plus a `BreadcrumbList`.
-- Known gap: total indexable copy is roughly 5,000 words across 10 pages, and
-  there is no writing or articles section. The site currently competes only on the
-  owner's name. Adding genuinely useful write-ups is the highest-value next step.
+- Homepage title: *Khaneil Campbell | AI, Automation & Technology Portfolio*.
+- Known gap: there is no writing or articles section, so the site competes mainly
+  on the owner's name. Adding genuinely useful write-ups is the highest-value next step.
 
 ## Project structure
 
 ```
-index.html               Home — intro, selected work, about, contact
-docs/VISION.md           Brand vision and positioning
+index.html               Home — pavilion hero, work, process, expertise, experience, contact
 about.html               Background, capabilities, toolset, credentials
 projects.html            AI product pipeline — flow, guardrails, stack
 labs.html                Lab index and the case standard
@@ -110,6 +126,9 @@ itil4.html               ITIL 4 Foundation credential page
 
 assets/site.css          The entire design system
 assets/site.js           Motion layer: pavilion scene, reveals, timeline, skill map
+assets/khaneil-campbell-resume.pdf   Public résumé (no phone number)
+docs/VISION.md           Positioning and principles
+docs/PORTFOLIO-PLAN.md   Plan, verified content, decisions
 images/diagrams/         Work diagrams, two size variants each
 images/                  Portrait and certificate assets
 _headers                 HTTP security headers
@@ -143,4 +162,4 @@ The `security-check.yml` workflow runs on every push and pull request. Changes r
 
 ## Built with AI Assistance
 
-This site was designed and built with Claude as a working partner. Claude helped with layout and visual design, HTML and CSS, copy edits, and the Python audit scripts in `scripts/`. I set the direction, made the design and content decisions, and reviewed every change on the live site before publishing it.
+This site was designed and built with Claude as a working partner. Claude helped with layout and visual design, HTML and CSS, copy edits, and the Python audit scripts in `scripts/`. I set the direction, made the design and content decisions, and reviewed every change on the live site before publishing it. The planning documents in `docs/` record those decisions and what each claim on the site rests on.
