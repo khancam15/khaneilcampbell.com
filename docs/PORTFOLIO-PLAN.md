@@ -1,12 +1,25 @@
-# khaneilcampbell.com: Portfolio Development Plan (v0.1)
+# khaneilcampbell.com: Portfolio Development Plan (v0.2)
 
 | | |
 |---|---|
-| **Status** | **Draft for owner approval.** No implementation starts until this plan, and the decisions in §12, are approved. |
+| **Status** | **In production.** The Mist and glass design launched on 14 Oct 2026 (#8, #9). Open decisions are listed in §12. |
 | **Date** | 2026-10-14 |
 | **Product** | khaneilcampbell.com, the personal engineering portfolio of Khaneil Campbell |
 | **Headline** | Designing systems. Engineering what's next. |
 | **Sources reviewed** | This repository; `khancam15/benjaire.com` (source, docs, a local build of `site/`); `khancam15/multi-agent-commerce-pipeline`; `khancam15/soc-automation-splunk-bruteforce-lab`; `khancam15/khancam15` (profile README); the résumé supplied 2026-10-13 (`K.Campbell_Resume.pdf`) |
+
+## Production status (14 Oct 2026)
+
+| Item | State |
+|---|---|
+| Visual direction | Mist and glass, approved and live. Accent settled at `#2a64a8` (lit-glass blue), not the `#2453d4` proposed in §5.2 |
+| Homepage | Live: pavilion hero, at-a-glance strip, two project cards, "How I build with AI", expertise, experience, contact row |
+| Service desk metrics | Removed site-wide by owner decision: they don't fit the positioning |
+| Résumé | Published (D6 resolved) |
+| LinkedIn | `linkedin.com/in/khaneil-campbell` (D14 resolved) |
+| Architecture | Still static HTML on GitHub Pages; the Astro migration in §9 has not started |
+| Benjaire case study | Not published; waits on D1 |
+| In-progress case files | Still published; waits on D9 |
 
 ## How to read this document
 
