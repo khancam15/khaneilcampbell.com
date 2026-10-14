@@ -2,22 +2,18 @@
    KHANEIL CAMPBELL — progressive enhancement
    ------------------------------------------------------------
    The only script on the site. Every page is complete without it;
-   this file adds the motion layer on top:
+   this file adds the motion and interaction layer on top:
 
-     · cinematic loader     first homepage visit of a session
-     · animated typography  the hero name, letter by letter
-     · particle field       a rotating 3D constellation in the hero
-     · scroll reveals       sections rise in as they enter
-     · magnetic hover       buttons and nav lean toward the pointer
-     · 3D tilt, spotlight   work panels respond to the pointer
-     · floating nav         tightens once the page is scrolled
+     · pavilion scene       the homepage hero, drawn as layered SVG
+     · scroll reveals       sections settle in as they enter
+     · 3D tilt, spotlight   work panels and cards respond to the pointer
+     · floating nav         firms up once the page is scrolled
+     · process steps        the homepage "How I build" list as tabs
      · career timeline      the rail fills and nodes light as you scroll
      · skill map            tabs whose dots form a where-used matrix
 
-   It is loaded in <head> without defer, so the classes it sets on
-   <html> land before first paint and nothing flashes. Everything
-   that touches the body waits for DOMContentLoaded.
-
+   Loaded in <head> without defer so the "js" class lands before first
+   paint; everything that touches the body waits for DOMContentLoaded.
    No dependencies, no network calls, no inline code: the CSP allows
    script-src 'self' and nothing more.
    ============================================================ */
@@ -30,65 +26,19 @@
 
   root.classList.add('js');
 
-  /* ─── Loader: decided now, before the body exists ─── */
-  var path = location.pathname;
-  var isHome = path === '/' || /\/index\.html$/.test(path) || /\/$/.test(path);
-  var seen = false;
-  try { seen = sessionStorage.getItem('kc-intro') === '1'; sessionStorage.setItem('kc-intro', '1'); } catch (e) { seen = true; }
-  var loading = isHome && !seen && !reduced;
-  if (loading) root.classList.add('is-loading');
-
-  function endLoader() {
-    if (!root.classList.contains('is-loading')) return;
-    root.classList.add('is-leaving');
-    setTimeout(function () { root.classList.remove('is-loading', 'is-leaving'); }, 560);
-  }
-
   document.addEventListener('DOMContentLoaded', function () {
-    if (loading) {
-      // Long enough to read as an opening, short enough never to feel like a wait.
-      setTimeout(endLoader, 900);
-    }
-    splitName();
     floatingNav();
+    scene();
+    cardArt();
+    steps();
     if (!reduced) {
       reveals();
-      if (finePointer) { magnetic(); tilt(); }
+      if (finePointer) tilt();
     }
     spotlight();
-    particles();
     timeline();
     skillMap();
   });
-
-  /* ─── Animated typography ─── */
-  function splitName() {
-    var h = document.querySelector('.hero-name');
-    if (!h || reduced) return;
-    var text = h.textContent.trim();
-    h.textContent = '';
-    var label = document.createElement('span');
-    label.className = 'sr-only';
-    label.textContent = text;
-    h.appendChild(label);
-    var wrap = document.createElement('span');
-    wrap.setAttribute('aria-hidden', 'true');
-    // Letters are grouped into words so a line can only break between words.
-    var n = 0;
-    text.split(/\s+/).forEach(function (word, wi) {
-      if (wi) wrap.appendChild(document.createTextNode(' '));
-      var wEl = document.createElement('span');
-      wEl.className = 'wd';
-      for (var i = 0; i < word.length; i++) {
-        var c = document.createElement('span');
-        c.className = 'ch'; c.textContent = word[i]; c.style.setProperty('--i', n++);
-        wEl.appendChild(c);
-      }
-      wrap.appendChild(wEl);
-    });
-    h.appendChild(wrap);
-    h.classList.add('is-split');
-  }
 
   /* ─── Floating nav ─── */
   function floatingNav() {
@@ -107,13 +57,13 @@
     if (!('IntersectionObserver' in window)) return;
     var groups = [
       '.section-head', '.piece', '.tiles > .tile', '.domain', '.figures > div',
-      '.cta', '.split > *', '.panel', '.skillmap'
+      '.cta', '.split > *', '.panel', '.skillmap', '.cards > .card', '.areas', '.xp', '.process'
     ];
     var seenEls = new Set();
     var targets = [];
     groups.forEach(function (sel) {
       document.querySelectorAll('main ' + sel).forEach(function (el) {
-        if (seenEls.has(el) || el.closest('.hero')) return;
+        if (seenEls.has(el) || el.closest('.hero, .stage, .proof')) return;
         seenEls.add(el);
         targets.push(el);
       });
@@ -138,33 +88,15 @@
     targets.forEach(function (el) { io.observe(el); });
   }
 
-  /* ─── Magnetic hover ─── */
-  function magnetic() {
-    document.querySelectorAll('.btn, .btn-text, .nav-links a, .nav .nav-name').forEach(function (el) {
-      var strength = el.classList.contains('btn') ? 0.28 : 0.2;
-      el.addEventListener('pointermove', function (ev) {
-        var r = el.getBoundingClientRect();
-        var x = (ev.clientX - (r.left + r.width / 2)) * strength;
-        var y = (ev.clientY - (r.top + r.height / 2)) * strength;
-        el.style.setProperty('--tx', x.toFixed(1) + 'px');
-        el.style.setProperty('--ty', y.toFixed(1) + 'px');
-      });
-      el.addEventListener('pointerleave', function () {
-        el.style.setProperty('--tx', '0px');
-        el.style.setProperty('--ty', '0px');
-      });
-    });
-  }
-
   /* ─── 3D tilt on work panels ─── */
   function tilt() {
-    document.querySelectorAll('.piece-visual').forEach(function (el) {
+    document.querySelectorAll('.piece-visual, .card').forEach(function (el) {
       el.addEventListener('pointermove', function (ev) {
         var r = el.getBoundingClientRect();
         var px = (ev.clientX - r.left) / r.width - 0.5;
         var py = (ev.clientY - r.top) / r.height - 0.5;
-        el.style.setProperty('--ry', (px * 6).toFixed(2) + 'deg');
-        el.style.setProperty('--rx', (py * -5).toFixed(2) + 'deg');
+        el.style.setProperty('--ry', (px * 4).toFixed(2) + 'deg');
+        el.style.setProperty('--rx', (py * -3).toFixed(2) + 'deg');
       });
       el.addEventListener('pointerleave', function () {
         el.style.setProperty('--rx', '0deg');
@@ -176,7 +108,7 @@
   /* ─── Spotlight ─── */
   function spotlight() {
     if (!finePointer) return;
-    document.querySelectorAll('.piece-visual, .tile, .panel, .cta').forEach(function (el) {
+    document.querySelectorAll('.piece-visual, .tile, .panel, .cta, .card').forEach(function (el) {
       el.addEventListener('pointermove', function (ev) {
         var r = el.getBoundingClientRect();
         el.style.setProperty('--mx', (ev.clientX - r.left) + 'px');
@@ -326,123 +258,241 @@
     select(0, false);
   }
 
-  /* ─── Particle field ───
-     Points on a loose sphere, rotated in 3D and projected with
-     perspective. Rotation preserves distance, so the edges between
-     near neighbours are found once, not every frame. The loop runs
-     only while the hero is on screen and the tab is visible, and the
-     point count scales with the canvas area. */
-  function particles() {
-    var field = document.querySelector('.hero-field');
-    if (!field) return;
-    var canvas = document.createElement('canvas');
-    var ctx = canvas.getContext('2d');
-    if (!ctx) return;
-    field.appendChild(canvas);
+  /* ─── Homepage: the pavilion scene ───
+     Sky, mist, horizon, still water, a four-level pavilion with lit glass
+     between its slabs, its reflection and frosted labels. Drawn from
+     geometry so it stays sharp at any size. Each layer drifts by its own
+     amount against the pointer; the building itself never rotates. */
+  var NS = 'http://www.w3.org/2000/svg';
+  function svgEl(tag, attrs, parent) {
+    var n = document.createElementNS(NS, tag);
+    for (var k in attrs) n.setAttribute(k, attrs[k]);
+    if (parent) parent.appendChild(n);
+    return n;
+  }
 
-    var dpr = Math.min(window.devicePixelRatio || 1, 2);
-    var w = 0, h = 0, pts = [], edges = [], R = 0, cx = 0, cy = 0;
-    var rotY = 0, rotX = -0.25, tgtX = 0, tgtY = 0, curX = 0, curY = 0;
-    var running = false, visible = true, raf = 0;
-
-    function build() {
-      var rect = field.getBoundingClientRect();
-      w = rect.width; h = rect.height;
-      canvas.width = Math.round(w * dpr); canvas.height = Math.round(h * dpr);
-      ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
-      var wide = w > 900;
-      R = wide ? Math.min(w, h) * 0.36 : w * 0.46;
-      cx = wide ? w * 0.74 : w * 0.8;
-      cy = wide ? h * 0.46 : h * 0.24;
-      var n = Math.round(Math.min(180, Math.max(70, (w * h) / 9000)));
-      pts = [];
-      var golden = Math.PI * (3 - Math.sqrt(5));
-      for (var i = 0; i < n; i++) {
-        var y = 1 - (i / (n - 1)) * 2;
-        var rad = Math.sqrt(1 - y * y);
-        var th = golden * i;
-        var jitter = 0.86 + Math.random() * 0.22;
-        pts.push([Math.cos(th) * rad * jitter, y * jitter, Math.sin(th) * rad * jitter]);
-      }
-      edges = [];
-      var lim = 0.42 * 0.42;
-      for (var a = 0; a < n; a++) {
-        for (var b = a + 1; b < n; b++) {
-          var dx = pts[a][0] - pts[b][0], dy = pts[a][1] - pts[b][1], dz = pts[a][2] - pts[b][2];
-          if (dx * dx + dy * dy + dz * dz < lim) edges.push([a, b]);
-        }
-      }
-    }
-
-    var proj = [];
-    function frame(t) {
-      if (!running) return;
-      rotY += 0.0016;
-      curX += (tgtX - curX) * 0.04; curY += (tgtY - curY) * 0.04;
-      draw();
-      raf = requestAnimationFrame(frame);
-    }
+  function scene() {
+    var host = document.querySelector('.scene');
+    if (!host) return;
+    var LEVELS = [
+      { name: 'Enterprise IT', sub: 'Columbia, 4+ years', w: 540 },
+      { name: 'Security', sub: 'Security+, SOC lab', w: 430 },
+      { name: 'Automation', sub: 'Python, APIs, CI', w: 320 },
+      { name: 'AI', sub: 'Claude, MCP, agents', w: 210, hot: true }
+    ];
+    var layers = [];
 
     function draw() {
-      ctx.clearRect(0, 0, w, h);
-      var ay = rotY + curX * 0.5, ax = rotX + curY * 0.35;
-      var sy = Math.sin(ay), cyy = Math.cos(ay), sx = Math.sin(ax), cxx = Math.cos(ax);
-      var fov = 2.6;
-      for (var i = 0; i < pts.length; i++) {
-        var p = pts[i];
-        var x = p[0] * cyy - p[2] * sy;
-        var z = p[0] * sy + p[2] * cyy;
-        var y = p[1] * cxx - z * sx;
-        z = p[1] * sx + z * cxx;
-        var s = fov / (fov + z);
-        proj[i] = [cx + x * R * s, cy + y * R * s, z, s];
+      host.textContent = '';
+      var narrow = host.clientWidth < 760;
+      var W = 1600, H = 900, HZ = 586, CX = 1120, BASE = 650;
+      var svg = svgEl('svg', {
+        viewBox: narrow ? '762 140 838 754' : '0 0 ' + W + ' ' + H,
+        preserveAspectRatio: narrow ? 'xMidYMid slice' : 'xMaxYMax slice',
+        'aria-hidden': 'true', focusable: 'false'
+      }, host);
+      var defs = svgEl('defs', {}, svg);
+      function lg(id, stops, x2, y2) {
+        var g = svgEl('linearGradient', { id: id, x1: 0, y1: 0, x2: x2 || 0, y2: y2 === undefined ? 1 : y2 }, defs);
+        stops.forEach(function (s) { svgEl('stop', { offset: s[0], 'stop-color': s[1], 'stop-opacity': s[2] === undefined ? 1 : s[2] }, g); });
       }
-      ctx.lineWidth = 1;
-      for (var e = 0; e < edges.length; e++) {
-        var A = proj[edges[e][0]], B = proj[edges[e][1]];
-        var depth = 1 - ((A[2] + B[2]) / 2 + 1) / 2;   // 1 near, 0 far
-        ctx.strokeStyle = 'rgba(61,155,255,' + (0.03 + depth * 0.16).toFixed(3) + ')';
-        ctx.beginPath(); ctx.moveTo(A[0], A[1]); ctx.lineTo(B[0], B[1]); ctx.stroke();
+      lg('kc-sky', [[0, '#cfd8e0'], [.55, '#e3e8ec'], [1, '#f1f3f4']]);
+      lg('kc-water', [[0, '#dfe5e9'], [.4, '#c9d3da'], [1, '#b4c1ca']]);
+      lg('kc-glass', [[0, '#cfe0ee', .9], [1, '#9fc0db', .75]]);
+      lg('kc-glass-hot', [[0, '#d9ebfb', .95], [1, '#6fa8d6', .85]]);
+      lg('kc-face', [[0, '#ffffff'], [1, '#e9ecee']]);
+      lg('kc-mist', [[0, '#ffffff', 0], [.5, '#ffffff', .75], [1, '#ffffff', 0]]);
+      lg('kc-fade', [[0, '#eef1f3', .92], [1, '#eef1f3', 0]], 1, 0);
+      lg('kc-refl', [[0, '#fff', .55], [1, '#fff', 0]]);
+      var soft = svgEl('filter', { id: 'kc-soft', x: '-10%', y: '-10%', width: '120%', height: '120%' }, defs);
+      svgEl('feGaussianBlur', { stdDeviation: 2.4 }, soft);
+      var glow = svgEl('filter', { id: 'kc-glow', x: '-50%', y: '-50%', width: '200%', height: '200%' }, defs);
+      svgEl('feGaussianBlur', { stdDeviation: 18 }, glow);
+      var mask = svgEl('mask', { id: 'kc-refl-mask' }, defs);
+      svgEl('rect', { x: 0, y: HZ, width: W, height: H - HZ, fill: 'url(#kc-refl)' }, mask);
+
+      // sky, sun glow, distant shore
+      svgEl('rect', { width: W, height: HZ + 2, fill: 'url(#kc-sky)' }, svg);
+      var far = svgEl('g', { 'class': 'layer' }, svg);
+      svgEl('circle', { cx: 1260, cy: 170, r: 220, fill: '#ffffff', opacity: .55, filter: 'url(#kc-glow)' }, far);
+      svgEl('path', { d: 'M0 ' + HZ + ' L0 ' + (HZ - 18) + ' C 180 ' + (HZ - 30) + ', 320 ' + (HZ - 12) + ', 520 ' + (HZ - 22) + ' S 820 ' + (HZ - 8) + ', 980 ' + (HZ - 14) + ' L 980 ' + HZ + ' Z', fill: '#c3ccd3', opacity: .55 }, far);
+      svgEl('path', { d: 'M1380 ' + HZ + ' C 1460 ' + (HZ - 16) + ', 1540 ' + (HZ - 10) + ', 1600 ' + (HZ - 20) + ' L1600 ' + HZ + ' Z', fill: '#c3ccd3', opacity: .45 }, far);
+
+      // still water with faint ripple lines (seeded, so it never changes)
+      svgEl('rect', { y: HZ, width: W, height: H - HZ, fill: 'url(#kc-water)' }, svg);
+      var rip = svgEl('g', { opacity: .5 }, svg);
+      var seed = 7;
+      function rnd() { seed = (seed * 9301 + 49297) % 233280; return seed / 233280; }
+      for (var r = 0; r < 46; r++) {
+        var ry = HZ + 8 + Math.pow(rnd(), 1.6) * (H - HZ - 8);
+        var rx = rnd() * W, len = 30 + rnd() * 160 * (ry - HZ) / (H - HZ) + 20;
+        svgEl('line', { x1: rx, y1: ry, x2: rx + len, y2: ry, stroke: '#ffffff', 'stroke-width': .6 + (ry - HZ) / 260, opacity: .35 + rnd() * .4 }, rip);
       }
-      for (var k = 0; k < proj.length; k++) {
-        var q = proj[k];
-        var d = 1 - (q[2] + 1) / 2;
-        ctx.fillStyle = d > 0.62 ? 'rgba(180,215,255,' + (0.35 + d * 0.6).toFixed(3) + ')'
-                                 : 'rgba(61,155,255,' + (0.2 + d * 0.6).toFixed(3) + ')';
-        ctx.beginPath(); ctx.arc(q[0], q[1], (0.7 + d * 1.6) * q[3], 0, 6.283); ctx.fill();
-      }
+
+      // the pavilion, defined once so the reflection can reuse it
+      var bld = svgEl('g', { id: 'kc-bld' }, defs);
+      var SK = 46, D = 30, T = 16;
+      var pw = 720, px0 = CX - pw / 2, px1 = CX + pw / 2;
+      svgEl('polygon', { points: px0 + ',' + BASE + ' ' + px1 + ',' + BASE + ' ' + (px1 + SK) + ',' + (BASE - D) + ' ' + (px0 + SK) + ',' + (BASE - D), fill: '#f6f7f8' }, bld);
+      svgEl('rect', { x: px0, y: BASE, width: pw, height: 9, fill: '#d9dde0' }, bld);
+      svgEl('polygon', { points: px1 + ',' + BASE + ' ' + (px1 + SK) + ',' + (BASE - D) + ' ' + (px1 + SK) + ',' + (BASE - D + 9) + ' ' + px1 + ',' + (BASE + 9), fill: '#c9ced2' }, bld);
+
+      var anchors = [], floor = BASE - D / 2, GH = [72, 68, 64, 60];
+      LEVELS.forEach(function (L, i) {
+        var x0 = CX - L.w / 2 + i * 6, x1 = x0 + L.w, gTop = floor - GH[i], gi = L.w * .1;
+        svgEl('rect', { x: x0 + gi, y: gTop, width: L.w - gi * 2, height: floor - gTop, fill: L.hot ? 'url(#kc-glass-hot)' : 'url(#kc-glass)' }, bld);
+        for (var mx = x0 + gi + 22; mx < x1 - gi - 4; mx += 26) svgEl('line', { x1: mx, y1: gTop, x2: mx, y2: floor, stroke: '#ffffff', 'stroke-width': 1.1, opacity: .7 }, bld);
+        svgEl('line', { x1: x0 + gi, y1: (gTop + floor) / 2, x2: x1 - gi, y2: (gTop + floor) / 2, stroke: '#ffffff', 'stroke-width': .8, opacity: .45 }, bld);
+        if (L.hot) svgEl('rect', { x: x0 + gi, y: gTop, width: L.w - gi * 2, height: floor - gTop, fill: '#6fa8d6', opacity: .28, filter: 'url(#kc-glow)' }, bld);
+        [x0 + 14, x1 - 14].forEach(function (cx) { svgEl('rect', { x: cx - 2.5, y: gTop, width: 5, height: floor - gTop, fill: '#f4f5f6' }, bld); });
+        var y = gTop - T;
+        svgEl('polygon', { points: x0 + ',' + (y + T) + ' ' + x1 + ',' + (y + T) + ' ' + x1 + ',' + y + ' ' + x0 + ',' + y, fill: 'url(#kc-face)', stroke: 'rgba(18,21,26,.08)' }, bld);
+        svgEl('polygon', { points: x1 + ',' + (y + T) + ' ' + (x1 + SK) + ',' + (y + T - D) + ' ' + (x1 + SK) + ',' + (y - D) + ' ' + x1 + ',' + y, fill: '#d7dbdf' }, bld);
+        svgEl('polygon', { points: x0 + ',' + y + ' ' + x1 + ',' + y + ' ' + (x1 + SK) + ',' + (y - D) + ' ' + (x0 + SK) + ',' + (y - D), fill: '#fbfbfc' }, bld);
+        svgEl('rect', { x: x0 + gi, y: gTop, width: L.w - gi * 2, height: 5, fill: 'rgba(18,21,26,.12)' }, bld);
+        anchors.push({ L: L, x: x1 + SK * .6, y: y - D * .3 + T / 2 });
+        floor = y - D / 2;
+      });
+      [px0 + 120, px0 + 134].forEach(function (fx) {
+        svgEl('rect', { x: fx - 2.2, y: BASE - 22, width: 4.4, height: 15, rx: 2, fill: '#2b3037' }, bld);
+        svgEl('circle', { cx: fx, cy: BASE - 25.5, r: 2.6, fill: '#2b3037' }, bld);
+      });
+
+      var refl = svgEl('g', { 'class': 'layer', mask: 'url(#kc-refl-mask)' }, svg);
+      svgEl('use', { href: '#kc-bld', transform: 'translate(0 ' + (2 * (BASE + 9)) + ') scale(1 -1)', opacity: .55, filter: 'url(#kc-soft)' }, refl);
+      var front = svgEl('g', { 'class': 'layer' }, svg);
+      var inner = svgEl('g', { 'class': 'bld' }, front);
+      svgEl('ellipse', { cx: CX + 30, cy: BASE + 14, rx: 400, ry: 16, fill: 'rgba(18,21,26,.08)' }, inner);
+      svgEl('use', { href: '#kc-bld' }, inner);
+
+      svgEl('rect', { y: HZ - 70, width: W, height: 140, fill: 'url(#kc-mist)' }, svg);
+      if (!narrow) svgEl('rect', { width: 980, height: H, fill: 'url(#kc-fade)' }, svg);
+
+      // frosted labels pinned to each level
+      var pins = svgEl('g', { 'class': 'layer' }, svg);
+      var fs = narrow ? 17 : 14, fs2 = narrow ? 0 : 12.5;
+      anchors.forEach(function (a) {
+        var g = svgEl('g', { 'class': 'pin' }, pins);
+        var lx = a.x + (narrow ? 14 : 24), w = narrow ? 160 : 150, h = narrow ? 40 : 50;
+        var tone = a.L.hot ? '#2a64a8' : 'rgba(18,21,26,.35)';
+        svgEl('line', { x1: a.x, y1: a.y, x2: lx, y2: a.y, stroke: tone, 'stroke-width': 1 }, g);
+        svgEl('circle', { cx: a.x, cy: a.y, r: narrow ? 7 : 5.5, fill: a.L.hot ? '#2a64a8' : '#ffffff', stroke: a.L.hot ? '#2a64a8' : 'rgba(18,21,26,.3)' }, g);
+        if (a.L.hot) svgEl('circle', { cx: a.x, cy: a.y, r: 12, fill: 'none', stroke: '#2a64a8', opacity: .3 }, g);
+        svgEl('rect', { x: lx, y: a.y - h / 2, width: w, height: h, rx: 10, fill: 'rgba(255,255,255,.8)', stroke: '#ffffff' }, g);
+        var t1 = svgEl('text', { x: lx + 14, y: fs2 ? a.y - 3 : a.y + 6, 'font-family': 'Geist Mono, monospace', 'font-size': fs, 'letter-spacing': '1.4', fill: '#12151a', 'font-weight': 500 }, g);
+        t1.textContent = a.L.name.toUpperCase();
+        if (fs2) {
+          var t2 = svgEl('text', { x: lx + 14, y: a.y + 15, 'font-family': 'Geist, sans-serif', 'font-size': fs2, fill: '#59606a' }, g);
+          t2.textContent = a.L.sub;
+        }
+      });
+      layers = [[far, 6], [refl, 10], [front, 14], [pins, 24]];
     }
 
-    function start() { if (!running && visible && !reduced) { running = true; raf = requestAnimationFrame(frame); } }
-    function stop() { running = false; cancelAnimationFrame(raf); }
-
-    build();
     draw();
-    requestAnimationFrame(function () { canvas.classList.add('is-on'); });
-
-    var resizeT;
+    var lastNarrow = host.clientWidth < 760;
     window.addEventListener('resize', function () {
-      clearTimeout(resizeT);
-      resizeT = setTimeout(function () { build(); draw(); }, 150);
+      var n = host.clientWidth < 760;
+      if (n !== lastNarrow) { lastNarrow = n; draw(); }
     });
 
-    if (reduced) return;   // one still frame, nothing moves
+    var stage = host.closest('.stage');
+    if (stage && finePointer && !reduced) {
+      stage.addEventListener('pointermove', function (e) {
+        var r = stage.getBoundingClientRect();
+        var x = (e.clientX - r.left) / r.width - .5, y = (e.clientY - r.top) / r.height - .5;
+        layers.forEach(function (l) { l[0].style.transform = 'translate(' + (-x * l[1]).toFixed(1) + 'px, ' + (-y * l[1] * .5).toFixed(1) + 'px)'; });
+      });
+      stage.addEventListener('pointerleave', function () { layers.forEach(function (l) { l[0].style.transform = ''; }); });
+    }
+  }
 
-    if (finePointer) {
-      window.addEventListener('pointermove', function (ev) {
-        tgtX = ev.clientX / window.innerWidth - 0.5;
-        tgtY = ev.clientY / window.innerHeight - 0.5;
-      }, { passive: true });
+  /* ─── Project card drawings: each project's real structure ─── */
+  function cardArt() {
+    var ph = document.getElementById('art-phases');
+    if (ph) {
+      ['Brand', 'Plan', 'Mockups', 'Canva', 'Build', 'Publish', 'SEO'].forEach(function (n, i) {
+        var x = 20 + i * 80;
+        svgEl('circle', { cx: x, cy: 44, r: i === 4 ? 7 : 5, fill: i === 4 ? '#2a64a8' : '#fff', stroke: i === 4 ? '#2a64a8' : 'rgba(18,21,26,.4)' }, ph);
+        var t = svgEl('text', { x: i === 0 ? 14 : x, y: 74, 'text-anchor': i === 0 ? 'start' : 'middle' }, ph);
+        t.textContent = ('P' + (i + 1) + ' ' + n).toUpperCase();
+      });
     }
-    if ('IntersectionObserver' in window) {
-      new IntersectionObserver(function (en) {
-        visible = en[0].isIntersecting;
-        visible ? start() : stop();
-      }).observe(field);
+    var ch = document.getElementById('art-chain');
+    if (ch) {
+      var CH = ['Kali', 'Windows 11', 'Forwarder', 'Splunk', 'Python', 'Case note'];
+      CH.forEach(function (n, i) {
+        var x = 10 + i * 86, hot = n === 'Splunk';
+        svgEl('rect', { x: x, y: 26, width: 74, height: 34, rx: 8, fill: '#fff', stroke: hot ? '#2a64a8' : 'rgba(18,21,26,.22)', 'stroke-width': hot ? 1.5 : 1 }, ch);
+        var t = svgEl('text', { x: x + 37, y: 47, 'text-anchor': 'middle' }, ch);
+        t.textContent = n.toUpperCase();
+        if (i < CH.length - 1) svgEl('line', { x1: x + 74, y1: 43, x2: x + 86, y2: 43, stroke: 'rgba(18,21,26,.4)' }, ch);
+      });
+      var e = svgEl('text', { x: 10 + 3 * 86, y: 82 }, ch);
+      e.textContent = 'EVENT ID 4625 THRESHOLD';
     }
-    document.addEventListener('visibilitychange', function () {
-      document.hidden ? stop() : start();
+  }
+
+  /* ─── "How I build" steps ───
+     Without the script: a numbered list with every step written out.
+     With it: the list becomes tabs driving one frosted detail panel. */
+  function steps() {
+    var list = document.querySelector('.steps');
+    var panel = document.getElementById('step-detail');
+    if (!list || !panel) return;
+    var items = Array.prototype.slice.call(list.children);
+    var data = items.map(function (li) {
+      return {
+        name: li.querySelector('.name').textContent,
+        title: li.getAttribute('data-title'),
+        text: li.querySelector('p').textContent,
+        ev: li.getAttribute('data-ev')
+      };
     });
-    start();
+    list.classList.add('is-live');
+    list.setAttribute('role', 'tablist');
+    list.setAttribute('aria-label', 'Process steps');
+    var buttons = items.map(function (li, i) {
+      var b = document.createElement('button');
+      b.type = 'button';
+      b.id = 'step-' + i;
+      b.setAttribute('role', 'tab');
+      b.setAttribute('aria-controls', 'step-detail');
+      var n = li.querySelector('.n'), nm = li.querySelector('.name');
+      b.appendChild(n); b.appendChild(nm);
+      var arrow = document.createElement('span');
+      arrow.className = 'arrow'; arrow.setAttribute('aria-hidden', 'true'); arrow.textContent = '→';
+      b.appendChild(arrow);
+      li.insertBefore(b, li.firstChild);
+      li.setAttribute('role', 'presentation');
+      b.addEventListener('click', function () { pick(i); });
+      if (finePointer) b.addEventListener('mouseenter', function () { pick(i); });
+      b.addEventListener('keydown', function (e) {
+        var k = items.length, to = e.key === 'ArrowDown' ? (i + 1) % k : e.key === 'ArrowUp' ? (i - 1 + k) % k : -1;
+        if (to >= 0) { e.preventDefault(); pick(to); buttons[to].focus(); }
+      });
+      return b;
+    });
+    panel.hidden = false;
+    var cur = -1;
+    function pick(i) {
+      if (i === cur) return;
+      cur = i;
+      buttons.forEach(function (b, k) { b.setAttribute('aria-selected', k === i ? 'true' : 'false'); b.tabIndex = k === i ? 0 : -1; });
+      panel.setAttribute('aria-labelledby', 'step-' + i);
+      var d = data[i];
+      panel.textContent = '';
+      var m = document.createElement('span'); m.className = 'mono';
+      m.textContent = 'Step ' + String(i + 1).padStart(2, '0') + ' of ' + String(data.length).padStart(2, '0') + ' · ' + d.name;
+      var meter = document.createElement('div'); meter.className = 'meter'; meter.setAttribute('aria-hidden', 'true');
+      data.forEach(function (_, k) { var t = document.createElement('i'); if (k <= i) t.className = 'on'; meter.appendChild(t); });
+      var h = document.createElement('h3'); h.textContent = d.title;
+      var p = document.createElement('p'); p.textContent = d.text;
+      var ev = document.createElement('p'); ev.className = 'ev';
+      var b = document.createElement('b'); b.textContent = 'Evidence: ';
+      ev.appendChild(b); ev.appendChild(document.createTextNode(d.ev));
+      [m, meter, h, p, ev].forEach(function (n) { panel.appendChild(n); });
+    }
+    pick(0);
   }
 })();

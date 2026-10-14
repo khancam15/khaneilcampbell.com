@@ -8,56 +8,39 @@ The brand positioning and the goals every page answers to are set out in
 
 ## Design
 
-Dark premium: a sophisticated technology company meets an interactive portfolio,
-not a cyberpunk set. A near-black ground, charcoal bands, one electric blue accent,
-a modern grotesque throughout and editorial spacing. Panels are hairline-bordered
-and lit from within rather than lifted by shadow.
+**Mist and glass.** Premium architectural technology, built around one image: a
+white terraced pavilion of four levels over still water in morning mist. The
+homepage draws it as layered SVG, with the levels labelled Enterprise IT,
+Security, Automation and AI. Colours are sampled from that scene.
 
 | | |
 |---|---|
-| Ground | Near-black `#07090c`; charcoal bands `#0e1116`; panels `#141820` |
-| Ink | `#f2f5f9` (15.1:1 worst case), body `#aab4c2` (7.9:1), labels `#8f9aaa` (5.8:1) |
-| Accent | Electric blue `#3d9bff` (5.8:1); links `#6db4ff` (7.6:1); button text `#07090c` on blue (7.0:1) |
-| Display and body | Geist, 300 to 700 |
-| Micro-type | Geist Mono, uppercase, 0.12 to 0.16em tracking |
-| Radius | 14px panels, full pill for the nav and buttons |
+| Ground | Mist `#eef1f3`; stone bands `#e7e5e0`; white panels; one charcoal surface `#16191e` |
+| Ink | `#12151a` (15.2:1 worst case), body `#454b54` (7.3:1), labels `#59606a` (5.4:1) |
+| Accent | Lit-glass blue `#2a64a8` (5.1:1 on stone); links `#1f4f87` (7.2:1) |
+| Type | Geist for display and body, Geist Mono for labels |
+| Surfaces | Frosted glass panels, hairlines, 20px radius, pill buttons and nav |
 
-Ratios are measured against the lightest ground each colour sits on, so they hold
-on every surface.
+### Motion and interaction
 
-### Immersive layer
+Every page is complete with no JavaScript; `assets/site.js` adds the layer
+below, and `prefers-reduced-motion` switches all of it off.
 
-Every page is complete with no JavaScript. `assets/site.js` adds the motion layer
-on top, and `prefers-reduced-motion` switches all of it off.
-
-| Feature | How | Without JS |
+| Feature | Where | Without JS |
 |---|---|---|
-| Cinematic loader | `KC` mark and a drawn line, first homepage visit per session, ~0.9s | not shown |
-| Animated typography | hero name split into letters that rise in sequence | the whole name animates in CSS |
-| 3D particles | a rotating constellation on a canvas, tilted by the pointer, paused off screen | grid and glow only |
-| Scroll reveals | `IntersectionObserver` adds `.is-in`; siblings stagger | everything visible |
-| Magnetic hover | buttons and nav lean toward the pointer (fine pointers only) | normal hover |
-| 3D tilt and spotlight | work panels tilt and light up under the pointer | normal hover |
-| Floating nav | pill nav tightens once the page is scrolled | static pill |
-| Reading progress | CSS scroll-driven animation in the nav | — |
-| Page transitions | CSS cross-document view transitions; the nav holds still | normal navigation |
-| Career timeline (About) | rail fills with scroll progress; each node lights as the fill reaches it | full rail, all nodes lit |
-| Skill map (About) | six areas become tabs; each tab's dots mark where the area was used, forming a matrix | six cards, all visible (also on phones) |
-
-Speed rules: animation is transform and opacity only, the canvas caps its pixel
-ratio at 2 and its point count by area, edges are computed once (rotation keeps
-distances), and the loop stops when the hero leaves the screen or the tab hides.
-The script is under 4 KB gzipped with no dependencies.
-
-The loader is drawn on `html::before` and `html::after` so it exists before the
-body parses. A CSS timeout clears it at 2.4s even if the script never finishes.
+| Pavilion scene: layers drift against the pointer, labels settle in | Home | Mist gradient; all text present |
+| "How I build" steps as tabs with one detail panel | Home | A numbered list with every step written out |
+| Scroll reveals, 3D tilt and a pointer spotlight on cards and panels | All | Static |
+| Career timeline that fills with scroll | About | Full rail, all nodes lit |
+| Skill map tabs whose dots form a where-used matrix | About | Six cards |
+| Reading progress in the nav; cross-document page transitions | All (CSS) | Normal navigation |
 
 ### Diagrams
 
 The references this design follows are photography-led; this site has no
 photography beyond one portrait. The visual weight is carried instead by four
 SVG diagrams in `images/diagrams/`, generated to a single visual language so
-they read as a set: four stages across, one highlighted as the step that
+they read as a set (recoloured to the Mist and glass palette): four stages across, one highlighted as the step that
 matters, a supporting layer underneath, and a one-line note.
 
 Each diagram ships in **two variants**, swapped by `<picture>` with no JavaScript:
@@ -126,7 +109,7 @@ itil4.html               ITIL 4 Foundation credential page
 404.html                 Not-found page
 
 assets/site.css          The entire design system
-assets/site.js           Motion layer: loader, particles, reveals, hover effects
+assets/site.js           Motion layer: pavilion scene, reveals, timeline, skill map
 images/diagrams/         Work diagrams, two size variants each
 images/                  Portrait and certificate assets
 _headers                 HTTP security headers
