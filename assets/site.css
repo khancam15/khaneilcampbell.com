@@ -264,7 +264,7 @@ h1 span, h2 span { color: #6c737d; }
 
 /* project cards with a drawing of each project's real structure */
 .cards { display: grid; gap: 20px; }
-@media (min-width: 900px) { .cards { grid-template-columns: repeat(2, minmax(0, 1fr)); } .card--flagship { grid-column: 1 / -1; } .card--flagship .card-art svg { max-width: 620px; margin: 0 auto; } }
+@media (min-width: 900px) { .cards { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
 .card {
   position: relative; display: grid; align-content: start; overflow: hidden;
   border-radius: 22px; background: var(--panel); border: 1px solid var(--line);
