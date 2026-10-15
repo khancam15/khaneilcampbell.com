@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'self'; style-src 'self' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; img-src 'self' data:; connect-src 'none'; base-uri 'self'; form-action 'none';">
+<meta name="referrer" content="strict-origin-when-cross-origin">
+<meta name="theme-color" content="#eef1f3">
+<meta name="robots" content="index, follow">
+<title>Benjaire: Business Engineering Case Study | Khaneil Campbell</title>
+<meta name="description" content="How I built and operate the web platform for my company, Benjaire: written requirements, Astro on Cloudflare, a secured contact Worker, and CI checks on every change.">
+
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://khaneilcampbell.com/benjaire.html">
+<meta property="og:title" content="Benjaire: Business Engineering Case Study | Khaneil Campbell">
+<meta property="og:description" content="How I built and operate the web platform for my company, Benjaire: written requirements, Astro on Cloudflare, a secured contact Worker, and CI checks on every change.">
+<meta property="og:image" content="https://khaneilcampbell.com/images/profile.jpg">
+<meta property="og:site_name" content="Khaneil Campbell">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Benjaire: Business Engineering Case Study | Khaneil Campbell">
+<meta name="twitter:description" content="How I built and operate the web platform for my company, Benjaire: written requirements, Astro on Cloudflare, a secured contact Worker, and CI checks on every change.">
+<meta name="twitter:image" content="https://khaneilcampbell.com/images/profile.jpg">
+<link rel="canonical" href="https://khaneilcampbell.com/benjaire.html">
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "WebPage",
+      "@id": "https://khaneilcampbell.com/benjaire.html#webpage",
+      "url": "https://khaneilcampbell.com/benjaire.html",
+      "name": "Benjaire: Business Engineering Case Study | Khaneil Campbell",
+      "inLanguage": "en",
+      "isPartOf": {
+        "@id": "https://khaneilcampbell.com/#website"
+      },
+      "about": {
+        "@id": "https://khaneilcampbell.com/#person"
+      }
+    },
+    {
+      "@type": "BreadcrumbList",
+      "@id": "https://khaneilcampbell.com/benjaire.html#crumbs",
+      "itemListElement": [
+        {
+          "@type": "ListItem",
+          "position": 1,
+          "name": "Home",
+          "item": "https://khaneilcampbell.com/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 2,
+          "name": "Work",
+          "item": "https://khaneilcampbell.com/projects.html"
+        },
+        {
+          "@type": "ListItem",
+          "position": 3,
+          "name": "Benjaire",
+          "item": "https://khaneilcampbell.com/benjaire.html"
+        }
+      ]
+    }
+  ]
+}
+</script>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Geist:wght@300..700&family=Geist+Mono:wght@400;500&display=swap">
+<link rel="stylesheet" href="assets/site.css?v=8295bea6">
+<script src="assets/site.js?v=a52d7879"></script>
+</head>
+<body>
+
+<a class="skip-link" href="#main">Skip to content</a>
+
+<header class="nav">
+  <div class="wrap nav-in">
+    <a class="nav-name" href="index.html" aria-label="Khaneil Campbell, home"><svg class="nav-mark" viewBox="0 0 32 32" aria-hidden="true" focusable="false"><rect width="32" height="32" rx="9" fill="#12151a"/><rect x="7" y="20" width="18" height="2.4" rx="1.2" fill="#fff"/><rect x="9.5" y="15" width="13" height="2.4" rx="1.2" fill="#fff" opacity=".8"/><rect x="12" y="10" width="8" height="2.4" rx="1.2" fill="#6fa8d6"/></svg><span class="nav-full">Khaneil Campbell</span></a>
+    <nav aria-label="Primary">
+      <ul class="nav-links">
+        <li><a href="projects.html" aria-current="page">Work</a></li>
+        <li><a href="about.html">About</a></li>
+        <li><a href="contact.html">Contact</a></li>
+      </ul>
+    </nav>
+  </div>
+</header>
+
+<main id="main">
+
+  <section class="hero">
+    <div class="wrap">
+      <span class="eyebrow eyebrow--rule">Flagship case study &middot; Business engineering &middot; Live</span>
+      <h1 class="t-page">Benjaire: engineering a real business.</h1>
+      <p class="lede">
+        Benjaire is my New York company, developing consumer brands and digital solutions.
+        I treat its web platform as a product I own and operate: written requirements and
+        decision records, a static Astro site on Cloudflare, a secured contact Worker, and
+        automated checks on every change.
+      </p>
+      <div class="actions">
+        <a class="btn" href="https://benjaire.com" target="_blank" rel="noopener noreferrer">Visit benjaire.com</a>
+        <a class="btn-text" href="https://github.com/khancam15/benjaire.com" target="_blank" rel="noopener noreferrer">View the repository</a>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="wrap">
+      <div class="section-head"><span class="eyebrow eyebrow--rule">Why it matters</span><h2 class="t-sec">Real stakes, not an exercise.</h2></div>
+      <div class="prose">
+        <p>
+          A lab can be reset. A business cannot. Benjaire's site carries the company's
+          credibility, its inbox and its customer enquiries, so every decision had to weigh
+          cost, security, risk to email and what happens if a change goes wrong.
+        </p>
+        <p>
+          The previous site was three hand-written pages: duplicated navigation on every page,
+          an empty brands section, a contact form that sent email straight from the browser
+          with no server-side validation or bot protection, and security policy in a meta tag,
+          which browsers ignore for anti-clickjacking rules.
+        </p>
+      </div>
+      <dl class="facts">
+        <div class="fact"><dt>Status</dt><dd>Live at benjaire.com</dd></div>
+        <div class="fact"><dt>My role</dt><dd>Owner and product lead; Claude as implementation partner</dd></div>
+        <div class="fact"><dt>Platform</dt><dd>Astro on Cloudflare Workers static assets</dd></div>
+        <div class="fact"><dt>Timeframe</dt><dd>Oct 2026</dd></div>
+      </dl>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="wrap">
+      <div class="section-head"><span class="eyebrow eyebrow--rule">Approach</span><h2 class="t-sec">Run like a product, not a page.</h2></div>
+      <div class="tiles">
+        <div class="tile"><h3 class="t-item">Requirements first</h3><p>A requirements document ranks priorities: credibility, design, performance, security, search, maintainability, then cost. Every line is labelled confirmed, proposed, verify or future, so nothing unapproved is treated as fact.</p></div>
+        <div class="tile"><h3 class="t-item">Recorded decisions</h3><p>Framework, hosting, DNS and email preservation, and form processing each have a decision record comparing the options. When Cloudflare changed how new projects are created, the hosting record was updated rather than worked around.</p></div>
+        <div class="tile"><h3 class="t-item">Approval gates</h3><p>Milestones needed my approval, and changes to DNS, email routing and hosting each needed explicit sign-off. No login, database or customer portal is added without a defined business need.</p></div>
+        <div class="tile"><h3 class="t-item">AI-assisted delivery</h3><p>I set the requirements, priorities and design direction; Claude drafted documents and wrote code against the approved spec. Every commit is authored by me with Claude as co-author.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="wrap">
+      <div class="section-head"><span class="eyebrow eyebrow--rule">Engineering</span><h2 class="t-sec">What was built.</h2></div>
+      <div class="tiles tiles--3">
+        <div class="tile"><h3 class="t-item">Architecture</h3><p>One shared Astro layout replaced the duplicated markup. Brands are content files validated at build time, and legacy <code>.html</code> URLs redirect permanently to clean paths.</p></div>
+        <div class="tile"><h3 class="t-item">Hosting and deployment</h3><p>Cloudflare Workers Builds deploys <code>main</code> to production and gives each pull request its own preview URL. The move from GitHub Pages followed a written cutover runbook with a saved DNS export as the rollback.</p></div>
+        <div class="tile"><h3 class="t-item">Contact Worker</h3><p>A Cloudflare Worker at <code>/api/contact</code> accepts posts only from the site's origin, rate-limits per IP, discards honeypot submissions, verifies Turnstile on the server and delivers through Email Routing.</p></div>
+        <div class="tile"><h3 class="t-item">Security headers</h3><p>Real HTTP headers on every page: a Content Security Policy that allows inline scripts only by hash, HSTS and <code>X-Frame-Options: DENY</code>.</p></div>
+        <div class="tile"><h3 class="t-item">Quality gates</h3><p>GitHub Actions run type checks, Worker unit tests, the build, link and SEO checks, and Playwright with axe for WCAG 2.2 AA on every change.</p></div>
+        <div class="tile"><h3 class="t-item">Protecting operations</h3><p>Only the two website DNS records changed during the hosting move; mail records and Email Routing were left untouched. Credentials live only in Cloudflare, never in the public repository.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="wrap">
+      <div class="section-head"><span class="eyebrow eyebrow--rule">Outcome</span><h2 class="t-sec">What it delivered.</h2></div>
+      <dl class="facts">
+        <div class="fact"><dt>Live</dt><dd>benjaire.com on Cloudflare, <code>www</code> redirecting to the apex</dd></div>
+        <div class="fact"><dt>Performance</dt><dd>Lighthouse mobile 100 on four pages (preview, 13 Oct 2026)</dd></div>
+        <div class="fact"><dt>Contact form</dt><dd>Tested end to end: delivered with category and working reply-to</dd></div>
+        <div class="fact"><dt>Security</dt><dd>CSP by hash, HSTS, frame denial; Turnstile and rate limiting on the form</dd></div>
+      </dl>
+      <div class="prose mt-m">
+        <p>
+          Not yet launched: no consumer brand is public, and Digital Solutions client intake
+          is in development. The site says so plainly rather than implying otherwise.
+        </p>
+        <p>
+          The lesson I took from it: writing requirements and decisions down first made
+          AI-assisted development faster, not slower, and put security and SEO checks where
+          they fail a build instead of relying on memory.
+        </p>
+      </div>
+      <div class="actions">
+        <a class="btn" href="https://benjaire.com" target="_blank" rel="noopener noreferrer">Visit benjaire.com</a>
+        <a class="btn-text" href="projects.html">All work</a>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer class="foot">
+  <div class="wrap">
+    <div class="foot-in">
+      <div>
+        <span class="nav-name">Khaneil Campbell</span>
+        <p class="foot-note">New York, NY</p>
+      </div>
+      <ul class="foot-links">
+        <li><a href="projects.html">Work</a></li>
+        <li><a href="labs.html">Labs</a></li>
+        <li><a href="lab-details.html">Case files</a></li>
+        <li><a href="about.html">About</a></li>
+        <li><a href="contact.html">Contact</a></li>
+        <li><a href="assets/khaneil-campbell-resume.pdf">R&eacute;sum&eacute; (PDF)</a></li>
+        <li><a href="https://www.linkedin.com/in/khaneil-campbell" target="_blank" rel="noopener noreferrer">LinkedIn</a></li>
+        <li><a href="https://github.com/khancam15" target="_blank" rel="noopener noreferrer">GitHub</a></li>
+      </ul>
+    </div>
+    <p class="foot-note mt-m">&copy; 2026 Khaneil Campbell</p>
+  </div>
+</footer>
+
+</body>
+</html>
