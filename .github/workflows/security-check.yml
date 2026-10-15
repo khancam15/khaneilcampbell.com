@@ -93,6 +93,9 @@ jobs:
           # Warn only, do not fail
           exit 0
 
+      - name: Check every page uses the shared shell
+        run: python3 scripts/apply_shell.py . --check
+
       - name: Check _headers file exists
         run: |
           echo "Checking for _headers file..."

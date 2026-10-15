@@ -96,6 +96,13 @@ Two things to know before editing them:
   ```bash
   python3 -c "import hashlib;print(hashlib.sha256(open('assets/site.css','rb').read()).hexdigest()[:8])"
   ```
+- **One shell.** The skip link, nav header and footer live in `_partials/`
+  (Jekyll leaves underscore folders unpublished). Each page holds a copy between
+  `<!-- shell:header -->` and `<!-- shell:footer -->` markers; edit the partial, then
+  run `python3 scripts/apply_shell.py .` to rewrite every page. The header marker's
+  `current="about.html"` sets which nav link gets `aria-current`. A new page that
+  copies the existing header and footer is adopted on the first run. CI runs the
+  script with `--check` and fails on any page that has drifted.
 - **Every page** carries a CSP meta tag, a referrer policy, canonical and Open Graph
   tags, JSON-LD, and `rel="noopener noreferrer"` on any `target="_blank"` link.
   The first, second and last are enforced by the GitHub Actions security check.
@@ -131,6 +138,7 @@ docs/VISION.md           Positioning and principles
 docs/PORTFOLIO-PLAN.md   Plan, verified content, decisions
 images/diagrams/         Work diagrams, two size variants each
 images/                  Portrait and certificate assets
+_partials/               Shared header and footer, stamped into every page
 _headers                 HTTP security headers
 robots.txt sitemap.xml   Crawler directives and URL index
 CNAME                    Custom domain for GitHub Pages
@@ -139,7 +147,9 @@ scripts/                 Dependency-free audit and inventory tooling
 
 ## Local development
 
-Edit any `.html` file directly — there is no build step.
+Edit any `.html` file directly — there is no build step. The one exception is
+the shared header and footer: change them in `_partials/` and run
+`python3 scripts/apply_shell.py .`.
 
 ```bash
 python3 -m http.server 3000
@@ -148,6 +158,7 @@ python3 -m http.server 3000
 Checks before committing:
 
 ```bash
+python3 scripts/apply_shell.py . --check
 python3 scripts/site_audit.py .
 bash scripts/security-check.sh .
 ```
