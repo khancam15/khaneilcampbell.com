@@ -27,6 +27,7 @@ def defs():
 <linearGradient id="mist" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#fff" stop-opacity="0"/><stop offset=".5" stop-color="#fff" stop-opacity=".7"/><stop offset="1" stop-color="#fff" stop-opacity="0"/></linearGradient>
 <linearGradient id="refl" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#fff" stop-opacity=".5"/><stop offset="1" stop-color="#fff" stop-opacity="0"/></linearGradient>
 <radialGradient id="sun"><stop offset="0" stop-color="#fff" stop-opacity=".8"/><stop offset="1" stop-color="#fff" stop-opacity="0"/></radialGradient>
+<linearGradient id="beam" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#6fa8d6" stop-opacity=".35"/><stop offset="1" stop-color="#6fa8d6" stop-opacity="0"/></linearGradient>
 <radialGradient id="glow"><stop offset="0" stop-color="#6fa8d6" stop-opacity=".45"/><stop offset="1" stop-color="#6fa8d6" stop-opacity="0"/></radialGradient>
 <mask id="rm"><rect x="0" y="%d" width="%d" height="%d" fill="url(#refl)"/></mask>
 </defs>""" % (HZ, W, H - HZ)
@@ -82,6 +83,27 @@ def pavilion(cx, floor, widths, heights, hot=None):
         out.append(f'<rect x="{x0+gi:.1f}" y="{top:.1f}" width="{w-2*gi:.1f}" height="4" fill="rgba(18,21,26,.12)"/>')
         floor = y - D / 2
     return out
+
+
+def frame(cx, floor, widths, heights):
+    """Storeys still being built: columns and dashed slab outlines, no glass."""
+    out = []
+    for i, (w, gh) in enumerate(zip(widths, heights)):
+        x0 = cx - w / 2 + i * 5
+        x1 = x0 + w
+        top = floor - gh
+        for cxx in (x0 + 11, x0 + w / 2, x1 - 11):
+            out.append(f'<rect x="{cxx-1.5:.1f}" y="{top:.1f}" width="3" height="{gh}" fill="#c4ccd3"/>')
+        out.append(f'<rect x="{x0+w*.1:.1f}" y="{top:.1f}" width="{w*.8:.1f}" height="{gh}" fill="rgba(255,255,255,.25)" stroke="#2a64a8" stroke-opacity=".35" stroke-dasharray="4 5"/>')
+        y = top - T
+        out.append(f'<polygon points="{x0:.1f},{y+T:.1f} {x1:.1f},{y+T:.1f} {x1+SK:.1f},{y+T-D:.1f} {x1+SK:.1f},{y-D:.1f} {x0+SK:.1f},{y-D:.1f} {x0:.1f},{y:.1f}" fill="rgba(255,255,255,.35)" stroke="#2a64a8" stroke-opacity=".55" stroke-dasharray="6 5"/>')
+        floor = y - D / 2
+    return out
+
+
+def beam(x, y, x2, y2, spread):
+    """A soft cone of light from a lit storey out across the water."""
+    return [f'<polygon points="{x},{y} {x2},{y2-spread} {x2},{y2+spread}" fill="url(#beam)"/>']
 
 
 def plinth(x0, x1, base):
@@ -158,6 +180,107 @@ def contact():
     compose("contact", 760, b, base, (520, 934), n)
 
 
+def benjaire():
+    # Two business pillars on one plinth, joined by a glass bridge: Digital
+    # Solutions is lit and built; Consumer Brands has its upper storey still
+    # in outline, because no brand is public yet.
+    base = 556
+    b = plinth(130, 1060, base)
+    b += pavilion(360, base - D / 2, [300, 220], [66, 60], hot=1)
+    b += pavilion(820, base - D / 2, [300], [66])
+    b += frame(825, base - D / 2 - 66 - T - D / 2, [220], [60])
+    by = base - D / 2 - 66 - T - D / 2 - 30
+    b.append(f'<rect x="500" y="{by:.0f}" width="190" height="20" fill="url(#glass)" stroke="#fff"/>')
+    b.append(f'<rect x="500" y="{by-6:.0f}" width="190" height="6" fill="#fbfbfc"/>')
+    b += person(200, base - 4) + person(212, base - 4)
+    compose("benjaire", 900, b, base, (130, 1094))
+
+
+def soc():
+    # A watchtower over the water: the lit top storey watches, and a cone of
+    # light sweeps the surface, the way a detection watches a log stream.
+    base = 570
+    b = plinth(420, 760, base)
+    b += pavilion(560, base - D / 2, [180, 150, 130, 115], [52, 46, 46, 46], hot=3)
+    b += pavilion(700, base - D / 2, [120], [44])
+    top_y = base - D / 2 - (52 + 46 + 46) - 3 * (T + D / 2) - 23
+    near = beam(625, top_y, 1200, 480, 110)
+    compose("soc", 300, b, base, (420, 794), near)
+
+
+def labs():
+    # Three test pods on their own piers: one finished and lit, two framed
+    # out, matching one published lab and two in progress.
+    base = 560
+    b = []
+    for x0, x1 in ((140, 420), (470, 750), (800, 1080)):
+        b += plinth(x0, x1, base)
+    b += pavilion(280, base - D / 2, [210], [62], hot=0)
+    b += frame(610, base - D / 2, [210], [62])
+    b += frame(940, base - D / 2, [210], [62])
+    b += person(180, base - 4)
+    compose("labs", 700, b, base, (140, 1114))
+
+
+def lab_details():
+    # A long, low archive: one bay per case file, the published one lit.
+    base = 556
+    b = plinth(100, 1100, base)
+    floor = base - D / 2
+    x0, x1, gh = 160, 1040, 74
+    top = floor - gh
+    b.append(f'<rect x="{x0}" y="{top}" width="{x1-x0}" height="{gh}" fill="url(#glass)"/>')
+    b.append(f'<rect x="{x0}" y="{top}" width="{(x1-x0)/3:.0f}" height="{gh}" fill="url(#hot)"/>')
+    for k, fx in enumerate(range(x0, x1 + 1, 22)):
+        wgt = 3 if (fx - x0) % 110 == 0 else 1
+        b.append(f'<rect x="{fx-wgt/2:.1f}" y="{top}" width="{wgt}" height="{gh}" fill="#f4f5f6" opacity=".9"/>')
+    b += slab(x0 - 20, x1 + 20, top - T)
+    b.append(f'<rect x="{x0}" y="{top}" width="{x1-x0}" height="4" fill="rgba(18,21,26,.12)"/>')
+    b += person(1065, base - 4)
+    compose("lab-details", 420, b, base, (100, 1134))
+
+
+def security_plus():
+    # Defence in depth: a pavilion standing within three stepped perimeters.
+    base = 580
+    b = plinth(140, 1060, base)
+    b += plinth(240, 960, base - D - 2)
+    b += plinth(340, 860, base - 2 * D - 4)
+    b += pavilion(600, base - 2 * D - 4 - D / 2, [330, 220], [66, 58], hot=1)
+    b += person(190, base - 4)
+    compose("security-plus", 820, b, base, (140, 1094))
+
+
+def itil4():
+    # The service value chain as a loop: a boardwalk ring around the pavilion.
+    base = 556
+    n = []
+    cx, cy = 600, 690
+    n.append(f'<ellipse cx="{cx}" cy="{cy}" rx="520" ry="78" fill="#f6f7f8" stroke="rgba(18,21,26,.06)"/>')
+    n.append(f'<ellipse cx="{cx}" cy="{cy+4}" rx="472" ry="60" fill="url(#water)"/>')
+    for k in range(18):
+        import math
+        a = math.pi * 2 * k / 18
+        x = cx + 495 * math.cos(a)
+        y = cy + 69 * math.sin(a)
+        if math.sin(a) > -.2:
+            n.append(f'<rect x="{x-1:.0f}" y="{y+6:.0f}" width="2.5" height="18" fill="#c9ced2"/>')
+    b = plinth(400, 800, base)
+    b += pavilion(600, base - D / 2, [300, 210], [64, 58], hot=1)
+    n += person(150, 690, .9)
+    compose("itil4", 300, b, base, (400, 834), n)
+
+
+def lost():
+    # Error page: the plinth is here, the building is not yet.
+    base = 556
+    b = plinth(360, 840, base)
+    b += frame(600, base - D / 2, [320, 230], [66, 60])
+    b += person(560, base - 4, .95)
+    compose("lost", 760, b, base, (360, 874))
+
+
 if __name__ == "__main__":
     work(); about(); contact()
+    benjaire(); soc(); labs(); lab_details(); security_plus(); itil4(); lost()
     print("wrote", ", ".join(str(p) for p in sorted(OUT.glob("*.svg"))))
