@@ -177,7 +177,7 @@ em{font-style:italic}
 .ct{padding:176px 0 120px}
 .ct h1{font-family:var(--serif);font-weight:400;font-size:clamp(72px,12vw,200px);line-height:.85;letter-spacing:-.03em;margin-top:24px}
 .ct h1 em{color:var(--brass-lt)}
-.ct .mail{display:inline-block;margin-top:48px;font-family:var(--serif);font-size:clamp(30px,4.4vw,64px);border-bottom:1px solid var(--brass-lt);color:var(--on-night)}
+.ct .mail{display:inline-block;margin-top:44px;font-family:var(--serif);font-size:clamp(24px,2.6vw,38px);border-bottom:1px solid var(--brass-lt);color:var(--on-night)}
 .links{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;margin-top:88px}
 .links a{border:1px solid var(--line-n);border-radius:18px;padding:28px;display:flex;flex-direction:column;gap:40px;transition:background .3s,border-color .3s}
 .links a:hover{background:var(--night-2);border-color:var(--brass-lt)}
