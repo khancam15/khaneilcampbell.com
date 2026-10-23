@@ -256,6 +256,9 @@ em{font-style:italic}
 .prose{max-width:62ch}
 .prose p{font-size:19px;line-height:1.7}
 .prose p+p{margin-top:20px}
+.prose p,.lede{text-wrap:pretty}
+.shead h2,.closing h2{text-wrap:balance}
+.shead+.prose{margin-top:-16px}
 .prose a,.txt a,.lede a{border-bottom:1px solid currentColor}
 .txt ul.plain{list-style:none;border-top:1px solid var(--line);margin-top:24px}
 .txt ul.plain li{display:grid;grid-template-columns:160px 1fr;gap:20px;padding:14px 0;border-bottom:1px solid var(--line);font-size:16px;color:var(--body)}
