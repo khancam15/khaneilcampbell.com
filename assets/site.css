@@ -162,7 +162,7 @@ em{font-style:italic}
 .nextc b{font-family:var(--serif);font-weight:400;font-size:clamp(32px,3.6vw,56px)}
 
 /* about */
-.ab{display:grid;grid-template-columns:5fr 7fr;gap:80px;align-items:end;padding:176px 0 0}
+.ab{display:grid;grid-template-columns:5fr 7fr;gap:80px;align-items:end;padding-top:176px}
 .ab .frame{animation:none}
 .ab h1{font-family:var(--serif);font-weight:400;font-size:clamp(52px,6.6vw,104px);line-height:.94;letter-spacing:-.02em;margin-top:24px}
 .ab h1 em{color:var(--brass-lt)}
