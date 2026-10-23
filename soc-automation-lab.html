@@ -31,7 +31,7 @@
 
 <link rel="preload" href="assets/fonts/instrument-serif-latin.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="preload" href="assets/fonts/instrument-sans-latin.woff2" as="font" type="font/woff2" crossorigin>
-<link rel="stylesheet" href="assets/site.css?v=fc9ecb90">
+<link rel="stylesheet" href="assets/site.css?v=ff3cfdfd">
 <script src="assets/site.js?v=3c166de2" defer></script>
 <script type="application/ld+json">
 {
@@ -126,6 +126,16 @@
           <li><span>Triage</span><b>Tuned threshold</b><p>Thresholds adjusted to cut false positives without losing signal, with decisions written down.</p></li>
           <li><span>Respond</span><b>Case notes</b><p>Analyst actions, escalation criteria and reusable case notes for the next occurrence.</p></li>
         </ol>
+      </div>
+    </div>
+    <div class="story reveal">
+      <h2>The <em>evidence</em></h2>
+      <div class="txt">
+        <div class="shots">
+          <figure><a class="zoom" href="images/soc-attack.jpg" aria-label="Open full-size screenshot 1"><img src="images/soc-attack.jpg" width="1146" height="998" loading="lazy" decoding="async" alt="Kali Linux terminal: a loop of smbclient logins with a wrong password, ending in NT_STATUS_ACCOUNT_LOCKED_OUT"></a><figcaption><b>1. Attack.</b> Fifteen SMB logins with a wrong password from Kali, until the account locks.</figcaption></figure>
+          <figure><a class="zoom" href="images/soc-detection.jpg" aria-label="Open full-size screenshot 2"><img src="images/soc-detection.jpg" width="1200" height="970" loading="lazy" decoding="async" alt="Splunk search on Event ID 4625 bucketed into five-minute windows, flagging 15 to 31 failed logons from 10.10.10.20 as High severity"></a><figcaption><b>2. Detect.</b> SPL buckets Event ID 4625 into five-minute windows and flags ten or more failures.</figcaption></figure>
+          <figure><a class="zoom" href="images/soc-case-note.jpg" aria-label="Open full-size screenshot 3"><img src="images/soc-case-note.jpg" width="1068" height="836" loading="lazy" decoding="async" alt="Generated markdown case note listing each alert with host, account, source IP, failed login count and recommended actions"></a><figcaption><b>3. Respond.</b> Python pulls the alerts through the REST API and writes a case note with next actions.</figcaption></figure>
+        </div>
       </div>
     </div>
     <div class="story reveal">
