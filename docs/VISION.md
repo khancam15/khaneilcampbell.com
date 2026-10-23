@@ -21,7 +21,7 @@ through the work, the background, the credentials and where the career is headed
 | Current role | Service Desk Technician, Columbia University (stated exactly; target roles are never presented as titles) |
 
 The enterprise IT experience is the evidence the AI work is built on, not a separate
-career to apologise for. The site leads with what has been built; support-desk
+career to apologize for. The site leads with what has been built; support-desk
 metrics are kept off it because they describe a different job from the one it
 positions for.
 
@@ -39,21 +39,22 @@ positions for.
 ## Audience
 
 Recruiters, hiring managers, technology leaders and potential collaborators. The
-site should let any of them recognise the capability within the first screen and
+site should let any of them recognize the capability within the first screen and
 confirm it within the first scroll.
 
 ## Visual direction
 
-**Mist and glass** (live since 14 Oct 2026): premium architectural technology, never
-an overworked cyberpunk or "glowing brain" aesthetic.
+**Atelier** (live since 23 Oct 2026, replacing Mist and glass): a founder's studio,
+premium and quiet, still plainly technical. Never cyberpunk or "glowing brain".
 
 | Element | Direction |
 |---|---|
-| Signature image | A white terraced pavilion of four levels over still water, labelled Enterprise IT, Security, Automation and AI |
-| Palette | Mist white, stone and white surfaces; near-black ink; one lit-glass blue accent |
-| Typography | Geist, with Geist Mono for labels |
-| Components | Frosted glass panels, hairlines, pill buttons, a floating nav |
-| Motion | Layered parallax, scroll reveals, a filling timeline; all optional |
+| Signature image | An arched portrait on a midnight band, beside the name set very large |
+| Palette | Porcelain and sand grounds, midnight bands, ink text, one brass accent (`#CDAE76` on midnight, `#7A5A24` on porcelain) |
+| Typography | Instrument Serif for display, with italic for emphasis; Instrument Sans for text. Both self-hosted |
+| Brand | The F2 KC monogram in brass, in the nav, footer and favicon |
+| Components | Full-bleed bands, hairline rules, pill buttons, inline SVG case covers |
+| Motion | Scroll reveals, a portrait unveil, magnetic buttons; all optional |
 | Responsiveness | Desktop, tablet, mobile |
 
 Every visual should carry information: real project structures, diagrams and

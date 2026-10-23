@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'self'; style-src 'self' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; img-src 'self' data:; manifest-src 'self'; connect-src 'none'; base-uri 'self'; form-action 'none';">
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'self'; style-src 'self'; font-src 'self'; img-src 'self' data:; manifest-src 'self'; connect-src 'none'; base-uri 'self'; form-action 'none';">
 <meta name="referrer" content="strict-origin-when-cross-origin">
 <meta name="theme-color" content="#0E1622">
 <meta name="robots" content="index, follow">
@@ -29,10 +29,9 @@
 <link rel="apple-touch-icon" href="/apple-touch-icon.png">
 <link rel="manifest" href="/site.webmanifest">
 
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Instrument+Sans:wght@400;500&amp;family=Instrument+Serif:ital@0;1&amp;display=swap">
-<link rel="stylesheet" href="assets/site.css?v=9a499828">
+<link rel="preload" href="assets/fonts/instrument-serif-latin.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="assets/fonts/instrument-sans-latin.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="assets/site.css?v=5cca7e45">
 <script src="assets/site.js?v=7a18b572" defer></script>
 <script type="application/ld+json">
 {
@@ -119,12 +118,12 @@
 <footer class="foot night">
   <div class="wrap">
     <div class="row">
-      <div><h4>Contact</h4><p class="contact-line"><a class="mail" href="mailto:contact@khaneilcampbell.com">contact@khaneilcampbell.com</a></p></div>
-      <div><h4>Pages</h4><ul><li><a href="projects.html">Work</a></li><li><a href="labs.html">Labs</a></li><li><a href="about.html">About</a></li><li><a href="contact.html">Contact</a></li></ul></div>
-      <div><h4>Elsewhere</h4><ul><li><a href="https://www.linkedin.com/in/khaneil-campbell" target="_blank" rel="noopener noreferrer">LinkedIn ↗</a></li><li><a href="https://github.com/khancam15" target="_blank" rel="noopener noreferrer">GitHub ↗</a></li><li><a href="assets/khaneil-campbell-resume.pdf">Résumé PDF ↓</a></li></ul></div>
-      <div><h4>Credentials</h4><ul><li><a href="security-plus.html">CompTIA Security+</a></li><li><a href="itil4.html">ITIL 4 Foundation</a></li><li>HDI KCS Foundation</li></ul></div>
+      <div><h2 class="fh">Contact</h2><p class="contact-line"><a class="mail" href="mailto:contact@khaneilcampbell.com">contact@khaneilcampbell.com</a></p></div>
+      <div><h2 class="fh">Pages</h2><ul><li><a href="projects.html">Work</a></li><li><a href="labs.html">Labs</a></li><li><a href="about.html">About</a></li><li><a href="contact.html">Contact</a></li></ul></div>
+      <div><h2 class="fh">Elsewhere</h2><ul><li><a href="https://www.linkedin.com/in/khaneil-campbell" target="_blank" rel="noopener noreferrer">LinkedIn ↗</a></li><li><a href="https://github.com/khancam15" target="_blank" rel="noopener noreferrer">GitHub ↗</a></li><li><a href="assets/khaneil-campbell-resume.pdf">Résumé PDF ↓</a></li></ul></div>
+      <div><h2 class="fh">Credentials</h2><ul><li><a href="security-plus.html">CompTIA Security+</a></li><li><a href="itil4.html">ITIL 4 Foundation</a></li><li>HDI KCS Foundation</li></ul></div>
     </div>
-    <div class="base"><img src="images/brand/kc-mark-brass.svg" alt="KC monogram" width="44" height="44"><span>© 2026 Khaneil Campbell · New York</span></div>
+    <div class="base"><img src="images/brand/kc-mark-brass.svg" alt="KC monogram" width="44" height="44"><p>© 2026 Khaneil Campbell. All rights reserved.</p><p><a href="privacy.html">Privacy and site notice</a></p></div>
   </div>
 </footer>
 </body>
