@@ -399,3 +399,62 @@ body.locked{overflow:hidden}
 .foot .row{grid-template-columns:1.3fr 1fr 1fr 1.5fr}
 .foot .row>div:last-child li{white-space:nowrap}
 @media (max-width:860px){.foot .row{grid-template-columns:1fr 1fr}.foot .row>div:last-child{grid-column:1/-1}}
+/* spacing scale: fluid section rhythm instead of fixed desktop/mobile jumps */
+:root{--sp-sec:clamp(80px,8.5vw,120px);--sp-band:clamp(72px,8vw,112px);--sp-foot:clamp(72px,7vw,104px)}
+.sec{padding-top:var(--sp-sec)}
+.band{margin-top:var(--sp-sec);padding:var(--sp-band) 0}
+.closing{padding-top:var(--sp-sec)}
+.drives{padding:var(--sp-band) 0}
+.nextc,.crossnav{margin-top:var(--sp-sec)}
+.foot{margin-top:var(--sp-foot);padding:clamp(56px,5vw,72px) 0 40px}
+.foot .base{margin-top:clamp(48px,5.5vw,80px)}
+.legal{padding-bottom:0}
+/* dark pages: the footer continues the same surface, so a rule replaces the empty margin */
+body.night .foot{margin-top:0;border-top:1px solid var(--line-n)}
+.ct{padding-bottom:clamp(64px,7vw,96px)}
+/* case study: 30-second brief */
+.brief{margin-top:var(--sp-sec);padding:clamp(28px,4vw,56px);background:var(--midnight);color:var(--on-night);border-radius:24px}
+.brief h2{font-family:var(--serif);font-weight:400;font-size:clamp(34px,3.6vw,52px);line-height:1.02;letter-spacing:-.015em;margin-top:12px;text-wrap:balance}
+.brief h2 em{color:var(--brass-lt)}
+.brief .eyebrow{color:var(--brass-lt)}
+.arch{margin-top:clamp(28px,3.5vw,44px)}
+.arch-flow{list-style:none;display:grid;grid-template-columns:repeat(5,1fr);gap:28px;counter-reset:a}
+.arch-flow li{position:relative;border:1px solid var(--line-n);border-radius:14px;padding:18px 18px 20px;background:var(--night-2)}
+.arch-flow li+li::before{content:'→';position:absolute;left:-23px;top:50%;transform:translateY(-50%);color:var(--brass-lt);font-size:16px;line-height:1}
+.arch-flow span{display:block;font:500 11px var(--sans);letter-spacing:.14em;text-transform:uppercase;color:var(--on-night-2)}
+.arch-flow b{display:block;margin-top:10px;font-family:var(--serif);font-weight:400;font-size:22px;line-height:1.1;color:var(--on-night)}
+.arch-flow small{display:block;margin-top:8px;font-size:14px;line-height:1.45;color:var(--on-night-2)}
+.arch-flow .gate{border-color:var(--brass-lt);box-shadow:inset 0 0 0 1px var(--brass-lt)}
+.arch-flow .gate span{color:var(--brass-lt)}
+.arch-base{list-style:none;display:grid;grid-template-columns:repeat(4,1fr);gap:1px;margin-top:16px;border:1px dashed var(--line-n);border-radius:14px;overflow:hidden}
+.arch-base li{padding:14px 18px;font-size:14px;line-height:1.45;color:var(--on-night-2)}
+.arch-base li+li{border-left:1px dashed var(--line-n)}
+.arch-base b{display:block;margin-bottom:4px;font:500 11px var(--sans);letter-spacing:.14em;text-transform:uppercase;color:var(--on-night)}
+.arch figcaption{margin-top:14px;font-size:14px;color:var(--on-night-2)}
+.results{display:grid;grid-template-columns:repeat(4,1fr);gap:28px;margin-top:clamp(32px,4vw,48px);padding-top:clamp(24px,3vw,36px);border-top:1px solid var(--line-n)}
+.results b{display:block;font-family:var(--serif);font-weight:400;font-size:clamp(48px,5vw,72px);line-height:.9;color:var(--brass-lt)}
+.results span{display:block;margin-top:10px;font-size:15px;line-height:1.4;color:var(--on-night-2)}
+/* case study: workflow phases + terminal */
+.phases{list-style:none;display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-top:28px}
+.phases li{border:1px solid var(--line);border-radius:12px;padding:14px 16px;background:#fff6}
+.phases span{font-family:var(--serif);font-size:20px;color:var(--brass)}
+.phases b{display:block;margin-top:4px;font-weight:500;font-size:15px;color:var(--text)}
+.phases code{display:block;margin-top:6px;font:13px/1.4 ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;color:var(--body);overflow-wrap:anywhere}
+.term{margin-top:28px}
+.term-bar{display:flex;align-items:center;gap:7px;padding:12px 16px;background:#1B2534;border-radius:14px 14px 0 0}
+.term-bar i{width:11px;height:11px;border-radius:50%;background:#3A4556}
+.term-bar span{margin-left:10px;font:12px ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;color:var(--on-night-2)}
+.term pre{margin:0;padding:18px 20px 20px;background:var(--midnight);color:#D5DAE1;border-radius:0 0 14px 14px;font:13px/1.7 ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;overflow-x:auto;white-space:pre}
+.term pre:focus-visible{outline:2px solid var(--brass-lt);outline-offset:2px}
+.term .pr{color:var(--brass-lt)}
+.term .ok{color:#8FD19E}
+.term figcaption,.shots figcaption{margin-top:12px;font-size:14px;line-height:1.5;color:var(--body)}
+/* case study: screenshot evidence */
+.shots{display:grid;gap:36px}
+.shots img{display:block;width:100%;height:auto;border-radius:14px;border:1px solid var(--line);background:#fff}
+.shots figcaption b{color:var(--text);font-weight:500}
+@media (max-width:1100px){.arch-flow{grid-template-columns:1fr;gap:22px}.arch-flow li+li::before{content:'↓';left:50%;top:-19px;transform:translateX(-50%)}.arch-base{grid-template-columns:1fr 1fr}.arch-base li+li{border-left:0}.arch-base li:nth-child(2n){border-left:1px dashed var(--line-n)}.arch-base li:nth-child(n+3){border-top:1px dashed var(--line-n)}}
+@media (max-width:860px){.results{grid-template-columns:1fr 1fr;gap:24px 20px}.phases{grid-template-columns:1fr 1fr}.brief{border-radius:18px;margin-left:-4px;margin-right:-4px}}
+@media (max-width:420px){.arch-base{grid-template-columns:1fr}.arch-base li:nth-child(2n){border-left:0}.arch-base li+li{border-top:1px dashed var(--line-n)}}
+.story>*{min-width:0}
+.shots .zoom{display:block;border-radius:14px}.shots .zoom:focus-visible{outline:2px solid var(--brass);outline-offset:3px}.shots .zoom img{transition:border-color .2s}.shots .zoom:hover img{border-color:var(--brass)}

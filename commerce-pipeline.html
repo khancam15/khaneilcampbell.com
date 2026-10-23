@@ -31,7 +31,7 @@
 
 <link rel="preload" href="assets/fonts/instrument-serif-latin.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="preload" href="assets/fonts/instrument-sans-latin.woff2" as="font" type="font/woff2" crossorigin>
-<link rel="stylesheet" href="assets/site.css?v=fc9ecb90">
+<link rel="stylesheet" href="assets/site.css?v=d56db441">
 <script src="assets/site.js?v=3c166de2" defer></script>
 
 </head>
@@ -66,6 +66,32 @@
       <div><p class="eyebrow">Result</p><p>Seven of seven phases tested. Live publishing next.</p></div>
     </div>
 
+    <section class="brief reveal" aria-labelledby="brief-h">
+      <div class="brief-head"><p class="eyebrow">The 30-second version</p><h2 id="brief-h">What I built, <em>at a glance.</em></h2></div>
+      <figure class="arch">
+        <ol class="arch-flow" aria-label="Pipeline architecture, in order">
+          <li><span>Runs on</span><b>Ubuntu VPS</b><small>systemd service, unattended loop</small></li>
+          <li><span>Thinks</span><b>CrewAI on Claude</b><small>Brand research, ideas and copy</small></li>
+          <li><span>Designs</span><b>Canva MCP</b><small>Mockups, Connect API exports</small></li>
+          <li class="gate"><span>Checks</span><b>Preflight gate</b><small>Title, tags, price and assets</small></li>
+          <li><span>Publishes</span><b>Shopify Admin API</b><small>Listings, SEO and sales sync</small></li>
+        </ol>
+        <ul class="arch-base" aria-label="Running underneath every stage">
+          <li><b>State</b>SQLite queue, listings, run log, SEO and sales</li>
+          <li><b>Secrets</b>.env only, gitleaks and pip-audit in CI</li>
+          <li><b>Limits</b>Backoff, publish caps and cooldowns</li>
+          <li><b>Reporting</b>Daily health report</li>
+        </ul>
+        <figcaption>Architecture. Nothing reaches Shopify without passing the preflight gate.</figcaption>
+      </figure>
+      <div class="results" aria-label="Results">
+        <div><b>7/7</b><span>pipeline phases built and tested</span></div>
+        <div><b>10/10</b><span>automated tests passing</span></div>
+        <div><b>0</b><span>secrets in the repository</span></div>
+        <div><b>4</b><span>preflight checks per listing</span></div>
+      </div>
+    </section>
+
     <div class="story reveal">
       <h2>The <em>problem</em></h2>
       <div class="txt"><p>Running a small print-on-demand catalog means research, copywriting, design and listing work every week. Agents can do most of it, but an unattended agent with API keys can also publish junk, leak credentials or burn through rate limits overnight.</p><p>The goal was a pipeline that could run without me, and could be trusted to stop itself.</p></div>
@@ -78,12 +104,33 @@
       <h2>How it <em>runs</em></h2>
       <div class="txt">
         <p>It runs unattended on a VPS under systemd, cycling through build, design and maintain modes depending on publish limits and configured cooldowns.</p>
-        <ol class="steps steps-in">
-          <li><span>Brand</span><b>Brand guide</b><p>CrewAI agents research positioning, visual identity and SEO direction, then assemble a reusable brand guide.</p></li>
-          <li><span>Generate</span><b>Ideas and copy</b><p>Product ideas, titles, tags and descriptions generated from the current brand guide.</p></li>
-          <li><span>Design</span><b>Canva MCP</b><p>Claude calls Canva's remote MCP server for mockups; the Canva Connect API handles exports.</p></li>
-          <li><span>Publish</span><b>Shopify</b><p>Listings validated, published through the Shopify Admin API, SEO reviewed and reported.</p></li>
+        <ol class="phases" aria-label="The seven phases and what each one produces">
+          <li><span>1</span><b>Brand strategy</b><code>brand_guide.md</code></li>
+          <li><span>2</span><b>Listing plan</b><code>master.txt</code></li>
+          <li><span>3</span><b>Canva mockups</b><code>Mockups/</code></li>
+          <li><span>3B</span><b>Canva templates</b><code>meta.json</code></li>
+          <li><span>4</span><b>Build and validate</b><code>ReadyToUpload/</code></li>
+          <li><span>5</span><b>Publish</b><code>Shopify Admin API</code></li>
+          <li><span>6</span><b>SEO refresh</b><code>tags + metafields</code></li>
+          <li><span>7</span><b>Health report</b><code>daily summary</code></li>
         </ol>
+        <figure class="term">
+          <div class="term-bar" aria-hidden="true"><i></i><i></i><i></i><span>multi-agent-commerce-pipeline</span></div>
+          <pre tabindex="0"><span class="pr">$</span> pytest -v
+collected 10 items
+test_common.py::test_extract_checklist_parses_all_weeks <span class="ok">PASSED</span>
+test_common.py::test_extract_checklist_raises_when_missing_weeks <span class="ok">PASSED</span>
+test_db.py::test_init_db_creates_seo_review_audit_columns <span class="ok">PASSED</span>
+test_db.py::test_insert_listing_migrates_legacy_table_and_stores_shopify_product_id <span class="ok">PASSED</span>
+test_db.py::test_insert_seo_review_migrates_legacy_table_and_stores_audit_data <span class="ok">PASSED</span>
+test_db.py::test_insert_seo_review_uses_empty_added_tags_for_gap_count <span class="ok">PASSED</span>
+test_seo_analyzer.py::test_normalise_tags_strips_lowercases_dedupes_and_enforces_limits <span class="ok">PASSED</span>
+test_seo_analyzer.py::test_build_optimised_tags_returns_clean_limited_tag_set <span class="ok">PASSED</span>
+test_seo_analyzer.py::test_competitor_keywords_extracts_google_shopping_terms <span class="ok">PASSED</span>
+test_seo_analyzer.py::test_analyze_applies_cleanup_only_tag_changes <span class="ok">PASSED</span>
+<span class="ok">10 passed</span> in 0.13s</pre>
+          <figcaption>The test suite, run against the public repository in October 2026.</figcaption>
+        </figure>
       </div>
     </div>
     <div class="story reveal">
@@ -104,7 +151,7 @@
     <div class="story reveal">
       <h2>The <em>results</em></h2>
       <div class="txt">
-        <div class="bignums"><div><b>7/7</b><span>phases built and tested</span></div><div><b>0</b><span>secrets in the repository</span></div><div><b>4</b><span>preflight checks per listing</span></div><div><b>1</b><span>stage left: live publishing</span></div></div>
+        <p>All seven phases are built and tested, ten automated tests pass and no secret has ever been committed. One stage is left: live publishing.</p>
         <p class="small-note">Sales and SEO figures will be added after a full month of live publishing.</p>
         <div class="actions small-note"><a class="btn dark" href="https://github.com/khancam15/multi-agent-commerce-pipeline" target="_blank" rel="noopener noreferrer">View the repository <i aria-hidden="true">↗</i></a></div>
       </div>
