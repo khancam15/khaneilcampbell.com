@@ -99,6 +99,7 @@ soc-automation-lab.html  Case study: SOC brute-force detection lab (Splunk)
 contact.html             Contact routes
 security-plus.html       CompTIA Security+ credential page
 itil4.html               ITIL 4 Foundation credential page
+hdi-kcs.html             HDI KCS Foundation credential page
 privacy.html             Privacy and site notice
 404.html                 Not-found page
 
