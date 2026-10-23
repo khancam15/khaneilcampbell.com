@@ -259,7 +259,7 @@ The existing branch (`claude/stoic-hypatia-1bo10a`) stays as it is until M3. Not
 | Content | Status | Source |
 |---|---|---|
 | Columbia University, Service Desk Technician, Jul 2022 to present | VERIFIED | Résumé |
-| NYC Health + Hospitals, Service Desk Analyst, Oct 2021 to Jul 2022 | VERIFIED | Résumé |
+| NYC Health & Hospitals, Service Desk Analyst, Oct 2021 to Jul 2022 | VERIFIED | Résumé |
 | Montefiore, Desktop Support Specialist Intern, May to Aug 2021 | VERIFIED | Résumé |
 | ~180 incidents and requests a month; 96% call quality; 100% ticket review quality | VERIFIED | Résumé |
 | 85% customer survey; 2.41% abandoned-call rate | **NEEDS EVIDENCE** | Brief only (D11) |
