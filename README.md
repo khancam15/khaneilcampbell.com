@@ -48,6 +48,13 @@ below, and `prefers-reduced-motion` switches all of it off.
 | Sections rise in as they enter the viewport | All | Visible at rest |
 | Magnetic call-to-action buttons on pointer devices | All | Normal buttons |
 | Full-screen menu below 860px | All | Links reachable in the footer |
+| Architecture diagrams: select a component to open its detail in one inspector panel; arrow keys, Home and End move between components; the data-flow dashes move only while on screen | Both case studies | Every component links to its detail card, all listed below the diagram |
+
+Each case study's "30-second version" is an architecture diagram (`.ad` in
+`assets/site.css`): plain HTML lists of stages and components, inline SVG icons,
+CSS connectors, and a detail card per component. Every fact in a diagram is
+checked against that project's public repository; gates, items not yet live and
+the lab boundary are labeled in text, not by color alone.
 
 Case study covers are inline SVG drawn in the palette, so they need no image
 requests and stay sharp at any size.
