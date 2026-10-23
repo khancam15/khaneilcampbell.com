@@ -42,17 +42,4 @@
     });
   }
 
-  // Copy-email control on the Contact page; hidden until this script can make it work.
-  document.querySelectorAll('.copy[data-copy]').forEach(function (b) {
-    if (!navigator.clipboard) return;
-    var status = b.parentNode.querySelector('.copied');
-    b.hidden = false;
-    b.addEventListener('click', function () {
-      navigator.clipboard.writeText(b.getAttribute('data-copy')).then(function () {
-        if (status) status.textContent = 'Email copied';
-        b.textContent = 'Copied';
-        setTimeout(function () { b.textContent = 'Copy email'; if (status) status.textContent = ''; }, 2400);
-      });
-    });
-  });
 })();

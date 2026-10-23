@@ -393,9 +393,6 @@ body.locked{overflow:hidden}
 .ct .intro+.intro{margin-top:16px}
 .mailrow{display:flex;flex-wrap:wrap;align-items:center;gap:12px 20px;margin-top:44px}
 .mailrow .mail{margin-top:0;overflow-wrap:anywhere}
-.copy{font:500 13px var(--sans);letter-spacing:.12em;text-transform:uppercase;color:var(--brass-lt);background:none;border:1px solid var(--line-n);border-radius:999px;padding:10px 16px;min-height:44px;cursor:pointer;transition:border-color .3s}
-.copy:hover,.copy:focus-visible{border-color:var(--brass-lt)}
-.copied{font-size:14px;color:var(--on-night-2)}
 .links span{gap:16px;text-align:left}
 .links i{flex:none}
 @media (max-width:860px){.links{gap:14px}.links a{padding:20px 22px;gap:18px;border-radius:16px}.links b{font-size:28px}}
