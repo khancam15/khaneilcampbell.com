@@ -390,3 +390,9 @@ body.locked{overflow:hidden}
 #how-i-work{scroll-margin-top:24px}
 @media (max-width:860px){.chapters{gap:20px}.chapters div{padding-top:18px}.chapters h3{font-size:28px;margin:8px 0}}
 .thread .shead>div{grid-column:1/-1}
+.ct .intro+.intro{margin-top:16px}
+.mailrow{display:flex;flex-wrap:wrap;align-items:center;gap:12px 20px;margin-top:44px}
+.mailrow .mail{margin-top:0;overflow-wrap:anywhere}
+.links span{gap:16px;text-align:left}
+.links i{flex:none}
+@media (max-width:860px){.links{gap:14px}.links a{padding:20px 22px;gap:18px;border-radius:16px}.links b{font-size:28px}}
