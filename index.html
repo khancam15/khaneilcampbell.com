@@ -3,25 +3,37 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'self'; style-src 'self' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; img-src 'self' data:; connect-src 'none'; base-uri 'self'; form-action 'none';">
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'self'; style-src 'self' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; img-src 'self' data:; manifest-src 'self'; connect-src 'none'; base-uri 'self'; form-action 'none';">
 <meta name="referrer" content="strict-origin-when-cross-origin">
-<meta name="theme-color" content="#eef1f3">
+<meta name="theme-color" content="#0E1622">
 <meta name="robots" content="index, follow">
-<title>Khaneil Campbell | AI, Automation &amp; Technology Portfolio</title>
-<meta name="description" content="Explore the portfolio of Khaneil Campbell, a technology professional focused on AI solutions, automation, cybersecurity, and enterprise systems.">
+<title>Khaneil Campbell | AI Solutions and Enterprise Systems</title>
+<meta name="description" content="Khaneil Campbell designs AI workflows with guardrails and secures the enterprise systems they run on. Case studies, labs and credentials, from New York.">
 
 <meta property="og:type" content="website">
 <meta property="og:url" content="https://khaneilcampbell.com/">
-<meta property="og:title" content="Khaneil Campbell | AI, Automation &amp; Technology Portfolio">
-<meta property="og:description" content="Explore the portfolio of Khaneil Campbell, a technology professional focused on AI solutions, automation, cybersecurity, and enterprise systems.">
-<meta property="og:image" content="https://khaneilcampbell.com/images/profile.jpg">
+<meta property="og:title" content="Khaneil Campbell | AI Solutions and Enterprise Systems">
+<meta property="og:description" content="Khaneil Campbell designs AI workflows with guardrails and secures the enterprise systems they run on. Case studies, labs and credentials, from New York.">
+<meta property="og:image" content="https://khaneilcampbell.com/images/brand/og-image.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="KC monogram with the name Khaneil Campbell">
 <meta property="og:site_name" content="Khaneil Campbell">
-<meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Khaneil Campbell | AI, Automation &amp; Technology Portfolio">
-<meta name="twitter:description" content="Explore the portfolio of Khaneil Campbell, a technology professional focused on AI solutions, automation, cybersecurity, and enterprise systems.">
-<meta name="twitter:image" content="https://khaneilcampbell.com/images/profile.jpg">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Khaneil Campbell | AI Solutions and Enterprise Systems">
+<meta name="twitter:description" content="Khaneil Campbell designs AI workflows with guardrails and secures the enterprise systems they run on. Case studies, labs and credentials, from New York.">
+<meta name="twitter:image" content="https://khaneilcampbell.com/images/brand/og-image.png">
 <link rel="canonical" href="https://khaneilcampbell.com/">
+<link rel="icon" href="/favicon.ico" sizes="32x32">
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<link rel="manifest" href="/site.webmanifest">
 
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Instrument+Sans:wght@400;500&amp;family=Instrument+Serif:ital@0;1&amp;display=swap">
+<link rel="stylesheet" href="assets/site.css?v=9a499828">
+<script src="assets/site.js?v=7a18b572" defer></script>
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
@@ -87,209 +99,105 @@
   ]
 }
 </script>
-
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Geist:wght@300..700&family=Geist+Mono:wght@400;500&display=swap">
-<link rel="stylesheet" href="assets/site.css?v=1b1699fc">
-<script src="assets/site.js?v=a52d7879"></script>
 </head>
-<body class="home">
-
-<a class="skip-link" href="#main">Skip to content</a>
-
-<header class="nav">
-  <div class="wrap nav-in">
-    <a class="nav-name" href="index.html" aria-label="Khaneil Campbell, home"><svg class="nav-mark" viewBox="0 0 32 32" aria-hidden="true" focusable="false"><rect width="32" height="32" rx="9" fill="#12151a"/><rect x="7" y="20" width="18" height="2.4" rx="1.2" fill="#fff"/><rect x="9.5" y="15" width="13" height="2.4" rx="1.2" fill="#fff" opacity=".8"/><rect x="12" y="10" width="8" height="2.4" rx="1.2" fill="#6fa8d6"/></svg><span class="nav-full">Khaneil Campbell</span></a>
-    <nav aria-label="Primary">
-      <ul class="nav-links">
-        <li><a href="projects.html">Work</a></li>
-        <li><a href="about.html">About</a></li>
-        <li><a href="contact.html">Contact</a></li>
-      </ul>
-    </nav>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+<header class="nav on-night">
+  <div class="wrap">
+    <a class="name" href="index.html">Khaneil Campbell</a>
+    <a class="mk" href="index.html" aria-label="Khaneil Campbell, home"><img src="images/brand/kc-mark-brass.svg" alt="" width="40" height="40"></a>
+    <nav aria-label="Primary"><ul>
+      <li><a href="projects.html">Work</a></li>
+      <li><a href="about.html">About</a></li>
+      <li><a href="contact.html">Contact</a></li>
+      <li><a class="cv" href="assets/khaneil-campbell-resume.pdf">Résumé</a></li>
+    </ul></nav>
+    <button class="menu" type="button" aria-expanded="false" aria-label="Menu">Menu</button>
   </div>
 </header>
-
 <main id="main">
-
-  <section class="stage" aria-label="Introduction">
-    <div class="wrap stage-in">
-      <div class="stage-copy">
-        <p class="eyebrow eyebrow--rule">Khaneil Campbell &middot; New York</p>
-        <h1 class="t-hero mt-s">Designing systems. <span>Engineering what's next.</span></h1>
-        <p class="lead">Technology professional specializing in AI solutions, intelligent automation, cybersecurity, and digital systems. I combine technical expertise with strategic thinking to develop practical solutions for modern organizations.</p>
-        <div class="actions">
-          <a class="btn" href="projects.html">View projects <span aria-hidden="true">&rarr;</span></a>
-          <a class="btn btn--ghost" href="about.html#career">Experience</a>
-        </div>
-      </div>
-      <div class="scene" role="img" aria-label="A white terraced pavilion of four levels standing over still water in morning mist. The levels are labelled Enterprise IT at the base, then Security, Automation, and AI at the top, lit blue."></div>
-      <div class="stage-foot">
-        <div class="now glass">
-          <span class="mono">Currently</span>
-          <p>Service Desk Technician at Columbia University.</p>
-        </div>
-        <div class="cue mono" aria-hidden="true">Scroll<i></i></div>
-      </div>
-    </div>
-  </section>
-
-  <section class="proof" aria-label="At a glance">
-    <div class="wrap">
-      <div class="proof-in glass">
-        <div class="stat"><strong>4+ yrs</strong><span>enterprise IT at Columbia University</span></div>
-        <div class="stat"><strong>3</strong><span>documented builds, each with a public repository</span></div>
-        <div class="stat"><strong>7</strong><span>phases in a multi-agent pipeline on Claude</span></div>
-        <div class="stat"><strong>4</strong><span>industry certifications, including Security+</span></div>
-      </div>
-      <p class="mono source">Sources: r&eacute;sum&eacute; and public GitHub repositories</p>
-    </div>
-  </section>
-
-  <section class="section after-proof" id="work">
-    <div class="wrap">
-      <div class="head split">
-        <div>
-          <p class="eyebrow eyebrow--rule">Selected work</p>
-          <h2 class="t-sec">Two builds, <span>documented end to end.</span></h2>
-        </div>
-        <p class="lead">One AI system and one security lab, each recorded so the reasoning can be examined as well as the result.</p>
-      </div>
-      <div class="cards">
-        <a class="card" href="projects.html">
-          <div class="card-art" aria-hidden="true">
-            <svg viewBox="0 0 520 96" focusable="false"><line x1="20" y1="44" x2="500" y2="44" stroke="rgba(18,21,26,.25)"/><g id="art-phases"></g></svg>
-          </div>
-          <div class="card-body">
-            <div class="card-top"><span class="status">Built and tested</span><span class="mono">Apr &ndash; Jul 2026</span></div>
-            <h3 class="t-item">Multi-agent commerce pipeline</h3>
-            <p>CrewAI agents on Claude plan products, generate designs through Canva's MCP server and publish to Shopify from a Linux VPS. SQLite tracks state; CI runs tests, credential scanning and dependency audits.</p>
-            <ul class="chips"><li>CrewAI</li><li>Anthropic API</li><li>Canva MCP</li><li>Shopify Admin API</li><li>SQLite</li></ul>
-            <span class="go">Read the case study &rarr;</span>
-          </div>
-        </a>
-        <a class="card" href="soc-automation-lab.html">
-          <div class="card-art" aria-hidden="true">
-            <svg viewBox="0 0 520 96" focusable="false"><g id="art-chain"></g></svg>
-          </div>
-          <div class="card-body">
-            <div class="card-top"><span class="status">Completed lab</span><span class="mono">Mar &ndash; Apr 2026</span></div>
-            <h3 class="t-item">SOC brute-force detection lab</h3>
-            <p>An SMB brute-force attack from Kali Linux on Windows 11, caught by Splunk threshold alerts on Event ID 4625, with triage case notes generated in Python through the Splunk REST API.</p>
-            <ul class="chips"><li>Splunk SPL</li><li>Event ID 4625</li><li>Python</li><li>Kali Linux</li><li>VirtualBox</li></ul>
-            <span class="go">Read the case study &rarr;</span>
-          </div>
-        </a>
-      </div>
-    </div>
-  </section>
-
-  <section class="section section--tint" id="process">
-    <div class="wrap">
-      <div class="head split">
-        <div>
-          <p class="eyebrow eyebrow--rule">How I build with AI</p>
-          <h2 class="t-sec">A repeatable process, <span>with a person accountable at every gate.</span></h2>
-        </div>
-        <p class="lead">The same six steps run through the work on this site. Choose a step to see what it involves and where the evidence is.</p>
-      </div>
-      <div class="process">
-        <ol class="steps">
-          <li data-title="Write the requirements before any code." data-ev="docs/PORTFOLIO-PLAN.md in this site's repository"><span class="n">01</span><span class="name">Define</span><p>A requirements document where every line is labelled verified, proposed or needing evidence, so nothing unapproved is treated as fact.</p></li>
-          <li data-title="Record each decision with its options." data-ev="Decision tables in the portfolio plan; implementation notes in the pipeline repository"><span class="n">02</span><span class="name">Decide</span><p>Framework, hosting and content choices are written down with the options compared, the choice made and what it costs.</p></li>
-          <li data-title="Claude implements; I direct and review." data-ev="Commits authored by me with Claude as co-author, in every repository"><span class="n">03</span><span class="name">Build</span><p>Claude drafts and writes code against the approved requirements. I set direction, review every change and decide what merges.</p></li>
-          <li data-title="Automated checks on every change." data-ev="GitHub Actions here; tests, gitleaks and pip-audit in the pipeline"><span class="n">04</span><span class="name">Check</span><p>Security and accessibility audits, link checks, unit tests, credential scanning and dependency audits run before anything merges.</p></li>
-          <li data-title="Nothing ships without a gate." data-ev="Milestones M0 to M7 in the portfolio plan"><span class="n">05</span><span class="name">Approve</span><p>Work moves through milestones, and each ends with an explicit approval: plan, design, foundation, content, launch.</p></li>
-          <li data-title="Release through review, with a way back." data-ev="Pull requests into main for this site; a systemd service for the pipeline"><span class="n">06</span><span class="name">Ship</span><p>Changes reach production through reviewed pull requests, so every release is recorded and can be rolled back.</p></li>
-        </ol>
-        <div class="detail glass" id="step-detail" role="tabpanel" aria-live="polite" hidden></div>
-      </div>
-    </div>
-  </section>
-
-  <section class="section" id="expertise">
-    <div class="wrap">
-      <div class="head split">
-        <div>
-          <p class="eyebrow eyebrow--rule">Expertise</p>
-          <h2 class="t-sec">Six areas, <span>each tied to where it was used.</span></h2>
-        </div>
-        <p class="lead">No self-rated percentages. Each area names the role, build or credential that shows it. <a class="link" href="about.html#skills">See the skill map</a>.</p>
-      </div>
-      <div class="areas">
-        <div class="area"><span class="mono">AI and emerging technologies</span><h3>Generative AI, prompt engineering, workflow automation</h3><p>Columbia CHAT at work; Claude in every build.</p></div>
-        <div class="area"><span class="mono">AI platforms and integrations</span><h3>Claude, Claude Code, Anthropic API, MCP</h3><p>Commerce pipeline and this site.</p></div>
-        <div class="area"><span class="mono">IT service management</span><h3>ServiceNow, ITIL 4, knowledge management</h3><p>Columbia, NYC Health + Hospitals; ITIL 4 and HDI KCS.</p></div>
-        <div class="area"><span class="mono">Cybersecurity</span><h3>Detection, log analysis, identity and access</h3><p>SOC lab; CompTIA Security+.</p></div>
-        <div class="area"><span class="mono">Automation and tools</span><h3>Python, REST APIs, GitHub Actions, Splunk, Cloudflare</h3><p>SOC lab, commerce pipeline, this site.</p></div>
-        <div class="area"><span class="mono">Enterprise technologies</span><h3>Microsoft 365, Active Directory, Windows, macOS, Linux</h3><p>Columbia, NYC Health + Hospitals, Montefiore.</p></div>
-      </div>
-    </div>
-  </section>
-
-  <section class="section section--tint" id="experience">
-    <div class="wrap">
-      <div class="head">
-        <p class="eyebrow eyebrow--rule">Experience</p>
-        <h2 class="t-sec">Five years in enterprise IT.</h2>
-      </div>
-      <div class="xp">
-        <ol class="roles">
-          <li class="is-now"><span class="when">Jul 2022 &ndash; Present</span><div><h3>Service Desk Technician</h3><p>Columbia University &middot; consultative support, ServiceNow incident and request management, knowledge base articles, Columbia CHAT within University AI guidance.</p></div></li>
-          <li><span class="when">Oct 2021 &ndash; Jul 2022</span><div><h3>Service Desk Analyst</h3><p>NYC Health + Hospitals</p></div></li>
-          <li><span class="when">May &ndash; Aug 2021</span><div><h3>Desktop Support Specialist Intern</h3><p>Montefiore</p></div></li>
-          <li><span class="when">Education</span><div><h3>B.S. in Individualized Studies</h3><p>Buffalo State University &middot; concentration in Computer Information Systems</p></div></li>
-        </ol>
-        <div class="certs">
-          <p class="eyebrow eyebrow--rule">Certifications</p>
-          <a class="cert glass" href="security-plus.html">CompTIA Security+<span>May 2025</span></a>
-          <a class="cert glass" href="itil4.html">ITIL 4 Foundation<span>Apr 2023</span></a>
-          <div class="cert glass">HDI KCS Foundation<span>HDI</span></div>
-          <div class="cert glass">HDI Customer Service Representative<span>HDI</span></div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <section class="reach" id="contact">
+<section class="hero night">
+    <div class="halo" aria-hidden="true"></div>
     <div class="wrap">
       <div>
-        <h2>Contact</h2>
-        <p>Email is the most reliable way to reach me.</p>
+        <p class="eyebrow">AI solutions · Enterprise systems · New York</p>
+        <h1><span>Khaneil</span><span>Campbell</span></h1>
+        <p class="role">AI solutions and enterprise systems, <em>built to be trusted.</em></p>
+        <p class="lede">Five years inside Columbia University and NYC Health + Hospitals. Now designing AI workflows with the controls a real organisation needs.</p>
+        <a class="btn" href="projects.html">See the work <i aria-hidden="true">→</i></a>
       </div>
-      <ul class="routes">
-        <li><span class="mono">Email</span><a class="v" href="mailto:contact@khaneilcampbell.com">contact@khaneilcampbell.com</a></li>
-        <li><span class="mono">LinkedIn</span><a class="v" href="https://www.linkedin.com/in/khaneil-campbell" target="_blank" rel="noopener noreferrer">khaneil-campbell &#8599;</a></li>
-        <li><span class="mono">GitHub</span><a class="v" href="https://github.com/khancam15" target="_blank" rel="noopener noreferrer">khancam15 &#8599;</a></li>
-        <li><span class="mono">R&eacute;sum&eacute;</span><a class="v" href="assets/khaneil-campbell-resume.pdf">PDF</a></li>
-      </ul>
+      <figure>
+        <div class="frame"><img src="images/profile-web.jpg" srcset="images/profile-web.jpg 525w, images/profile.jpg 1200w" sizes="(max-width: 860px) 340px, 420px" width="525" height="700" alt="Khaneil Campbell in a dark suit, adjusting his collar in a mirrored hallway" decoding="async" fetchpriority="high"></div>
+        <figcaption class="caption"><span>Khaneil Campbell</span><span>New York</span></figcaption>
+      </figure>
     </div>
   </section>
 
+  <div class="proof">
+    <div class="wrap">
+      <small>Experience and credentials</small>
+      <span>Columbia University</span><span>NYC Health + Hospitals</span><span>CompTIA Security+</span><span>ITIL 4 Foundation</span>
+    </div>
+  </div>
+
+  <section class="sec">
+    <div class="wrap">
+      <div class="shead">
+        <div><p class="eyebrow">Selected work</p><h2>Systems that run <em>themselves,</em> carefully.</h2></div>
+        <p>Each case study sets out the problem, my role, the tools and the results the evidence supports. <a class="more" href="projects.html">All work →</a></p>
+      </div>
+      <a class="case reveal" href="commerce-pipeline.html">
+        <div class="cover"><svg viewBox="0 0 800 550" preserveAspectRatio="xMidYMid slice" fill="none" aria-hidden="true"><defs><radialGradient id="gp" cx="70%" cy="30%" r="70%"><stop offset="0" stop-color="#22324A"/><stop offset="1" stop-color="#0E1622"/></radialGradient></defs><rect width="800" height="550" fill="url(#gp)"/><g stroke="#CDAE76" stroke-opacity=".35"><ellipse cx="400" cy="275" rx="330" ry="120"/><ellipse cx="400" cy="275" rx="250" ry="80"/></g><path d="M120 275H680" stroke="#CDAE76" stroke-opacity=".6"/><g fill="#0E1622" stroke="#CDAE76" stroke-width="1.4"><circle cx="160" cy="275" r="26"/><circle cx="320" cy="275" r="26"/><circle cx="480" cy="275" r="26"/></g><circle cx="640" cy="275" r="26" fill="#CDAE76"/><g fill="#F3F0EA" fill-opacity=".85" font-family="Instrument Sans" font-size="13" letter-spacing="2" text-anchor="middle"><text x="160" y="330">BRAND</text><text x="320" y="330">GENERATE</text><text x="480" y="330">DESIGN</text><text x="640" y="330">PUBLISH</text></g></svg><span class="lbl">AI systems · 2026</span></div>
+        <div>
+          <span class="num">01</span>
+          <h3>Multi-agent commerce pipeline</h3>
+          <p>CrewAI agents on Claude take a product from brand research to a Shopify listing, behind credential scanning, preflight checks and publish limits.</p>
+          <dl><div><dt>Role</dt><dd>Sole builder</dd></div><div><dt>Result</dt><dd>7 of 7 phases tested</dd></div></dl>
+          <span class="more">Read the case study →</span>
+        </div>
+      </a>
+      <a class="case flip reveal" href="soc-automation-lab.html">
+        <div class="cover"><svg viewBox="0 0 800 550" preserveAspectRatio="xMidYMid slice" fill="none" aria-hidden="true"><defs><radialGradient id="gs" cx="30%" cy="70%" r="70%"><stop offset="0" stop-color="#1F2D41"/><stop offset="1" stop-color="#0E1622"/></radialGradient></defs><rect width="800" height="550" fill="url(#gs)"/><g stroke="#F3F0EA" stroke-opacity=".12"><circle cx="400" cy="300" r="70"/><circle cx="400" cy="300" r="140"/><circle cx="400" cy="300" r="210"/><circle cx="400" cy="300" r="280"/></g><path d="M400 300 L612 120" stroke="#CDAE76" stroke-width="1.4"/><path d="M400 300 L612 120 A280 280 0 0 1 680 300 Z" fill="#CDAE76" fill-opacity=".1"/><g fill="#F3F0EA" fill-opacity=".5"><circle cx="300" cy="240" r="3"/><circle cx="470" cy="380" r="3"/><circle cx="350" cy="410" r="3"/><circle cx="250" cy="330" r="3"/><circle cx="520" cy="260" r="3"/></g><circle cx="560" cy="180" r="7" fill="#CDAE76"/><circle cx="560" cy="180" r="18" stroke="#CDAE76" stroke-opacity=".5"/><text x="584" y="176" fill="#CDAE76" font-family="Instrument Sans" font-size="13" letter-spacing="2">4625 × 80+</text></svg><span class="lbl">Security · 2026</span></div>
+        <div>
+          <span class="num">02</span>
+          <h3>SOC brute-force detection lab</h3>
+          <p>An SMB brute-force attack from Kali Linux on Windows 11, caught by a Splunk threshold alert, with triage notes written in Python through the Splunk REST API.</p>
+          <dl><div><dt>Role</dt><dd>Sole builder</dd></div><div><dt>Result</dt><dd>80+ failed logons isolated</dd></div></dl>
+          <span class="more">Read the case study →</span>
+        </div>
+      </a>
+    </div>
+  </section>
+
+  <section class="band night">
+    <div class="wrap">
+      <div class="shead"><div><p class="eyebrow">How I work</p><h2>AI does the volume. <em>People keep the judgment.</em></h2></div></div>
+      <div class="beliefs">
+        <div class="reveal"><b>i.</b><h3>Write it down first.</h3><p>Requirements are labelled verified, proposed or needing evidence before any code exists.</p></div>
+        <div class="reveal"><b>ii.</b><h3>Claude drafts. I decide.</h3><p>I set direction, review every change and own what merges.</p></div>
+        <div class="reveal"><b>iii.</b><h3>Nothing ships unchecked.</h3><p>Security scans, audits and tests gate every release, and every release can roll back.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="closing">
+    <div class="wrap">
+      <h2>Have a process that should <em>run itself?</em></h2>
+      <p>I am open to AI solutions roles and automation work, in New York or remote.</p>
+      <a class="btn dark" href="contact.html">Start a conversation <i aria-hidden="true">→</i></a>
+    </div>
+  </section>
 </main>
-
-<footer class="foot">
+<footer class="foot night">
   <div class="wrap">
-    <div class="foot-in">
-      <div>
-        <span class="nav-name">Khaneil Campbell</span>
-        <p class="foot-note">New York, NY</p>
-      </div>
-      <ul class="foot-links">
-        <li><a href="projects.html">Work</a></li>
-        <li><a href="labs.html">Labs</a></li>
-        <li><a href="lab-details.html">Case files</a></li>
-        <li><a href="about.html">About</a></li>
-        <li><a href="contact.html">Contact</a></li>
-        <li><a href="assets/khaneil-campbell-resume.pdf">R&eacute;sum&eacute; (PDF)</a></li>
-        <li><a href="https://www.linkedin.com/in/khaneil-campbell" target="_blank" rel="noopener noreferrer">LinkedIn</a></li>
-        <li><a href="https://github.com/khancam15" target="_blank" rel="noopener noreferrer">GitHub</a></li>
-      </ul>
+    <div class="row">
+      <div><h4>Contact</h4><p class="contact-line"><a class="mail" href="mailto:contact@khaneilcampbell.com">contact@khaneilcampbell.com</a></p></div>
+      <div><h4>Pages</h4><ul><li><a href="projects.html">Work</a></li><li><a href="labs.html">Labs</a></li><li><a href="about.html">About</a></li><li><a href="contact.html">Contact</a></li></ul></div>
+      <div><h4>Elsewhere</h4><ul><li><a href="https://www.linkedin.com/in/khaneil-campbell" target="_blank" rel="noopener noreferrer">LinkedIn ↗</a></li><li><a href="https://github.com/khancam15" target="_blank" rel="noopener noreferrer">GitHub ↗</a></li><li><a href="assets/khaneil-campbell-resume.pdf">Résumé PDF ↓</a></li></ul></div>
+      <div><h4>Credentials</h4><ul><li><a href="security-plus.html">CompTIA Security+</a></li><li><a href="itil4.html">ITIL 4 Foundation</a></li><li>HDI KCS Foundation</li></ul></div>
     </div>
-    <p class="foot-note mt-m">&copy; 2026 Khaneil Campbell</p>
+    <div class="base"><img src="images/brand/kc-mark-brass.svg" alt="KC monogram" width="44" height="44"><span>© 2026 Khaneil Campbell · New York</span></div>
   </div>
 </footer>
-
 </body>
 </html>
