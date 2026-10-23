@@ -99,6 +99,10 @@ em{font-style:italic}
 .closing h2{font-family:var(--serif);font-weight:400;font-size:clamp(48px,7vw,112px);line-height:.95;letter-spacing:-.02em}
 .closing h2 em{color:var(--brass)}
 .closing p{margin:22px auto 0;max-width:46ch;font-size:18px}
+.closing .actions{justify-content:center;margin-top:40px}
+.closing .actions .btn{margin-top:0}
+.closing .btn.line{color:var(--text);border-color:rgba(25,29,36,.24)}
+.closing .btn.line i{background:var(--midnight);color:var(--brass-lt)}
 
 /* footer */
 .foot{margin-top:136px;padding:72px 0 40px}
