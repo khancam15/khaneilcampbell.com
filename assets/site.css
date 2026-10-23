@@ -484,3 +484,4 @@ body.night .foot{margin-top:0;border-top:1px solid var(--line-n)}
 .shead h2.inline-em em{display:inline}
 .hero .role{text-wrap:balance}
 @media (max-width:860px){.beliefs{gap:28px}.beliefs div{padding-top:20px}.beliefs h3{font-size:30px;margin:8px 0 10px}.case dd{font-size:19px;text-wrap:balance}}
+.nextc b,.crossnav b{line-height:1.1;text-wrap:balance}
