@@ -458,3 +458,6 @@ body.night .foot{margin-top:0;border-top:1px solid var(--line-n)}
 @media (max-width:420px){.arch-base{grid-template-columns:1fr}.arch-base li:nth-child(2n){border-left:0}.arch-base li+li{border-top:1px dashed var(--line-n)}}
 .story>*{min-width:0}
 .shots .zoom{display:block;border-radius:14px}.shots .zoom:focus-visible{outline:2px solid var(--brass);outline-offset:3px}.shots .zoom img{transition:border-color .2s}.shots .zoom:hover img{border-color:var(--brass)}
+/* proof strip: one row on desktop; label, employers, credentials as three rows on small screens */
+.proof .pg{display:contents}
+@media (max-width:860px){.proof .wrap{gap:12px 22px}.proof small{flex-basis:100%}.proof .pg{display:flex;flex-wrap:wrap;gap:6px 22px;flex-basis:100%}}
