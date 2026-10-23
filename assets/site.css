@@ -400,7 +400,7 @@ body.locked{overflow:hidden}
 .foot .row>div:last-child li{white-space:nowrap}
 @media (max-width:860px){.foot .row{grid-template-columns:1fr 1fr}.foot .row>div:last-child{grid-column:1/-1}}
 /* spacing scale: fluid section rhythm instead of fixed desktop/mobile jumps */
-:root{--sp-sec:clamp(80px,8.5vw,120px);--sp-band:clamp(72px,8vw,112px);--sp-foot:clamp(72px,7vw,104px)}
+:root{--sp-sec:clamp(64px,8.5vw,120px);--sp-band:clamp(64px,8vw,112px);--sp-foot:clamp(72px,7vw,104px)}
 .sec{padding-top:var(--sp-sec)}
 .band{margin-top:var(--sp-sec);padding:var(--sp-band) 0}
 .closing{padding-top:var(--sp-sec)}
@@ -479,3 +479,8 @@ body.night .foot{margin-top:0;border-top:1px solid var(--line-n)}
 /* pull quote: tighter on small screens */
 .pull{margin-top:var(--sp-sec);text-wrap:balance}
 @media (max-width:860px){.pull{margin-top:64px;font-size:clamp(30px,8.4vw,40px);max-width:20ch}.pull+.nextc{margin-top:64px}}
+/* section headlines and hero tagline: the brass phrase starts its own line (as page headlines) */
+.shead h2 em,.closing h2 em,.hero .role em{display:block}
+.shead h2.inline-em em{display:inline}
+.hero .role{text-wrap:balance}
+@media (max-width:860px){.beliefs{gap:28px}.beliefs div{padding-top:20px}.beliefs h3{font-size:30px;margin:8px 0 10px}.case dd{font-size:19px;text-wrap:balance}}
