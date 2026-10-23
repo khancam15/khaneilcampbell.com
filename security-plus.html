@@ -3,25 +3,37 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'self'; style-src 'self' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; img-src 'self' data:; connect-src 'none'; base-uri 'self'; form-action 'none';">
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'self'; style-src 'self' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; img-src 'self' data:; manifest-src 'self'; connect-src 'none'; base-uri 'self'; form-action 'none';">
 <meta name="referrer" content="strict-origin-when-cross-origin">
-<meta name="theme-color" content="#eef1f3">
+<meta name="theme-color" content="#0E1622">
 <meta name="robots" content="index, follow">
 <title>CompTIA Security+ | Khaneil Campbell</title>
 <meta name="description" content="CompTIA Security+ certification earned May 2025 and valid to 2028: threat analysis, architecture, identity management, operations and governance.">
 
-<meta property="og:type" content="article">
+<meta property="og:type" content="website">
 <meta property="og:url" content="https://khaneilcampbell.com/security-plus.html">
 <meta property="og:title" content="CompTIA Security+ | Khaneil Campbell">
 <meta property="og:description" content="CompTIA Security+ certification earned May 2025 and valid to 2028: threat analysis, architecture, identity management, operations and governance.">
-<meta property="og:image" content="https://khaneilcampbell.com/images/security-plus-cert.png">
+<meta property="og:image" content="https://khaneilcampbell.com/images/brand/og-image.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="KC monogram with the name Khaneil Campbell">
 <meta property="og:site_name" content="Khaneil Campbell">
-<meta name="twitter:card" content="summary">
+<meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="CompTIA Security+ | Khaneil Campbell">
 <meta name="twitter:description" content="CompTIA Security+ certification earned May 2025 and valid to 2028: threat analysis, architecture, identity management, operations and governance.">
-<meta name="twitter:image" content="https://khaneilcampbell.com/images/security-plus-cert.png">
+<meta name="twitter:image" content="https://khaneilcampbell.com/images/brand/og-image.png">
 <link rel="canonical" href="https://khaneilcampbell.com/security-plus.html">
+<link rel="icon" href="/favicon.ico" sizes="32x32">
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<link rel="manifest" href="/site.webmanifest">
 
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Instrument+Sans:wght@400;500&amp;family=Instrument+Serif:ital@0;1&amp;display=swap">
+<link rel="stylesheet" href="assets/site.css?v=9a499828">
+<script src="assets/site.js?v=7a18b572" defer></script>
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
@@ -66,105 +78,49 @@
   ]
 }
 </script>
-
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Geist:wght@300..700&family=Geist+Mono:wght@400;500&display=swap">
-<link rel="stylesheet" href="assets/site.css?v=1b1699fc">
-<script src="assets/site.js?v=a52d7879"></script>
 </head>
 <body>
-
-<a class="skip-link" href="#main">Skip to content</a>
-
-<header class="nav">
-  <div class="wrap nav-in">
-    <a class="nav-name" href="index.html" aria-label="Khaneil Campbell, home"><svg class="nav-mark" viewBox="0 0 32 32" aria-hidden="true" focusable="false"><rect width="32" height="32" rx="9" fill="#12151a"/><rect x="7" y="20" width="18" height="2.4" rx="1.2" fill="#fff"/><rect x="9.5" y="15" width="13" height="2.4" rx="1.2" fill="#fff" opacity=".8"/><rect x="12" y="10" width="8" height="2.4" rx="1.2" fill="#6fa8d6"/></svg><span class="nav-full">Khaneil Campbell</span></a>
-    <nav aria-label="Primary">
-      <ul class="nav-links">
-        <li><a href="projects.html">Work</a></li>
-        <li><a href="about.html" aria-current="page">About</a></li>
-        <li><a href="contact.html">Contact</a></li>
-      </ul>
-    </nav>
+<a class="skip" href="#main">Skip to content</a>
+<header class="nav on-night">
+  <div class="wrap">
+    <a class="name" href="index.html">Khaneil Campbell</a>
+    <a class="mk" href="index.html" aria-label="Khaneil Campbell, home"><img src="images/brand/kc-mark-porcelain.svg" alt="" width="40" height="40"></a>
+    <nav aria-label="Primary"><ul>
+      <li><a href="projects.html">Work</a></li>
+      <li><a href="about.html">About</a></li>
+      <li><a href="contact.html">Contact</a></li>
+      <li><a class="cv" href="assets/khaneil-campbell-resume.pdf">Résumé</a></li>
+    </ul></nav>
+    <button class="menu" type="button" aria-expanded="false" aria-label="Menu">Menu</button>
   </div>
 </header>
-
 <main id="main">
-
-  <section class="hero">
+<section class="phero night">
     <div class="wrap">
-      <span class="eyebrow eyebrow--rule">Credential &middot; CompTIA</span>
-      <h1 class="t-page">CompTIA Security+</h1>
-      <p class="lede">
-        The industry baseline certification for security competency, covering threat
-        analysis, architecture, network security, identity management, operations and
-        governance.
-      </p>
+      <p class="eyebrow">Credential · CompTIA</p>
+      <h1>CompTIA Security+</h1>
+      <p class="lede">The industry baseline for security competency: threat analysis, architecture, network security, identity management, operations and governance.</p>
     </div>
   </section>
-
-  <section class="section">
-    <div class="wrap">
-      <div class="tiles">
-        <div class="tile">
-          <h2 class="t-sec">Credential details.</h2>
-          <dl class="facts mt-m">
-            <div class="fact"><dt>Credential</dt><dd>CompTIA Security+</dd></div>
-            <div class="fact"><dt>Issuer</dt><dd>CompTIA</dd></div>
-            <div class="fact"><dt>Holder</dt><dd>Khaneil Campbell</dd></div>
-            <div class="fact"><dt>Certified</dt><dd>May 12, 2025</dd></div>
-            <div class="fact"><dt>Valid until</dt><dd>May 12, 2028</dd></div>
-            <div class="fact"><dt>Candidate ID</dt><dd>COMP001022470377</dd></div>
-          </dl>
-          <div class="prose mt-m">
-            <p>
-              Security+ is where the vocabulary becomes shared. It covers enough ground that
-              a support engineer, a systems administrator and an analyst can discuss the same
-              incident without talking past each other, which is most of what it is actually
-              useful for day to day.
-            </p>
-            <p>
-              The applied version is in the <a href="soc-automation-lab.html">log analysis
-              case</a> and the <a href="lab-details.html">lab case files</a>.
-            </p>
-          </div>
-        </div>
-        <div class="tile">
-          <h2 class="t-sec">The certificate.</h2>
-          <div class="shot mt-m">
-            <img src="images/security-plus-cert.png" alt="CompTIA Security+ certificate issued to Khaneil Campbell" width="792" height="612" loading="lazy" decoding="async">
-          </div>
-          <p class="caption">Issued May 12, 2025 &middot; expires May 12, 2028</p>
-        </div>
-      </div>
-      <div class="actions"><a class="btn-text" href="itil4.html">ITIL 4 Foundation</a></div>
-    </div>
-  </section>
-
-</main>
-
-<footer class="foot">
   <div class="wrap">
-    <div class="foot-in">
-      <div>
-        <span class="nav-name">Khaneil Campbell</span>
-        <p class="foot-note">New York, NY</p>
-      </div>
-      <ul class="foot-links">
-        <li><a href="projects.html">Work</a></li>
-        <li><a href="labs.html">Labs</a></li>
-        <li><a href="lab-details.html">Case files</a></li>
-        <li><a href="about.html">About</a></li>
-        <li><a href="contact.html">Contact</a></li>
-        <li><a href="assets/khaneil-campbell-resume.pdf">R&eacute;sum&eacute; (PDF)</a></li>
-        <li><a href="https://www.linkedin.com/in/khaneil-campbell" target="_blank" rel="noopener noreferrer">LinkedIn</a></li>
-        <li><a href="https://github.com/khancam15" target="_blank" rel="noopener noreferrer">GitHub</a></li>
-      </ul>
+    <div class="cred">
+      <dl><div><dt>Issuer</dt><dd>CompTIA</dd></div><div><dt>Holder</dt><dd>Khaneil Campbell</dd></div><div><dt>Certified</dt><dd>May 12, 2025</dd></div><div><dt>Valid until</dt><dd>May 12, 2028</dd></div><div><dt>Candidate ID</dt><dd>COMP001022470377</dd></div></dl>
+      <div class="prose"><p>Security+ is where the vocabulary becomes shared. It covers enough ground that a support engineer, a systems administrator and an analyst can discuss the same incident without talking past each other, which is most of what it is useful for day to day.</p><p>The applied version is in the <a href="soc-automation-lab.html">log analysis case study</a> and the <a href="lab-details.html">lab case files</a>.</p></div>
     </div>
-    <p class="foot-note mt-m">&copy; 2026 Khaneil Campbell</p>
+    <section class="cert"><figure><img src="images/security-plus-cert.png" alt="CompTIA Security+ certificate issued to Khaneil Campbell" width="792" height="612" loading="lazy" decoding="async"><figcaption>Issued May 12, 2025 · expires May 12, 2028</figcaption></figure></section>
+    <a class="nextc" href="itil4.html"><span class="eyebrow">Also certified</span><b>ITIL 4 Foundation →</b></a>
+  </div>
+</main>
+<footer class="foot night">
+  <div class="wrap">
+    <div class="row">
+      <div><h4>Contact</h4><p class="contact-line"><a class="mail" href="mailto:contact@khaneilcampbell.com">contact@khaneilcampbell.com</a></p></div>
+      <div><h4>Pages</h4><ul><li><a href="projects.html">Work</a></li><li><a href="labs.html">Labs</a></li><li><a href="about.html">About</a></li><li><a href="contact.html">Contact</a></li></ul></div>
+      <div><h4>Elsewhere</h4><ul><li><a href="https://www.linkedin.com/in/khaneil-campbell" target="_blank" rel="noopener noreferrer">LinkedIn ↗</a></li><li><a href="https://github.com/khancam15" target="_blank" rel="noopener noreferrer">GitHub ↗</a></li><li><a href="assets/khaneil-campbell-resume.pdf">Résumé PDF ↓</a></li></ul></div>
+      <div><h4>Credentials</h4><ul><li><a href="security-plus.html">CompTIA Security+</a></li><li><a href="itil4.html">ITIL 4 Foundation</a></li><li>HDI KCS Foundation</li></ul></div>
+    </div>
+    <div class="base"><img src="images/brand/kc-mark-porcelain.svg" alt="KC monogram" width="44" height="44"><span>© 2026 Khaneil Campbell · New York</span></div>
   </div>
 </footer>
-
 </body>
 </html>

@@ -13,28 +13,28 @@ served by GitHub Pages from `main`.
 
 | Area | State |
 |---|---|
-| Design | Mist and glass, launched 14 Oct 2026 ([#8](https://github.com/khancam15/khaneilcampbell.com/pull/8)) |
-| Homepage | Pavilion hero; at-a-glance strip (4+ years at Columbia, 3 documented builds, 7-phase pipeline, 4 certifications); two project cards; "How I build with AI"; six expertise areas; experience; contact row |
-| About | Background, career timeline, skill map, capabilities, certifications, education |
-| Work | Multi-agent commerce pipeline (built and tested); SOC brute-force detection lab (published); phishing and access-control case files (in progress) |
+| Design | Atelier, from 23 Oct 2026 (replaces Mist and glass) |
+| Homepage | Midnight hero with name, role, one call to action and the portrait; experience and credentials strip; two case studies; "How I work"; closing call to action |
+| About | Portrait hero, the thread of the work, career timeline, six-area capability map |
+| Work | Multi-agent commerce pipeline and SOC brute-force lab as full case studies (problem, role, tools, results); phishing and access-control case files (in progress) |
 | Résumé | `assets/khaneil-campbell-resume.pdf`, a public copy with the phone number removed |
 | Links | [LinkedIn](https://www.linkedin.com/in/khaneil-campbell) · [GitHub](https://github.com/khancam15) · contact@khaneilcampbell.com |
 | Not yet published | The Benjaire case study, pending decision D1 in the plan |
 
 ## Design
 
-**Mist and glass.** Premium architectural technology, built around one image: a
-white terraced pavilion of four levels over still water in morning mist. The
-homepage draws it as layered SVG, with the levels labelled Enterprise IT,
-Security, Automation and AI. Colours are sampled from that scene.
+**Atelier.** A founder's studio rather than a template: midnight and porcelain
+bands, a large Instrument Serif, brass detail, and the KC monogram (F2, Gilda
+weave) in the nav and footer. Fewer words, more presence, with every case study
+still set out as problem, role, tools and results.
 
 | | |
 |---|---|
-| Ground | Mist `#eef1f3`; stone bands `#e7e5e0`; white panels; one charcoal surface `#16191e` |
-| Ink | `#12151a` (15.2:1 worst case), body `#454b54` (7.3:1), labels `#59606a` (5.4:1) |
-| Accent | Lit-glass blue `#2a64a8` (5.1:1 on stone); links `#1f4f87` (7.2:1) |
-| Type | Geist for display and body, Geist Mono for labels |
-| Surfaces | Frosted glass panels, hairlines, 20px radius, pill buttons and nav |
+| Ground | Porcelain `#F3F0EA`; sand `#E7E1D6`; midnight bands `#0E1622` |
+| Text | Ink `#191D24`, body `#4A505A` (7.1:1); on midnight, porcelain and `#A9B0BB` (8.3:1) |
+| Accent | Brass `#CDAE76` on midnight (8.6:1); deep brass `#7A5A24` on porcelain (5.6:1) |
+| Type | Instrument Serif for display (italic for emphasis), Instrument Sans for text |
+| Brand | `images/brand/` monogram SVGs and `og-image.png`; favicons and `site.webmanifest` at the root |
 
 ### Motion and interaction
 
@@ -43,39 +43,14 @@ below, and `prefers-reduced-motion` switches all of it off.
 
 | Feature | Where | Without JS |
 |---|---|---|
-| Pavilion scene: layers drift against the pointer, labels settle in | Home | Mist gradient; all text present |
-| "How I build" steps as tabs with one detail panel | Home | A numbered list with every step written out |
-| Scroll reveals, 3D tilt and a pointer spotlight on cards and panels | All | Static |
-| Career timeline that fills with scroll | About | Full rail, all nodes lit |
-| Skill map tabs whose dots form a where-used matrix | About | Six cards |
-| Reading progress in the nav; cross-document page transitions | All (CSS) | Normal navigation |
+| Portrait unveils with a clip-path reveal (CSS) | Home | Same, static under reduced motion |
+| Sections rise in as they enter the viewport | All | Visible at rest |
+| Magnetic call-to-action buttons on pointer devices | All | Normal buttons |
+| Full-screen menu below 860px | All | Links reachable in the footer |
 
-### Diagrams
-
-The references this design follows are photography-led; this site has no
-photography beyond one portrait. The visual weight is carried instead by four
-SVG diagrams in `images/diagrams/`, generated to a single visual language so
-they read as a set: four stages, one highlighted as the step that matters, a
-supporting layer underneath, and a one-line note. They use the Mist and glass
-palette, and each card is sized to fit its text.
-
-Each diagram ships in **two variants**, swapped by `<picture>` with no JavaScript:
-
-| variant | canvas | used | why |
-|---|---|---|---|
-| `-sm` | 360 wide, stacked | at or below 700px | a wide banner scales to 0.27 on a phone, rendering its labels under 5px |
-| `-md` | 700 wide, two by two | above 700px | the piece column caps near 646px, where a 1200px banner renders labels at 9.4px |
-
-A 1200px banner variant existed earlier. It has no context left where it renders
-better, so it was retired rather than kept as a third file.
-
-Two things to know before editing them:
-
-- They fall back to a **system font**. An SVG loaded through `<img>` cannot fetch
-  a web font, so it renders in Helvetica or Arial. Matching the page type exactly
-  would mean inlining each SVG into every page that shows it.
-- They carry **no title**, deliberately. The page caption names each piece, and
-  having both read as a duplicate.
+Case study covers are inline SVG drawn in the palette, so they need no image
+requests and stay sharp at any size. The older Mist and glass diagrams in
+`images/diagrams/` are no longer referenced.
 
 ## Conventions
 
@@ -84,8 +59,7 @@ Two things to know before editing them:
   third-party origins, no network calls. Nothing may depend on it: content,
   navigation and links must work with JavaScript off.
 - **No inline `style` or `on*` attributes.** `style-src` stays at `'self'` with no
-  `'unsafe-inline'`, so inline styles silently fail — use the `.mt-s` / `.mt-m` /
-  `.mt-l` utilities instead. Scripts may still set styles through the CSSOM
+  `'unsafe-inline'`, so inline styles silently fail; add a class to `assets/site.css` instead. Scripts may still set styles through the CSSOM
   (`el.style.setProperty`), which the CSP allows.
 - **Fonts** come from Google Fonts and are the only external origin the CSP allows.
 - **The stylesheet and script URLs carry a content hash** (`assets/site.css?v=…`,
