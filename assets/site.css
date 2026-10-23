@@ -385,3 +385,8 @@ body.locked{overflow:hidden}
 @media (max-width:640px){.ab .lede,.prose p{font-size:17px;line-height:1.65}.shead p,.closing p{font-size:17px}}
 .timeline .d{grid-column:2;max-width:70ch;margin-top:-14px;font-size:15px;line-height:1.6;color:var(--body)}
 @media (max-width:860px){.timeline .d{grid-column:auto;margin-top:6px}}
+.chapters a{display:inline-block;margin-top:16px;font:500 13px var(--sans);letter-spacing:.12em;text-transform:uppercase;color:var(--brass);border-bottom:1px solid currentColor;padding-bottom:2px}
+.night .chapters a{color:var(--brass-lt)}
+#how-i-work{scroll-margin-top:24px}
+@media (max-width:860px){.chapters{gap:20px}.chapters div{padding-top:18px}.chapters h3{font-size:28px;margin:8px 0}}
+.thread .shead>div{grid-column:1/-1}
