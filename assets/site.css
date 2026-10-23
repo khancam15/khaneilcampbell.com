@@ -1,3 +1,7 @@
+/* Self-hosted fonts (SIL OFL 1.1, see assets/fonts/OFL.txt) */
+@font-face{font-family:'Instrument Sans';font-style:normal;font-weight:400 500;font-display:swap;src:url(fonts/instrument-sans-latin.woff2) format('woff2')}
+@font-face{font-family:'Instrument Serif';font-style:normal;font-weight:400;font-display:swap;src:url(fonts/instrument-serif-latin.woff2) format('woff2')}
+@font-face{font-family:'Instrument Serif';font-style:italic;font-weight:400;font-display:swap;src:url(fonts/instrument-serif-italic-latin.woff2) format('woff2')}
 /* khaneilcampbell.com · Atelier. Midnight and porcelain, Instrument Serif, brass detail.
    Static CSS, no build step. Every colour pair passes WCAG AA (lowest 5.6:1). */
 :root{
@@ -99,10 +103,16 @@ em{font-style:italic}
 .foot{margin-top:136px;padding:72px 0 40px}
 .foot .row{display:grid;grid-template-columns:1.4fr 1fr 1fr 1fr;gap:40px}
 .foot .mail{font-family:var(--serif);font-size:clamp(28px,2.8vw,40px);color:var(--on-night);border-bottom:1px solid var(--line-n)}
-.foot h4{font:500 12px var(--sans);letter-spacing:.14em;text-transform:uppercase;color:var(--brass-lt)}
+.foot .fh{margin:0;font:500 12px var(--sans);letter-spacing:.14em;text-transform:uppercase;color:var(--brass-lt)}
 .foot ul{list-style:none;margin-top:14px;line-height:2.1;font-size:15px;color:var(--on-night-2)}
 .foot .base{margin-top:80px;padding-top:24px;border-top:1px solid var(--line-n);display:flex;justify-content:space-between;align-items:center;font-size:13px;color:var(--on-night-2)}
 .foot .base img{width:44px;height:44px}
+.foot .base p{color:inherit}
+.foot .base{gap:16px 32px;flex-wrap:wrap}
+.foot .base p:first-of-type{margin-left:auto}
+@media (max-width:640px){.foot .base{flex-direction:column;align-items:flex-start}.foot .base p:first-of-type{margin-left:0}}
+.foot .base a{color:var(--on-night);border-bottom:1px solid var(--line-n)}
+.foot .base a:hover{border-color:currentColor}
 
 /* page hero (inner pages) */
 .phero{padding:176px 0 96px}
@@ -333,3 +343,22 @@ body.locked{overflow:hidden}
 .nav.open .menu{order:1}
 .nav.open nav{order:2;justify-self:stretch}
 .nav.open nav ul{justify-self:start}
+
+/* Screen-reader-only text */
+.sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}
+
+/* Print: plain ink on paper, no chrome or motion */
+@media print{
+  .nav,.skip,.menu,.closing .btn,.cs-art{display:none!important}
+  *,*::before,*::after{background:#fff!important;color:#000!important;box-shadow:none!important;text-shadow:none!important}
+  .reveal,.js .reveal{opacity:1!important;transform:none!important}
+  a[href^="http"]::after{content:" (" attr(href) ")";font-size:.85em;word-break:break-all}
+  section,.band,.band-tight{padding-block:16px!important}
+  h1,h2,h3{break-after:avoid}
+  img,figure{break-inside:avoid;max-width:100%!important}
+}
+
+/* Privacy and site notice */
+.legal{padding-bottom:40px}
+.legal .prose h2{font-family:var(--serif);font-weight:400;font-size:clamp(28px,2.6vw,38px);line-height:1.1;letter-spacing:-.01em;margin:56px 0 14px}
+.legal .prose .small-note+h2{margin-top:32px}

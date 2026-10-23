@@ -19,6 +19,7 @@ served by GitHub Pages from `main`.
 | Work | Multi-agent commerce pipeline and SOC brute-force lab as full case studies (problem, role, tools, results); phishing and access-control case files (in progress) |
 | Résumé | `assets/khaneil-campbell-resume.pdf`, a public copy with the phone number removed |
 | Links | [LinkedIn](https://www.linkedin.com/in/khaneil-campbell) · [GitHub](https://github.com/khancam15) · contact@khaneilcampbell.com |
+| Privacy | `privacy.html`: no cookies, analytics or third-party requests; copyright and trademark notices. Linked from every footer |
 | Not yet published | The Benjaire case study, pending decision D1 in the plan |
 
 ## Design
@@ -49,8 +50,7 @@ below, and `prefers-reduced-motion` switches all of it off.
 | Full-screen menu below 860px | All | Links reachable in the footer |
 
 Case study covers are inline SVG drawn in the palette, so they need no image
-requests and stay sharp at any size. The older Mist and glass diagrams in
-`images/diagrams/` are no longer referenced.
+requests and stay sharp at any size.
 
 ## Conventions
 
@@ -61,7 +61,9 @@ requests and stay sharp at any size. The older Mist and glass diagrams in
 - **No inline `style` or `on*` attributes.** `style-src` stays at `'self'` with no
   `'unsafe-inline'`, so inline styles silently fail; add a class to `assets/site.css` instead. Scripts may still set styles through the CSSOM
   (`el.style.setProperty`), which the CSP allows.
-- **Fonts** come from Google Fonts and are the only external origin the CSP allows.
+- **Fonts are self-hosted** in `assets/fonts/` (Instrument Sans and Instrument
+  Serif, Latin subset, SIL OFL 1.1). The two upright faces are preloaded. The site
+  makes no requests to any other origin, and the CSP (`font-src 'self'`) keeps it that way.
 - **The stylesheet and script URLs carry a content hash** (`assets/site.css?v=…`,
   `assets/site.js?v=…`). The host caches HTML and assets separately for ten minutes
   with no version in the path, so a browser can otherwise pair fresh markup with a
@@ -87,23 +89,25 @@ requests and stay sharp at any size. The older Mist and glass diagrams in
 ## Project structure
 
 ```
-index.html               Home — pavilion hero, work, process, expertise, experience, contact
+index.html               Home: hero, credentials strip, two case studies, how I work, contact
 about.html               Background, capabilities, toolset, credentials
-projects.html            AI product pipeline — flow, guardrails, stack
+projects.html            Work index: case studies and case files
+commerce-pipeline.html   Case study: multi-agent commerce pipeline
 labs.html                Lab index and the case standard
 lab-details.html         Expanded case file per lab
-soc-automation-lab.html  Published deep dive: log analysis with Splunk
+soc-automation-lab.html  Case study: SOC brute-force detection lab (Splunk)
 contact.html             Contact routes
 security-plus.html       CompTIA Security+ credential page
 itil4.html               ITIL 4 Foundation credential page
+privacy.html             Privacy and site notice
 404.html                 Not-found page
 
 assets/site.css          The entire design system
-assets/site.js           Motion layer: pavilion scene, reveals, timeline, skill map
+assets/site.js           Enhancement layer: reveals, mobile menu, magnetic buttons
+assets/fonts/            Self-hosted Instrument Sans and Serif (woff2) and their OFL license
 assets/khaneil-campbell-resume.pdf   Public résumé (no phone number)
 docs/VISION.md           Positioning and principles
 docs/PORTFOLIO-PLAN.md   Plan, verified content, decisions
-images/diagrams/         Work diagrams, two size variants each
 images/                  Portrait and certificate assets
 _headers                 HTTP security headers
 robots.txt sitemap.xml   Crawler directives and URL index
@@ -126,8 +130,9 @@ python3 scripts/site_audit.py .
 bash scripts/security-check.sh .
 ```
 
-Note: `site_audit.py` flags the bare words `password`, `secret`, and `api key`
-anywhere in page text, not just in credential-shaped values.
+`site_audit.py` flags credential-shaped values (for example `secret: …` or
+`api_key=…`), images with no `alt` attribute (`alt=""` is fine for decoration),
+insecure or unprotected links, and local links that do not resolve.
 
 ## Deployment
 

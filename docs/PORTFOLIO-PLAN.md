@@ -2,7 +2,7 @@
 
 | | |
 |---|---|
-| **Status** | **In production.** The Mist and glass design launched on 14 Oct 2026 (#8, #9). Open decisions are listed in §12. |
+| **Status** | **In production.** The Atelier design replaced Mist and glass on 23 Oct 2026 (#12, #13). Sections on the earlier design are kept as history. Open decisions are listed in §12. |
 | **Date** | 2026-10-14 |
 | **Product** | khaneilcampbell.com, the personal engineering portfolio of Khaneil Campbell |
 | **Headline** | Designing systems. Engineering what's next. |
@@ -136,7 +136,7 @@ Intelligent, precise, architectural, modern. White and stone surfaces, charcoal 
 
 ### 5.2 Tokens [PROPOSED]
 
-The structure (naming, fluid type scale, spacing scale, contrast notes beside every colour) comes from Benjaire's `global.css`. The values are the portfolio's own, so the two sites never look like one brand.
+The structure (naming, fluid type scale, spacing scale, contrast notes beside every color) comes from Benjaire's `global.css`. The values are the portfolio's own, so the two sites never look like one brand.
 
 | Token | Benjaire | Portfolio [PROPOSED] | Why it differs |
 |---|---|---|---|
@@ -220,7 +220,7 @@ Every section lists its evidence. Nothing here claims revenue, customers, traffi
 
 ## 9. Technology stack recommendation
 
-**Framework [PROPOSED]: Astro, static output, mirroring Benjaire (ADR-0001).** The portfolio now needs exactly what drove that decision: one shared layout instead of a nav and CSP duplicated across ten pages, schema-validated content for projects, image optimisation for screenshots, and zero JavaScript by default. TypeScript, plain CSS tokens, no UI framework, no WebGL library.
+**Framework [PROPOSED]: Astro, static output, mirroring Benjaire (ADR-0001).** The portfolio now needs exactly what drove that decision: one shared layout instead of a nav and CSP duplicated across ten pages, schema-validated content for projects, image optimization for screenshots, and zero JavaScript by default. TypeScript, plain CSS tokens, no UI framework, no WebGL library.
 
 **Content [PROPOSED]:** Content Collections for `projects`, `experience`, `certifications` and `skills`, so the résumé facts live in one place and every page reads from them.
 
@@ -244,7 +244,7 @@ Each milestone ends with an approval gate, as Benjaire's did.
 | Milestone | Work | You approve |
 |---|---|---|
 | **M0: Plan** | This document; your answers to §12 | The plan and decisions |
-| **M1: Evidence** | Collect your answers: role detail, metrics source, a sanitised résumé PDF, screenshots, cutover status | The verified content list |
+| **M1: Evidence** | Collect your answers: role detail, metrics source, a sanitized résumé PDF, screenshots, cutover status | The verified content list |
 | **M2: Design system** | Tokens, type, components and a homepage concept board, published as a private preview page, at 1440 and 390 widths | The visual direction |
 | **M3: Foundation** | Astro scaffold on a new branch: layout, nav, tokens, CI, content collections, redirects; existing pages ported with content unchanged | Parity with the current site |
 | **M4: Core pages** | Home, About, Expertise, Experience, Contact, Résumé; timeline and skill map ported | Copy and layout |
@@ -268,7 +268,7 @@ The existing branch (`claude/stoic-hypatia-1bo10a`) stays as it is until M3. Not
 | B.S. Individualized Studies, CIS concentration, Buffalo State University | VERIFIED | Résumé |
 | AI Literacy: Advanced Course for Developers (Columbia) | VERIFIED | Résumé |
 | Cybersecurity mentorship scope | **CONFLICT** | Résumé vs brief (D13) |
-| "Columbia University Information Technology" as the organisation name | **NEEDS EVIDENCE** | Brief only; the résumé says Columbia University |
+| "Columbia University Information Technology" as the organization name | **NEEDS EVIDENCE** | Brief only; the résumé says Columbia University |
 | n8n agent work | **NEEDS EVIDENCE** | Skill lists only (D10) |
 | Benjaire live status; your hands-on share of the work | **NEEDS EVIDENCE** | D2, D3 |
 | LinkedIn URL: `linkedin.com/in/khaneil-campbell` | CONFIRMED | You, 2026-10-14 (D14); applied across the site |
@@ -277,7 +277,7 @@ The existing branch (`claude/stoic-hypatia-1bo10a`) stays as it is until M3. Not
 
 | # | Decision | My recommendation |
 |---|---|---|
-| **D1** | Benjaire is anonymous by your own PRD rule. May the portfolio name you as its founder and link to it? | If yes, update the Benjaire PRD rule first, then publish. If no, publish an anonymised case study ("a New York consumer-brand company"), with no link or logo |
+| **D1** | Benjaire is anonymous by your own PRD rule. May the portfolio name you as its founder and link to it? | If yes, update the Benjaire PRD rule first, then publish. If no, publish an anonymized case study ("a New York consumer-brand company"), with no link or logo |
 | **D2** | Which parts of Benjaire did you do by hand (edits, testing, deploying, DNS) versus direct and review? | Answer in your own words; I draft from it |
 | **D3** | Is the Astro build live at benjaire.com yet? | Case study says "in development" until it is |
 | **D4** | Hosting: stay on GitHub Pages, or move to Cloudflare as Benjaire did | Stay on GitHub Pages for launch |

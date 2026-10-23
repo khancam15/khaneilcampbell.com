@@ -22,8 +22,10 @@ REQUIRED_HEADERS = {
     "X-Frame-Options",
 }
 
+# Credential-shaped values (a keyword followed by = or :), not prose that
+# merely mentions secrets or passwords.
 SENSITIVE_PATTERN = re.compile(
-    r"api[_-]?key|password|passwd|secret|private[_-]?key|access[_-]?token",
+    r"(?:api[_-]?key|password|passwd|secret|private[_-]?key|access[_-]?token)\s*[:=]\s*\S",
     re.IGNORECASE,
 )
 
@@ -109,7 +111,8 @@ def audit_page(root: Path, path: Path) -> list[Issue]:
         issues.append(Issue("warn", relative, f"inline event handlers found: {handlers}"))
 
     for image in parser.images:
-        if not image.get("alt"):
+        # alt="" is valid for decorative images; only a missing attribute fails.
+        if "alt" not in image:
             src = image.get("src", "unknown image")
             issues.append(Issue("fail", relative, f"image missing alt text: {src}"))
 
@@ -142,7 +145,8 @@ def is_resolvable_link(root: Path, source: Path, href: str) -> bool:
     if not target:
         return True
 
-    candidate = (source.parent / target).resolve()
+    base = root if target.startswith("/") else source.parent
+    candidate = (base / target.lstrip("/")).resolve()
     try:
         candidate.relative_to(root.resolve())
     except ValueError:
