@@ -103,7 +103,7 @@ em{font-style:italic}
 /* footer */
 .foot{margin-top:136px;padding:72px 0 40px}
 .foot .row{display:grid;grid-template-columns:1.4fr 1fr 1fr 1fr;gap:40px}
-.foot .mail{font-family:var(--serif);font-size:clamp(28px,2.8vw,40px);color:var(--on-night);border-bottom:1px solid var(--line-n)}
+.foot .mail{font-family:var(--serif);font-size:clamp(20px,1.7vw,26px);color:var(--on-night);border-bottom:1px solid var(--line-n)}
 .foot .fh{margin:0;font:500 12px var(--sans);letter-spacing:.14em;text-transform:uppercase;color:var(--brass-lt)}
 .foot ul{list-style:none;margin-top:14px;line-height:2.1;font-size:15px;color:var(--on-night-2)}
 .foot .base{margin-top:80px;padding-top:24px;border-top:1px solid var(--line-n);display:flex;justify-content:space-between;align-items:center;font-size:13px;color:var(--on-night-2)}
