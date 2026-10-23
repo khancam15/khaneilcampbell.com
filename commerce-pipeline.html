@@ -31,7 +31,7 @@
 
 <link rel="preload" href="assets/fonts/instrument-serif-latin.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="preload" href="assets/fonts/instrument-sans-latin.woff2" as="font" type="font/woff2" crossorigin>
-<link rel="stylesheet" href="assets/site.css?v=9d38d7b2">
+<link rel="stylesheet" href="assets/site.css?v=f75a637b">
 <script src="assets/site.js?v=3c166de2" defer></script>
 
 </head>
@@ -145,19 +145,38 @@ test_seo_analyzer.py::test_analyze_applies_cleanup_only_tag_changes <span class=
       </ul></div>
     </div>
     <div class="story reveal">
+      <h2>When it <em>fails</em></h2>
+      <div class="txt">
+        <p>Every failure has a defined outcome. The pipeline stops, waits or reports; it never guesses.</p>
+        <ul class="plain fails">
+          <li><b>Bad credentials</b>Preflight checks Shopify, Canva and Anthropic before any work starts. If one fails, the loop exits and nothing runs.</li>
+          <li><b>Invalid listing</b>The validator writes the error to the run log and halts that product. Nothing reaches Shopify.</li>
+          <li><b>API errors</b>Rate limits and server errors retry at 2, 4 and 8 seconds, honoring Retry-After. Five failures in a row open a circuit breaker for five minutes.</li>
+          <li><b>Runaway publishing</b>A weekly cap and a 24-hour cooldown limit how much can go live. At the cap, the loop switches to SEO maintenance only.</li>
+          <li><b>Silent failures</b>Errors go to a separate log, and the daily health report flags any product stuck for more than 48 hours. I read that report and the daily email digest.</li>
+        </ul>
+      </div>
+    </div>
+    <div class="story reveal">
       <h2>The <em>tools</em></h2>
       <div class="txt"><ul class="tools"><li>Python 3.12</li><li>CrewAI</li><li>Anthropic API</li><li>Canva remote MCP</li><li>Canva Connect API</li><li>Shopify Admin API</li><li>OAuth PKCE</li><li>Serper API</li><li>SQLite</li><li>gitleaks</li><li>pip-audit</li><li>GitHub Actions</li><li>Ubuntu VPS · systemd</li><li>Gmail SMTP digest</li></ul></div>
     </div>
     <div class="story reveal">
       <h2>The <em>results</em></h2>
       <div class="txt">
-        <p>All seven phases are built and tested, ten automated tests pass and no secret has ever been committed. One stage is left: live publishing.</p>
-        <p class="small-note">Sales and SEO figures will be added after a full month of live publishing.</p>
+        <dl class="status" aria-label="Project status">
+          <div><dt>Seven-phase pipeline</dt><dd class="ok">Built and tested</dd></div>
+          <div><dt>Automated tests</dt><dd class="ok">10 of 10 passing</dd></div>
+          <div><dt>Credential safeguards</dt><dd class="ok">In place</dd></div>
+          <div><dt>Preflight gate and publish limits</dt><dd class="ok">In place</dd></div>
+          <div><dt>Live publishing</dt><dd class="wait">Pending</dd></div>
+          <div><dt>Sales and SEO measurement</dt><dd class="wait">After the first month live</dd></div>
+        </dl>
         <div class="actions small-note"><a class="btn dark" href="https://github.com/khancam15/multi-agent-commerce-pipeline" target="_blank" rel="noopener noreferrer">View the repository <i aria-hidden="true">↗</i></a></div>
       </div>
     </div>
 
-    <p class="pull reveal">“The interesting engineering is not the AI. It is everything around it that <em>stops the AI doing something expensive.</em>”</p>
+    <p class="pull reveal">“The interesting engineering is not the AI. It is everything around it that <em>makes the AI worth trusting.</em>”</p>
 
     <a class="nextc" href="soc-automation-lab.html"><span class="eyebrow">Next case study</span><b>SOC brute-force detection lab →</b></a>
   </div>
