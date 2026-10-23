@@ -396,3 +396,6 @@ body.locked{overflow:hidden}
 .links span{gap:16px;text-align:left}
 .links i{flex:none}
 @media (max-width:860px){.links{gap:14px}.links a{padding:20px 22px;gap:18px;border-radius:16px}.links b{font-size:28px}}
+.foot .row{grid-template-columns:1.3fr 1fr 1fr 1.5fr}
+.foot .row>div:last-child li{white-space:nowrap}
+@media (max-width:860px){.foot .row{grid-template-columns:1fr 1fr}.foot .row>div:last-child{grid-column:1/-1}}
