@@ -383,4 +383,5 @@ body.locked{overflow:hidden}
 @media (max-width:860px){.drives{padding:88px 0}.drives .wrap{grid-template-columns:1fr;gap:28px}}
 .small-note{max-width:70ch}
 @media (max-width:640px){.ab .lede,.prose p{font-size:17px;line-height:1.65}.shead p,.closing p{font-size:17px}}
-@media (min-width:861px){.timeline+.small-note{margin:0 0 0 232px}}
+.timeline .d{grid-column:2;max-width:70ch;margin-top:-14px;font-size:15px;line-height:1.6;color:var(--body)}
+@media (max-width:860px){.timeline .d{grid-column:auto;margin-top:6px}}
