@@ -118,7 +118,7 @@ assets/khaneil-campbell-resume.pdf   Public résumé (no phone number)
 docs/VISION.md           Positioning and principles
 docs/PORTFOLIO-PLAN.md   Plan, verified content, decisions
 images/                  Portrait and certificate assets
-_headers                 HTTP security headers
+_headers                 Header policy for a future host; GitHub Pages ignores it (the CSP meta tag is what is enforced)
 robots.txt sitemap.xml   Crawler directives and URL index
 CNAME                    Custom domain for GitHub Pages
 scripts/                 Dependency-free audit and inventory tooling
