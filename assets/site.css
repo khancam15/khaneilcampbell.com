@@ -556,3 +556,4 @@ body.night .foot{margin-top:0;border-top:1px solid var(--line-n)}
   .ad-base .ad-nodes{grid-template-columns:1fr}
 }
 .closing p{max-width:62ch;text-wrap:balance}
+.ab .lede{max-width:56ch}.ab .lede+.lede{margin-top:18px}
