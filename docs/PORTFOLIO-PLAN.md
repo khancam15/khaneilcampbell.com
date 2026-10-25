@@ -6,7 +6,7 @@
 | **Date** | 2026-10-14 |
 | **Product** | khaneilcampbell.com, the personal engineering portfolio of Khaneil Campbell |
 | **Headline** | Designing systems. Engineering what's next. |
-| **Sources reviewed** | This repository; `khancam15/benjaire.com` (source, docs, a local build of `site/`); `khancam15/multi-agent-commerce-pipeline`; `khancam15/splunk-bruteforce-detection-lab`; `khancam15/khancam15` (profile README); the résumé supplied 2026-10-13 (`K.Campbell_Resume.pdf`) |
+| **Sources reviewed** | This repository; `khancam15/benjaire.com` (source, docs, a local build of `site/`); `khancam15/multi-agent-commerce-pipeline`; `khancam15/ssplunk-bruteforce-detection-lab`; `khancam15/khancam15` (profile README); the résumé supplied 2026-10-13 (`K.Campbell_Resume.pdf`) |
 
 ## Production status (14 Oct 2026)
 
