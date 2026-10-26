@@ -46,6 +46,7 @@ class PageParser(HTMLParser):
         self.links: list[dict[str, str]] = []
         self.images: list[dict[str, str]] = []
         self.inline_handlers: list[str] = []
+        self.csp = ""
         self._in_title = False
 
     def handle_starttag(self, tag: str, attrs: list[tuple[str, str | None]]) -> None:
@@ -57,6 +58,8 @@ class PageParser(HTMLParser):
             self._in_title = True
         elif tag == "meta":
             self.meta.append(attr_map)
+            if attr_map.get("http-equiv", "").lower() == "content-security-policy":
+                self.csp = attr_map.get("content", "")
         elif tag == "a":
             self.links.append(attr_map)
         elif tag == "img":
@@ -88,7 +91,16 @@ def has_csp(meta: Iterable[dict[str, str]]) -> bool:
     )
 
 
-def audit_page(root: Path, path: Path) -> list[Issue]:
+def csp_directives(policy: str) -> dict[str, str]:
+    directives = {}
+    for part in policy.split(";"):
+        name, _, value = part.strip().partition(" ")
+        if name:
+            directives[name.lower()] = " ".join(value.split())
+    return directives
+
+
+def audit_page(root: Path, path: Path, header_csp: str) -> list[Issue]:
     parser = PageParser()
     relative = path.relative_to(root).as_posix()
     text = path.read_text(encoding="utf-8")
@@ -102,6 +114,17 @@ def audit_page(root: Path, path: Path) -> list[Issue]:
         issues.append(Issue("fail", relative, "missing <title>"))
     if not has_csp(parser.meta):
         issues.append(Issue("fail", relative, "missing CSP meta tag"))
+    elif header_csp:
+        # The header and the meta tag are both enforced, so they must agree.
+        # frame-ancestors only works as a header; browsers ignore it in meta.
+        meta = csp_directives(parser.csp)
+        header = csp_directives(header_csp)
+        header.pop("frame-ancestors", None)
+        if "frame-ancestors" in meta:
+            issues.append(Issue("fail", relative, "frame-ancestors has no effect in a CSP meta tag"))
+            meta.pop("frame-ancestors")
+        if meta != header:
+            issues.append(Issue("fail", relative, "CSP meta tag differs from the _headers policy"))
     if not has_meta(parser.meta, "name", "referrer"):
         issues.append(Issue("fail", relative, "missing referrer meta tag"))
     if not has_meta(parser.meta, "name", "robots"):
@@ -126,7 +149,7 @@ def audit_page(root: Path, path: Path) -> list[Issue]:
         if target == "_blank" and not {"noopener", "noreferrer"}.issubset(rel_tokens):
             issues.append(Issue("fail", relative, f"target=_blank missing rel protections: {href}"))
         if href and not is_resolvable_link(root, path, href):
-            issues.append(Issue("warn", relative, f"local link target not found: {href}"))
+            issues.append(Issue("fail", relative, f"local link target not found: {href}"))
 
     for match in SENSITIVE_PATTERN.finditer(text):
         issues.append(Issue("fail", relative, f"possible sensitive keyword: {match.group(0)}"))
@@ -152,6 +175,17 @@ def is_resolvable_link(root: Path, source: Path, href: str) -> bool:
     except ValueError:
         return False
     return candidate.exists()
+
+
+def header_csp(root: Path) -> str:
+    header_file = root / "_headers"
+    if not header_file.exists():
+        return ""
+    for line in header_file.read_text(encoding="utf-8").splitlines():
+        name, _, value = line.strip().partition(":")
+        if name == "Content-Security-Policy":
+            return value.strip()
+    return ""
 
 
 def audit_headers(root: Path) -> list[Issue]:
@@ -193,9 +227,10 @@ def main() -> int:
     root = Path(args.root).resolve()
     pages = find_html_files(root)
     issues = audit_headers(root)
+    policy = header_csp(root)
 
     for page in pages:
-        issues.extend(audit_page(root, page))
+        issues.extend(audit_page(root, page, policy))
 
     return print_report(issues, len(pages))
 
