@@ -1,0 +1,20 @@
+# Keeps the SHA-pinned GitHub Actions current. The site has no npm or pip
+# manifest, so Actions is the only ecosystem to watch. Each PR runs every
+# check before merging.
+version: 2
+updates:
+  - package-ecosystem: github-actions
+    directory: /
+    schedule:
+      interval: weekly
+      day: monday
+    # Wait a week after a release so a compromised version has time to be
+    # caught and pulled before it reaches this repo.
+    cooldown:
+      default-days: 7
+    open-pull-requests-limit: 5
+    commit-message:
+      prefix: ci
+    groups:
+      github-actions:
+        patterns: ["*"]

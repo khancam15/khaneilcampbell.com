@@ -169,9 +169,24 @@ audit on every page and fails below a score of 100.
 ## Deployment
 
 The domain is registered on Cloudflare, which manages DNS and Email Routing. GitHub Pages serves the site from `main` with the domain set by `CNAME`.
-The `security-check.yml` and `site-checks.yml` workflows run on every push and
-pull request; `site-checks.yml` also runs weekly so external links that break
-between changes still surface. Changes reach `main` through squash merged pull requests; see [CONTRIBUTING.md](CONTRIBUTING.md).
+Changes reach `main` through squash merged pull requests; see [CONTRIBUTING.md](CONTRIBUTING.md).
+
+## CI and supply chain
+
+Every pull request to `main` and every push to it runs these workflows:
+
+| Workflow | Checks |
+|---|---|
+| `site-checks.yml` | Shared shell, site audit, links (also weekly) and Lighthouse accessibility |
+| `security-check.yml` | CSP and referrer meta tags, safe external links, HTTPS-only loads, `_headers` |
+| `codeql.yml` | CodeQL on the workflows and `assets/site.js` (also weekly) |
+| `workflow-lint.yml` | [zizmor](https://docs.zizmor.sh) audit of every workflow and `dependabot.yml` |
+
+Every workflow starts with a read-only token and checks out without saving
+credentials. Third-party actions are pinned to full commit SHAs with the
+version in a comment, and Dependabot (`.github/dependabot.yml`) proposes
+grouped updates weekly, a week after each release. Report vulnerabilities as
+described in [SECURITY.md](SECURITY.md).
 
 ## Built with AI Assistance
 
