@@ -192,3 +192,9 @@ described in [SECURITY.md](SECURITY.md).
 ## Built with AI Assistance
 
 This site was designed and built with Claude as a working partner. Claude helped with layout and visual design, HTML and CSS, copy edits, and the Python audit scripts in `scripts/`. I set the direction, made the design and content decisions, and reviewed every change on the live site before publishing it. The planning documents in `docs/` record those decisions and what each claim on the site rests on.
+
+## License
+
+Original software code is licensed under [MIT](LICENSE). Personal and editorial
+content, branding, and third-party materials are not included in that grant;
+see [license scope](LICENSING.md).
