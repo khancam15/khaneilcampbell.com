@@ -1,0 +1,47 @@
+name: Site CI
+
+on:
+  pull_request:
+  push:
+    branches: [main]
+  workflow_dispatch:
+    inputs:
+      bundle:
+        description: Also package the site and its page inventory for download
+        type: boolean
+        default: false
+
+permissions:
+  contents: read
+
+concurrency:
+  group: site-ci-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  audit:
+    name: Site audit (scripts, pages, links)
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - run: pip install ruff
+      - run: python -m compileall -q scripts
+      - name: Lint (pyflakes rules)
+        run: ruff check --select F scripts
+      - run: bash -n scripts/security-check.sh
+      # Security headers, accessibility basics, internal links and credential-shaped strings.
+      - run: python scripts/site_audit.py .
+      - run: python scripts/site_inventory.py . --output site-inventory.json
+      - name: Package the site
+        if: github.event_name == 'workflow_dispatch' && inputs.bundle
+        run: git archive --format=zip -o khaneilcampbell.com-site.zip HEAD -- . ':!docs' ':!scripts' ':!.github'
+      - uses: actions/upload-artifact@v4
+        if: github.event_name == 'workflow_dispatch' && inputs.bundle
+        with:
+          name: khaneilcampbell.com-site
+          path: |
+            khaneilcampbell.com-site.zip
+            site-inventory.json
