@@ -177,6 +177,7 @@ Every pull request to `main` and every push to it runs these workflows:
 
 | Workflow | Checks |
 |---|---|
+| `site-ci.yml` | Python lint, script syntax, site audit and page inventory |
 | `site-checks.yml` | Shared shell, site audit, links (also weekly) and Lighthouse accessibility |
 | `security-check.yml` | CSP and referrer meta tags, safe external links, HTTPS-only loads, `_headers` |
 | `codeql.yml` | CodeQL on the workflows and `assets/site.js` (also weekly) |
