@@ -18,7 +18,7 @@ served by GitHub Pages from `main`.
 | About | Portrait hero, the thread of the work, career timeline, six-area capability map |
 | Work | Multi-agent commerce pipeline and SOC brute-force lab as full case studies (problem, role, tools, results); phishing and access-control case files (in progress) |
 | Résumé | `assets/khaneil-campbell-resume.pdf`, a public copy with the phone number removed |
-| Links | [LinkedIn](https://www.linkedin.com/in/khaneil-campbell) · [GitHub](https://github.com/khancam15) · contact@khaneilcampbell.com |
+| Links | [LinkedIn](https://www.linkedin.com/in/khaneil-campbell) · [GitHub](https://github.com/khaneilcampbell) · contact@khaneilcampbell.com |
 | Privacy | `privacy.html`: no cookies, analytics or third-party requests; copyright and trademark notices. Linked from every footer |
 | Not yet published | The Benjaire case study, pending decision D1 in the plan |
 

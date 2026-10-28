@@ -37,7 +37,7 @@ Guidelines:
 Commit with GitHub's private noreply address so a personal email address never appears in the history:
 
 ```bash
-git config user.email "60675702+khancam15@users.noreply.github.com"
+git config user.email "60675702+khaneilcampbell@users.noreply.github.com"
 ```
 
 ## GitHub Actions
