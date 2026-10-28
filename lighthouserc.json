@@ -1,0 +1,35 @@
+{
+  "ci": {
+    "collect": {
+      "staticDistDir": ".",
+      "maxAutodiscoverUrls": 0,
+      "numberOfRuns": 1,
+      "settings": {
+        "onlyCategories": [
+          "accessibility"
+        ],
+        "chromeFlags": "--headless=new --no-sandbox"
+      },
+      "autodiscoverUrlBlocklist": [
+        "/_partials/head.html",
+        "/_partials/assets.html",
+        "/_partials/header.html",
+        "/_partials/footer.html"
+      ]
+    },
+    "assert": {
+      "assertions": {
+        "categories:accessibility": [
+          "error",
+          {
+            "minScore": 1
+          }
+        ]
+      }
+    },
+    "upload": {
+      "target": "filesystem",
+      "outputDir": ".lighthouseci/reports"
+    }
+  }
+}

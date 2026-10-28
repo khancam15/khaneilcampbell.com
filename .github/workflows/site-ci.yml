@@ -2,6 +2,7 @@ name: Site CI
 
 on:
   pull_request:
+    branches: [main]
   push:
     branches: [main]
   workflow_dispatch:
@@ -16,18 +17,21 @@ permissions:
 
 concurrency:
   group: site-ci-${{ github.ref }}
-  cancel-in-progress: true
+  cancel-in-progress: ${{ github.event_name == 'pull_request' }}
 
 jobs:
   audit:
     name: Site audit (scripts, pages, links)
     runs-on: ubuntu-latest
+    timeout-minutes: 10
     steps:
-      - uses: actions/checkout@v4
-      - uses: actions/setup-python@v5
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
+      - uses: actions/setup-python@ece7cb06caefa5fff74198d8649806c4678c61a1 # v6.3.0
         with:
           python-version: "3.12"
-      - run: pip install ruff
+      - run: pip install ruff==0.17.3
       - run: python -m compileall -q scripts
       - name: Lint (pyflakes rules)
         run: ruff check --select F scripts
@@ -38,7 +42,7 @@ jobs:
       - name: Package the site
         if: github.event_name == 'workflow_dispatch' && inputs.bundle
         run: git archive --format=zip -o khaneilcampbell.com-site.zip HEAD -- . ':!docs' ':!scripts' ':!.github'
-      - uses: actions/upload-artifact@v4
+      - uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9 # v7.0.2
         if: github.event_name == 'workflow_dispatch' && inputs.bundle
         with:
           name: khaneilcampbell.com-site

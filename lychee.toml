@@ -1,0 +1,14 @@
+# Link checker settings for lychee (https://lychee.cli.rs), run by
+# .github/workflows/site-checks.yml. Pass --root-dir with the repository's
+# absolute path so root-relative links such as /assets/site.css resolve.
+
+# Retry slow hosts rather than failing a build on one flaky response.
+max_retries = 3
+timeout = 20
+accept = ["200..=299", "429"]
+
+# LinkedIn answers automated requests with status 999 whatever the URL.
+exclude = ["^https://www\\.linkedin\\.com/"]
+
+# Validate #fragment links against the ids on the target page.
+include_fragments = "anchor-only"

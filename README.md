@@ -74,14 +74,13 @@ requests and stay sharp at any size.
 - **The stylesheet and script URLs carry a content hash** (`assets/site.css?v=…`,
   `assets/site.js?v=…`). The host caches HTML and assets separately for ten minutes
   with no version in the path, so a browser can otherwise pair fresh markup with a
-  stale file. Recompute the hash whenever either file changes:
-
-  ```bash
-  python3 -c "import hashlib;print(hashlib.sha256(open('assets/site.css','rb').read()).hexdigest()[:8])"
-  ```
+  stale file. `scripts/build.py` writes the hash from the files themselves, so
+  rerun it whenever either file changes.
 - **Every page** carries a CSP meta tag, a referrer policy, canonical and Open Graph
   tags, JSON-LD, and `rel="noopener noreferrer"` on any `target="_blank"` link.
   The first, second and last are enforced by the GitHub Actions security check.
+- **The CSP meta tag and `_headers` must match.** `site_audit.py` fails if they
+  differ; only `frame-ancestors` is header-only, since browsers ignore it in meta.
 
 ## SEO
 
@@ -118,35 +117,77 @@ assets/khaneil-campbell-resume.pdf   Public résumé (no phone number)
 docs/VISION.md           Positioning and principles
 docs/PORTFOLIO-PLAN.md   Plan, verified content, decisions
 images/                  Portrait and certificate assets
+_partials/               Shared head, assets, header and footer, stamped in by scripts/build.py
 _headers                 HTTP security headers
+lighthouserc.json        Lighthouse CI settings: every page, accessibility score 100
+lychee.toml              Link checker settings
 robots.txt sitemap.xml   Crawler directives and URL index
 CNAME                    Custom domain for GitHub Pages
-scripts/                 Dependency-free audit and inventory tooling
+scripts/                 Dependency-free build, audit and inventory tooling
 ```
 
 ## Local development
 
-Edit any `.html` file directly — there is no build step.
+Pages are plain HTML and GitHub Pages serves the repository as is. The parts
+every page shares live once in `_partials/` and are stamped into each page
+between marker comments by a dependency-free script:
+
+| Partial | Marker | Holds |
+|---|---|---|
+| `_partials/head.html` | `<!-- shell:head -->` | charset, viewport, CSP, referrer policy, theme color |
+| `_partials/assets.html` | `<!-- shell:assets -->` | icons, manifest, font preloads, stylesheet and script with their `?v=` hashes |
+| `_partials/header.html` | `<!-- shell:header current="about.html" -->` | skip link and nav; `current` marks the active nav link |
+| `_partials/footer.html` | `<!-- shell:footer -->` | site footer |
+
+Edit the partial, never the copy inside a page, then run the build. A page's own
+title, description, Open Graph tags and JSON-LD stay in the page. `root="/"` on a
+marker makes its links absolute (the 404 page is served at any URL). A new page
+starts as a copy of an existing one, markers included.
 
 ```bash
+python3 scripts/build.py .
 python3 -m http.server 3000
 ```
 
-Checks before committing:
+Checks before committing (CI runs all of them):
 
 ```bash
+python3 scripts/build.py . --check
 python3 scripts/site_audit.py .
 bash scripts/security-check.sh .
+lychee --config lychee.toml --root-dir "$PWD" --offline ./*.html
+npx @lhci/cli@0.15.1 autorun
 ```
 
 `site_audit.py` flags credential-shaped values (for example `secret: …` or
 `api_key=…`), images with no `alt` attribute (`alt=""` is fine for decoration),
-insecure or unprotected links, and local links that do not resolve.
+insecure or unprotected links, local links that do not resolve, and a CSP meta
+tag that differs from `_headers`. [lychee](https://lychee.cli.rs) checks every
+link and `#fragment`, external ones included. Lighthouse runs the accessibility
+audit on every page and fails below a score of 100.
 
 ## Deployment
 
 The domain is registered on Cloudflare, which manages DNS and Email Routing. GitHub Pages serves the site from `main` with the domain set by `CNAME`.
-The `security-check.yml` workflow runs on every push and pull request. Changes reach `main` through squash merged pull requests; see [CONTRIBUTING.md](CONTRIBUTING.md).
+Changes reach `main` through squash merged pull requests; see [CONTRIBUTING.md](CONTRIBUTING.md).
+
+## CI and supply chain
+
+Every pull request to `main` and every push to it runs these workflows:
+
+| Workflow | Checks |
+|---|---|
+| `site-ci.yml` | Python lint, script syntax, site audit and page inventory |
+| `site-checks.yml` | Shared shell, site audit, links (also weekly) and Lighthouse accessibility |
+| `security-check.yml` | CSP and referrer meta tags, safe external links, HTTPS-only loads, `_headers` |
+| `codeql.yml` | CodeQL on the workflows and `assets/site.js` (also weekly) |
+| `workflow-lint.yml` | [zizmor](https://docs.zizmor.sh) audit of every workflow and `dependabot.yml` |
+
+Every workflow starts with a read-only token and checks out without saving
+credentials. Third-party actions are pinned to full commit SHAs with the
+version in a comment, and Dependabot (`.github/dependabot.yml`) proposes
+grouped updates weekly, a week after each release. Report vulnerabilities as
+described in [SECURITY.md](SECURITY.md).
 
 ## Built with AI Assistance
 
